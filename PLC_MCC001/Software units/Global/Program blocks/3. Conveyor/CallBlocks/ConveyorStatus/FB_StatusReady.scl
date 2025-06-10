@@ -1,0 +1,53 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_StatusReady
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      StatusON : Bool;
+      StatusESTOP : Bool;
+      StatusFAULT : Bool;
+      StatusMAN : Bool;
+      SignalFIRE : Bool;
+      SystemAlertTime : Time;
+   END_VAR
+
+   VAR_OUTPUT 
+      StatusReady : Bool;
+   END_VAR
+
+   VAR 
+      StatusReadyCondition : Bool;
+      SystemAlertTimer {InstructionName := 'IEC_TIMER'; LibVersion := '1.0'} : IEC_TIMER;
+      SystemReadyToStart { S7_SetPoint := 'True'} : Bool;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================================================
+	// Company       : LogTech, s.r.o.
+	// Created by    : Anton Vinoth Soundraraj
+	// Block         : FB_StatusReady
+	// Project       : LT-Lib-Block
+	// ==========================================================================================================================================================================
+	
+	REGION Status Ready
+	    
+	    // Status ready condition
+	    
+	    #StatusReadyCondition :=
+	    #StatusON AND
+	    NOT #StatusESTOP AND
+	    NOT #StatusFAULT AND
+	    NOT #StatusMAN AND
+	    NOT #SignalFIRE;
+	    
+	    #SystemAlertTimer.TON(IN := #StatusReadyCondition,
+	                          PT := #SystemAlertTime,
+	                          Q => #SystemReadyToStart);
+	    
+	    #StatusReady := #SystemReadyToStart;
+	    
+	END_REGION Status Ready
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

@@ -1,0 +1,26 @@
+﻿NAMESPACE LineA1
+FUNCTION_BLOCK FB_Merging
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR 
+      Merge { S7_SetPoint := 'False'} : _.Global.FB_Merging;
+   END_VAR
+
+   VAR_TEMP 
+      Priority : Struct
+         Straight : Bool;
+         Arm : Bool;
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+	
+	
+	
+	#Merge(StraightSensor := _.LineA1.IDB_LineA1."Conveyor_A1.1.1".FilteredSensor,
+	       ArmSensor      := _.LineA1.IDB_LineA1."Conveyor_A1.1.1".FilteredSensor);
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

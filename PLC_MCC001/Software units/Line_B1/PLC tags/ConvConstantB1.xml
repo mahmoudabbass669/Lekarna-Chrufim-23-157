@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Tags.PlcTagTable ID="0">
+    <AttributeList>
+      <Access>Published</Access>
+      <Name>ConvConstantB1</Name>
+    </AttributeList>
+    <ObjectList>
+      <SW.Tags.PlcUserConstant ID="1" CompositionName="UserConstants">
+        <AttributeList>
+          <DataTypeName>Int</DataTypeName>
+          <Name>minB1</Name>
+          <Value>2001</Value>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="3" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcUserConstant>
+      <SW.Tags.PlcUserConstant ID="4" CompositionName="UserConstants">
+        <AttributeList>
+          <DataTypeName>Int</DataTypeName>
+          <Name>maxB1</Name>
+          <Value>2002</Value>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="5" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="6" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcUserConstant>
+    </ObjectList>
+  </SW.Tags.PlcTagTable>
+</Document>

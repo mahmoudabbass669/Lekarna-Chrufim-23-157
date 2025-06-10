@@ -1,0 +1,66 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_StatusFault
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      FaultActive { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      ResetFault { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      StatusRunning : Bool;
+      Feedback : Bool;
+   END_VAR
+
+   VAR_OUTPUT 
+      FaultStatus { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      FaultACK { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+   END_VAR
+
+   VAR 
+      FeedbackWatchdog {InstructionName := 'IEC_TIMER'; LibVersion := '1.0'; S7_SetPoint := 'False'} : IEC_TIMER;
+      FeedbackError { S7_SetPoint := 'True'} : Bool;
+      FeedbackTime : Time := T#1s;
+      FeedbackLost : Bool;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================================================
+	// Company       : LogTech, s.r.o.
+	// Created by    : Anton Vinoth Soundraraj
+	// Block         : FB_StatusFault
+	// Project       : LT-Lib-Block
+	// ==========================================================================================================================================================================
+	
+	REGION Fault Status
+	    
+	    // init ack to 0
+	    #FaultACK := 0;
+	    
+	    // ACTIVE --> FAULT STATUS
+	    IF #FaultActive(* OR
+	        #FeedbackError *)
+	    THEN
+	        #FaultStatus := TRUE;
+	    END_IF;
+	    
+	    // RESET --> FAULT STATUS
+	    IF #ResetFault AND
+	        NOT #FaultActive
+	    THEN
+	        #FaultStatus := FALSE;
+	        #FaultACK := TRUE;
+	    END_IF;
+	    
+	    // Feedback watchdog check
+	    
+	    #FeedbackWatchdog.TON(IN:=#StatusRunning AND NOT #Feedback,
+	                          PT:=#FeedbackTime,
+	                          Q=>#FeedbackLost);
+	    
+	    // static to output
+	    #FeedbackError :=
+	    #FeedbackLost;
+	    
+	END_REGION
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

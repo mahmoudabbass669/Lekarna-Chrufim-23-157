@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Blocks.GlobalDB ID="0">
+    <AttributeList>
+      <Access>Published</Access>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Static">
+    <Member Name="FromHMI" Datatype="Struct">
+      <Member Name="Line" Datatype="Struct">
+        <Member Name="A1" Datatype="&quot;Global.SystemSSR&quot;" />
+        <Member Name="B1" Datatype="&quot;Global.SystemSSR&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+        <Member Name="C1" Datatype="&quot;Global.SystemSSR&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+        <Member Name="D1" Datatype="&quot;Global.SystemSSR&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+    </Member>
+    <Member Name="Line" Datatype="Struct">
+      <Member Name="A1" Datatype="&quot;Global.SystemSSR&quot;" />
+      <Member Name="B1" Datatype="&quot;Global.SystemSSR&quot;">
+        <AttributeList>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+        </AttributeList>
+      </Member>
+      <Member Name="C1" Datatype="&quot;Global.SystemSSR&quot;">
+        <AttributeList>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+        </AttributeList>
+      </Member>
+      <Member Name="D1" Datatype="&quot;Global.SystemSSR&quot;">
+        <AttributeList>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+        </AttributeList>
+      </Member>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <MemoryReserve>100</MemoryReserve>
+      <Name>DB_SystemSSR</Name>
+      <Namespace>Global</Namespace>
+      <Number>5</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="3" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.GlobalDB>
+</Document>

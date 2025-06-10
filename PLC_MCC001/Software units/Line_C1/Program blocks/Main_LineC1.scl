@@ -1,0 +1,27 @@
+﻿NAMESPACE LineC1
+ORGANIZATION_BLOCK Main_LineC1
+TITLE = "Main Program Sweep (Cycle)"
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : FC_UpstreaProductionTote
+	// Project        : Lekarna, Chrudim -PLC001 -MCC001
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	
+	IDB_LineC1();
+	
+	FC_Upstream();
+	
+	FC_Downstream();
+	
+	IDB_FB_Merging();
+	
+END_ORGANIZATION_BLOCK
+END_NAMESPACE
+

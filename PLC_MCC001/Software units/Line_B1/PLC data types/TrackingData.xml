@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Types.PlcStruct ID="0">
+    <AttributeList>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="None">
+    <Member Name="Barcode" Datatype="String" />
+    <Member Name="ResponseCode" Datatype="UInt" />
+    <Member Name="HeightLimit" Datatype="Bool" />
+    <Member Name="ActualWeight" Datatype="Struct">
+      <Member Name="inRealValue" Datatype="Real" />
+      <Member Name="inStringFormat" Datatype="String" />
+    </Member>
+    <Member Name="EXIT_1_" Datatype="Array[1..1] of Bool" />
+    <Member Name="EXIT_2_" Datatype="Array[1..6] of Bool" />
+    <Member Name="ToteDir" Datatype="&quot;LineB1.ItemDir&quot;" />
+  </Section>
+</Sections></Interface>
+      <Name>TrackingData</Name>
+      <Namespace>LineB1</Namespace>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="3" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Types.PlcStruct>
+</Document>

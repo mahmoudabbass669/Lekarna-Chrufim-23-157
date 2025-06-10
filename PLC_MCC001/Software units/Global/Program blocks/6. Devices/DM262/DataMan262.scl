@@ -1,0 +1,374 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK DataMan262
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR_INPUT 
+      TriggerSignal : Bool;
+      ContinuousGetResults : Bool;
+      "Dataman-Results Available" : Bool;
+      "Dataman-TriggerReady" : Bool;
+      "Dataman-TriggerAck" : Bool;
+      "Dataman-Train Focus Ack" : Bool;
+      "Dataman-Train Match String Ack" : Bool;
+      "Dataman-Execute DMCC Ack" : Bool;
+      "Dataman-Set Match String Ack" : Bool;
+      "Dataman-ResultID" : Int;
+      "Dataman-Result Code" : Int;
+      "Dataman-Result Length" : Int;
+      "Result Data" : BarCode;
+   END_VAR
+
+   VAR_OUTPUT 
+      "Dataman-UserData Length" : Word;
+      "Dataman-UserData Option" : Word;
+      "User Data" : BarCode;
+   END_VAR
+
+   VAR_IN_OUT 
+      "Dataman-TriggerEnable" : Bool;
+      "Dataman-Trigger" : Bool;
+      "Dataman-ResultsAck" : Bool;
+      "Dataman-Train Focus" : Bool;
+      "Dataman-Train Match String" : Bool;
+      "Dataman-Execute DMCC" : Bool;
+      "Dataman-Set Match String" : Bool;
+   END_VAR
+
+   VAR 
+      "Result Pending" : Bool;
+      "Latest Results" : Struct
+         ID : Int;
+         Flags : Int;
+         Length : Int;
+         Value : Array[0..63] of Byte;
+      END_STRUCT;
+      "Train Focus" : Bool;
+      "Train MatchString" : Bool;
+      "Execute DMCC" : Bool;
+      "Set Match String" : Bool;
+      "String" : String[64] := '||>REBOOT$R$L';
+      "Match String" : Array[0..63] of Byte;
+      "Char" : Array[0..63] of Byte;
+      Ret_val_1 { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Byte;
+      R_TRIG_SimpleRead {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      R_TRIG_TrainFocus {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      "R_TRIG_Train MatchString" {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      R_TRIG_ExcuteDMCC {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      R_TRIG_SetMatchString {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      HoldTrigger { S7_SetPoint := 'True'} : Bool;
+      HoldTrainFocus : Bool;
+      HoldTrainMatchString : Bool;
+      HoldDMCCExcute : Bool;
+      HoldSetMatchString : Bool;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : FC_UpstreaProductionTote
+	// Project        : Lekarna, Chrudim -PLC001 -MCC001
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	// This block will wait FOR the camera TO become ready, issue a trigger, wait FOR
+	//the read TO complete AND THEN copy the read results TO DB5 ("LatestResults").
+	//Trigger a read and retrieve the result data.
+	REGION Simple Read
+	           //Trigger a read and retrieve the result data.      
+	    #R_TRIG_SimpleRead(CLK:=#TriggerSignal AND
+	                       NOT #ContinuousGetResults);
+	    IF #R_TRIG_SimpleRead.Q THEN
+	        #HoldTrigger := TRUE;
+	    END_IF;
+	           
+	    IF #HoldTrigger
+	           THEN
+	               //Make sure triggering is enabled 
+	               REGION Triggering is Enabled 
+	                   IF NOT #"Dataman-TriggerEnable" THEN
+	                       #"Dataman-TriggerEnable" := TRUE;
+	                   END_IF;
+	               END_REGION
+	               
+	               //Special case (step 1): If results were already waiting before we issued a 
+	               //trigger, process those results before starting a new read sequence.
+	               REGION Process Results
+	                   IF #"Dataman-Results Available" AND
+	                       NOT #"Result Pending"
+	                   THEN
+	                       #"Result Pending" := TRUE;
+	                       #"Dataman-ResultsAck" := TRUE;
+	                   END_IF;
+	                   
+	               END_REGION
+	               
+	               //If camera ready and trigger not already issued, issue trigger signal. 
+	               REGION Trigger Signal
+	                   IF #"Dataman-TriggerReady" AND
+	                       NOT #"Dataman-Trigger" AND
+	                       NOT #"Dataman-TriggerAck" AND
+	                       NOT #"Dataman-Results Available" AND
+	                       NOT #"Dataman-ResultsAck" AND
+	                       NOT #"Result Pending"
+	                   THEN
+	                       #"Dataman-Trigger" := TRUE;
+	                       #"Result Pending" := TRUE;
+	                   END_IF;
+	                   
+	               END_REGION
+	               
+	               //If results available, get the read results
+	               REGION Read results
+	                   IF #"Result Pending" AND
+	                       #"Dataman-Results Available" AND
+	                       NOT #"Dataman-ResultsAck"
+	                   THEN
+	                       #"Dataman-Trigger" := FALSE;
+	                       #"Dataman-ResultsAck" := TRUE;
+	                       #"Latest Results".ID := #"Dataman-ResultID";
+	                       #"Latest Results".Flags := #"Dataman-Result Code";
+	                       #"Latest Results".Length := #"Dataman-Result Length";
+	                       MOVE_BLK(IN := #"Result Data"."Result Data"[0],
+	                                COUNT := 64,
+	                                OUT => #"Latest Results".Value[0]);
+	                   END_IF;
+	                   
+	               END_REGION
+	               
+	               //Reset trigger signal as soon as it is acknowledged
+	               //Reset results acknowledge signal as soon as it is recognized BY the reader.
+	               
+	               //This is the end OF the read sequence. Reset the "results pending" flag, set the
+	               //output TO signal the operation is complete.
+	               
+	               //Note, the reader signals "results acknowledge" BY setting "results available" TO zero.
+	               
+	               REGION Reset trigger
+	                   
+	                   IF #"Result Pending" AND
+	                           #"Dataman-ResultsAck" AND
+	                           NOT #"Dataman-Results Available"
+	                       THEN
+	                           #"Dataman-ResultsAck" := FALSE;
+	                           #"Result Pending" := FALSE;
+	                           #HoldTrigger := FALSE;
+	                       END_IF;
+	                       
+	               END_REGION
+	               
+	           END_IF;
+	       END_REGION
+	       
+	//Read result data which was triggered elsewhere (i.e. manual trigger button)
+	REGION Results Only
+	           IF #ContinuousGetResults AND
+	               NOT #TriggerSignal
+	           THEN
+	               
+	               //IF results available, save the read results AND issue an acknowledge
+	               REGION manual trigger button
+	                   IF  #"Dataman-Results Available" AND
+	                       NOT #"Dataman-ResultsAck"
+	                   THEN
+	                       #"Dataman-ResultsAck" := TRUE;
+	                       #"Latest Results".ID := #"Dataman-ResultID";
+	                       #"Latest Results".Flags := #"Dataman-Result Code";
+	                       #"Latest Results".Length := #"Dataman-Result Length";
+	                       MOVE_BLK(IN := #"Result Data"."Result Data"[0],
+	                                COUNT := 64,
+	                                OUT => #"Latest Results".Value[0]);
+	                   END_IF;
+	                   
+	               END_REGION
+	               
+	               //IF the result acknowledge is complete, reset the result signal
+	               REGION Reset signal
+	                   IF #"Dataman-ResultsAck" AND
+	                       NOT #"Dataman-Results Available"
+	                   THEN
+	                       #"Dataman-ResultsAck" := FALSE;
+	                   END_IF;
+	               END_REGION
+	           END_IF;
+	       END_REGION
+	
+	//Perform "Train Focus" operation.
+	//Note, this operation only enables the training TO occur. After
+	//executing this call the reader must be triggered TO perform the actual training.
+	
+	REGION Train Focus
+	    //Perform "Train Focus" operation.
+	    #R_TRIG_TrainFocus(CLK:=#"Train Focus");
+	    
+	    IF #R_TRIG_TrainFocus.Q THEN
+	        #HoldTrainFocus := TRUE;
+	    END_IF;
+	    
+	    IF #HoldTrainFocus THEN
+	               REGION Initiate the "Train Focus"
+	                   //Initiate the "Train Focus" operation AND monitor it TO completion.
+	                   IF  NOT #"Dataman-Train Focus" AND
+	                       NOT #"Dataman-Train Focus Ack"
+	                   THEN
+	                       #"Dataman-Train Focus" := True;
+	                   END_IF;
+	                   
+	               END_REGION
+	               
+	               //Release "Train Focus" signal as soon as it is acknowledged by the reader
+	               REGION Release "Train Focus"
+	                   
+	                   IF #"Dataman-Train Focus Ack" THEN
+	                       #"Dataman-Train Focus" := FALSE;
+	                       #HoldTrainFocus := FALSE;
+	                   END_IF;
+	                   
+	               END_REGION
+	           END_IF;
+	       END_REGION
+	
+	
+	//Perform "Train Match String" operation.
+	//Note, this operation only enables the training TO occur. After
+	//executing this call the reader must be triggered TO perform
+	//the actual training.
+	
+	REGION Train MatchString
+	    //Perform "Train Match String" operation.
+	    #"R_TRIG_Train MatchString"(CLK:=#"Train MatchString");
+	    
+	    IF #"R_TRIG_Train MatchString".Q THEN
+	        #HoldTrainMatchString := TRUE;
+	    END_IF;
+	    
+	    IF  #HoldTrainMatchString THEN
+	       //Issue "Train Match String" signal. 
+	       REGION Issue Train Match String
+	              IF  NOT #"Dataman-Train Match String" AND
+	                       NOT #"Dataman-Train Match String Ack"
+	                   THEN
+	                       #"Dataman-Train Match String" := TRUE;
+	              END_IF;
+	       END_REGION
+	               
+	       //Release "Train Match String" signal as soon as it is acknowledged by the reader.
+	       REGION Release "Train Match String"
+	              IF #"Dataman-Train Match String Ack" THEN
+	                  #"Dataman-Train Match String" := FALSE;
+	                  #HoldTrainMatchString := FALSE;
+	              END_IF;
+	       END_REGION
+	   END_IF;
+	   
+	END_REGION
+	
+	REGION DMCC Execute
+	    //Perform "Execute DMCC" operation.
+	    #R_TRIG_ExcuteDMCC(CLK := #"Execute DMCC");
+	    
+	    IF #R_TRIG_ExcuteDMCC.Q THEN
+	        #HoldDMCCExcute := TRUE;
+	    END_IF;
+	    
+	    IF #HoldDMCCExcute THEN
+	        //Copy the DMCC command, and then issue the "DMCC Execute" signal.
+	        REGION issue the "DMCC Execute"
+	            
+	            IF  NOT #"Dataman-Execute DMCC" AND
+	                NOT #"Dataman-Execute DMCC Ack"
+	            THEN
+	                #"Dataman-Execute DMCC" := TRUE;
+	                #"Dataman-UserData Length" := LEN(#String);
+	                
+	                Strg_TO_Chars(Strg := #String,
+	                              pChars := 0,
+	                              Cnt => #"Dataman-UserData Length",
+	                              Chars := #"Match String");
+	                
+	                MOVE_BLK(IN := #"Match String"[0],
+	                         COUNT := 64,
+	                         OUT => #"User Data"."Result Data"[0]);
+	            END_IF;
+	            
+	        END_REGION
+	        
+	        //Release "Execute DMCC" signal as soon as it is acknowledged by the reader.
+	        REGION Release "Execute DMCC"
+	            
+	            IF #"Dataman-Execute DMCC Ack" THEN
+	                #"Dataman-Execute DMCC" := FALSE;
+	                #HoldDMCCExcute := FALSE;
+	            END_IF;
+	            
+	        END_REGION
+	    END_IF;
+	END_REGION
+	
+	
+	//Perform "Set Match String" operation.
+	
+	//Set the match String option, copy the Match String value, AND THEN issue "SetMatchString" signal.
+	
+	//Note, The symbology target's set are selected BY the value OF "UserDataOption".
+	//0 = Set all symbologies
+	//1 = Set only 2D
+	//2 = Set only QR
+	//3 = Set only 1D/stacked/postal
+	
+	REGION Set Match String
+	    //Perform "Set Match String" operation.
+	    #R_TRIG_SetMatchString(CLK:=#"Set Match String");
+	    
+	    IF #R_TRIG_SetMatchString.Q THEN
+	        #HoldSetMatchString := TRUE;
+	    END_IF;
+	    
+	    IF  #HoldSetMatchString THEN
+	        REGION Set the match String option
+	            IF NOT #"Dataman-Set Match String" AND
+	                NOT #"Dataman-Set Match String Ack"
+	            THEN
+	                #"Dataman-Set Match String" := TRUE;
+	                #"Dataman-UserData Option" := 1;
+	                #"Dataman-UserData Length" := LEN(#String);
+	                
+	                Strg_TO_Chars(Strg := #String,
+	                              pChars := 0,
+	                              Cnt => #"Dataman-UserData Length",
+	                              Chars := #Char);
+	                
+	                #Ret_val_1 := MOVE_BLK_VARIANT(SRC := #Char[0],
+	                                               COUNT := 64,
+	                                               SRC_INDEX := 0,
+	                                               DEST_INDEX := 0,
+	                                               DEST => #"Match String"[0]);
+	                
+	                MOVE_BLK(IN := #"Match String"[0],
+	                         COUNT := 64,
+	                         OUT => #"User Data"."Result Data"[0]);
+	            END_IF;
+	            
+	        END_REGION
+	        
+	        //Release "SetMatchString" signal as soon as it is acknowledged BY the reader.
+	        REGION Release "SetMatchString"
+	            
+	            IF #"Dataman-Set Match String Ack" THEN
+	                #"Dataman-Set Match String" := FALSE;
+	                #HoldSetMatchString := FALSE;
+	            END_IF;
+	            
+	        END_REGION
+	    END_IF;
+	END_REGION
+	
+	
+	
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

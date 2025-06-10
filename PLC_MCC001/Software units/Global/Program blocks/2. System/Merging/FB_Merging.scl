@@ -1,0 +1,57 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_Merging
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      StraightSensor : Bool;
+      ArmSensor : Bool;
+   END_VAR
+
+   VAR 
+      StraightToteTimer {InstructionName := 'TON_TIME'; LibVersion := '1.0'; S7_SetPoint := 'False'} : TON_TIME;
+      ArmToteTimer {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      Priority { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Struct
+         Straight { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+         Arm { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : FB_Merging
+	// Project        : LT-Lib-Block
+	// ==========================================================================================================================================
+	
+	REGION PRIORITY MERGING
+	    
+	    // Priority Check
+	    // Occ duration : tote in straight flow
+	    #StraightToteTimer(IN := #StraightSensor,
+	                       PT := t#24h);
+	    // Occ duration : tote from left flow
+	    #ArmToteTimer(IN := #ArmSensor,
+	                  PT := t#24h);
+	    
+	    // assign priority
+	    // Priority: straight tote
+	    IF (#StraightToteTimer.ET >=
+	        #ArmToteTimer.ET) THEN
+	        #Priority.Straight := TRUE;
+	        #Priority.Arm := FALSE;
+	    END_IF;
+	    // Priority: Arm tote
+	    IF (#StraightToteTimer.ET <
+	        #ArmToteTimer.ET) THEN
+	        #Priority.Straight := FALSE;
+	        #Priority.Arm := TRUE;
+	    END_IF;
+	    
+	    // add the priority signals in downstream
+	    
+	END_REGION
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

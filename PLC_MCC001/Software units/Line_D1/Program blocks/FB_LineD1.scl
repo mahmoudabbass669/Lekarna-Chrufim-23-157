@@ -1,0 +1,30 @@
+﻿NAMESPACE LineD1
+FUNCTION_BLOCK FB_LineD1
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR 
+      "Conveyor_D1.1.1" { S7_SetPoint := 'False'} : _.Global.FB_Conveyor;
+      "MABS_D1.1.1" { S7_SetPoint := 'False'} : _.Global.FB_MABS;
+      "Transfer_D1.1.1" { S7_SetPoint := 'False'} : _.Global.FB_S300_tTransMode;
+   END_VAR
+
+
+BEGIN
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

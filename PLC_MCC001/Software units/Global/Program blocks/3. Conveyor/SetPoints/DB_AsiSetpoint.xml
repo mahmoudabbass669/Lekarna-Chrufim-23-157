@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Blocks.GlobalDB ID="0">
+    <AttributeList>
+      <Access>Published</Access>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Static">
+    <Member Name="Line" Datatype="Struct">
+      <Member Name="A1" Datatype="Struct">
+        <Member Name="DirChange" Datatype="Struct">
+          <Member Name="Conveyor" Datatype="Array[_.gMinA1.._.gMaxA1] of Bool">
+            <Subelement Path="1001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.1</MultiLanguageText>
+              </Comment>
+            </Subelement>
+            <Subelement Path="1002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.2</MultiLanguageText>
+              </Comment>
+            </Subelement>
+          </Member>
+        </Member>
+        <Member Name="Speed" Datatype="Struct">
+          <Member Name="Conveyor" Datatype="Array[_.gMinA1.._.gMaxA1] of Bool">
+            <Subelement Path="1001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.1</MultiLanguageText>
+              </Comment>
+            </Subelement>
+            <Subelement Path="1002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.2</MultiLanguageText>
+              </Comment>
+            </Subelement>
+          </Member>
+        </Member>
+      </Member>
+      <Member Name="B1" Datatype="Struct">
+        <Member Name="DirChange" Datatype="Struct">
+          <Member Name="Conveyor" Datatype="Array[_.gMinB1.._.gMaxB1] of Bool" />
+        </Member>
+        <Member Name="Speed" Datatype="Struct">
+          <Member Name="Conveyor" Datatype="Array[_.gMinB1.._.gMaxB1] of Bool" />
+        </Member>
+      </Member>
+      <Member Name="C1" Datatype="Struct">
+        <Member Name="DirChange" Datatype="Struct">
+          <Member Name="Conveyor" Datatype="Array[_.gMinC1.._.gMaxC1] of Bool" />
+        </Member>
+        <Member Name="Speed" Datatype="Struct">
+          <Member Name="Conveyor" Datatype="Array[_.gMinC1.._.gMaxC1] of Bool" />
+        </Member>
+      </Member>
+      <Member Name="D1" Datatype="Struct">
+        <Member Name="DirChange" Datatype="Struct">
+          <Member Name="Conveyor" Datatype="Array[_.gMinD1.._.gMaxD1] of Bool" />
+        </Member>
+        <Member Name="Speed" Datatype="Struct">
+          <Member Name="Conveyor" Datatype="Array[_.gMinD1.._.gMaxD1] of Bool" />
+        </Member>
+      </Member>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <MemoryReserve>100</MemoryReserve>
+      <Name>DB_AsiSetpoint</Name>
+      <Namespace>Global</Namespace>
+      <Number>32</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="3" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.GlobalDB>
+</Document>

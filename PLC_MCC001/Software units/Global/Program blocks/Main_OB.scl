@@ -1,0 +1,57 @@
+﻿NAMESPACE Global
+ORGANIZATION_BLOCK Main_OB
+TITLE = "Main Program Sweep (Cycle)"
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+
+BEGIN
+	// ===
+	// GoW
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : Main_OB
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION System
+	    
+	    FC_ReadSystemSSR();
+	    
+	END_REGION
+	
+	REGION Hardware diag
+	    
+	    IDB_HardwareDiag();
+	    
+	END_REGION
+	
+	REGION Klaxon
+	    
+	    FC_AllKlaxon();
+	    
+	END_REGION
+	
+	REGION Devices
+	    
+	    IDB_DataMan262(TriggerSignal:=DB_SystemSimu.TriggerSensor.Line.C1.Conveyor[3001],
+	                   "Dataman-Results Available":=_."Dataman-Results Available",
+	                   "Dataman-TriggerReady":=_."Dataman-TriggerReady",
+	                   "Dataman-TriggerAck":=_."Dataman-TriggerAck",
+	                   "Dataman-ResultID":=_."Dataman-ResultID",
+	                   "Dataman-Result Code":=_."Dataman-Result Code",
+	                   "Dataman-Result Length":=_."Dataman-Result Length",
+	                   "Result Data":=_."Result Data",
+	                   "Dataman-UserData Length"=>_."Dataman-UserData Length",
+	                   "Dataman-UserData Option"=>_."Dataman-UserData Option",
+	                   "User Data"=>_."User Data",
+	                   "Dataman-TriggerEnable":=_."Dataman-TriggerEnable",
+	                   "Dataman-Trigger":=_."Dataman-Trigger",
+	                   "Dataman-ResultsAck":=_."Dataman-ResultsAck");
+	    
+	END_REGION
+	
+END_ORGANIZATION_BLOCK
+END_NAMESPACE
+

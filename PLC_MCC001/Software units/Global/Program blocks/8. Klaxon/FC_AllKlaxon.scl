@@ -1,0 +1,18 @@
+﻿NAMESPACE Global
+FUNCTION FC_AllKlaxon : Void
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : FB_HardwareDiag
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	
+END_FUNCTION
+END_NAMESPACE
+

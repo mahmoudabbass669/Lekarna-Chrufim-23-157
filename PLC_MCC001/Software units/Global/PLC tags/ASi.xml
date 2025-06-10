@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Tags.PlcTagTable ID="0">
+    <AttributeList>
+      <Access>Published</Access>
+      <Name>ASi</Name>
+    </AttributeList>
+    <ObjectList>
+      <SW.Tags.PlcTag ID="1" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>"tASiGW-MCC100-bw23-C1: Input"</DataTypeName>
+          <LogicalAddress>%I2300.0</LogicalAddress>
+          <Name>ASiGW-MCC100-bw23-C1: Input</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="3" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="4" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>"tASiGW-MCC100-bw23-C1: Output"</DataTypeName>
+          <LogicalAddress>%Q2300.0</LogicalAddress>
+          <Name>ASiGW-MCC100-bw23-C1: Output</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="5" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="6" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="7" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>"Config/PeriErr"</DataTypeName>
+          <LogicalAddress>%I2364.0</LogicalAddress>
+          <Name>ASiGW-MCC100-bw23-C1: ConfigErr</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="8" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="A" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>"Config/PeriErr"</DataTypeName>
+          <LogicalAddress>%I2372.0</LogicalAddress>
+          <Name>ASiGW-MCC100-bw23-C1: PeriErr</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="B" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+    </ObjectList>
+  </SW.Tags.PlcTagTable>
+</Document>

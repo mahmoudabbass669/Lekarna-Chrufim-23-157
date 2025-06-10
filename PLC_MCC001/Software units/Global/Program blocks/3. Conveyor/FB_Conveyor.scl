@@ -1,0 +1,819 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_Conveyor
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      ConveyorID : Int;
+      ConveyorSensor : Bool;
+      Fault : Bool;
+      Upstream : Bool;
+      Downstream : Bool;
+      Interlock : Bool;
+   END_VAR
+
+   VAR_OUTPUT 
+      RunForward : Bool;
+      WriteAsiDir : Bool;
+      WriteAsiSpeed : Bool;
+      NordControlEnable : Word;
+      NordSetpoint : Word;
+   END_VAR
+
+   VAR 
+      sConvID : Int;
+      ReadInputSignal : Struct
+         ConveyorSensor : Bool;
+         EmergencyStop : Bool;
+         Fault : Bool;
+      END_STRUCT;
+      MotorType : Struct
+         "24v-ASi" : Bool;
+         nord : Bool;
+      END_STRUCT;
+      Active : Struct
+         Line : Struct
+            A1 : Bool;
+            B1 : Bool;
+            C1 : Bool;
+            D1 : Bool;
+         END_STRUCT;
+      END_STRUCT;
+      CONVEYOR_SENSOR : FB_Sensor;
+      CONVEYOR_SENSOR_BLOCKAGE : FB_SensorBlockage;
+      CONVEYOR_STATUS_ON : FB_StatusON;
+      CONVEYOR_STATUS_READY : FB_StatusReady;
+      CONVEYOR_STATUS_FAULT : FB_StatusFault;
+      "RUN/STOP_CONVEYOR" : FB_RunStop;
+      ENERGY_SAVE : FB_EnergySave;
+      AUTO_RESET : FB_AutoReset;
+      SSR { S7_SetPoint := 'False'} : SystemSSR;
+      ReadConveyorStatus : ConveyorStatus;
+      ReadConveyorParameters { S7_SetPoint := 'False'} : ConveyorParameters := ((), [2(T#10ms)], (), (), ());
+      ConveyorFault : Fault;
+      SimuMode : Struct
+         Sensor : Bool;
+         Fault : Bool;
+         Estop : Struct
+            Zone : Struct
+               "1" : Bool;
+               "2" : Bool;
+               "3" : Bool;
+               "4" : Bool;
+            END_STRUCT;
+         END_STRUCT;
+      END_STRUCT;
+      StartUpTimer {InstructionName := 'TOF_TIME'; LibVersion := '1.0'; S7_SetPoint := 'False'} : TOF_TIME;
+      FT_StartUp {InstructionName := 'F_TRIG'; LibVersion := '1.0'} : F_TRIG;
+      SetStartUp { S7_SetPoint := 'True'} : Bool;
+      FilteredSensor { S7_SetPoint := 'True'} : Bool;
+      StopSystemFireActive : Bool;
+      EnergySave : Bool;
+      StartMotorForward : Bool;
+      StartMotorReverse : Bool;
+      AutoReset { S7_SetPoint := 'True'} : Bool;
+      VisuColor : Word;
+      NordSetpointRun : Word := 16#047F;
+      NordSetpointReady : Word := 16#047E;
+      NordFaultAck : Word := 16#0080;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : FB_Conveyor
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	// input to static
+	#sConvID := #ConveyorID;
+	
+	REGION Active Line
+	    
+	    // Line A1
+	    IF (#ConveyorID >= _.gMinA1 AND
+	        #ConveyorID <= _.gMaxA1)
+	    THEN
+	        #Active.Line.A1 := TRUE;
+	    END_IF;
+	    
+	    // Line B1
+	    IF (#ConveyorID >= _.gMinB1 AND
+	        #ConveyorID <= _.gMaxB1)
+	    THEN
+	        #Active.Line.B1 := TRUE;
+	    END_IF;
+	    
+	    // Line C1
+	    IF (#ConveyorID >= _.gMinC1 AND
+	        #ConveyorID <= _.gMaxC1)
+	    THEN
+	        #Active.Line.C1 := TRUE;
+	    END_IF;
+	    
+	    // Line D1
+	    IF (#ConveyorID >= _.gMinD1 AND
+	        #ConveyorID <= _.gMaxD1)
+	    THEN
+	        #Active.Line.A1 := TRUE;
+	    END_IF;
+	    
+	END_REGION 
+	
+	REGION SystemSSR
+	    
+	    // Line A1
+	    IF #Active.Line.A1 THEN
+	        #SSR.StartSystem := DB_SystemSSR.Line.A1.StartSystem;
+	        #SSR.StopSystem := DB_SystemSSR.Line.A1.StopSystem;
+	        #SSR.ResetSystem := DB_SystemSSR.Line.A1.ResetSystem;
+	    END_IF;
+	    
+	    // Line B1
+	    IF #Active.Line.B1 THEN
+	        #SSR.StartSystem := DB_SystemSSR.Line.B1.StartSystem;
+	        #SSR.StopSystem := DB_SystemSSR.Line.B1.StopSystem;
+	        #SSR.ResetSystem := DB_SystemSSR.Line.B1.ResetSystem;
+	    END_IF;
+	    
+	    // Line C1
+	    IF #Active.Line.C1 THEN
+	        #SSR.StartSystem := DB_SystemSSR.Line.C1.StartSystem;
+	        #SSR.StopSystem := DB_SystemSSR.Line.C1.StopSystem;
+	        #SSR.ResetSystem := DB_SystemSSR.Line.C1.ResetSystem;
+	    END_IF;
+	    
+	    // Line D1
+	    IF #Active.Line.D1 THEN
+	        #SSR.StartSystem := DB_SystemSSR.Line.D1.StartSystem;
+	        #SSR.StopSystem := DB_SystemSSR.Line.D1.StopSystem;
+	        #SSR.ResetSystem := DB_SystemSSR.Line.D1.ResetSystem;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION Read Simu inputs  
+	    
+	    // Line A1
+	    IF #Active.Line.A1 THEN
+	        // read simu
+	        #SimuMode.Sensor := DB_SystemSimu.TriggerSensor.Line.A1.Conveyor[#ConveyorID];
+	        #SimuMode.Fault := DB_SystemSimu.TriggerFault.Line.A1.Conveyor[#ConveyorID];
+	    END_IF;
+	    
+	    // Line B1
+	    IF #Active.Line.B1 THEN
+	        // read simu
+	        #SimuMode.Sensor := DB_SystemSimu.TriggerSensor.Line.B1.Conveyor[#ConveyorID];
+	        #SimuMode.Fault := DB_SystemSimu.TriggerFault.Line.B1.Conveyor[#ConveyorID];
+	    END_IF;
+	    
+	    // Line C1
+	    IF #Active.Line.C1 THEN
+	        // read simu
+	        #SimuMode.Sensor := DB_SystemSimu.TriggerSensor.Line.C1.Conveyor[#ConveyorID];
+	        #SimuMode.Fault := DB_SystemSimu.TriggerFault.Line.C1.Conveyor[#ConveyorID];
+	    END_IF;
+	    
+	    // Line D1
+	    IF #Active.Line.D1 THEN
+	        // read simu
+	        #SimuMode.Sensor := DB_SystemSimu.TriggerSensor.Line.D1.Conveyor[#ConveyorID];
+	        #SimuMode.Fault := DB_SystemSimu.TriggerFault.Line.D1.Conveyor[#ConveyorID];
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION Read Input
+	    
+	    // read all inputs to the block
+	    // Conveyor input read signals
+	    #ReadInputSignal.ConveyorSensor := #ConveyorSensor OR  ///coment for sim opreation remove NOT
+	    #SimuMode.Sensor; // simu call
+	    #ReadInputSignal.Fault := #Fault OR
+	    #SimuMode.Fault; // simu call;
+	    #ReadInputSignal.EmergencyStop := // all estop zones are connected together
+	    _.DB_SafetyStandard.ToStandard.EstopActive;
+	    
+	END_REGION
+	
+	REGION READ AND INIT
+	    
+	    REGION Init conveyor parameters
+	        
+	        // Conveyor Parameter
+	        // Line A1
+	        IF #Active.Line.A1 THEN
+	            #ReadConveyorParameters := DB_ConveyorParameters.Line.A1.Conveyor[#ConveyorID];
+	        END_IF;
+	        // Line B1
+	        IF #Active.Line.B1 THEN
+	            #ReadConveyorParameters := DB_ConveyorParameters.Line.B1.Conveyor[#ConveyorID];
+	        END_IF;
+	        // Line C1
+	        IF #Active.Line.C1 THEN
+	            #ReadConveyorParameters := DB_ConveyorParameters.Line.C1.Conveyor[#ConveyorID];
+	        END_IF;
+	        // Line D1
+	        IF #Active.Line.D1 THEN
+	            #ReadConveyorParameters := DB_ConveyorParameters.Line.D1.Conveyor[#ConveyorID];
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION Sensor Filter
+	        
+	        // FB_Sensor
+	        // called as MIDB
+	        
+	        #CONVEYOR_SENSOR(Sensor           := #ReadInputSignal.ConveyorSensor,
+	                         SensorFilterTime := #ReadConveyorParameters.SensorFilterTime,
+	                         FilteredSensor   => #FilteredSensor);
+	        
+	    END_REGION
+	    
+	    REGION FIRE
+	        
+	        // Fire signal from fire system stops the whole system
+	        // System can be reset from Fire status only if the fire signal is deactivated
+	        
+	        // FIRE ALARM ACTIVE --> STOP SYSTEM
+	        IF DB_SystemSimu.Fire THEN
+	            #StopSystemFireActive := TRUE;
+	        END_IF;
+	        // RESET --> FIRE ALARM
+	        IF #SSR.ResetSystem AND NOT DB_SystemSimu.Fire THEN
+	            #StopSystemFireActive := FALSE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	END_REGION
+	
+	REGION Conveyor startup
+	    
+	    // Conveyor StartUp: Conveyor startup signal after preset time
+	    #StartUpTimer.TOF(IN := #SSR.StartSystem,
+	                      PT := #ReadConveyorParameters.StartUpTime);
+	    
+	    #FT_StartUp(CLK := #StartUpTimer.Q);
+	    
+	    // set startup after the preset
+	    #SetStartUp := #FT_StartUp.Q;
+	    
+	END_REGION
+	
+	REGION Conveyor Status
+	    
+	    REGION Status ON
+	        
+	        // ----------------------------------------->>>>>>> STATUS ON <<<<<<<-----------------------------------------
+	        // FB_ConveyorStatusON
+	        // called as IDMB
+	        
+	        #CONVEYOR_STATUS_ON(SystemStartActive := #SSR.StartSystem,
+	                            StatusStop        := #ReadConveyorStatus.Stop,
+	                            StatusEStop       := #ReadConveyorStatus.Estop,
+	                            StatusManual      := #ReadConveyorStatus.Manual,
+	                            StatusFault       := #ReadConveyorStatus.Fault,
+	                            FireAlarmActive   := #StopSystemFireActive,
+	                            StatusON          => #ReadConveyorStatus.ON);
+	        
+	    END_REGION
+	    
+	    REGION Status Ready
+	        
+	        // ----------------------------------------->>>>>>> STATUS READY <<<<<<<-----------------------------------------
+	        // FB_ConveyorStatusReady
+	        // called as MIDB
+	        
+	        #CONVEYOR_STATUS_READY(StatusON        := #ReadConveyorStatus.ON,
+	                               StatusESTOP     := #ReadConveyorStatus.Estop,
+	                               StatusFAULT     := #ReadConveyorStatus.Fault,
+	                               StatusMAN       := #ReadConveyorStatus.Manual,
+	                               SignalFIRE      := #StopSystemFireActive,
+	                               SystemAlertTime := #ReadConveyorParameters.StartUpTime,
+	                               StatusReady     => #ReadConveyorStatus.ReadytoRun);
+	        
+	    END_REGION
+	    
+	    REGION Status Occupied
+	        
+	        // ----------------------------------------->>>>>>> STATUS OCCUPIED <<<<<<<-----------------------------------------
+	        #ReadConveyorStatus.Occupied := #FilteredSensor;
+	        
+	    END_REGION
+	    
+	    REGION Status Running
+	        
+	        // ----------------------------------------->>>>>>> STATUS RUNNING <<<<<<<-----------------------------------------
+	        
+	        #ReadConveyorStatus.Running := #StartMotorForward OR #StartMotorReverse;
+	        
+	    END_REGION
+	    
+	    REGION Status Fault
+	        
+	        // ----------------------------------------->>>>>>> STATUS FAULT <<<<<<<-----------------------------------------
+	        
+	        // Automatic reset trigger to the needed drive after wakeup from ESTOP power miss (only if needed)
+	        // will trigger for every Reset active
+	        
+	        #AUTO_RESET(AckIN := #SSR.ResetSystem,
+	                    Ack   => #AutoReset);
+	        
+	        // Reading error signal from the motor drive
+	        #ConveyorFault.Motor_Error := #ReadInputSignal.Fault;
+	        
+	        // FC_ConveyorStatusFault
+	        #CONVEYOR_STATUS_FAULT(FaultActive   := #ConveyorFault.Motor_Error,
+	                               ResetFault    := #SSR.ResetSystem OR #AutoReset,
+	                               StatusRunning := #ReadConveyorStatus.Running,
+	                               FaultStatus   => #ReadConveyorStatus.Fault);
+	        
+	    END_REGION
+	    
+	    REGION Status ESTOP
+	        
+	        // ----------------------------------------->>>>>>> STATUS ESTOP <<<<<<<-----------------------------------------
+	        
+	        // EMERGENCY STOP ACTIVE --> STOP SYSTEM
+	        IF #ReadInputSignal.EmergencyStop THEN
+	            #ReadConveyorStatus.Estop := TRUE;
+	        END_IF;
+	        // RESET --> EMERGENCY STOP
+	        IF #AutoReset AND NOT #ReadInputSignal.EmergencyStop THEN // (reset after 12 seconds) : Auto Reset
+	            #ReadConveyorStatus.Estop := FALSE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION Status Manual
+	        
+	        // ----------------------------------------->>>>>>> STATUS MANUAL <<<<<<<-----------------------------------------
+	        
+	        // Write to static from IO
+	        // ACTIVATE --> MANUAL MODE
+	        // Line A1
+	        IF #Active.Line.A1 THEN
+	            // SET --> MANUAL MODE
+	            IF DB_Manual.Line.A1.Conveyor[#ConveyorID].ManualEnable THEN
+	                #ReadConveyorStatus.Manual := TRUE;
+	            END_IF;
+	            // RESET --> MANUAL MODE
+	            IF NOT DB_Manual.Line.A1.Conveyor[#ConveyorID].ManualEnable AND #SSR.ResetSystem THEN
+	                #ReadConveyorStatus.Manual := FALSE;
+	            END_IF;
+	        END_IF;
+	        // Line B1
+	        IF #Active.Line.B1 THEN
+	            // SET --> MANUAL MODE
+	            IF DB_Manual.Line.B1.Conveyor[#ConveyorID].ManualEnable THEN
+	                #ReadConveyorStatus.Manual := TRUE;
+	            END_IF;
+	            // RESET --> MANUAL MODE
+	            IF NOT DB_Manual.Line.B1.Conveyor[#ConveyorID].ManualEnable AND #SSR.ResetSystem THEN
+	                #ReadConveyorStatus.Manual := FALSE;
+	            END_IF;
+	        END_IF;
+	        // Line C1
+	        IF #Active.Line.C1 THEN
+	            // SET --> MANUAL MODE
+	            IF DB_Manual.Line.C1.Conveyor[#ConveyorID].ManualEnable THEN
+	                #ReadConveyorStatus.Manual := TRUE;
+	            END_IF;
+	            // RESET --> MANUAL MODE
+	            IF NOT DB_Manual.Line.C1.Conveyor[#ConveyorID].ManualEnable AND #SSR.ResetSystem THEN
+	                #ReadConveyorStatus.Manual := FALSE;
+	            END_IF;
+	        END_IF;
+	        // Line D1
+	        IF #Active.Line.D1 THEN
+	            // SET --> MANUAL MODE
+	            IF DB_Manual.Line.D1.Conveyor[#ConveyorID].ManualEnable THEN
+	                #ReadConveyorStatus.Manual := TRUE;
+	            END_IF;
+	            // RESET --> MANUAL MODE
+	            IF NOT DB_Manual.Line.D1.Conveyor[#ConveyorID].ManualEnable AND #SSR.ResetSystem THEN
+	                #ReadConveyorStatus.Manual := FALSE;
+	            END_IF;
+	        END_IF;
+	        
+	        // Manual enable and Run from HMI
+	        // Line A1
+	        IF #Active.Line.A1 THEN
+	            IF #ConveyorID = DB_Manual.Conveyor.ID THEN
+	                DB_Manual.Line.A1.Conveyor[DB_Manual.Conveyor.ID].ManualEnable := DB_Manual.Conveyor.Enable;
+	                DB_Manual.Line.A1.Conveyor[DB_Manual.Conveyor.ID].Run.Forward := DB_Manual.Conveyor.in;
+	            END_IF;
+	        END_IF;
+	        // Line B1
+	        IF #Active.Line.B1 THEN
+	            IF #ConveyorID = DB_Manual.Conveyor.ID THEN
+	                DB_Manual.Line.B1.Conveyor[DB_Manual.Conveyor.ID].ManualEnable := DB_Manual.Conveyor.Enable;
+	                DB_Manual.Line.B1.Conveyor[DB_Manual.Conveyor.ID].Run.Forward := DB_Manual.Conveyor.in;
+	            END_IF;
+	        END_IF;
+	        // Line C1
+	        IF #Active.Line.C1 THEN
+	            IF #ConveyorID = DB_Manual.Conveyor.ID THEN
+	                DB_Manual.Line.C1.Conveyor[DB_Manual.Conveyor.ID].ManualEnable := DB_Manual.Conveyor.Enable;
+	                DB_Manual.Line.C1.Conveyor[DB_Manual.Conveyor.ID].Run.Forward := DB_Manual.Conveyor.in;
+	            END_IF;
+	        END_IF;
+	        // Line D1
+	        IF #Active.Line.D1 THEN
+	            IF #ConveyorID = DB_Manual.Conveyor.ID THEN
+	                DB_Manual.Line.D1.Conveyor[DB_Manual.Conveyor.ID].ManualEnable := DB_Manual.Conveyor.Enable;
+	                DB_Manual.Line.D1.Conveyor[DB_Manual.Conveyor.ID].Run.Forward := DB_Manual.Conveyor.in;
+	            END_IF;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION Status Stop
+	        
+	        // ----------------------------------------->>>>>>> STATUS STOP <<<<<<<-----------------------------------------
+	        
+	        IF #SSR.StopSystem THEN
+	            #ReadConveyorStatus.Stop := TRUE;
+	        END_IF;
+	        IF #SSR.StartSystem OR #SSR.ResetSystem THEN
+	            #ReadConveyorStatus.Stop := FALSE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION Sensor Blockage
+	        
+	        // ----------------------------------------->>>>>>> STATUS BLOCKAGE <<<<<<<------------------------------------
+	        
+	        // FB_SensorBlockage
+	        // called as MIDB
+	        #CONVEYOR_SENSOR_BLOCKAGE(ConveyorSensor       := #FilteredSensor,
+	                                  StatusRunning        := #ReadConveyorStatus.Running,
+	                                  SensorBlockagePeriod := #ReadConveyorParameters.SensorBlockageTime,
+	                                  SensorBlocked        => #ConveyorFault.Sensor_Blockage,
+	                                  ReadBlockageStatus   => #ReadConveyorStatus.Blockage);
+	        
+	        REGION alarm 
+	            
+	            // ==========================
+	            // Sensor Blockage: HMI Alarm
+	            // ==========================
+	            // Sensor blockage alarm message is written to the alarm word
+	            // corresponding to the active line
+	            // Line A1
+	            IF #Active.Line.A1 THEN
+	                DB_Alarm."word".Line.A1.Conveyor[#ConveyorID].%X0 := #ReadConveyorStatus.Blockage;
+	            END_IF;
+	            // Line B1
+	            IF #Active.Line.B1 THEN
+	                DB_Alarm."word".Line.B1.Conveyor[#ConveyorID].%X0 := #ReadConveyorStatus.Blockage;
+	            END_IF;
+	            // Line C1
+	            IF #Active.Line.C1 THEN
+	                DB_Alarm."word".Line.C1.Conveyor[#ConveyorID].%X0 := #ReadConveyorStatus.Blockage;
+	            END_IF;
+	            // Line D1
+	            IF #Active.Line.D1 THEN
+	                DB_Alarm."word".Line.D1.Conveyor[#ConveyorID].%X0 := #ReadConveyorStatus.Blockage;
+	            END_IF;
+	            
+	        END_REGION
+	        
+	    END_REGION
+	    
+	    REGION Visu Color
+	        
+	        // each and every status of the conveyor will be mentioned by different colors in HMI panel
+	        
+	        #VisuColor.%X8 := #ReadConveyorStatus.Blockage;
+	        #VisuColor.%X0 := #ReadConveyorStatus.ON;
+	        #VisuColor.%X1 := #ReadConveyorStatus.ReadytoRun;
+	        #VisuColor.%X2 := #ReadConveyorStatus.Occupied;
+	        #VisuColor.%X3 := #ReadConveyorStatus.Running;
+	        #VisuColor.%X4 := #ReadConveyorStatus.Fault;
+	        #VisuColor.%X5 := #ReadConveyorStatus.Estop;
+	        #VisuColor.%X6 := #ReadConveyorStatus.Manual;
+	        #VisuColor.%X7 := #ReadConveyorStatus.Stop;
+	        
+	        // convert word to Interger value: 
+	        // color will be depends on the status priority (integer value) 
+	        // reference: Conveyor image in HMI screen -> property -> Apperance   
+	        
+	        // Line A1
+	        IF #Active.Line.A1 THEN
+	            DB_VisuColor.Line.A1.Conveyor[#ConveyorID] :=
+	            WORD_TO_INT(#VisuColor);
+	        END_IF;
+	        // Line B1
+	        IF #Active.Line.B1 THEN
+	            DB_VisuColor.Line.B1.Conveyor[#ConveyorID] :=
+	            WORD_TO_INT(#VisuColor);
+	        END_IF;
+	        // Line C1
+	        IF #Active.Line.C1 THEN
+	            DB_VisuColor.Line.C1.Conveyor[#ConveyorID] :=
+	            WORD_TO_INT(#VisuColor);
+	        END_IF;
+	        // Line D1
+	        IF #Active.Line.D1 THEN
+	            DB_VisuColor.Line.D1.Conveyor[#ConveyorID] :=
+	            WORD_TO_INT(#VisuColor);
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION Global Status
+	        
+	        // write -> global status
+	        // Line A1
+	        IF #Active.Line.A1 THEN
+	            DB_Global.Status.Line.A1.On[#ConveyorID] := #ReadConveyorStatus.ON;
+	            DB_Global.Status.Line.A1.ReadyToRun[#ConveyorID] := #ReadConveyorStatus.ReadytoRun;
+	            DB_Global.Status.Line.A1.Occupied[#ConveyorID] := #ReadConveyorStatus.Occupied;
+	            DB_Global.Status.Line.A1.Running[#ConveyorID] := #ReadConveyorStatus.Running;
+	            DB_Global.Status.Line.A1.Fault[#ConveyorID] := #ReadConveyorStatus.Fault;
+	            DB_Global.Status.Line.A1.Estop[#ConveyorID] := #ReadConveyorStatus.Estop;
+	            DB_Global.Status.Line.A1.Manual[#ConveyorID] := #ReadConveyorStatus.Manual;
+	            DB_Global.Status.Line.A1.Stop[#ConveyorID] := #ReadConveyorStatus.Stop;
+	            DB_Global.Status.Line.A1.Blockage[#ConveyorID] := #ReadConveyorStatus.Blockage;
+	        END_IF;
+	        // Line B1
+	        IF #Active.Line.B1 THEN
+	            DB_Global.Status.Line.B1.On[#ConveyorID] := #ReadConveyorStatus.ON;
+	            DB_Global.Status.Line.B1.ReadyToRun[#ConveyorID] := #ReadConveyorStatus.ReadytoRun;
+	            DB_Global.Status.Line.B1.Occupied[#ConveyorID] := #ReadConveyorStatus.Occupied;
+	            DB_Global.Status.Line.B1.Running[#ConveyorID] := #ReadConveyorStatus.Running;
+	            DB_Global.Status.Line.B1.Fault[#ConveyorID] := #ReadConveyorStatus.Fault;
+	            DB_Global.Status.Line.B1.Estop[#ConveyorID] := #ReadConveyorStatus.Estop;
+	            DB_Global.Status.Line.B1.Manual[#ConveyorID] := #ReadConveyorStatus.Manual;
+	            DB_Global.Status.Line.B1.Stop[#ConveyorID] := #ReadConveyorStatus.Stop;
+	            DB_Global.Status.Line.B1.Blockage[#ConveyorID] := #ReadConveyorStatus.Blockage;
+	        END_IF;
+	        // Line C1
+	        IF #Active.Line.C1 THEN
+	            DB_Global.Status.Line.C1.On[#ConveyorID] := #ReadConveyorStatus.ON;
+	            DB_Global.Status.Line.C1.ReadyToRun[#ConveyorID] := #ReadConveyorStatus.ReadytoRun;
+	            DB_Global.Status.Line.C1.Occupied[#ConveyorID] := #ReadConveyorStatus.Occupied;
+	            DB_Global.Status.Line.C1.Running[#ConveyorID] := #ReadConveyorStatus.Running;
+	            DB_Global.Status.Line.C1.Fault[#ConveyorID] := #ReadConveyorStatus.Fault;
+	            DB_Global.Status.Line.C1.Estop[#ConveyorID] := #ReadConveyorStatus.Estop;
+	            DB_Global.Status.Line.C1.Manual[#ConveyorID] := #ReadConveyorStatus.Manual;
+	            DB_Global.Status.Line.C1.Stop[#ConveyorID] := #ReadConveyorStatus.Stop;
+	            DB_Global.Status.Line.C1.Blockage[#ConveyorID] := #ReadConveyorStatus.Blockage;
+	        END_IF;
+	        // Line D1
+	        IF #Active.Line.D1 THEN
+	            DB_Global.Status.Line.D1.On[#ConveyorID] := #ReadConveyorStatus.ON;
+	            DB_Global.Status.Line.D1.ReadyToRun[#ConveyorID] := #ReadConveyorStatus.ReadytoRun;
+	            DB_Global.Status.Line.D1.Occupied[#ConveyorID] := #ReadConveyorStatus.Occupied;
+	            DB_Global.Status.Line.D1.Running[#ConveyorID] := #ReadConveyorStatus.Running;
+	            DB_Global.Status.Line.D1.Fault[#ConveyorID] := #ReadConveyorStatus.Fault;
+	            DB_Global.Status.Line.D1.Estop[#ConveyorID] := #ReadConveyorStatus.Estop;
+	            DB_Global.Status.Line.D1.Manual[#ConveyorID] := #ReadConveyorStatus.Manual;
+	            DB_Global.Status.Line.D1.Stop[#ConveyorID] := #ReadConveyorStatus.Stop;
+	            DB_Global.Status.Line.D1.Blockage[#ConveyorID] := #ReadConveyorStatus.Blockage;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	END_REGION
+	
+	REGION Run/Stop Conveyor 
+	    
+	    // FB_ConveyorRunStop
+	    // Called as MIDB
+	    
+	    #"RUN/STOP_CONVEYOR"(StatusReady  := #ReadConveyorStatus.ReadytoRun,
+	                         StatusOccu   := #ReadConveyorStatus.Occupied,
+	                         DSOcc        := #Downstream,
+	                         USOcc        := #Upstream,
+	                         EnergySave   := #EnergySave,
+	                         ILStop       := #Interlock,
+	                         PecBlockage  := #ConveyorFault.Sensor_Blockage,
+	                         MotorForward => #StartMotorForward,
+	                         MotorReverse => #StartMotorReverse);
+	    
+	END_REGION
+	
+	REGION Energy Save
+	    
+	    // FB_EnergySave
+	    // Called as MIDB
+	    
+	    #ENERGY_SAVE(StatusReady      := #ReadConveyorStatus.ReadytoRun,
+	                 StatusOccupied   := #ReadConveyorStatus.Occupied,
+	                 StartUpIN        := #SetStartUp,
+	                 USOcc            := #Upstream,
+	                 EnergySaveTimePT := #ReadConveyorParameters.EnergySaveTime,
+	                 EnergySaveOut    => #EnergySave);
+	    
+	END_REGION
+	
+	REGION Write logic and parameters
+	    
+	    // Motor Forward: motors which has only one control bit
+	    // Line A1 
+	    IF #Active.Line.A1 THEN
+	        #RunForward :=
+	        (#StartMotorForward AND NOT #StartMotorReverse) // Automatic mode
+	        OR (#ReadConveyorStatus.Manual AND DB_Manual.Line.A1.Conveyor[#ConveyorID].Run.Forward); //Manual mode
+	    END_IF;
+	    // Line B1 
+	    IF #Active.Line.B1 THEN
+	        #RunForward :=
+	        (#StartMotorForward AND NOT #StartMotorReverse) // Automatic mode
+	        OR (#ReadConveyorStatus.Manual AND DB_Manual.Line.B1.Conveyor[#ConveyorID].Run.Forward); //Manual mode
+	    END_IF;
+	    // Line C1 
+	    IF #Active.Line.C1 THEN
+	        #RunForward :=
+	        (#StartMotorForward AND NOT #StartMotorReverse) // Automatic mode
+	        OR (#ReadConveyorStatus.Manual AND DB_Manual.Line.C1.Conveyor[#ConveyorID].Run.Forward); //Manual mode
+	    END_IF;
+	    // Line D1 
+	    IF #Active.Line.D1 THEN
+	        #RunForward :=
+	        (#StartMotorForward AND NOT #StartMotorReverse) // Automatic mode
+	        OR (#ReadConveyorStatus.Manual AND DB_Manual.Line.D1.Conveyor[#ConveyorID].Run.Forward); //Manual mode
+	    END_IF;
+	    
+	    REGION Bihl Wiedemann 
+	        
+	        // process data for BW-ASi
+	        
+	        IF #MotorType."24v-ASi" THEN
+	            
+	            REGION Direction
+	                
+	                // line A1
+	                IF #Active.Line.A1 THEN
+	                    #WriteAsiDir := DB_AsiSetpoint.Line.A1.DirChange.Conveyor[#ConveyorID];
+	                END_IF;
+	                // line B1
+	                IF #Active.Line.B1 THEN
+	                    #WriteAsiDir := DB_AsiSetpoint.Line.B1.DirChange.Conveyor[#ConveyorID];
+	                END_IF;
+	                // line C1
+	                IF #Active.Line.C1 THEN
+	                    #WriteAsiDir := DB_AsiSetpoint.Line.C1.DirChange.Conveyor[#ConveyorID];
+	                END_IF;
+	                // line D1
+	                IF #Active.Line.D1 THEN
+	                    #WriteAsiDir := DB_AsiSetpoint.Line.D1.DirChange.Conveyor[#ConveyorID];
+	                END_IF;
+	                
+	            END_REGION
+	            
+	            REGION Speed
+	                
+	                // line A1
+	                IF #Active.Line.A1 THEN
+	                    #WriteAsiSpeed := DB_AsiSetpoint.Line.A1.Speed.Conveyor[#ConveyorID];
+	                END_IF;
+	                // line B1
+	                IF #Active.Line.B1 THEN
+	                    #WriteAsiSpeed := DB_AsiSetpoint.Line.B1.Speed.Conveyor[#ConveyorID];
+	                END_IF;
+	                // line C1
+	                IF #Active.Line.C1 THEN
+	                    #WriteAsiSpeed := DB_AsiSetpoint.Line.C1.Speed.Conveyor[#ConveyorID];
+	                END_IF;
+	                // line D1
+	                IF #Active.Line.D1 THEN
+	                    #WriteAsiSpeed := DB_AsiSetpoint.Line.D1.Speed.Conveyor[#ConveyorID];
+	                END_IF;
+	                
+	            END_REGION
+	            
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION NORD (Line shaft)
+	        
+	        // process data and logic for NORD VFD
+	        
+	        IF #MotorType.nord THEN
+	            
+	            // Line A1
+	            IF #Active.Line.A1 THEN
+	                
+	                IF NOT #ReadConveyorStatus.Fault THEN
+	                    IF // Nord Motor Run - Automatic mode
+	                        ((#ReadConveyorStatus.ReadytoRun AND
+	                        #StartMotorForward) OR
+	                        // Nord Motor Run - manual mode
+	                        (#ReadConveyorStatus.Manual AND
+	                        DB_Manual.Line.A1.Conveyor[#ConveyorID].Run.Forward))
+	                    THEN
+	                        #NordControlEnable := #NordSetpointRun;
+	                    ELSE
+	                        #NordControlEnable := #NordSetpointReady;
+	                    END_IF;
+	                END_IF;
+	                
+	                // Nord Motor Fault ack
+	                IF #ReadConveyorStatus.Fault AND #SSR.ResetSystem THEN
+	                    #NordControlEnable := #NordFaultAck;
+	                END_IF;
+	                
+	                // Nord setpoint
+	                #NordSetpoint := DINT_TO_WORD(DB_NordSetPoint.Line.A1.Conveyor[#ConveyorID]);
+	                
+	            END_IF;
+	            
+	            // Line B1
+	            IF #Active.Line.B1 THEN
+	                
+	                IF NOT #ReadConveyorStatus.Fault THEN
+	                    IF // Nord Motor Run - Automatic mode
+	                        ((#ReadConveyorStatus.ReadytoRun AND
+	                        #StartMotorForward) OR
+	                        // Nord Motor Run - manual mode
+	                        (#ReadConveyorStatus.Manual AND
+	                        DB_Manual.Line.B1.Conveyor[#ConveyorID].Run.Forward))
+	                    THEN
+	                        #NordControlEnable := #NordSetpointRun;
+	                    ELSE
+	                        #NordControlEnable := #NordSetpointReady;
+	                    END_IF;
+	                END_IF;
+	                
+	                // Nord Motor Fault ack
+	                IF #ReadConveyorStatus.Fault AND #SSR.ResetSystem THEN
+	                    #NordControlEnable := #NordFaultAck;
+	                END_IF;
+	                
+	                // Nord setpoint
+	                #NordSetpoint := DINT_TO_WORD(DB_NordSetPoint.Line.B1.Conveyor[#ConveyorID]);
+	                
+	            END_IF;
+	            
+	            // Line C1
+	            IF #Active.Line.C1 THEN
+	                
+	                IF NOT #ReadConveyorStatus.Fault THEN
+	                    IF // Nord Motor Run - Automatic mode
+	                        ((#ReadConveyorStatus.ReadytoRun AND
+	                        #StartMotorForward) OR
+	                        // Nord Motor Run - manual mode
+	                        (#ReadConveyorStatus.Manual AND
+	                        DB_Manual.Line.C1.Conveyor[#ConveyorID].Run.Forward))
+	                    THEN
+	                        #NordControlEnable := #NordSetpointRun;
+	                    ELSE
+	                        #NordControlEnable := #NordSetpointReady;
+	                    END_IF;
+	                END_IF;
+	                
+	                // Nord Motor Fault ack
+	                IF #ReadConveyorStatus.Fault AND #SSR.ResetSystem THEN
+	                    #NordControlEnable := #NordFaultAck;
+	                END_IF;
+	                
+	                // Nord setpoint
+	                #NordSetpoint := DINT_TO_WORD(DB_NordSetPoint.Line.C1.Conveyor[#ConveyorID]);
+	                
+	            END_IF;
+	            
+	            // Line D1
+	            IF #Active.Line.D1 THEN
+	                
+	                IF NOT #ReadConveyorStatus.Fault THEN
+	                    IF // Nord Motor Run - Automatic mode
+	                        ((#ReadConveyorStatus.ReadytoRun AND
+	                        #StartMotorForward) OR
+	                        // Nord Motor Run - manual mode
+	                        (#ReadConveyorStatus.Manual AND
+	                        DB_Manual.Line.D1.Conveyor[#ConveyorID].Run.Forward))
+	                    THEN
+	                        #NordControlEnable := #NordSetpointRun;
+	                    ELSE
+	                        #NordControlEnable := #NordSetpointReady;
+	                    END_IF;
+	                END_IF;
+	                
+	                // Nord Motor Fault ack
+	                IF #ReadConveyorStatus.Fault AND #SSR.ResetSystem THEN
+	                    #NordControlEnable := #NordFaultAck;
+	                END_IF;
+	                
+	                // Nord setpoint
+	                #NordSetpoint := DINT_TO_WORD(DB_NordSetPoint.Line.D1.Conveyor[#ConveyorID]);
+	                
+	            END_IF;
+	            
+	        END_IF;
+	        
+	    END_REGION
+	    
+	END_REGION
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Types.PlcStruct ID="0">
+    <AttributeList>
+      <Access>Published</Access>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="None">
+    <Member Name="StartSystem" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Start the system</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="StopSystem" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Stop the system</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="ResetSystem" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Reset the system</MultiLanguageText>
+      </Comment>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <Name>SystemSSR</Name>
+      <Namespace>LineB1</Namespace>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="3" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Types.PlcStruct>
+</Document>

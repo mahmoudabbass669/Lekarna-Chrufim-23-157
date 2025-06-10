@@ -1,0 +1,9 @@
+﻿NAMESPACE LineD1
+FUNCTION FC_Downstream : Void
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+
+BEGIN
+END_FUNCTION
+END_NAMESPACE
+

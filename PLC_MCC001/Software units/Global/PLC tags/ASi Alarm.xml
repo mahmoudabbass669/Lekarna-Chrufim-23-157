@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Tags.PlcTagTable ID="0">
+    <AttributeList>
+      <Access>Published</Access>
+      <Name>ASi Alarm</Name>
+    </AttributeList>
+    <ObjectList>
+      <SW.Tags.PlcTag ID="1" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>Word</DataTypeName>
+          <LogicalAddress>%IW2366</LogicalAddress>
+          <Name>BW_ASi23 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)A</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="3" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="4" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>Word</DataTypeName>
+          <LogicalAddress>%IW2370</LogicalAddress>
+          <Name>BW_ASi23 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)B</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="5" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="6" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="7" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>Word</DataTypeName>
+          <LogicalAddress>%IW2374</LogicalAddress>
+          <Name>BW_ASi23 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)A</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="8" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="A" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>Word</DataTypeName>
+          <LogicalAddress>%IW2378</LogicalAddress>
+          <Name>BW_ASi23 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)B</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="B" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="D" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>Word</DataTypeName>
+          <LogicalAddress>%IW2380</LogicalAddress>
+          <Name>BW_ASi23 -MCC100 -210KE3 -ConfigErr_Circuit2_Slave(0-15)A</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="E" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="10" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>Word</DataTypeName>
+          <LogicalAddress>%IW2382</LogicalAddress>
+          <Name>BW_ASi23 -MCC100 -210KE3 -ConfigErr_Circuit2_Slave(16-31)A</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="11" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="12" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="13" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>Word</DataTypeName>
+          <LogicalAddress>%IW2384</LogicalAddress>
+          <Name>BW_ASi23 -MCC100 -210KE3 -ConfigErr_Circuit2_Slave(0-15)B</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="14" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="15" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="16" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>Word</DataTypeName>
+          <LogicalAddress>%IW2386</LogicalAddress>
+          <Name>BW_ASi23 -MCC100 -210KE3 -ConfigErr_Circuit2_Slave(16-31)B</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="17" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="18" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="19" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>Word</DataTypeName>
+          <LogicalAddress>%IW2388</LogicalAddress>
+          <Name>BW_ASi23 -MCC100 -210KE3 -PeriErr_Circuit2_Slave(0-15)A</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="1A" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="1B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="1C" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>Word</DataTypeName>
+          <LogicalAddress>%IW2390</LogicalAddress>
+          <Name>BW_ASi23 -MCC100 -210KE3 -PeriErr_Circuit2_Slave(16-31)A</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="1D" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="1E" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="1F" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>Word</DataTypeName>
+          <LogicalAddress>%IW2392</LogicalAddress>
+          <Name>BW_ASi23 -MCC100 -210KE3 -PeriErr_Circuit2_Slave(0-15)B</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="20" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="21" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="22" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>Word</DataTypeName>
+          <LogicalAddress>%IW2394</LogicalAddress>
+          <Name>BW_ASi23 -MCC100 -210KE3 -PeriErr_Circuit2_Slave(16-31)B</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="23" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="24" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="25" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>Word</DataTypeName>
+          <LogicalAddress>%IW2364</LogicalAddress>
+          <Name>BW_ASi23 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)A</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="26" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="27" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="28" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>Word</DataTypeName>
+          <LogicalAddress>%IW2368</LogicalAddress>
+          <Name>BW_ASi23 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)B</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="29" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="2A" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="2B" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>Word</DataTypeName>
+          <LogicalAddress>%IW2372</LogicalAddress>
+          <Name>BW_ASi23 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)A</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2C" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="2D" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="2E" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>Word</DataTypeName>
+          <LogicalAddress>%IW2376</LogicalAddress>
+          <Name>BW_ASi23 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)B</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2F" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="30" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+    </ObjectList>
+  </SW.Tags.PlcTagTable>
+</Document>

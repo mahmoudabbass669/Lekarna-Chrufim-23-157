@@ -1,0 +1,199 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Blocks.FC ID="0">
+    <AttributeList>
+      <Access>Published</Access>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input">
+    <Member Name="RunWheels" Datatype="Bool" />
+    <Member Name="GoRight/left" Datatype="Bool" />
+    <Member Name="GoStraight" Datatype="Bool" />
+    <Member Name="positionRight/Left" Datatype="Bool" />
+    <Member Name="positionStraight" Datatype="Bool" />
+  </Section>
+  <Section Name="Output">
+    <Member Name="CmdRunWheels" Datatype="Bool" />
+    <Member Name="CmdRight/Left" Datatype="Bool" />
+    <Member Name="CmdStraight" Datatype="Bool" />
+  </Section>
+  <Section Name="InOut" />
+  <Section Name="Temp" />
+  <Section Name="Constant" />
+  <Section Name="Return">
+    <Member Name="Ret_Val" Datatype="Void" />
+  </Section>
+</Sections></Interface>
+      <Name>FC_ManualSorter</Name>
+      <Namespace>Global</Namespace>
+      <Number>18</Number>
+      <ProgrammingLanguage>LAD</ProgrammingLanguage>
+      <SetENOAutomatically>false</SetENOAutomatically>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <SW.Blocks.CompileUnit ID="3" CompositionName="CompileUnits">
+        <AttributeList>
+          <NetworkSource><FlgNet xmlns="http://www.siemens.com/automation/Openness/SW/NetworkSource/FlgNet/v5">
+  <Parts>
+    <Access Scope="LocalVariable" UId="21">
+      <Symbol>
+        <Component Name="GoRight/left" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="22">
+      <Symbol>
+        <Component Name="positionRight/Left" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="23">
+      <Symbol>
+        <Component Name="CmdRight/Left" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="24">
+      <Symbol>
+        <Component Name="GoStraight" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="25">
+      <Symbol>
+        <Component Name="positionStraight" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="26">
+      <Symbol>
+        <Component Name="CmdStraight" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="27">
+      <Symbol>
+        <Component Name="RunWheels" />
+      </Symbol>
+    </Access>
+    <Access Scope="LocalVariable" UId="28">
+      <Symbol>
+        <Component Name="CmdRunWheels" />
+      </Symbol>
+    </Access>
+    <Part Name="Contact" UId="29" />
+    <Part Name="Contact" UId="30">
+      <Negated Name="operand" />
+    </Part>
+    <Part Name="Coil" UId="31" />
+    <Part Name="Contact" UId="32" />
+    <Part Name="Contact" UId="33">
+      <Negated Name="operand" />
+    </Part>
+    <Part Name="Coil" UId="34" />
+    <Part Name="Contact" UId="35" />
+    <Part Name="Coil" UId="36" />
+  </Parts>
+  <Wires>
+    <Wire UId="37">
+      <Powerrail />
+      <NameCon UId="29" Name="in" />
+      <NameCon UId="32" Name="in" />
+      <NameCon UId="35" Name="in" />
+    </Wire>
+    <Wire UId="38">
+      <IdentCon UId="21" />
+      <NameCon UId="29" Name="operand" />
+    </Wire>
+    <Wire UId="39">
+      <NameCon UId="29" Name="out" />
+      <NameCon UId="30" Name="in" />
+    </Wire>
+    <Wire UId="40">
+      <IdentCon UId="22" />
+      <NameCon UId="30" Name="operand" />
+    </Wire>
+    <Wire UId="41">
+      <NameCon UId="30" Name="out" />
+      <NameCon UId="31" Name="in" />
+    </Wire>
+    <Wire UId="42">
+      <IdentCon UId="23" />
+      <NameCon UId="31" Name="operand" />
+    </Wire>
+    <Wire UId="43">
+      <IdentCon UId="24" />
+      <NameCon UId="32" Name="operand" />
+    </Wire>
+    <Wire UId="44">
+      <NameCon UId="32" Name="out" />
+      <NameCon UId="33" Name="in" />
+    </Wire>
+    <Wire UId="45">
+      <IdentCon UId="25" />
+      <NameCon UId="33" Name="operand" />
+    </Wire>
+    <Wire UId="46">
+      <NameCon UId="33" Name="out" />
+      <NameCon UId="34" Name="in" />
+    </Wire>
+    <Wire UId="47">
+      <IdentCon UId="26" />
+      <NameCon UId="34" Name="operand" />
+    </Wire>
+    <Wire UId="48">
+      <IdentCon UId="27" />
+      <NameCon UId="35" Name="operand" />
+    </Wire>
+    <Wire UId="49">
+      <NameCon UId="35" Name="out" />
+      <NameCon UId="36" Name="in" />
+    </Wire>
+    <Wire UId="50">
+      <IdentCon UId="28" />
+      <NameCon UId="36" Name="operand" />
+    </Wire>
+  </Wires>
+</FlgNet></NetworkSource>
+          <ProgrammingLanguage>LAD</ProgrammingLanguage>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="4" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="5" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+          <MultilingualText ID="6" CompositionName="Title">
+            <ObjectList>
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text>status manual</Text>
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Blocks.CompileUnit>
+      <MultilingualText ID="8" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="9" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.FC>
+</Document>

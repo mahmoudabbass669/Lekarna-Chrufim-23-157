@@ -1,0 +1,311 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Blocks.InstanceDB ID="0">
+    <AttributeList>
+      <InstanceOfName>LineC1.FB_LineC1</InstanceOfName>
+      <InstanceOfType>FB</InstanceOfType>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Static">
+    <Member Name="Conveyor_C1.1.1" Datatype="&quot;Global.FB_Conveyor&quot;" />
+    <Member Name="Conveyor_C1.1.2" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.1.3" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="MABS_C1.2.1" Datatype="&quot;Global.FB_MABS&quot;" />
+    <Member Name="MABS_C1.2.2" Datatype="&quot;Global.FB_MABS&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.3.1" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.3.2" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.3.3" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.3.4" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.3.5" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.3.6" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.3.7" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.3.8" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.3.9" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.3.10" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.4.1" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.4.2" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.4.3" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.4.4" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.5.1" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.6.1" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.6.2" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.7.1" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.7.2" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.7.3" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.7.4" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.7.5" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.7.6" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.7.7" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.7.8" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.7.9" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.7.10" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.8.0" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.9.1" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.10.1" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.11.1" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.11.2" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.12.1" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.12.2" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.12.3" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Transfer_C1.13.1" Datatype="&quot;Global.FB_S300_tTransMode&quot;" />
+    <Member Name="Transfer_C1.14.1" Datatype="&quot;Global.FB_S300_tTransMode&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.15.2" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.15.3" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.15.4" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.16.1" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.17.0" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.18.1" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.18.2" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.18.3" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.18.4" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.18.5" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.18.6" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.18.7" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.19.1" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Conveyor_C1.20.2" Datatype="&quot;Global.FB_Conveyor&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <Name>IDB_LineC1</Name>
+      <Namespace>LineC1</Namespace>
+      <Number>10</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="3" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.InstanceDB>
+</Document>

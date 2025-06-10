@@ -1,0 +1,637 @@
+﻿NAMESPACE LineC1
+FUNCTION_BLOCK FB_LineC1
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR 
+      "Conveyor_C1.1.1" { S7_SetPoint := 'False'} : _.Global.FB_Conveyor;
+      "Conveyor_C1.1.2" : _.Global.FB_Conveyor;
+      "Conveyor_C1.1.3" : _.Global.FB_Conveyor;
+      "MABS_C1.2.1" { S7_SetPoint := 'False'} : _.Global.FB_MABS;
+      "MABS_C1.2.2" : _.Global.FB_MABS;
+      "Conveyor_C1.3.1" : _.Global.FB_Conveyor;
+      "Conveyor_C1.3.2" : _.Global.FB_Conveyor;
+      "Conveyor_C1.3.3" : _.Global.FB_Conveyor;
+      "Conveyor_C1.3.4" : _.Global.FB_Conveyor;
+      "Conveyor_C1.3.5" : _.Global.FB_Conveyor;
+      "Conveyor_C1.3.6" : _.Global.FB_Conveyor;
+      "Conveyor_C1.3.7" : _.Global.FB_Conveyor;
+      "Conveyor_C1.3.8" : _.Global.FB_Conveyor;
+      "Conveyor_C1.3.9" : _.Global.FB_Conveyor;
+      "Conveyor_C1.3.10" : _.Global.FB_Conveyor;
+      "Conveyor_C1.4.1" : _.Global.FB_Conveyor;
+      "Conveyor_C1.4.2" : _.Global.FB_Conveyor;
+      "Conveyor_C1.4.3" : _.Global.FB_Conveyor;
+      "Conveyor_C1.4.4" : _.Global.FB_Conveyor;
+      "Conveyor_C1.5.1" : _.Global.FB_Conveyor;
+      "Conveyor_C1.6.1" : _.Global.FB_Conveyor;
+      "Conveyor_C1.6.2" : _.Global.FB_Conveyor;
+      "Conveyor_C1.7.1" : _.Global.FB_Conveyor;
+      "Conveyor_C1.7.2" : _.Global.FB_Conveyor;
+      "Conveyor_C1.7.3" : _.Global.FB_Conveyor;
+      "Conveyor_C1.7.4" : _.Global.FB_Conveyor;
+      "Conveyor_C1.7.5" : _.Global.FB_Conveyor;
+      "Conveyor_C1.7.6" : _.Global.FB_Conveyor;
+      "Conveyor_C1.7.7" : _.Global.FB_Conveyor;
+      "Conveyor_C1.7.8" : _.Global.FB_Conveyor;
+      "Conveyor_C1.7.9" : _.Global.FB_Conveyor;
+      "Conveyor_C1.7.10" : _.Global.FB_Conveyor;
+      "Conveyor_C1.8.0" : _.Global.FB_Conveyor;
+      "Conveyor_C1.9.1" : _.Global.FB_Conveyor;
+      "Conveyor_C1.10.1" : _.Global.FB_Conveyor;
+      "Conveyor_C1.11.1" : _.Global.FB_Conveyor;
+      "Conveyor_C1.11.2" : _.Global.FB_Conveyor;
+      "Conveyor_C1.12.1" : _.Global.FB_Conveyor;
+      "Conveyor_C1.12.2" : _.Global.FB_Conveyor;
+      "Conveyor_C1.12.3" : _.Global.FB_Conveyor;
+      "Transfer_C1.13.1" { S7_SetPoint := 'False'} : _.Global.FB_S300_tTransMode;
+      "Transfer_C1.14.1" : _.Global.FB_S300_tTransMode;
+      "Conveyor_C1.15.2" : _.Global.FB_Conveyor;
+      "Conveyor_C1.15.3" : _.Global.FB_Conveyor;
+      "Conveyor_C1.15.4" : _.Global.FB_Conveyor;
+      "Conveyor_C1.16.1" : _.Global.FB_Conveyor;
+      "Conveyor_C1.17.0" : _.Global.FB_Conveyor;
+      "Conveyor_C1.18.1" : _.Global.FB_Conveyor;
+      "Conveyor_C1.18.2" : _.Global.FB_Conveyor;
+      "Conveyor_C1.18.3" : _.Global.FB_Conveyor;
+      "Conveyor_C1.18.4" : _.Global.FB_Conveyor;
+      "Conveyor_C1.18.5" : _.Global.FB_Conveyor;
+      "Conveyor_C1.18.6" : _.Global.FB_Conveyor;
+      "Conveyor_C1.18.7" : _.Global.FB_Conveyor;
+      "Conveyor_C1.19.1" : _.Global.FB_Conveyor;
+      "Conveyor_C1.20.2" : _.Global.FB_Conveyor;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : FC_UpstreaProductionTote
+	// Project        : Lekarna, Chrudim -PLC001 -MCC001
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	//start this comment 
+	REGION Conveyor_C1.1.1
+	    #"Conveyor_C1.1.1"(ConveyorID := _."Conveyor_C1.1.1",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.1.1"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.1.1"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.1.1"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.1.1"]);
+	END_REGION
+	
+	
+	
+	
+	REGION Conveyor_C1.1.2
+	    #"Conveyor_C1.1.2"(ConveyorID := _."Conveyor_C1.1.2",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.1.2"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.1.2"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.1.2"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.1.2"]);
+	    ;
+	END_REGION
+	
+	
+	
+	REGION Conveyor_C1.1.3
+	    #"Conveyor_C1.1.3"(ConveyorID := _."Conveyor_C1.1.3",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.1.3"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.1.3"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.1.3"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.1.3"]);
+	    ;
+	END_REGION
+	
+	
+	
+	REGION MABS_C1.2.1
+	    #"MABS_C1.2.1"(MABS_ID:=_."MABS_C1.2.1",
+	                   CrossSensor:=false,
+	                   Fault:=_.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."MABS_C1.2.1"],
+	                   UpstreamRunning:= #"Conveyor_C1.1.3".ReadConveyorStatus.Running,
+	                   Downstream_Straight:=#"Conveyor_C1.3.1".FilteredSensor,
+	                   "Downstream_Right/Left":=#"Conveyor_C1.9.1".FilteredSensor,
+	                   SortDir:= _.Global.DB_ToteTracking.Conveyor[_."MABS_C1.2.1"].ToteDir,
+	                   Setpoints:=DB_ConveyorParameters.Line.C1.MABS[_."MABS_C1.2.1"],
+	                   MABS_IBP_in:=_."MABS_C1.2.1_IN",
+	                   MABS_IBP_out:=_."MABS_C1.2.1_Out");
+	END_REGION
+	
+	
+	
+	REGION MABS_C1.2.2
+	    #"MABS_C1.2.2"(MABS_ID := _."MABS_C1.2.2",
+	                   CrossSensor := false,
+	                   Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."MABS_C1.2.2"],
+	                   UpstreamRunning := #"Conveyor_C1.1.3".ReadConveyorStatus.Running,
+	                   Downstream_Straight := #"Conveyor_C1.3.1".FilteredSensor,
+	                   "Downstream_Right/Left" := #"Conveyor_C1.9.1".FilteredSensor,
+	                   SortDir := _.Global.DB_ToteTracking.Conveyor[_."MABS_C1.2.2"].ToteDir,
+	                   Setpoints := DB_ConveyorParameters.Line.C1.MABS[_."MABS_C1.2.2"],
+	                   MABS_IBP_in := _."MABS_C1.2.2_IN",
+	                   MABS_IBP_out := _."MABS_C1.2.2_Out");
+	END_REGION
+	
+	
+	REGION Conveyor_C1.3.1
+	    #"Conveyor_C1.3.1"(ConveyorID := _."Conveyor_C1.3.1",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.3.1"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.3.1"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.3.1"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.3.1"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.3.2
+	    #"Conveyor_C1.3.2"(ConveyorID := _."Conveyor_C1.3.2",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.3.2"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.3.2"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.3.2"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.3.2"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.3.3
+	    #"Conveyor_C1.3.3"(ConveyorID := _."Conveyor_C1.3.3",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.3.3"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.3.3"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.3.3"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.3.3"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.3.4
+	    #"Conveyor_C1.3.4"(ConveyorID := _."Conveyor_C1.3.4",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.3.4"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.3.4"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.3.4"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.3.4"]);
+	    
+	END_REGION
+	
+	
+	REGION Conveyor_C1.3.5
+	    #"Conveyor_C1.3.5"(ConveyorID := _."Conveyor_C1.3.5",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.3.5"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.3.5"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.3.5"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.3.5"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.3.6
+	    #"Conveyor_C1.3.6"(ConveyorID := _."Conveyor_C1.3.6",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.3.6"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.3.6"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.3.6"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.3.6"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.3.7
+	    #"Conveyor_C1.3.7"(ConveyorID := _."Conveyor_C1.3.7",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.3.7"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.3.7"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.3.7"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.3.7"]);
+	    ;
+	END_REGION
+	
+	
+	
+	REGION Conveyor_C1.3.8
+	    #"Conveyor_C1.3.8"(ConveyorID := _."Conveyor_C1.3.8",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.3.8"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.3.8"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.3.8"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.3.8"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.3.9
+	    #"Conveyor_C1.3.9"(ConveyorID := _."Conveyor_C1.3.9",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.3.9"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.3.9"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.3.9"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.3.9"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.3.10
+	    #"Conveyor_C1.3.10"(ConveyorID := _."Conveyor_C1.3.10",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.3.10"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.3.10"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.3.10"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.3.10"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.4.1
+	    #"Conveyor_C1.4.1"(ConveyorID := _."Conveyor_C1.4.1",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.4.1"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.4.1"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.4.1"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.4.1"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.4.2
+	    #"Conveyor_C1.4.2"(ConveyorID := _."Conveyor_C1.4.2",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.4.2"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.4.2"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.4.2"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.4.2"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.4.3
+	    #"Conveyor_C1.4.3"(ConveyorID := _."Conveyor_C1.4.3",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.4.3"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.4.3"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.4.3"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.4.3"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.4.4
+	    #"Conveyor_C1.4.4"(ConveyorID := _."Conveyor_C1.4.4",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.4.4"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.4.4"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.4.4"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.4.4"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.5.1
+	    #"Conveyor_C1.5.1"(ConveyorID := _."Conveyor_C1.5.1",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.5.1"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.5.1"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.5.1"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.5.1"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.6.1
+	    #"Conveyor_C1.6.1"(ConveyorID := _."Conveyor_C1.6.1",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.6.1"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.6.1"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.6.1"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.6.1"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.6.2
+	    #"Conveyor_C1.6.2"(ConveyorID := _."Conveyor_C1.6.2",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.6.2"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.6.2"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.6.2"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.6.2"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.7.1
+	    #"Conveyor_C1.7.1"(ConveyorID := _."Conveyor_C1.7.1",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.7.1"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.7.1"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.7.1"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.7.1"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.7.2
+	    #"Conveyor_C1.7.2"(ConveyorID := _."Conveyor_C1.7.2",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.7.2"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.7.2"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.7.2"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.7.2"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.7.3
+	    #"Conveyor_C1.7.3"(ConveyorID := _."Conveyor_C1.7.3",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.7.3"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.7.3"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.7.3"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.7.3"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.7.4
+	    #"Conveyor_C1.7.4"(ConveyorID := _."Conveyor_C1.7.4",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.7.4"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.7.4"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.7.4"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.7.4"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.7.5
+	    #"Conveyor_C1.7.5"(ConveyorID := _."Conveyor_C1.7.5",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.7.5"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.7.5"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.7.5"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.7.5"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.7.6
+	    #"Conveyor_C1.7.6"(ConveyorID := _."Conveyor_C1.7.6",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.7.6"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.7.6"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.7.6"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.7.6"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.7.7
+	    #"Conveyor_C1.7.7"(ConveyorID := _."Conveyor_C1.7.7",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.7.7"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.7.7"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.7.7"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.7.7"]);
+	    ;
+	END_REGION
+	
+	
+	REGION "Conveyor_C1.7.8
+	    #"Conveyor_C1.7.8"(ConveyorID := _."Conveyor_C1.7.8",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.7.8"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.7.8"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.7.8"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.7.8"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.7.9
+	    #"Conveyor_C1.7.9"(ConveyorID := _."Conveyor_C1.7.9",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.7.9"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.7.9"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.7.9"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.7.9"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.7.10
+	    #"Conveyor_C1.7.10"(ConveyorID := _."Conveyor_C1.7.10",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.7.10"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.7.10"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.7.10"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.7.10"]);
+	    ;
+	END_REGION
+	
+	
+	
+	REGION Conveyor_C1.9.1
+	    #"Conveyor_C1.9.1"(ConveyorID := _."Conveyor_C1.9.1",
+	                       Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.9.1"],
+	                       Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.9.1"],
+	                       Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.9.1"],
+	                       Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.9.1"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.10.1
+	    #"Conveyor_C1.10.1"(ConveyorID := _."Conveyor_C1.10.1",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.10.1"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.10.1"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.10.1"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.10.1"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.11.1
+	    #"Conveyor_C1.11.1"(ConveyorID := _."Conveyor_C1.11.1",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.11.1"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.11.1"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.11.1"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.11.1"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.11.2
+	    #"Conveyor_C1.11.2"(ConveyorID := _."Conveyor_C1.11.2",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.11.2"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.11.2"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.11.2"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.11.2"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.12.1
+	    #"Conveyor_C1.12.1"(ConveyorID := _."Conveyor_C1.12.1",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.12.1"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.12.1"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.12.1"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.12.1"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.12.2
+	    #"Conveyor_C1.12.2"(ConveyorID := _."Conveyor_C1.12.2",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.12.2"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.12.2"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.12.2"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.12.2"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.12.3
+	    #"Conveyor_C1.12.3"(ConveyorID := _."Conveyor_C1.12.3",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.12.3"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.12.3"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.12.3"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.12.3"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Transfer_C1.13.1
+	    #"Transfer_C1.13.1"(TransferID:=_."Transfer_C1.13.1",
+	                        Fault:=_.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Transfer_C1.13.1"],
+	                        Upstream:=_.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Transfer_C1.13.1"],
+	                        Downstream:=_.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Transfer_C1.13.1"],
+	                        FrontSensorFilterTime:=_.LineC1.DB_ConveyorParameters.Line.C1.Transfer[_."Transfer_C1.13.1"].setTransferTimer,
+	                        TransferDirection:=_.Global.DB_ToteTracking.Conveyor[_."Transfer_C1.13.1"].ToteDir);
+	    
+	END_REGION
+	
+	
+	REGION Transfer_C1.14.1
+	    #"Transfer_C1.14.1"(TransferID := _."Transfer_C1.14.1",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Transfer_C1.14.1"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Transfer_C1.14.1"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Transfer_C1.14.1"],
+	                        FrontSensorFilterTime := _.LineC1.DB_ConveyorParameters.Line.C1.Transfer[_."Transfer_C1.14.1"].setTransferTimer,
+	                        TransferDirection := _.Global.DB_ToteTracking.Conveyor[_."Transfer_C1.14.1"].ToteDir);
+	END_REGION
+	
+	
+	REGION Conveyor_C1.15.2
+	    #"Conveyor_C1.15.2"(ConveyorID := _."Conveyor_C1.15.2",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.15.2"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.15.2"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.15.2"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.15.2"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.15.3
+	    #"Conveyor_C1.15.3"(ConveyorID := _."Conveyor_C1.15.3",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.15.3"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.15.3"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.15.3"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.15.3"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.15.4
+	    #"Conveyor_C1.15.4"(ConveyorID := _."Conveyor_C1.15.4",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.15.4"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.15.4"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.15.4"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.15.4"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.16.1
+	    #"Conveyor_C1.16.1"(ConveyorID := _."Conveyor_C1.16.1",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.16.1"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.16.1"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.16.1"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.16.1"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.18.1
+	    #"Conveyor_C1.18.1"(ConveyorID := _."Conveyor_C1.18.1",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.18.1"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.18.1"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.18.1"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.18.1"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.18.2
+	    #"Conveyor_C1.18.2"(ConveyorID := _."Conveyor_C1.18.2",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.18.2"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.18.2"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.18.2"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.18.2"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.18.3
+	    #"Conveyor_C1.18.3"(ConveyorID := _."Conveyor_C1.18.3",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.18.3"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.18.3"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.18.3"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.18.3"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.18.4
+	    #"Conveyor_C1.18.4"(ConveyorID := _."Conveyor_C1.18.4",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.18.4"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.18.4"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.18.4"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.18.4"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.18.5
+	    #"Conveyor_C1.18.5"(ConveyorID := _."Conveyor_C1.18.5",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.18.5"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.18.5"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.18.5"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.18.5"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.18.6
+	    #"Conveyor_C1.18.6"(ConveyorID := _."Conveyor_C1.18.6",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.18.6"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.18.6"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.18.6"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.18.6"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.18.7
+	    #"Conveyor_C1.18.7"(ConveyorID := _."Conveyor_C1.18.7",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.18.7"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.18.7"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.18.7"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.18.7"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.19.1
+	    #"Conveyor_C1.19.1"(ConveyorID := _."Conveyor_C1.19.1",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.19.1"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.19.1"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.19.1"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.19.1"]);
+	    ;
+	END_REGION
+	
+	
+	REGION Conveyor_C1.20.2
+	    #"Conveyor_C1.20.2"(ConveyorID := _."Conveyor_C1.20.2",
+	                        Fault := _.LineC1.DB_UDI.LineC1.Fault.Conveyor[_."Conveyor_C1.20.2"],
+	                        Upstream := _.LineC1.DB_UDI.LineC1.Upstream.Conveyor[_."Conveyor_C1.20.2"],
+	                        Downstream := _.LineC1.DB_UDI.LineC1.DownstreamAccu.Conveyor[_."Conveyor_C1.20.2"],
+	                        Interlock := _.LineC1.DB_UDI.LineC1.Interlock.Conveyor[_."Conveyor_C1.20.2"]);
+	    ;
+	END_REGION
+	
+	
+	
+	
+	
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

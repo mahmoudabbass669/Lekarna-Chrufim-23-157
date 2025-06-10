@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Blocks.InstanceDB ID="0">
+    <AttributeList>
+      <InstanceOfName>LineB1.FB_LineB1</InstanceOfName>
+      <InstanceOfType>FB</InstanceOfType>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Static">
+    <Member Name="Conveyor_B1.1.1" Datatype="&quot;Global.FB_Conveyor&quot;" />
+    <Member Name="MABS_B1.1.1" Datatype="&quot;Global.FB_MABS&quot;" />
+    <Member Name="Transfer_B1.1.1" Datatype="&quot;Global.FB_S300_tTransMode&quot;" />
+    <Member Name="Transfer_B1.1.2" Datatype="&quot;LineB1.FB_S300_FullControl&quot;" />
+  </Section>
+</Sections></Interface>
+      <Name>IDB_LineB1</Name>
+      <Namespace>LineB1</Namespace>
+      <Number>9</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="3" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.InstanceDB>
+</Document>

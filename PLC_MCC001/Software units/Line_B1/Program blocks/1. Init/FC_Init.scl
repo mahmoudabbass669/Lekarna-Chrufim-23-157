@@ -1,0 +1,27 @@
+﻿NAMESPACE LineB1
+FUNCTION FC_Init : Void
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+
+BEGIN
+	
+	
+	
+	_.LineB1.IDB_LineB1."Conveyor_B1.1.1".MotorType."24v-ASi" := TRUE;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+END_FUNCTION
+END_NAMESPACE
+

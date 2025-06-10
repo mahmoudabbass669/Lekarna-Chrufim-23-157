@@ -1,0 +1,75 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_SensorBlockage
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      ConveyorSensor : Bool;
+      StatusRunning : Bool;
+      SensorBlockagePeriod : Time;
+   END_VAR
+
+   VAR_OUTPUT 
+      SensorBlocked : Bool;
+      CurrentBlockageTimerValue : Time;
+      ReadBlockageStatus : Bool;
+   END_VAR
+
+   VAR 
+      SensorBlockageTimer {InstructionName := 'IEC_TIMER'; LibVersion := '1.0'} : IEC_TIMER;
+      SensorBlockage { S7_SetPoint := 'True'} : Bool;
+      SensorBlockageCondition : Bool;
+      FallingEdge {InstructionName := 'F_TRIG'; LibVersion := '1.0'} : F_TRIG;
+      FallingEdgeConveyorSensor { S7_SetPoint := 'True'} : Bool;
+      BlockageStatus : Bool;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================================================
+	// Company       : LogTech, s.r.o.
+	// Created by    : Anton Vinoth Soundraraj
+	// Block         : FB_SensorBlockage
+	// Project       : LT-Lib-Block
+	// ==========================================================================================================================================================================
+	
+	REGION PEC BLOCKAGE
+	    
+	    #SensorBlockageCondition :=
+	    #StatusRunning AND #ConveyorSensor;
+	    
+	    // Blockage Timer
+	    // !!!! PEC had been blocked for 't' seconds and giving the result as SensorBlockage
+	    
+	    #SensorBlockageTimer.TON(IN := #SensorBlockageCondition,
+	                             PT := #SensorBlockagePeriod,
+	                             Q => #SensorBlockage,
+	                             ET => #CurrentBlockageTimerValue);
+	    
+	    IF #SensorBlockage THEN
+	        #SensorBlocked := TRUE;
+	        #BlockageStatus := TRUE;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION Blockage Reset
+	    
+	    // Can reset the sensor blockage (!!!!!!!) only if the sensor blockage is removed
+	    
+	    // Falling trigger of the conveyor sensor
+	    #FallingEdge(CLK := #ConveyorSensor,
+	                 Q => #FallingEdgeConveyorSensor);
+	    
+	    IF #FallingEdgeConveyorSensor THEN
+	        #SensorBlocked := FALSE;
+	        #BlockageStatus := FALSE;
+	    END_IF;
+	    
+	    #ReadBlockageStatus := #BlockageStatus;
+	    
+	END_REGION
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

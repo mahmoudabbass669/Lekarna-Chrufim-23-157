@@ -1,0 +1,32 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_HardwareDiag
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR 
+      ASi : _.LineA1.FB_GetDiag;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : FB_HardwareDiag
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	(* REGION ASi
+	    
+	    #ASi(HardwareID              := _."bu-asi-gw~PN-IO",
+	         CommunicationErrorAlarm => _.Global.DB_Alarm.HardDiag.ASi.%X0);
+	    
+	    
+	END_REGION *)
+	
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

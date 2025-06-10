@@ -1,0 +1,163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Tags.PlcTagTable ID="0">
+    <AttributeList>
+      <Name>ConvConstant</Name>
+    </AttributeList>
+    <ObjectList>
+      <SW.Tags.PlcUserConstant ID="1" CompositionName="UserConstants">
+        <AttributeList>
+          <DataTypeName>Int</DataTypeName>
+          <Name>gMinA1</Name>
+          <Value>1001</Value>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="3" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcUserConstant>
+      <SW.Tags.PlcUserConstant ID="4" CompositionName="UserConstants">
+        <AttributeList>
+          <DataTypeName>Int</DataTypeName>
+          <Name>gMaxA1</Name>
+          <Value>1002</Value>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="5" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="6" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcUserConstant>
+      <SW.Tags.PlcUserConstant ID="7" CompositionName="UserConstants">
+        <AttributeList>
+          <DataTypeName>Int</DataTypeName>
+          <Name>gMinB1</Name>
+          <Value>2001</Value>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="8" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="9" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcUserConstant>
+      <SW.Tags.PlcUserConstant ID="A" CompositionName="UserConstants">
+        <AttributeList>
+          <DataTypeName>Int</DataTypeName>
+          <Name>gMaxB1</Name>
+          <Value>2002</Value>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="B" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcUserConstant>
+      <SW.Tags.PlcUserConstant ID="D" CompositionName="UserConstants">
+        <AttributeList>
+          <DataTypeName>Int</DataTypeName>
+          <Name>gMinC1</Name>
+          <Value>3001</Value>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="E" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcUserConstant>
+      <SW.Tags.PlcUserConstant ID="10" CompositionName="UserConstants">
+        <AttributeList>
+          <DataTypeName>Int</DataTypeName>
+          <Name>gMaxC1</Name>
+          <Value>3054</Value>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="11" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="12" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcUserConstant>
+      <SW.Tags.PlcUserConstant ID="13" CompositionName="UserConstants">
+        <AttributeList>
+          <DataTypeName>Int</DataTypeName>
+          <Name>gMinD1</Name>
+          <Value>4001</Value>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="14" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="15" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcUserConstant>
+      <SW.Tags.PlcUserConstant ID="16" CompositionName="UserConstants">
+        <AttributeList>
+          <DataTypeName>Int</DataTypeName>
+          <Name>gMaxD1</Name>
+          <Value>4002</Value>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="17" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="18" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcUserConstant>
+    </ObjectList>
+  </SW.Tags.PlcTagTable>
+</Document>

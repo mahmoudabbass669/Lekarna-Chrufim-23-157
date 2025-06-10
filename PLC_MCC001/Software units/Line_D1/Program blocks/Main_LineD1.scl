@@ -1,0 +1,12 @@
+﻿NAMESPACE LineD1
+ORGANIZATION_BLOCK Main_LineD1
+TITLE = "Main Program Sweep (Cycle)"
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+
+BEGIN
+	IDB_LineD1();
+	
+END_ORGANIZATION_BLOCK
+END_NAMESPACE
+

@@ -1,0 +1,67 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_KlaxonLampYellow
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      BlinkCondition : Bool;
+      GlowCondition : Bool;
+      BlockageStatus : Bool;
+   END_VAR
+
+   VAR_OUTPUT 
+      YellowLamp : Bool;
+   END_VAR
+
+   VAR 
+      Startup {InstructionName := 'IEC_TIMER'; LibVersion := '1.0'; S7_SetPoint := 'False'} : IEC_TIMER;
+      StartupActive { S7_SetPoint := 'True'} : Bool;
+      AlertTime : Time := T#5s;
+      LampGlowON : Bool;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================================================
+	// Company      : LogTech, s.r.o.
+	// Created by   : Anton Vinoth Soundraraj
+	// Project      : LT-Lib-Block
+	// Block        : FB_KlaxonLampYellow
+	// ==========================================================================================================================================================================
+	
+	REGION Lamp Blink
+	    
+	    // Blink condition System Start
+	    // Lamp blink will be active for given preset time
+	    
+	    #Startup.TOF(IN := #BlinkCondition,
+	                 PT := #AlertTime,
+	                 Q => #StartupActive);
+	    
+	END_REGION
+	
+	REGION Lamp Glow
+	    
+	    // Lamp will be glowing if glow condition(all conveyors status ready) is set
+	    
+	    #LampGlowON :=
+	    #GlowCondition AND
+	    NOT #StartupActive;
+	    
+	END_REGION
+	
+	REGION Lamp Glow and Blink
+	    
+	    // write glow and blink condition to the lamp 
+	    
+	    #YellowLamp :=
+	    #LampGlowON OR
+	    (#StartupActive AND
+	    _.DB_Sync.ClockBit."Clock_0.5Hz") OR 
+	    (#BlockageStatus AND
+	    _.DB_Sync.ClockBit."Clock_0.5Hz");
+	    
+	END_REGION
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

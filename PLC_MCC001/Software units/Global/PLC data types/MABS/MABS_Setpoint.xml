@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Types.PlcStruct ID="0">
+    <AttributeList>
+      <Access>Published</Access>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="None">
+    <Member Name="ChangeBallsDirection" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">0=forward; 1=backward</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="Speed_balls" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Based on preset speed setting. 60/70/80/90 m/min.</MultiLanguageText>
+      </Comment>
+      <StartValue>0</StartValue>
+    </Member>
+    <Member Name="Init_offset" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Offset angle for initial position -8/+10°</MultiLanguageText>
+      </Comment>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <Name>MABS_Setpoint</Name>
+      <Namespace>Global</Namespace>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="3" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Types.PlcStruct>
+</Document>

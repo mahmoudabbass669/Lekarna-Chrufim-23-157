@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Blocks.GlobalDB ID="0">
+    <AttributeList>
+      <Access>Published</Access>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Static">
+    <Member Name="ToStandard" Datatype="Struct">
+      <Member Name="EstopActive" Datatype="Bool" />
+    </Member>
+    <Member Name="PressReset" Datatype="Bool" />
+    <Member Name="ToHMI" Datatype="Struct">
+      <Member Name="EstopPB -AS1.7.4 -SF09 -Zone2" Datatype="Bool" />
+      <Member Name="EstopPB -AS1.12.3 -SF10 -Zone3" Datatype="Bool" />
+      <Member Name="EstopPB -AS1.13.14 -SF11 -Zone3" Datatype="Bool" />
+      <Member Name="EstopPB -AS1.55.2 -SF01 -Zone1" Datatype="Bool" />
+      <Member Name="EstopPB -AS1.55.11 -SF02 -Zone1" Datatype="Bool" />
+      <Member Name="EstopPB -AS1.55.18 -SF03 -Zone1" Datatype="Bool" />
+      <Member Name="EstopPB -AS1.58.2 -SF04 -Zone1" Datatype="Bool" />
+      <Member Name="EstopPB -AS1.58.11 -SF05 -Zone1" Datatype="Bool" />
+      <Member Name="EstopPB -AS1.58.19 -SF06 -Zone1" Datatype="Bool" />
+      <Member Name="EstopPB -AS1.5.9 -SF07 -Zone2" Datatype="Bool" />
+      <Member Name="EstopPB -AS1.9.4 -SF08 -Zone2" Datatype="Bool" />
+      <Member Name="EstopPB -MCC100 -402SF7" Datatype="Bool" />
+      <Member Name="PhaseOK -MCC100" Datatype="Bool" />
+      <Member Name="EstopPB -AS1.50.7 -SF21" Datatype="Bool" />
+      <Member Name="EstopPB -AS1.50.24 -SF22" Datatype="Bool" />
+      <Member Name="EstopPB -AS1.50.8 -SF23" Datatype="Bool" />
+      <Member Name="EstopPB -BP1.2.42 -SF24" Datatype="Bool" />
+      <Member Name="EstopPB -BP2.3.2 -SF25" Datatype="Bool" />
+      <Member Name="EstopPB -BP1.14.3 -SF26" Datatype="Bool" />
+      <Member Name="EstopPB -BP1.6.2 -SF27" Datatype="Bool" />
+      <Member Name="EstopPB -MCC300 -402SF7" Datatype="Bool" />
+      <Member Name="PhaseOK -MCC300" Datatype="Bool" />
+    </Member>
+    <Member Name="holdAlarmOffTimer" Datatype="TON_TIME" Version="1.0" />
+    <Member Name="holdAlarmOff" Datatype="Bool" />
+  </Section>
+</Sections></Interface>
+      <MemoryReserve>100</MemoryReserve>
+      <Name>DB_SafetyStandard</Name>
+      <Namespace />
+      <Number>20</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="3" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.GlobalDB>
+</Document>

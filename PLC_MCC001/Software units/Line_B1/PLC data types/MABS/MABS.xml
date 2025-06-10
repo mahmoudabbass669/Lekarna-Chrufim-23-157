@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Types.PlcStruct ID="0">
+    <AttributeList>
+      <Access>Published</Access>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="None">
+    <Member Name="Run_balls" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Run transport balls</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Dir_balls" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">0=forward; 1=backward</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Speed_balls" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Based on preset speed setting. 60/70/80/90 m/min.</MultiLanguageText>
+      </Comment>
+      <StartValue>90</StartValue>
+    </Member>
+    <Member Name="Switch_left_angle" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Angle for left transportation 30/180°</MultiLanguageText>
+      </Comment>
+      <StartValue>45</StartValue>
+    </Member>
+    <Member Name="Switch_right_angle" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Angle for right transportation 30/180°</MultiLanguageText>
+      </Comment>
+      <StartValue>45</StartValue>
+    </Member>
+    <Member Name="Switch_left_to_st_offset" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Offset angle for straight position from left -8/+10°</MultiLanguageText>
+      </Comment>
+      <StartValue>0</StartValue>
+    </Member>
+    <Member Name="Switch_right_to_st_offset" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Offset angle for straight position from right -8/+10°</MultiLanguageText>
+      </Comment>
+      <StartValue>0</StartValue>
+    </Member>
+    <Member Name="Init_offset" Datatype="Int">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Offset angle for initial position -8/+10°</MultiLanguageText>
+      </Comment>
+      <StartValue>0</StartValue>
+    </Member>
+    <Member Name="Switch_left" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Swing to left transport direction</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Switch_right" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Swing to right transport direction</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Switch_left_to_st" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Swing to straight transport direction CW</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Switch_right_to_st" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Swing to straight transport direction CCW</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="EMS" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Inhib controls and reset MABS initialisation</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Init" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Run MABS initialisation sequence (if not done)</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Init_done" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">MABS initialisation sequence done</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Ready" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">MABS no error, initialisation done, communication OK</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Init_sensor" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">MABS straight position sensor</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Left_Pos_reach" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">MABS transport balls in left position</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Right_Pos_reach" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">MABS transport balls in right position</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Straight_Pos_reach" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">MABS transport balls in straight position</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Error_motA" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Hardware error motor A</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Error_motB" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Hardware error motor B</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Error_timeout_sw" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Swing motor timeout</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Error_com" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Communication error (life bit, 5s delayed)</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Error" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Error synthesis</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Reset_error" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Reset all errors</MultiLanguageText>
+      </Comment>
+      <StartValue>false</StartValue>
+    </Member>
+    <Member Name="Timeout_val" Datatype="Time">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Swing timeout value</MultiLanguageText>
+      </Comment>
+      <StartValue>T#10s</StartValue>
+    </Member>
+    <Member Name="HMI_sts" Datatype="UInt">
+      <Comment>
+        <MultiLanguageText Lang="en-US">Sts word for HMI (0=Off; 1=Running; 2=Init requested; 4=Error )</MultiLanguageText>
+      </Comment>
+      <StartValue>0</StartValue>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <Name>MABS</Name>
+      <Namespace>LineB1</Namespace>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="3" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="4" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Types.PlcStruct>
+</Document>

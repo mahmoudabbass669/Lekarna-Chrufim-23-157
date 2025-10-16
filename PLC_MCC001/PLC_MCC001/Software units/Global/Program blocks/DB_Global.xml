@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Blocks.GlobalDB ID="0">
+    <AttributeList>
+      <Access>Published</Access>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Static">
+    <Member Name="Status" Datatype="Struct">
+      <Member Name="Line" Datatype="Struct">
+        <Member Name="ProductionLine" Datatype="Struct">
+          <Member Name="On" Datatype="Array[_.gminProductionLine.._.gmaxProductionLine] of Bool">
+            <Subelement Path="1001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.1</MultiLanguageText>
+              </Comment>
+            </Subelement>
+            <Subelement Path="1002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.2</MultiLanguageText>
+              </Comment>
+            </Subelement>
+          </Member>
+          <Member Name="ReadyToRun" Datatype="Array[_.gminProductionLine.._.gmaxProductionLine] of Bool">
+            <Subelement Path="1001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.1</MultiLanguageText>
+              </Comment>
+            </Subelement>
+            <Subelement Path="1002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.2</MultiLanguageText>
+              </Comment>
+            </Subelement>
+          </Member>
+          <Member Name="Occupied" Datatype="Array[_.gminProductionLine.._.gmaxProductionLine] of Bool">
+            <Subelement Path="1001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.1</MultiLanguageText>
+              </Comment>
+            </Subelement>
+            <Subelement Path="1002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.2</MultiLanguageText>
+              </Comment>
+            </Subelement>
+          </Member>
+          <Member Name="Running" Datatype="Array[_.gminProductionLine.._.gmaxProductionLine] of Bool">
+            <Subelement Path="1001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.1</MultiLanguageText>
+              </Comment>
+            </Subelement>
+            <Subelement Path="1002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.2</MultiLanguageText>
+              </Comment>
+            </Subelement>
+          </Member>
+          <Member Name="Fault" Datatype="Array[_.gminProductionLine.._.gmaxProductionLine] of Bool">
+            <Subelement Path="1001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.1</MultiLanguageText>
+              </Comment>
+              <StartValue>0</StartValue>
+            </Subelement>
+            <Subelement Path="1002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.2</MultiLanguageText>
+              </Comment>
+              <StartValue>0</StartValue>
+            </Subelement>
+          </Member>
+          <Member Name="Estop" Datatype="Array[_.gminProductionLine.._.gmaxProductionLine] of Bool">
+            <Subelement Path="1001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.1</MultiLanguageText>
+              </Comment>
+              <StartValue>0</StartValue>
+            </Subelement>
+            <Subelement Path="1002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.2</MultiLanguageText>
+              </Comment>
+              <StartValue>0</StartValue>
+            </Subelement>
+          </Member>
+          <Member Name="Manual" Datatype="Array[_.gminProductionLine.._.gmaxProductionLine] of Bool">
+            <Subelement Path="1001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.1</MultiLanguageText>
+              </Comment>
+              <StartValue>0</StartValue>
+            </Subelement>
+            <Subelement Path="1002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.2</MultiLanguageText>
+              </Comment>
+              <StartValue>0</StartValue>
+            </Subelement>
+          </Member>
+          <Member Name="Stop" Datatype="Array[_.gminProductionLine.._.gmaxProductionLine] of Bool">
+            <Subelement Path="1001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.1</MultiLanguageText>
+              </Comment>
+              <StartValue>0</StartValue>
+            </Subelement>
+            <Subelement Path="1002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.2</MultiLanguageText>
+              </Comment>
+              <StartValue>0</StartValue>
+            </Subelement>
+          </Member>
+          <Member Name="Blockage" Datatype="Array[_.gminProductionLine.._.gmaxProductionLine] of Bool">
+            <Subelement Path="1001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.1</MultiLanguageText>
+              </Comment>
+              <StartValue>0</StartValue>
+            </Subelement>
+            <Subelement Path="1002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">AS1.1.2</MultiLanguageText>
+              </Comment>
+              <StartValue>0</StartValue>
+            </Subelement>
+          </Member>
+        </Member>
+        <Member Name="EmptyLine" Datatype="Struct">
+          <Member Name="On" Datatype="Array[_.gminEmptyLine.._.gmaxEmptyLine] of Bool" />
+          <Member Name="ReadyToRun" Datatype="Array[_.gminEmptyLine.._.gmaxEmptyLine] of Bool" />
+          <Member Name="Occupied" Datatype="Array[_.gminEmptyLine.._.gmaxEmptyLine] of Bool" />
+          <Member Name="Running" Datatype="Array[_.gminEmptyLine.._.gmaxEmptyLine] of Bool" />
+          <Member Name="Fault" Datatype="Array[_.gminEmptyLine.._.gmaxEmptyLine] of Bool" />
+          <Member Name="Estop" Datatype="Array[_.gminEmptyLine.._.gmaxEmptyLine] of Bool" />
+          <Member Name="Manual" Datatype="Array[_.gminEmptyLine.._.gmaxEmptyLine] of Bool" />
+          <Member Name="Stop" Datatype="Array[_.gminEmptyLine.._.gmaxEmptyLine] of Bool" />
+          <Member Name="Blockage" Datatype="Array[_.gminEmptyLine.._.gmaxEmptyLine] of Bool" />
+        </Member>
+        <Member Name="PackedLine" Datatype="Struct">
+          <Member Name="On" Datatype="Array[_.gminPackedLine.._.gmaxPackedLine] of Bool" />
+          <Member Name="ReadyToRun" Datatype="Array[_.gminPackedLine.._.gmaxPackedLine] of Bool">
+            <Subelement Path="3001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">BP1.1.1</MultiLanguageText>
+              </Comment>
+            </Subelement>
+            <Subelement Path="3002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">BP1.1.2</MultiLanguageText>
+              </Comment>
+            </Subelement>
+          </Member>
+          <Member Name="Occupied" Datatype="Array[_.gminPackedLine.._.gmaxPackedLine] of Bool">
+            <Subelement Path="3001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">BP1.1.1</MultiLanguageText>
+              </Comment>
+            </Subelement>
+            <Subelement Path="3002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">BP1.1.2</MultiLanguageText>
+              </Comment>
+            </Subelement>
+          </Member>
+          <Member Name="Running" Datatype="Array[_.gminPackedLine.._.gmaxPackedLine] of Bool">
+            <Subelement Path="3001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">BP1.1.1</MultiLanguageText>
+              </Comment>
+            </Subelement>
+            <Subelement Path="3002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">BP1.1.2</MultiLanguageText>
+              </Comment>
+            </Subelement>
+          </Member>
+          <Member Name="Fault" Datatype="Array[_.gminPackedLine.._.gmaxPackedLine] of Bool">
+            <Subelement Path="3001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">BP1.1.1</MultiLanguageText>
+              </Comment>
+            </Subelement>
+            <Subelement Path="3002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">BP1.1.2</MultiLanguageText>
+              </Comment>
+            </Subelement>
+          </Member>
+          <Member Name="Estop" Datatype="Array[_.gminPackedLine.._.gmaxPackedLine] of Bool">
+            <Subelement Path="3001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">BP1.1.1</MultiLanguageText>
+              </Comment>
+            </Subelement>
+            <Subelement Path="3002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">BP1.1.2</MultiLanguageText>
+              </Comment>
+            </Subelement>
+          </Member>
+          <Member Name="Manual" Datatype="Array[_.gminPackedLine.._.gmaxPackedLine] of Bool">
+            <Subelement Path="3001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">BP1.1.1</MultiLanguageText>
+              </Comment>
+            </Subelement>
+            <Subelement Path="3002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">BP1.1.2</MultiLanguageText>
+              </Comment>
+            </Subelement>
+          </Member>
+          <Member Name="Stop" Datatype="Array[_.gminPackedLine.._.gmaxPackedLine] of Bool">
+            <Subelement Path="3001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">BP1.1.1</MultiLanguageText>
+              </Comment>
+            </Subelement>
+            <Subelement Path="3002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">BP1.1.2</MultiLanguageText>
+              </Comment>
+            </Subelement>
+          </Member>
+          <Member Name="Blockage" Datatype="Array[_.gminPackedLine.._.gmaxPackedLine] of Bool">
+            <Subelement Path="3001">
+              <Comment>
+                <MultiLanguageText Lang="en-US">BP1.1.1</MultiLanguageText>
+              </Comment>
+            </Subelement>
+            <Subelement Path="3002">
+              <Comment>
+                <MultiLanguageText Lang="en-US">BP1.1.2</MultiLanguageText>
+              </Comment>
+            </Subelement>
+          </Member>
+        </Member>
+      </Member>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <MemoryReserve>100</MemoryReserve>
+      <Name>DB_Global</Name>
+      <Namespace>Global</Namespace>
+      <Number>23</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="4" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="5" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.GlobalDB>
+</Document>

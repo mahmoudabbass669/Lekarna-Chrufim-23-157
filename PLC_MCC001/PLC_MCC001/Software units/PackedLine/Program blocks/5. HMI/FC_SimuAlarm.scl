@@ -1,0 +1,9 @@
+﻿NAMESPACE PackedLine
+FUNCTION FC_SimuAlarm : Void
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+
+BEGIN
+END_FUNCTION
+END_NAMESPACE
+

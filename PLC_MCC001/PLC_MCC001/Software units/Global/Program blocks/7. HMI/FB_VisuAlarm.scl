@@ -1,0 +1,177 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_VisuAlarm
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR 
+      noAlarmState : Bool;
+      CommunicationFault : Struct
+         PLC : Word;
+         "BW-ASi" : Word;
+         Cognex : Word;
+         Mabs : Word;
+      END_STRUCT;
+      "BW-ASi" : Struct
+         "BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)A_1" : Word;
+         "BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)A" : Word;
+         "BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)B_1" : Word;
+         "BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)B" : Word;
+         "BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)A_1" : Word;
+         "BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)A" : Word;
+         "BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)B_1" : Word;
+         "BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)B" : Word;
+         "BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit2_Slave(0-15)A" : Word;
+         "BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit2_Slave(16-31)A" : Word;
+         "BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit2_Slave(0-15)B" : Word;
+         "BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit2_Slave(16-31)B" : Word;
+         "BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit2_Slave(0-15)A" : Word;
+         "BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit2_Slave(16-31)A" : Word;
+         "BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit2_Slave(0-15)B" : Word;
+         "BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit2_Slave(16-31)B" : Word;
+         "BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(0-15)A" : Word;
+         "BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(16-31)A" : Word;
+         "BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(0-15)B" : Word;
+         "BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(16-31)B" : Word;
+         "BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(0-15)A" : Word;
+         "BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(16-31)A" : Word;
+         "BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(0-15)B" : Word;
+         "BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(16-31)B" : Word;
+         "BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(0-15)A" : Word;
+         "BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(16-31)A" : Word;
+         "BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(0-15)B" : Word;
+         "BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(16-31)B" : Word;
+         "BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(0-15)A" : Word;
+         "BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(16-31)A" : Word;
+         "BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(0-15)B" : Word;
+         "BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(16-31)B" : Word;
+      END_STRUCT;
+      "word" : Struct
+         Line : Struct
+            ProductionLine : Struct
+               Conveyor : Array[_.gminProductionLine.._.gmaxProductionLine] of Word;
+            END_STRUCT;
+            EmptyLine : Struct
+               Conveyor : Array[_.gminEmptyLine.._.gmaxEmptyLine] of Word;
+            END_STRUCT;
+            PackedLine : Struct
+               Conveyor : Array[_.gminPackedLine.._.gmaxPackedLine] of Word;
+            END_STRUCT;
+         END_STRUCT;
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : FC_VisuAlarm
+	// Project        : Lékárna Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	REGION initial state
+	    
+	    // ESTOP alarm has priority
+	    // So, if there are any estop active, other alarms can't be displayed on Alarm screen
+	    
+	    // no alarm state
+	    #noAlarmState :=
+	    IDB_GlobalStatus.Line.ProductionLine.Estop OR
+	    IDB_GlobalStatus.Line.ProductionLine.Estop OR
+	    IDB_GlobalStatus.Line.ProductionLine.Estop;
+	    
+	    IF #noAlarmState THEN
+	        
+	        DB_Alarm."BW-ASi" := #"BW-ASi";
+	        DB_Alarm.CommunicationFault := #CommunicationFault;
+	        DB_Alarm."word" := #word;
+	        //"DB_Alarm".CircuitBreaker := #CircuitBreaker;
+	        
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION ASi Config and Peri alarm
+	    
+	    IF NOT #noAlarmState THEN
+	        // ASi gateway: MCC100-bw23: Circuit 1
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)A" := _."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)A";
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)A" := _."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)A";
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)B" := _."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)B";
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)B" := _."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)B";
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)A" := _."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)A";
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)A" := _."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)A";
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)B" := _."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)B";
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)B" := _."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)B";
+	        // ASi gateway: MCC100-bw23: Circuit 2
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)A" := _."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)A";
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)A" := _."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)A";
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)B" := _."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)B";
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)B" := _."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)B";
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)A" := _."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)A";
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)A" := _."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)A";
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)B" := _."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)B";
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)B" := _."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)B";
+	        // ASi gateway: MCC300-bw31 : Circuit 1
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(0-15)A" := _."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(0-15)A";
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(16-31)A" := _."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(16-31)A";
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(0-15)B" := _."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(0-15)B";
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(16-31)B" := _."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(16-31)B";
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(0-15)A" := _."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(0-15)A";
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(16-31)A" := _."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(16-31)A";
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(0-15)B" := _."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(0-15)B";
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(16-31)B" := _."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(16-31)B";
+	        // ASi gateway: MCC300-bw31 : Circuit 2
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(0-15)A" := _."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(0-15)A";
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(16-31)A" := _."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(16-31)A";
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(0-15)B" := _."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(0-15)B";
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(16-31)B" := _."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(16-31)B";
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(0-15)A" := _."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(0-15)A";
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(16-31)A" := _."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(16-31)A";
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(0-15)B" := _."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(0-15)B";
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(16-31)B" := _."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(16-31)B";
+	    ELSE
+	        // ASi gateway: MCC100-bw23: Circuit 1
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)A" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)A" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)B" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)B" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)A" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)A" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)B" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)B" := 0;
+	        // ASi gateway: MCC100-bw23: Circuit 2
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)A" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)A" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)B" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)B" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)A" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)A" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)B" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)B" := 0;
+	        // ASi gateway: MCC300-bw31 : Circuit 1
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(0-15)A" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(16-31)A" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(0-15)B" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(16-31)B" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(0-15)A" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(16-31)A" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(0-15)B" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(16-31)B" := 0;
+	        // ASi gateway: MCC300-bw31 : Circuit 2
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(0-15)A" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(16-31)A" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(0-15)B" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(16-31)B" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(0-15)A" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(16-31)A" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(0-15)B" := 0;
+	        DB_Alarm."BW-ASi"."BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(16-31)B" := 0;
+	        
+	    END_IF;
+	    
+	END_REGION
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

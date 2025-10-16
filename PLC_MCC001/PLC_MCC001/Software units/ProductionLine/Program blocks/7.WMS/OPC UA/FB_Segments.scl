@@ -1,0 +1,145 @@
+﻿NAMESPACE ProductionLine
+FUNCTION_BLOCK FB_Segments
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      ConveyorID : Int;
+      "Counter" : Int;
+      FlowRackLoop1 : Array[_."B1.1.1".._."B1.23.1"] of Bool;
+      FlowRackLoop2 : Array[_."B1.6.1".._."B1.18.1"] of Bool;
+      Fragileloop1 : Array[_."D1.1.1".._."E1.6.1"] of Bool;
+      Fragileloop2 : Array[_."D1.9.1".._."D1.10.1"] of Bool;
+      cmp : Struct
+         FlowRackLoop1 : Array[_."B1.1.1".._."B1.23.1"] of Bool;
+         FlowRackLoop2 : Array[_."B1.6.1".._."B1.18.1"] of Bool;
+         Fragileloop1 : Array[_."D1.1.1".._."E1.6.1"] of Bool;
+         Fragileloop2 : Array[_."D1.9.1".._."D1.10.1"] of Bool;
+      END_STRUCT;
+      FlowRackLoopReadyToRun : Bool;
+      FlowRackWorkPlaceLeftReadyToRun : Bool;
+      FlowRackWorkPlaceRightReadyToRun : Bool;
+      FragileloopReadyToRun : Bool;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : FB_Segments
+	// Project        : Lekarna, Chrudim -PLC001 -MCC001
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	// ===============================
+	// REGION: Flow rack loop
+	// Purpose: Check the ReadyToRun status of conveyors and transfer units 
+	//          for a flow rack section, then compare with a stored snapshot.
+	// ===============================
+	REGION Flow rack loop
+	    
+	    // ---------------------------------
+	    // REGION: Conveyor Status Loop
+	    // Purpose: Iterate over conveyor IDs from B1.1.1 to B1.28.1 
+	    //          and store their ReadyToRun status in FlowRackLoop1 array.
+	    // ---------------------------------
+	   REGION Conveyor Status
+	        FOR #Counter := _."B1.1.1" TO _."B1.23.1" DO
+	            // Store ReadyToRun status of the current conveyor into FlowRackLoop1
+	            #FlowRackLoop1[#Counter] := 
+	            _.Global.DB_Global.Status.Line.ProductionLine.ReadyToRun[#Counter];
+	        END_FOR;
+	    END_REGION
+	   
+	    // ---------------------------------
+	    // REGION: Transfer Unit Status Loop
+	    // Purpose: Iterate over transfer unit IDs from B1.6.1 to B1.21.1 
+	    //          and store their ReadyToRun status in FlowRackLoop2 array.
+	    // ---------------------------------
+	    REGION TransferUnit Status
+	        FOR #Counter := _."B1.6.1" TO _."B1.18.1" DO
+	            // Store ReadyToRun status of the current transfer unit into FlowRackLoop2
+	            #FlowRackLoop2[#Counter] :=
+	            _.Global.DB_Global.Status.Line.ProductionLine.ReadyToRun[#Counter];
+	        END_FOR;
+	    END_REGION
+	    
+	    // ---------------------------------
+	    // REGION: Status Comparison
+	    // Purpose: Check if both conveyor and transfer unit statuses 
+	    //          match the previous recorded values (#cmp arrays).
+	    // ---------------------------------
+	    REGION Comparison
+	        #FlowRackLoopReadyToRun := NOT 
+	        ((#cmp.FlowRackLoop1 = #FlowRackLoop1) AND
+	        (#cmp.FlowRackLoop2 = #FlowRackLoop2));
+	    END_REGION
+	    
+	END_REGION
+	
+	
+	// ===============================
+	// REGION: Flow rack work place left
+	// Purpose: ReadyToRun check for two specific conveyors on the left side.
+	// ===============================
+	REGION Flow rack work place left
+	    #FlowRackWorkPlaceLeftReadyToRun :=
+	    _.Global.DB_Global.Status.Line.ProductionLine.ReadyToRun[_."C1.4.1"] AND
+	    _.Global.DB_Global.Status.Line.ProductionLine.ReadyToRun[_."C1.4.2"];
+	END_REGION
+	
+	
+	// ===============================
+	// REGION: Flow rack work place right
+	// Purpose: ReadyToRun check for two specific conveyors on the right side.
+	// ===============================
+	REGION Flow rack work place right
+	    #FlowRackWorkPlaceRightReadyToRun :=
+	    _.Global.DB_Global.Status.Line.ProductionLine.ReadyToRun[_."C1.2.1"] AND
+	    _.Global.DB_Global.Status.Line.ProductionLine.ReadyToRun[_."C1.2.2"];
+	END_REGION
+	
+	
+	// ===============================
+	// REGION: Fragile loop
+	// Purpose: Same logic as Flow rack loop, but for the "fragile" product path.
+	// ===============================
+	REGION Fragile loop
+	    
+	    // ---------------------------------
+	    // REGION: Conveyor Status Loop (Fragile)
+	    // Purpose: Store ReadyToRun status for conveyors D1.1.1 to E1.6.1
+	    // ---------------------------------
+	    REGION Conveyor Status
+	        FOR #Counter := _."D1.1.1" TO _."E1.6.1" DO
+	            #Fragileloop1[#Counter] :=
+	            _.Global.DB_Global.Status.Line.ProductionLine.ReadyToRun[#Counter];
+	        END_FOR;
+	    END_REGION
+	    
+	    // ---------------------------------
+	    // REGION: Transfer Unit Status Loop (Fragile)
+	    // Purpose: Store ReadyToRun status for transfer units D1.8.1 to D1.9.1
+	    // ---------------------------------
+	    REGION TransferUnit Status
+	        FOR #Counter := _."D1.9.1" TO _."D1.10.1" DO
+	            #Fragileloop2[#Counter] :=
+	            _.Global.DB_Global.Status.Line.ProductionLine.ReadyToRun[#Counter];
+	        END_FOR;
+	    END_REGION
+	    
+	    // ---------------------------------
+	    // REGION: Status Comparison (Fragile)
+	    // Purpose: Check if current fragile loop status matches previous snapshot.
+	    // ---------------------------------
+	    REGION Comparison
+	        #FragileloopReadyToRun := NOT
+	        ((#cmp.Fragileloop1 = #Fragileloop1) AND
+	        (#cmp.Fragileloop2 = #Fragileloop2));
+	    END_REGION
+	    
+	END_REGION
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

@@ -1,0 +1,64 @@
+﻿FUNCTION "FC_Sync" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+
+BEGIN
+	
+	
+	
+	REGION system memory bits
+	    
+	    "DB_Sync".memoryBit.System_Byte := "System_Byte";
+	    "DB_Sync".memoryBit.FirstScan := "FirstScan";
+	    "DB_Sync".memoryBit.DiagStatusUpdate := "DiagStatusUpdate";
+	    "DB_Sync".memoryBit.AlwaysTRUE := "AlwaysTRUE";
+	    "DB_Sync".memoryBit.AlwaysFALSE := "AlwaysFALSE";
+	    
+	END_REGION
+	
+	REGION clock memory bits
+	    
+	    "DB_Sync".ClockBit.Clock_Byte := "Clock_Byte";
+	    "DB_Sync".ClockBit."Clock_10Hz" := "Clock_10Hz";
+	    "DB_Sync".ClockBit."Clock_5Hz" := "Clock_5Hz";
+	    "DB_Sync".ClockBit."Clock_2.5Hz" := "Clock_2.5Hz";
+	    "DB_Sync".ClockBit."Clock_2Hz" := "Clock_2Hz";
+	    "DB_Sync".ClockBit."Clock_1.25Hz" := "Clock_1.25Hz";
+	    "DB_Sync".ClockBit."Clock_1Hz" := "Clock_1Hz";
+	    "DB_Sync".ClockBit."Clock_0.625Hz" := "Clock_0.625Hz";
+	    "DB_Sync".ClockBit."Clock_0.5Hz" := "Clock_0.5Hz";
+	    
+	END_REGION
+	
+	
+	REGION Start/Stop/Reset 
+	    //Zone 1 
+	    "DB_Sync".startbit1 := "startBit1";
+	    "DB_Sync".stopbit1 := "stopBit1";
+	    "DB_Sync".resetbit1 := "ResetBit1";
+	    
+	    //Zone 2 
+	    "DB_Sync".startbit2 := "startBit2";
+	    "DB_Sync".stopbit2 := "stopBit2";
+	    "DB_Sync".resetbit2 := "ResetBit2";
+	END_REGION
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+END_FUNCTION
+

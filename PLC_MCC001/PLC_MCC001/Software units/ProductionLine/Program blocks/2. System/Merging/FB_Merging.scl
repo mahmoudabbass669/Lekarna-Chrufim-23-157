@@ -1,0 +1,58 @@
+﻿NAMESPACE ProductionLine
+FUNCTION_BLOCK FB_Merging
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR 
+      "Merge_A1.7.3" { S7_SetPoint := 'False'} : _.Global.FB_Merging;
+      "Merge_A1.9.3" { S7_SetPoint := 'False'} : _.Global.FB_Merging;
+      "Merge_B1.6.1" : _.Global.FB_Merging;
+   END_VAR
+
+   VAR_TEMP 
+      Priority : Struct
+         Straight : Bool;
+         Arm : Bool;
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : FB_Merging_LineB&C
+	// Project        : Lekarna, Chrudim -PLC001 -MCC001
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	
+	REGION Merge_A1.7.3
+	    
+	    #"Merge_A1.7.3"(StraightSensor := IDB_ProductionLine."A1.7.2".FilteredSensor,
+	                    ArmSensor := IDB_ProductionLine."B1.23.1".FilteredSensor);
+	      
+	END_REGION
+	
+	REGION Merge_A1.9.3
+	    
+	    #"Merge_A1.9.3"(StraightSensor := IDB_ProductionLine."A1.10.2".FilteredSensor,
+	                    ArmSensor := IDB_ProductionLine."A1.6.1".FilteredSensor);
+	    
+	END_REGION
+	
+	REGION Merge B1.6.1
+	    
+	    #"Merge_B1.6.1"(StraightSensor:= IDB_ProductionLine."B1.5.1".FilteredSensor,
+	                    ArmSensor:= IDB_ProductionLine."B1.18.1".FilteredSensor AND
+	                                DB_ToteTracking.Conveyor[_."B1.18.1"].ToteDir.toLeft);
+	    
+	END_REGION
+	            
+	
+	
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

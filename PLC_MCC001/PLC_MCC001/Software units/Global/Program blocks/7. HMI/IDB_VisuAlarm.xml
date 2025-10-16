@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Blocks.InstanceDB ID="0">
+    <AttributeList>
+      <Access>Published</Access>
+      <InstanceOfName>Global.FB_VisuAlarm</InstanceOfName>
+      <InstanceOfType>FB</InstanceOfType>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Static">
+    <Member Name="noAlarmState" Datatype="Bool" />
+    <Member Name="CommunicationFault" Datatype="Struct">
+      <Member Name="PLC" Datatype="Word" />
+      <Member Name="BW-ASi" Datatype="Word" />
+      <Member Name="Cognex" Datatype="Word" />
+      <Member Name="Mabs" Datatype="Word" />
+    </Member>
+    <Member Name="BW-ASi" Datatype="Struct">
+      <Member Name="BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)A_1" Datatype="Word" />
+      <Member Name="BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)A" Datatype="Word" />
+      <Member Name="BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)B_1" Datatype="Word" />
+      <Member Name="BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(16-31)B" Datatype="Word" />
+      <Member Name="BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)A_1" Datatype="Word" />
+      <Member Name="BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)A" Datatype="Word" />
+      <Member Name="BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(0-15)B_1" Datatype="Word" />
+      <Member Name="BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit1_Slave(16-31)B" Datatype="Word" />
+      <Member Name="BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit2_Slave(0-15)A" Datatype="Word" />
+      <Member Name="BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit2_Slave(16-31)A" Datatype="Word" />
+      <Member Name="BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit2_Slave(0-15)B" Datatype="Word" />
+      <Member Name="BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit2_Slave(16-31)B" Datatype="Word" />
+      <Member Name="BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit2_Slave(0-15)A" Datatype="Word" />
+      <Member Name="BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit2_Slave(16-31)A" Datatype="Word" />
+      <Member Name="BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit2_Slave(0-15)B" Datatype="Word" />
+      <Member Name="BW_ASi143 -MCC100 -210KE3 -PeriErr_Circuit2_Slave(16-31)B" Datatype="Word" />
+      <Member Name="BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(0-15)A" Datatype="Word" />
+      <Member Name="BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(16-31)A" Datatype="Word" />
+      <Member Name="BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(0-15)B" Datatype="Word" />
+      <Member Name="BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit1_Slave(16-31)B" Datatype="Word" />
+      <Member Name="BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(0-15)A" Datatype="Word" />
+      <Member Name="BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(16-31)A" Datatype="Word" />
+      <Member Name="BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(0-15)B" Datatype="Word" />
+      <Member Name="BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit1_Slave(16-31)B" Datatype="Word" />
+      <Member Name="BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(0-15)A" Datatype="Word" />
+      <Member Name="BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(16-31)A" Datatype="Word" />
+      <Member Name="BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(0-15)B" Datatype="Word" />
+      <Member Name="BW_ASi200 -MCC300 -210KE3 -ConfigErr_Circuit2_Slave(16-31)B" Datatype="Word" />
+      <Member Name="BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(0-15)A" Datatype="Word" />
+      <Member Name="BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(16-31)A" Datatype="Word" />
+      <Member Name="BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(0-15)B" Datatype="Word" />
+      <Member Name="BW_ASi200 -MCC300 -210KE3 -PeriErr_Circuit2_Slave(16-31)B" Datatype="Word" />
+    </Member>
+    <Member Name="word" Datatype="Struct">
+      <Member Name="Line" Datatype="Struct">
+        <Member Name="ProductionLine" Datatype="Struct">
+          <Member Name="Conveyor" Datatype="Array[_.gminProductionLine.._.gmaxProductionLine] of Word" />
+        </Member>
+        <Member Name="EmptyLine" Datatype="Struct">
+          <Member Name="Conveyor" Datatype="Array[_.gminEmptyLine.._.gmaxEmptyLine] of Word" />
+        </Member>
+        <Member Name="PackedLine" Datatype="Struct">
+          <Member Name="Conveyor" Datatype="Array[_.gminPackedLine.._.gmaxPackedLine] of Word" />
+        </Member>
+      </Member>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <Name>IDB_VisuAlarm</Name>
+      <Namespace>Global</Namespace>
+      <Number>49</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="4" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="5" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.InstanceDB>
+</Document>

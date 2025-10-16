@@ -1,0 +1,1624 @@
+﻿NAMESPACE ProductionLine
+FUNCTION FC_Downstream : Void
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Tomas Korduliak
+	// Block          : FC_Downstream
+	// Project        : Lékárna Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	// 
+	
+	REGION A1.1.1 TO A1.1.8
+	    REGION A1.1.1
+	        //A1.1.1
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.1"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.2"];
+	        
+	    END_REGION
+	    
+	    REGION A1.1.2
+	        //A1.1.2
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.2"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.3"];
+	        
+	    END_REGION
+	    
+	    REGION A1.1.3
+	        //A1.1.3
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.3"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.4"];
+	        
+	    END_REGION
+	    
+	    REGION A1.1.4
+	        //A1.1.4
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.4"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.5"];
+	        
+	    END_REGION
+	    
+	    REGION A1.1.5
+	        //A1.1.5
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.5"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.6"];
+	        
+	    END_REGION
+	    
+	    REGION A1.1.6
+	        //A1.1.6
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.6"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.7"];
+	        
+	    END_REGION
+	    
+	    REGION A1.1.7
+	        //A1.1.7
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.7"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.8"];
+	        
+	    END_REGION
+	    
+	    REGION A1.1.8
+	        //A1.1.8
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.8"] :=
+	        IDB_ProductionLine."A1.1.14".FilteredSensor OR
+	        NOT IDB_ProductionLine."A1.1.9".ReadConveyorStatus.ReadytoRun OR
+	        NOT IDB_ProductionLine."A1.1.10".ReadConveyorStatus.ReadytoRun OR
+	        NOT IDB_ProductionLine."A1.1.11".ReadConveyorStatus.ReadytoRun OR
+	        NOT IDB_ProductionLine."A1.1.12".ReadConveyorStatus.ReadytoRun OR
+	        NOT IDB_ProductionLine."A1.1.13".ReadConveyorStatus.ReadytoRun OR
+	        NOT IDB_ProductionLine."A1.1.14".ReadConveyorStatus.ReadytoRun;
+	        
+	    END_REGION
+	END_REGION
+	
+	
+	REGION A1.1.9 TO A1.1.14
+	    REGION A1.1.9
+	        //A1.1.9
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.9"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.10"];
+	        
+	    END_REGION
+	    
+	    REGION A1.1.10
+	        //A1.1.10
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.10"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.11"];
+	        
+	    END_REGION
+	    
+	    REGION A1.1.11
+	        //A1.1.11
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.11"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.12"];
+	        
+	    END_REGION
+	    
+	    REGION A1.1.12
+	        //A1.1.12
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.12"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.13"];
+	        
+	    END_REGION
+	    
+	    REGION A1.1.13
+	        //A1.1.13
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.13"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.14"];
+	        
+	    END_REGION
+	    
+	    REGION A1.1.14
+	        //A1.1.14
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.1.14"] :=
+	        IDB_ProductionLine."A1.2.1".FilteredSensor OR
+	        NOT IDB_ProductionLine."A1.2.1".ReadConveyorStatus.ReadytoRun;
+	        
+	    END_REGION
+	END_REGION
+	
+	
+	REGION A1.2.1 
+	    ////A1.2.1 
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.2.1"] :=
+	    IDB_ProductionLine."A1.3.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.3.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.3.1
+	    //A1.3.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.3.1"] :=
+	    IDB_ProductionLine."A1.4.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.4.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.4.1
+	    //A1.4.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.4.1"] :=
+	    IDB_ProductionLine."A1.5.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.5.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.5.1 DP1
+	    //A1.5.1 (DP)
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.5.1"] :=
+	    IDB_ProductionLine."A1.5.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.5.2".ReadConveyorStatus.ReadytoRun OR
+	    IDB_FB_Technology.ComDownStream.DP1;
+	    
+	END_REGION
+	
+	REGION A1.5.2
+	    //A1.5.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.5.2"] :=
+	    IDB_ProductionLine."A1.5.3".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.5.3".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.5.3
+	    //A1.5.3
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.5.3"] :=
+	    //Straight
+	    ((IDB_ProductionLine."A1.7.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.7.1".ReadConveyorStatus.ReadytoRun) AND
+	    DB_ToteTracking.Conveyor[_."A1.6.1"].ToteDir.Straight AND
+	    DB_ToteTracking.Conveyor[_."A1.6.2"].ToteDir.Straight) OR
+	    //Right
+	    ((IDB_ProductionLine."B1.2.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.1.1".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."B1.1.1".ReadConveyorStatus.ReadytoRun) AND
+	    DB_ToteTracking.Conveyor[_."A1.6.1"].ToteDir.toRight AND
+	    DB_ToteTracking.Conveyor[_."A1.6.2"].ToteDir.toRight) OR
+	    NOT IDB_ProductionLine."A1.6.1".ReadMabsStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."A1.6.2".ReadMabsStatus.ReadytoRun;
+	    
+	    
+	END_REGION
+	
+	REGION A1.6.1
+	    //// Mabs A1.6.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.6.1"] :=
+	    IDB_ProductionLine."A1.6.2".FilteredSensor;
+	    
+	END_REGION
+	
+	REGION A1.6.2
+	    //// Mabs A1.6.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.6.2"] :=
+	    IDB_ProductionLine."A1.7.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.7.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.7.1
+	    ////  A1.7.1 (Go Straight DP1)
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.7.1"] :=
+	    IDB_ProductionLine."A1.7.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.7.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.7.2
+	    ////A1.7.2 Straight for Merger1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.7.2"] :=
+	    IDB_ProductionLine."A1.7.3".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.7.3".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_Merging."Merge_A1.7.3".Priority.Straight OR
+	    IDB_Merging."Merge_A1.7.3".Priority.Arm;
+	    
+	END_REGION
+	
+	REGION A1.7.3
+	    //A1.7.3
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.7.3"] :=
+	    IDB_ProductionLine."A1.7.4".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.7.4".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.7.4 DP4
+	    ////A1.7.4 (DP4)
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.7.4"] :=
+	    IDB_ProductionLine."A1.7.5".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.7.5".ReadConveyorStatus.ReadytoRun OR
+	    IDB_FB_Technology.ComDownStream.DP4;;
+	    
+	END_REGION
+	
+	REGION A1.7.5
+	    //A1.7.5
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.7.5"] :=
+	    IDB_ProductionLine."A1.7.6".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.7.6".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.7.6
+	    //A1.7.6
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.7.6"] :=
+	    IDB_ProductionLine."A1.8.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.8.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.8.1
+	    //A1.8.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.8.1"] :=
+	    IDB_ProductionLine."A1.9.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.9.1".ReadMabsStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.9.1
+	    //// Mabs A1.9.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.9.1"] :=
+	    IDB_ProductionLine."A1.9.2".FilteredSensor;
+	    
+	END_REGION
+	
+	REGION A1.9.2
+	    //// Mabs A1.9.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.9.2"] :=
+	    IDB_ProductionLine."A1.10.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.10.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.10.1
+	    //// A1.10.1 (Go Straight DP4)
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.10.1"] :=
+	    IDB_ProductionLine."A1.10.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.10.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.10.2
+	    ////A1.10.2 Straight for Merger2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.10.2"] :=
+	    IDB_ProductionLine."A1.10.3".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.10.3".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_Merging."Merge_A1.9.3".Priority.Straight OR
+	    IDB_Merging."Merge_A1.9.3".Priority.Arm;;
+	    
+	END_REGION
+	
+	REGION A1.10.3
+	    //// A1.10.3 Merger2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.10.3"] :=
+	    IDB_ProductionLine."A1.10.4".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.10.4".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.10.4
+	    //A1.10.4
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.10.4"] :=
+	    IDB_ProductionLine."A1.10.5".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.10.5".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.10.5
+	    //A1.10.5
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.10.5"] :=
+	    IDB_ProductionLine."A1.10.6".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.10.6".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.10.6
+	    //A1.10.6
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.10.6"] :=
+	    IDB_ProductionLine."A1.10.7".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.10.7".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.10.7
+	    //A1.10.7
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.10.7"] :=
+	    IDB_ProductionLine."A1.10.8".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.10.8".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.10.8
+	    //A1.10.8
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.10.8"] :=
+	    IDB_ProductionLine."A1.10.9".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.10.9".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.10.9
+	    //A1.10.9
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.10.9"] :=
+	    IDB_ProductionLine."A1.10.10".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.10.10".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.10.10
+	    //A1.10.10
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.10.10"] :=
+	    IDB_ProductionLine."A1.10.11".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.10.11".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.10.11
+	    //A1.10.11
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.10.11"] :=
+	    IDB_ProductionLine."A1.10.12".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.10.12".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.10.12
+	    //A1.10.12
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.10.12"] :=
+	    IDB_ProductionLine."A1.10.13".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.10.13".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.10.13
+	    //A1.10.13
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.10.13"] :=
+	    IDB_ProductionLine."A1.11.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.11.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.11.1
+	    //A1.11.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.11.1"] :=
+	    IDB_ProductionLine."A1.11.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.11.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.11.2
+	    //A1.11.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.11.2"] :=
+	    IDB_ProductionLine."A1.12.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.12.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.12.1
+	    //A1.12.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.12.1"] :=
+	    IDB_ProductionLine."A1.12.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.12.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.12.2
+	    //A1.12.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.12.2"] :=
+	    IDB_ProductionLine."A1.13.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.13.1".ReadTransferStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.13.1
+	    //// Transfer A1.13.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.13.1"] :=
+	    IDB_ProductionLine."A1.14.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.1
+	    //// A1.14.1 (Go straight TR_A1.12.1)
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.1"] :=
+	    IDB_ProductionLine."A1.14.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.2
+	    //A1.14.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.2"] :=
+	    IDB_ProductionLine."A1.14.3".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.3".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.3
+	    //A1.14.3
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.3"] :=
+	    IDB_ProductionLine."A1.14.4".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.4".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.4
+	    //A1.14.4
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.4"] :=
+	    IDB_ProductionLine."A1.14.5".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.5".ReadConveyorStatus.ReadytoRun OR
+	    IDB_FB_ToggleDir.CurrentStraightTableselection.Table1;
+	    
+	END_REGION
+	
+	REGION A1.14.5
+	    //A1.14.5
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.5"] :=
+	    IDB_ProductionLine."A1.14.6".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.6".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.6
+	    //A1.14.6
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.6"] :=
+	    IDB_ProductionLine."A1.14.7".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.7".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.7
+	    //A1.14.7
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.7"] :=
+	    IDB_ProductionLine."A1.14.8".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.8".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.8
+	    //A1.14.8
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.8"] :=
+	    IDB_ProductionLine."A1.14.9".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.9".ReadConveyorStatus.ReadytoRun OR
+	    IDB_FB_ToggleDir.CurrentStraightTableselection.Table2;
+	    
+	END_REGION
+	
+	REGION A1.14.9
+	    //A1.14.9
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.9"] :=
+	    IDB_ProductionLine."A1.14.10".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.10".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.10
+	    //A1.14.10
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.10"] :=
+	    IDB_ProductionLine."A1.14.11".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.11".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.11
+	    //A1.14.11
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.11"] :=
+	    IDB_ProductionLine."A1.14.12".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.12".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.12
+	    //A1.14.12
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.12"] :=
+	    IDB_ProductionLine."A1.14.13".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.13".ReadConveyorStatus.ReadytoRun OR
+	    IDB_FB_ToggleDir.CurrentStraightTableselection.Table3;
+	    
+	END_REGION
+	
+	REGION A1.14.13
+	    //A1.14.13
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.13"] :=
+	    IDB_ProductionLine."A1.14.14".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.14".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.14
+	    //A1.14.14
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.14"] :=
+	    IDB_ProductionLine."A1.14.15".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.15".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.15
+	    //A1.14.15
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.15"] :=
+	    IDB_ProductionLine."A1.14.16".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.16".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.16
+	    //A1.14.16
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.16"] :=
+	    IDB_ProductionLine."A1.14.17".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.17".ReadConveyorStatus.ReadytoRun OR
+	    IDB_FB_ToggleDir.CurrentStraightTableselection.Table4;
+	    
+	END_REGION
+	
+	REGION A1.14.17
+	    //A1.14.17
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.17"] :=
+	    IDB_ProductionLine."A1.14.18".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.18".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.18
+	    //A1.14.18
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.18"] :=
+	    IDB_ProductionLine."A1.14.19".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.19".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.19
+	    //A1.14.19
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.19"] :=
+	    IDB_ProductionLine."A1.14.20".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.20".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.20
+	    //A1.14.20
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.20"] :=
+	    IDB_ProductionLine."A1.14.21".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.21".ReadConveyorStatus.ReadytoRun OR
+	    IDB_FB_ToggleDir.CurrentStraightTableselection.Table5;
+	    
+	END_REGION
+	
+	REGION A1.14.21
+	    //A1.14.21
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.21"] :=
+	    IDB_ProductionLine."A1.14.22".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.22".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.22
+	    //A1.14.22
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.22"] :=
+	    IDB_ProductionLine."A1.14.23".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.23".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.23
+	    //A1.14.23
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.23"] :=
+	    IDB_ProductionLine."A1.14.24".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.24".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.24
+	    //A1.14.24
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.24"] :=
+	    IDB_ProductionLine."A1.14.25".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.25".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.25
+	    //A1.14.25
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.25"] :=
+	    IDB_ProductionLine."A1.14.26".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.26".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A1.14.26
+	    //A1.14.26
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A1.14.26"] :=
+	    IDB_ProductionLine."A1.14.26".FilteredSensor OR
+	    NOT IDB_ProductionLine."A1.14.26".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.1.1
+	    //// Transfer A2.1.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.1.1"] :=
+	    IDB_ProductionLine."A2.2.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.1
+	    //// A2.2.1 (Go straight TR_A2.1.1)
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.1"] :=
+	    IDB_ProductionLine."A2.2.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.2
+	    //A2.2.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.2"] :=
+	    IDB_ProductionLine."A2.2.3".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.3".ReadConveyorStatus.ReadytoRun; 
+	    
+	END_REGION
+	
+	REGION A2.2.3
+	    //A2.2.3
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.3"] :=
+	    IDB_ProductionLine."A2.2.4".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.4".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.4
+	    //A2.2.4
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.4"] :=
+	    IDB_ProductionLine."A2.2.5".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.5".ReadConveyorStatus.ReadytoRun OR
+	    IDB_FB_ToggleDir.CurrentLeftTableselection.Table1;
+	    
+	END_REGION
+	
+	REGION A2.2.5
+	    //A2.2.5
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.5"] :=
+	    IDB_ProductionLine."A2.2.6".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.6".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.6
+	    //A2.2.6
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.6"] :=
+	    IDB_ProductionLine."A2.2.7".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.7".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.7
+	    //A2.2.7
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.7"] :=
+	    IDB_ProductionLine."A2.2.8".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.8".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.8
+	    //A2.2.8
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.8"] :=
+	    IDB_ProductionLine."A2.2.9".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.9".ReadConveyorStatus.ReadytoRun OR
+	    IDB_FB_ToggleDir.CurrentLeftTableselection.Table2;
+	    
+	END_REGION
+	
+	REGION A2.2.9
+	    //A2.2.9
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.9"] :=
+	    IDB_ProductionLine."A2.2.10".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.10".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.10
+	    //A2.2.10
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.10"] :=
+	    IDB_ProductionLine."A2.2.11".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.11".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.11
+	    //A2.2.11
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.11"] :=
+	    IDB_ProductionLine."A2.2.12".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.12".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.12
+	    //A2.2.12
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.12"] :=
+	    IDB_ProductionLine."A2.2.13".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.13".ReadConveyorStatus.ReadytoRun OR
+	    IDB_FB_ToggleDir.CurrentLeftTableselection.Table3;
+	    
+	END_REGION
+	
+	REGION A2.2.13
+	    //A2.2.13
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.13"] :=
+	    IDB_ProductionLine."A2.2.14".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.14".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.14
+	    //A2.2.14
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.14"] :=
+	    IDB_ProductionLine."A2.2.15".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.15".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.15
+	    //A2.2.15
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.15"] :=
+	    IDB_ProductionLine."A2.2.16".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.16".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.16
+	    //A2.2.16
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.16"] :=
+	    IDB_ProductionLine."A2.2.17".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.17".ReadConveyorStatus.ReadytoRun OR
+	    IDB_FB_ToggleDir.CurrentLeftTableselection.Table4;
+	    
+	END_REGION
+	
+	REGION A2.2.17
+	    //A2.2.17
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.17"] :=
+	    IDB_ProductionLine."A2.2.18".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.18".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.18
+	    //A2.2.18
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.18"] :=
+	    IDB_ProductionLine."A2.2.19".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.19".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.19
+	    //A2.2.19
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.19"] :=
+	    IDB_ProductionLine."A2.2.20".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.20".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.20
+	    //A2.2.20
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.20"] :=
+	    IDB_ProductionLine."A2.2.21".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.21".ReadConveyorStatus.ReadytoRun OR
+	    IDB_FB_ToggleDir.CurrentLeftTableselection.Table5;
+	    
+	END_REGION
+	
+	REGION A2.2.21
+	    //A2.2.21
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.21"] :=
+	    IDB_ProductionLine."A2.2.22".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.22".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.22
+	    //A2.2.22
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.22"] :=
+	    IDB_ProductionLine."A2.2.23".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.23".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.23
+	    //A2.2.23
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.23"] :=
+	    IDB_ProductionLine."A2.2.24".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.24".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.24
+	    //A2.2.24
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.24"] :=
+	    IDB_ProductionLine."A2.2.25".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.25".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.25
+	    //A2.2.25
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.25"] :=
+	    IDB_ProductionLine."A2.2.26".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.26".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION A2.2.26
+	    //A2.2.26
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."A2.2.26"] :=
+	    IDB_ProductionLine."A2.2.26".FilteredSensor OR
+	    NOT IDB_ProductionLine."A2.2.26".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	
+	REGION B1.1.1 TO B1.2.1
+	    REGION B1.1.1
+	        ////  B1.1.1 (Go Right DP1)
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.1.1"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.2.1"];
+	        
+	    END_REGION
+	    
+	    REGION B1.2.1
+	        //B1.2.1
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.2.1"] :=
+	        IDB_ProductionLine."B1.3.1".FilteredSensor OR
+	        NOT IDB_ProductionLine."B1.3.1".ReadConveyorStatus.ReadytoRun;
+	        
+	    END_REGION
+	END_REGION
+	
+	
+	REGION B1.3.1
+	    //B1.3.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.3.1"] :=
+	    IDB_ProductionLine."B1.3.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.3.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.3.2
+	    //B1.3.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.3.2"] :=
+	    IDB_ProductionLine."B1.3.3".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.3.3".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.3.3
+	    //B1.3.3
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.3.3"] :=
+	    IDB_ProductionLine."B1.4.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.4.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.4.1
+	    //B1.4.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.4.1"] :=
+	    IDB_ProductionLine."B1.4.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.4.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.4.2
+	    //B1.4.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.4.2"] :=
+	    IDB_ProductionLine."B1.5.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.5.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.5.1
+	    //B1.5.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.5.1"] :=
+	    IDB_ProductionLine."B1.6.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.6.1".ReadTransferStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.6.1
+	    //// Transfer B1.6.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.6.1"] :=
+	    IDB_ProductionLine."B1.7.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.7.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.7.1
+	    //// B1.7.1 (Go straight TR_A1.7.1)
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.7.1"] :=
+	    IDB_ProductionLine."B1.7.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.7.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.7.2
+	    //B1.7.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.7.2"] :=
+	    IDB_ProductionLine."B1.7.3".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.7.3".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.7.3
+	    //B1.7.3
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.7.3"] :=
+	    IDB_ProductionLine."B1.8.3".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.8.1".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."B1.8.2".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."B1.8.3".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.8.1 TO B1.8.3
+	    
+	    REGION B1.8.1
+	        //B1.8.1
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.8.1"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.8.2"];
+	        
+	    END_REGION
+	    
+	    REGION B1.8.2
+	        //B1.8.2
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.8.2"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.8.3"];
+	        
+	    END_REGION
+	    
+	    REGION B1.8.3
+	        //B1.8.3
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.8.3"] :=
+	        IDB_ProductionLine."B1.9.1".FilteredSensor OR
+	        NOT IDB_ProductionLine."B1.9.1".ReadConveyorStatus.ReadytoRun;
+	        
+	    END_REGION
+	    
+	END_REGION
+	
+	REGION B1.9.1 DP2
+	    //// B1.9.1 (DP2)
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.9.1"] :=
+	    IDB_ProductionLine."B1.9.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.9.2".ReadConveyorStatus.ReadytoRun OR
+	    IDB_FB_Technology.ComDownStream.DP2;
+	    
+	END_REGION
+	
+	
+	REGION B1.9.2
+	    //B1.9.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.9.2"] :=
+	    IDB_ProductionLine."B1.10.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.10.1".ReadTransferStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.10.1
+	    //// Transfer B1.10.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.10.1"] :=
+	    IDB_ProductionLine."B1.11.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.11.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.11.1
+	    //// B1.11.1 (Go straight TR_B1.11.1)
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.11.1"] :=
+	    IDB_ProductionLine."B1.11.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.11.2".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."B1.11.3".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."B1.11.4".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.11.2 TO B1.11.4 
+	    REGION B1.11.2
+	        //B1.11.2
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.11.2"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.11.3"];
+	        
+	    END_REGION
+	    
+	    REGION B1.11.3
+	        //B1.11.3
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.11.3"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.11.4"];
+	        
+	    END_REGION
+	    
+	    REGION B1.11.4
+	        //B1.11.4
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.11.4"] :=
+	        IDB_ProductionLine."B1.12.1".FilteredSensor OR
+	        NOT IDB_ProductionLine."B1.12.1".ReadConveyorStatus.ReadytoRun;
+	        
+	    END_REGION
+	END_REGION
+	
+	
+	REGION B1.12.1
+	    //B1.12.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.12.1"] :=
+	    IDB_ProductionLine."B1.12.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.12.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.12.2
+	    //B1.12.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.12.2"] :=
+	    IDB_ProductionLine."B1.13.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.13.1".ReadTransferStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.13.1
+	    //// Transfer B1.13.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.13.1"] :=
+	    IDB_ProductionLine."B1.14.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.14.1".ReadTransferStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.14.1
+	    //// Transfer B1.14.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.14.1"] :=
+	    IDB_ProductionLine."B1.15.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.15.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.15.1
+	    //// B1.15.1 (Go straight TR_B1.14.1)
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.15.1"] :=
+	    IDB_ProductionLine."B1.15.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.15.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.15.2
+	    //B1.15.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.15.2"] :=
+	    IDB_ProductionLine."B1.16.8".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.16.1".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."B1.16.2".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."B1.16.3".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."B1.16.4".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."B1.16.5".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."B1.16.6".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."B1.16.7".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."B1.16.8".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.16.1 TO B1.16.8
+	    REGION B1.16.1
+	        //B1.16.1
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.16.1"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.16.2"];
+	        
+	    END_REGION
+	    
+	    REGION B1.16.2
+	        //B1.16.2
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.16.2"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.16.3"];
+	        
+	    END_REGION
+	    
+	    REGION B1.16.3
+	        //B1.16.3
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.16.3"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.16.4"];
+	        
+	    END_REGION
+	    
+	    REGION B1.16.4
+	        //B1.16.4
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.16.4"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.16.5"];
+	        
+	    END_REGION
+	    
+	    REGION B1.16.5
+	        //B1.16.5
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.16.5"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.16.6"];
+	        
+	    END_REGION
+	    
+	    REGION B1.16.6
+	        //B1.16.6
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.16.6"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.16.7"];
+	        
+	    END_REGION
+	    
+	    REGION B1.16.7
+	        //B1.16.7
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.16.7"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.16.8"];
+	        
+	    END_REGION
+	    
+	    REGION B1.16.8
+	        //B1.16.8
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.16.8"] :=
+	        IDB_ProductionLine."B1.17.1".FilteredSensor OR
+	        NOT IDB_ProductionLine."B1.17.1".ReadConveyorStatus.ReadytoRun;
+	        
+	    END_REGION
+	END_REGION
+	
+	
+	REGION B1.17.1 DP3
+	    //// B1.17.1 (DP3)
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.17.1"] :=
+	    IDB_ProductionLine."B1.17.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.17.2".ReadConveyorStatus.ReadytoRun OR
+	    IDB_FB_Technology.ComDownStream.DP3;;
+	    
+	END_REGION
+	
+	REGION B1.17.2
+	    //B1.17.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.17.2"] :=
+	    IDB_ProductionLine."B1.17.3".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.17.3".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.17.3
+	    //B1.17.3
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.17.3"] :=
+	    IDB_ProductionLine."B1.17.4".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.17.4".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.17.4
+	    //B1.17.4
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.17.4"] :=
+	    IDB_ProductionLine."B1.18.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.18.1".ReadTransferStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.18.1
+	    //// Transfer B1.18.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.18.1"] :=
+	    IDB_ProductionLine."B1.19.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.19.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.19.1
+	    //B1.19.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.19.1"] :=
+	    IDB_ProductionLine."B1.20.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.20.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.20.1
+	    //B1.20.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.20.1"] :=
+	    IDB_ProductionLine."B1.20.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.20.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.20.2
+	    //B1.20.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.20.2"] :=
+	    IDB_ProductionLine."B1.21.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.21.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.21.1
+	    //B1.21.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.21.1"] :=
+	    IDB_ProductionLine."B1.21.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.21.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION B1.21.2
+	    //B1.21.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.21.2"] :=
+	    IDB_ProductionLine."B1.21.3".FilteredSensor OR
+	    NOT IDB_ProductionLine."B1.21.3".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	
+	REGION B1.21.3
+	        //B1.21.3
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.21.3"] :=
+	        IDB_ProductionLine."B1.22.1".FilteredSensor OR
+	        NOT IDB_ProductionLine."B1.22.1".ReadConveyorStatus.ReadytoRun;
+	        
+	END_REGION
+	    
+	REGION B1.22.1 To B1.23.1
+	        REGION B1.22.1
+	            //B1.22.1
+	            DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.22.1"] :=
+	            DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.23.1"];
+	            
+	        END_REGION
+	        
+	        REGION B1.23.1
+	            ////B1.23.1 Arm for Merger1
+	            DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.23.1"] :=
+	            IDB_ProductionLine."A1.7.3".FilteredSensor OR
+	            NOT IDB_ProductionLine."A1.7.3".ReadConveyorStatus.ReadytoRun OR
+	            IDB_Merging."Merge_A1.7.3".Priority.Straight OR
+	            NOT IDB_Merging."Merge_A1.7.3".Priority.Arm;
+	            
+	        END_REGION
+	END_REGION
+	
+	
+	REGION C1.3.1
+	    ////Transfer C1.3.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."C1.3.1"] :=
+	    IDB_ProductionLine."C1.2.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."C1.2.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION C1.2.2
+	    //// C1.2.2  (Go Right TR_C1.1.3)
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."C1.2.2"] :=
+	    IDB_ProductionLine."C1.2.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."C1.2.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION C1.2.1
+	    //C1.2.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."C1.2.1"] :=
+	    IDB_ProductionLine."C1.2.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."C1.2.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION C1.4.1
+	    //// C1.4.1  (Go Left TR_C1.3.1)
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."C1.4.1"] :=
+	    IDB_ProductionLine."C1.4.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."C1.4.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION C1.4.2
+	    //C1.4.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."C1.4.2"] :=
+	    IDB_ProductionLine."C1.4.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."C1.4.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION D1.1.1 TO D1.2.1
+	    REGION D1.1.1
+	        ////  D1.1.1 (Go Right DP4)
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.1.1"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.2.1"];
+	        
+	    END_REGION
+	    
+	    REGION D1.2.1
+	        //D1.2.1
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.2.1"] :=
+	        IDB_ProductionLine."D1.3.1".FilteredSensor OR
+	        NOT IDB_ProductionLine."D1.3.1".ReadConveyorStatus.ReadytoRun;
+	        
+	    END_REGION
+	END_REGION
+	
+	
+	REGION D1.3.1
+	    //D1.3.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.3.1"] :=
+	    IDB_ProductionLine."D1.4.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."D1.4.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION D1.4.1
+	    //D1.4.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.4.1"] :=
+	    IDB_ProductionLine."D1.5.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."D1.5.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION D1.5.1
+	    //D1.5.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.5.1"] :=
+	    IDB_ProductionLine."D1.6.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."D1.6.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION D1.6.1
+	    //D1.6.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.6.1"] :=
+	    IDB_ProductionLine."D1.7.10".FilteredSensor OR
+	    NOT IDB_ProductionLine."D1.7.1".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."D1.7.2".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."D1.7.3".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."D1.7.4".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."D1.7.5".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."D1.7.6".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."D1.7.7".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."D1.7.8".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."D1.7.9".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."D1.7.10".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION D1.7.1 TO D1.7.10
+	    REGION D1.7.1
+	        //D1.7.1
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.1"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.2"];
+	        
+	    END_REGION
+	    
+	    REGION D1.7.2
+	        //D1.7.2
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.2"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.3"];
+	        
+	    END_REGION
+	    
+	    REGION D1.7.3
+	        //D1.7.3
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.3"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.4"];
+	        
+	    END_REGION
+	    
+	    REGION D1.7.4
+	        //D1.7.4
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.4"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.5"];
+	        
+	    END_REGION
+	    
+	    REGION D1.7.5
+	        //D1.7.5
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.5"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.6"];
+	        
+	    END_REGION
+	    
+	    REGION D1.7.6
+	        //D1.7.6
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.6"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.7"];
+	        
+	    END_REGION
+	    
+	    REGION D1.7.7
+	        //D1.7.7
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.7"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.8"];
+	        
+	    END_REGION
+	    
+	    REGION D1.7.8
+	        //D1.7.8
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.8"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.9"];
+	        
+	    END_REGION
+	    
+	    REGION D1.7.9
+	        //D1.7.9
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.9"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.10"];
+	        
+	    END_REGION
+	    
+	    REGION D1.7.10
+	        //D1.7.10
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.7.10"] :=
+	        IDB_ProductionLine."D1.8.1".FilteredSensor OR
+	        NOT IDB_ProductionLine."D1.8.1".ReadConveyorStatus.ReadytoRun;
+	        
+	    END_REGION
+	END_REGION
+	
+	REGION D1.8.1
+	    //D1.8.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.8.1"] :=
+	    IDB_ProductionLine."D1.8.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."D1.8.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION D1.8.2
+	    //D1.8.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.8.2"] :=
+	    IDB_ProductionLine."D1.8.3".FilteredSensor OR
+	    NOT IDB_ProductionLine."D1.8.3".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION D1.8.3
+	    //D1.8.3
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.8.3"] :=
+	    IDB_ProductionLine."D1.9.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."D1.9.2".ReadTransferStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION D1.9.1
+	    ////Transfer D1.9.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.9.1"] :=
+	    IDB_ProductionLine."D1.10.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."D1.10.1".ReadTransferStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION D1.10.1 
+	    ////Transfer D1.10.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.10.1"] :=
+	    IDB_ProductionLine."D1.11.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."D1.11.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION D1.11.1
+	    //D1.11.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.11.1"] :=
+	    IDB_ProductionLine."D1.11.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."D1.11.2".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION D1.11.2
+	    //D1.11.2
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.11.2"] :=
+	    IDB_ProductionLine."D1.11.3".FilteredSensor OR
+	    NOT IDB_ProductionLine."D1.11.3".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION D1.11.3
+	    //D1.11.3
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.11.3"] :=
+	    IDB_ProductionLine."D1.12.3".FilteredSensor OR
+	    NOT IDB_ProductionLine."D1.12.1".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."D1.12.2".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."D1.12.3".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION D1.12.1 TO D1.12.3
+	    REGION D1.12.1
+	        //D1.12.1
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.12.1"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.12.2"];
+	        
+	    END_REGION
+	    
+	    REGION D1.12.2
+	        //D1.12.2
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.12.2"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.12.3"];
+	        
+	    END_REGION
+	    
+	    REGION D1.12.3
+	        ////End
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."D1.12.3"] :=
+	        IDB_ProductionLine."D1.12.3".FilteredSensor;
+	        
+	    END_REGION
+	END_REGION
+	
+	REGION E1.1.1
+	    //E1.1.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."E1.1.1"] :=
+	    IDB_ProductionLine."E1.1.2".FilteredSensor OR
+	    NOT IDB_ProductionLine."E1.1.2".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."E1.1.3".ReadConveyorStatus.ReadytoRun OR
+	    NOT IDB_ProductionLine."E1.1.4".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION E1.1.2 TO E1.1.4
+	    REGION E1.1.2
+	        //E1.1.2
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."E1.1.2"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."E1.1.3"];
+	        
+	    END_REGION
+	    
+	    REGION E1.1.3
+	        //E1.1.3
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."E1.1.3"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."E1.1.4"];
+	        
+	    END_REGION
+	    
+	    REGION E1.1.4
+	        //E1.1.4
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."E1.1.4"] :=
+	        IDB_ProductionLine."E1.2.1".FilteredSensor OR
+	        NOT IDB_ProductionLine."E1.2.1".ReadConveyorStatus.ReadytoRun;
+	        
+	    END_REGION
+	END_REGION
+	
+	
+	REGION E1.2.1
+	    //E1.2.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."E1.2.1"] :=
+	    IDB_ProductionLine."E1.3.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."E1.3.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION E1.3.1
+	    //E1.3.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."E1.3.1"] :=
+	    IDB_ProductionLine."E1.4.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."E1.4.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION E1.4.1
+	    //E1.4.1
+	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."E1.4.1"] :=
+	    IDB_ProductionLine."E1.5.1".FilteredSensor OR
+	    NOT IDB_ProductionLine."E1.5.1".ReadConveyorStatus.ReadytoRun;
+	    
+	END_REGION
+	
+	REGION E1.5.1 TO E1.6.1
+	    REGION E1.5.1
+	        //E1.5.1
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."E1.5.1"] :=
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."E1.6.1"];
+	        
+	    END_REGION
+	    
+	    REGION E1.6.1
+	        //E1.6.1 Arm for Merger2
+	        DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."E1.6.1"] :=
+	        IDB_ProductionLine."A1.10.3".FilteredSensor OR
+	        NOT IDB_ProductionLine."A1.10.3".ReadConveyorStatus.ReadytoRun OR
+	        IDB_Merging."Merge_A1.9.3".Priority.Straight OR
+	        NOT IDB_Merging."Merge_A1.9.3".Priority.Arm;
+	        
+	    END_REGION
+	END_REGION
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+END_FUNCTION
+END_NAMESPACE
+

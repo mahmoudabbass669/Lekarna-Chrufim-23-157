@@ -1,0 +1,830 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_MABS
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      MABS_ID : Int;
+      CrossSensor : Bool;
+      ErrorSignal : Bool;
+      Upstream : Bool;
+      UpstreamRunning : Bool;
+      Downstream_Straight : Bool;
+      "Downstream_Right/Left" : Bool;
+      SortDir : ItemDir;
+      RemoteOut1 : Bool;
+      RemoteOut2 : Bool;
+      RemoteOut3 : Bool;
+      RemoteOut4 : Bool;
+      Parameter : MABS_Parameters;
+   END_VAR
+
+   VAR_OUTPUT 
+      RemoteIn1 : Bool;
+      RemoteIn2 : Bool;
+      RemoteIn3 : Bool;
+      RunWheels : Bool;
+   END_VAR
+
+   VAR 
+      ReadInputSignal : Struct
+         CrossSensor : Bool;
+         EmergencyStop : Bool;
+         ErrorSignal : Bool;
+      END_STRUCT;
+      Active : Struct
+         Line : Struct
+            ProductionLine : Bool;
+            EmptyLine : Bool;
+            PackedLine : Bool;
+         END_STRUCT;
+         EstopZone { S7_SetPoint := 'False'} : EsopZone;
+      END_STRUCT;
+      CROSS_SENSOR_FILTER { S7_SetPoint := 'False'} : FB_Sensor;
+      MABS_SENSOR_BLOCKAGE {InstructionName := 'IEC_TIMER'; LibVersion := '1.0'} : IEC_TIMER;
+      MABS_STATUS_ON { S7_SetPoint := 'False'} : FB_StatusON;
+      MABS_STATUS_READY { S7_SetPoint := 'False'} : FB_StatusReady;
+      MABS_STATUS_FAULT { S7_SetPoint := 'False'} : FB_StatusFault;
+      AUTO_RESET { S7_SetPoint := 'False'} : FB_AutoReset;
+      SSR { S7_SetPoint := 'False'} : SystemSSR;
+      ReadMabsStatus { S7_SetPoint := 'False'} : ConveyorStatus;
+      MABSFault { S7_SetPoint := 'False'} : Fault;
+      SimuMode : Struct
+         Sensor : Bool;
+         Fault : Bool;
+      END_STRUCT;
+      StartUpTimer {InstructionName := 'TOF_TIME'; LibVersion := '1.0'; S7_SetPoint := 'False'} : TOF_TIME;
+      FT_StartUp {InstructionName := 'F_TRIG'; LibVersion := '1.0'} : F_TRIG;
+      SetStartUp { S7_SetPoint := 'True'} : Bool;
+      VisuColor : Word;
+      PhaseError : Bool;
+      StartupMABS { S7_SetPoint := 'True'} : Bool;
+      FilteredSensor { S7_SetPoint := 'True'} : Bool;
+      AutoReset { S7_SetPoint := 'True'} : Bool;
+      StopSystemFireActive : Bool;
+      Sort { S7_SetPoint := 'False'} : ItemDir;
+      mabs : Struct
+         RemoteIn1 : Bool;
+         RemoteIn2 : Bool;
+         RemoteIn3 : Bool;
+         RemoteIn4 : Bool;
+         Wheels : Bool;
+      END_STRUCT;
+      Home : Bool;
+      HomeCheckTimer {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      CurrentPosition : Struct
+         left : Bool;
+         right : Bool;
+         straight : Bool;
+      END_STRUCT;
+      RT_DelaySwing_Straight {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      RT_DelaySwing_toRight {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      RT_DelaySwing_toLeft {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      ToSt_DelayTimer {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      ToRt_DelayTimer {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      ToLt_DelayTimer {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      St_SwingDelay { S7_SetPoint := 'True'} : Bool;
+      Rt_SwingDelay : Bool;
+      Lt_SwingDelay : Bool;
+      noSwing : Bool;
+      CmdExFailure : Struct
+         "Timer" {InstructionName := 'TONR_TIME'; LibVersion := '1.0'} : TONR_TIME;
+         UpstreamCheckTimer {InstructionName := 'TONR_TIME'; LibVersion := '1.0'} : TONR_TIME;
+      END_STRUCT;
+      FT_Upstream {InstructionName := 'F_TRIG'; LibVersion := '1.0'; S7_SetPoint := 'False'} : F_TRIG;
+      RT_DS_St {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      "RT_DS_Rt/Lt" {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      RT_ToStraight {InstructionName := 'R_TRIG'; LibVersion := '1.0'; S7_SetPoint := 'False'} : R_TRIG;
+      RT_ToRight {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      RT_ToLeft {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      FT_Blockage {InstructionName := 'F_TRIG'; LibVersion := '1.0'} : F_TRIG;
+      HoldFailure { S7_SetPoint := 'True'} : Bool;
+      MABS_Wheel {InstructionName := 'TOF_TIME'; LibVersion := '1.0'; S7_SetPoint := 'False'} : TOF_TIME;
+      RT_Sort_St {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      RT_Sort_Rt {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      RT_Sort_Lt {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      HoldSwingTimer {InstructionName := 'TOF_TIME'; LibVersion := '1.0'} : TOF_TIME;
+      HoldSwing { S7_SetPoint := 'True'} : Bool;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : FB_MABS
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION Active Line
+	    
+	    // ProductionLine
+	    IF (#MABS_ID >= _.gminProductionLine AND
+	        #MABS_ID <= _.gmaxProductionLine)
+	    THEN
+	        #Active.Line.ProductionLine := TRUE;
+	    END_IF;
+	    
+	    // EmptyLine
+	    IF (#MABS_ID >= _.gminEmptyLine AND
+	        #MABS_ID <= _.gmaxEmptyLine)
+	    THEN
+	        #Active.Line.EmptyLine := TRUE;
+	    END_IF;
+	    
+	    // PackedLine
+	    IF (#MABS_ID >= _.gminPackedLine AND
+	        #MABS_ID <= _.gmaxPackedLine)
+	    THEN
+	        #Active.Line.PackedLine := TRUE;
+	    END_IF;
+	    
+	END_REGION
+	    
+	
+	REGION Estop zone
+	    
+	    // Production Line A1
+	    IF (#MABS_ID >= _."gA1.6.1" AND
+	        #MABS_ID <= _."gA1.6.2") OR
+	        // Empty Line A1
+	        (#MABS_ID >= _."gJ1.5.2" AND
+	        #MABS_ID <= _."gJ1.6.2")
+	    THEN
+	        #Active.EstopZone."1" := TRUE;
+	    END_IF;
+	    
+	    // Production Line A2
+	    IF (#MABS_ID >= _."gA1.9.1" AND
+	        #MABS_ID <= _."gA1.9.2")
+	    THEN
+	        #Active.EstopZone."2" := TRUE;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION Read Simu inputs  
+	    
+	    // ProductionLine
+	    IF #Active.Line.ProductionLine THEN
+	        // read simu
+	        #SimuMode.Sensor := DB_SystemSimu.TriggerSensor.Line.ProductionLine.Conveyor[#MABS_ID];
+	        #SimuMode.Fault := DB_SystemSimu.TriggerFault.Line.ProductionLine.Conveyor[#MABS_ID];
+	    END_IF;
+	    
+	    // EmptyLine
+	    IF #Active.Line.EmptyLine THEN
+	        // read simu
+	        #SimuMode.Sensor := DB_SystemSimu.TriggerSensor.Line.EmptyLine.Conveyor[#MABS_ID];
+	        #SimuMode.Fault := DB_SystemSimu.TriggerFault.Line.EmptyLine.Conveyor[#MABS_ID];
+	    END_IF;
+	    
+	    // PackedLine
+	    IF #Active.Line.PackedLine THEN
+	        // read simu
+	        #SimuMode.Sensor := DB_SystemSimu.TriggerSensor.Line.PackedLine.Conveyor[#MABS_ID];
+	        #SimuMode.Fault := DB_SystemSimu.TriggerFault.Line.PackedLine.Conveyor[#MABS_ID];
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION SystemSSR
+	    
+	    //Zone 1
+	    IF #Active.EstopZone."1" THEN
+	        #SSR.StartSystem := DB_SystemSSR.Zone."1".StartSystem;
+	        #SSR.StopSystem := DB_SystemSSR.Zone."1".StopSystem;
+	        #SSR.ResetSystem := DB_SystemSSR.Zone."1".ResetSystem;
+	    END_IF;
+	    
+	    //Zone 2
+	    IF #Active.EstopZone."2" THEN
+	        #SSR.StartSystem := DB_SystemSSR.Zone."2".StartSystem;
+	        #SSR.StopSystem := DB_SystemSSR.Zone."2".StopSystem;
+	        #SSR.ResetSystem := DB_SystemSSR.Zone."2".ResetSystem;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION Read Input
+	    
+	    // read all inputs to the block
+	    // Conveyor input read signals
+	    #ReadInputSignal.CrossSensor := #CrossSensor OR
+	    #SimuMode.Sensor; // simu call
+	    #ReadInputSignal.ErrorSignal := #ErrorSignal OR
+	    #SimuMode.Fault; // simu call;
+	    // estop
+	    #ReadInputSignal.EmergencyStop := _.DB_SafetyStandard.ToStandard.EstopActive;
+	    
+	END_REGION
+	
+	REGION Conveyor startup
+	    
+	    // Conveyor StartUp: Conveyor startup signal after 5 second delay
+	    
+	    #StartUpTimer.TOF(IN := #SSR.StartSystem,
+	                      PT := #Parameter.StartUpTime);
+	    
+	    #FT_StartUp(CLK := #StartUpTimer.Q);
+	    
+	    // set startup after 5 seconds
+	    #SetStartUp := #FT_StartUp.Q;
+	    
+	END_REGION
+	
+	REGION READ AND INIT
+	    
+	    REGION FIRE
+	        
+	        // Fire signal from fire system stops the whole system
+	        // System can be reset from Fire status only if the fire signal is deactivated
+	        
+	        // FIRE ALARM ACTIVE --> STOP SYSTEM
+	        IF DB_SystemSimu.Fire THEN
+	            #StopSystemFireActive := TRUE;
+	        END_IF;
+	        // RESET --> FIRE ALARM
+	        IF #SSR.ResetSystem AND NOT DB_SystemSimu.Fire THEN
+	            #StopSystemFireActive := FALSE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	END_REGION
+	
+	REGION Conveyor Status
+	    
+	    REGION Status ON
+	        
+	        // ----------------------------------------->>>>>>> STATUS ON <<<<<<<-----------------------------------------
+	        // FB_ConveyorStatusON
+	        // called as IDMB
+	        
+	        #MABS_STATUS_ON(SystemStartActive := #SSR.StartSystem,
+	                        StatusStop := #ReadMabsStatus.Stop,
+	                        StatusEStop := #ReadMabsStatus.Estop,
+	                        StatusManual := #ReadMabsStatus.Manual,
+	                        StatusFault := #ReadMabsStatus.Fault,
+	                        FireAlarmActive := #StopSystemFireActive,
+	                        StatusON => #ReadMabsStatus.ON);
+	        
+	    END_REGION
+	    
+	    REGION Status Ready
+	        
+	        // ----------------------------------------->>>>>>> STATUS READY <<<<<<<-----------------------------------------
+	        // FB_ConveyorStatusReady
+	        // called as MIDB
+	        
+	        #MABS_STATUS_READY(StatusON := #ReadMabsStatus.ON,
+	                           StatusESTOP := #ReadMabsStatus.Estop,
+	                           StatusFAULT := #ReadMabsStatus.Fault,
+	                           StatusMAN := #ReadMabsStatus.Manual,
+	                           SignalFIRE := #StopSystemFireActive,
+	                           SystemAlertTime := #Parameter.StartUpTime,
+	                           StatusReady => #ReadMabsStatus.ReadytoRun);
+	        
+	    END_REGION
+	    
+	    REGION Status Occupied
+	        
+	        // ----------------------------------------->>>>>>> STATUS OCCUPIED <<<<<<<-----------------------------------------
+	        
+	        #ReadMabsStatus.Occupied :=
+	        #CROSS_SENSOR_FILTER.FilteredSensor;
+	        
+	    END_REGION
+	    
+	    REGION Status Running
+	        
+	        // ----------------------------------------->>>>>>> STATUS RUNNING <<<<<<<-----------------------------------------
+	        
+	        #ReadMabsStatus.Running :=
+	        #ReadMabsStatus.ReadytoRun AND
+	        #mabs.Wheels;
+	        
+	    END_REGION
+	    
+	    REGION Status Fault
+	        
+	        // ----------------------------------------->>>>>>> STATUS FAULT <<<<<<<-----------------------------------------
+	        
+	        // Reading error signal from the motor drive
+	        #MABSFault.Motor_Error := #ReadInputSignal.ErrorSignal;
+	        
+	        // FC_ConveyorStatusFault
+	        #MABS_STATUS_FAULT(FaultActive := #MABSFault.Motor_Error,
+	                           ResetFault := #SSR.ResetSystem,
+	                           StatusRunning := #ReadMabsStatus.Running,
+	                           FaultStatus => #ReadMabsStatus.Fault);
+	        
+	    END_REGION
+	    
+	    REGION Status ESTOP
+	        
+	        // ----------------------------------------->>>>>>> STATUS ESTOP <<<<<<<-----------------------------------------
+	        
+	        #AUTO_RESET(AckIN := #SSR.ResetSystem,
+	                    Ack => #AutoReset);
+	        
+	        // EMERGENCY STOP ACTIVE --> STOP SYSTEM
+	        IF #ReadInputSignal.EmergencyStop THEN
+	            #ReadMabsStatus.Estop := TRUE;
+	        END_IF;
+	        // RESET --> EMERGENCY STOP
+	        IF #AutoReset AND NOT #ReadInputSignal.EmergencyStop THEN
+	            #ReadMabsStatus.Estop := FALSE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION Status Stop
+	        
+	        // ----------------------------------------->>>>>>> STATUS STOP <<<<<<<-----------------------------------------
+	        
+	        IF #SSR.StopSystem THEN
+	            #ReadMabsStatus.Stop := TRUE;
+	        END_IF;
+	        IF #SSR.StartSystem OR #SSR.ResetSystem THEN
+	            #ReadMabsStatus.Stop := FALSE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION Sensor Blockage
+	        
+	        // ----------------------------------------->>>>>>> STATUS BLOCKAGE <<<<<<<-------------------------------------
+	        
+	        // FB_SensorBlockage
+	        // called as MIDB
+	        
+	        #MABS_SENSOR_BLOCKAGE.TON(IN := #ReadMabsStatus.ReadytoRun AND
+	                                  #CROSS_SENSOR_FILTER.FilteredSensor,
+	                                  PT := #Parameter.SensorBlockageTime,
+	                                  Q => #ReadMabsStatus.Blockage);
+	        
+	        // ==========================
+	        // Sensor Blockage: HMI Alarm
+	        // ==========================
+	        // Sensor blockage alarm message is written to the first bit of the alarm word
+	        // corresponding to the active line
+	        
+	        REGION alarm 
+	            
+	            // ==========================
+	            // Sensor Blockage: HMI Alarm
+	            // ==========================
+	            // Sensor blockage alarm message is written to the alarm word
+	            // corresponding to the active line
+	            // ProductionLine
+	            IF #Active.Line.ProductionLine THEN
+	                DB_Alarm."word".Line.ProductionLine.Conveyor[#MABS_ID].%X0 := #ReadMabsStatus.Blockage;
+	            END_IF;
+	            // EmptyLine
+	            IF #Active.Line.EmptyLine THEN
+	                DB_Alarm."word".Line.EmptyLine.Conveyor[#MABS_ID].%X0 := #ReadMabsStatus.Blockage;
+	            END_IF;
+	            // PackedLine
+	            IF #Active.Line.PackedLine THEN
+	                DB_Alarm."word".Line.PackedLine.Conveyor[#MABS_ID].%X0 := #ReadMabsStatus.Blockage;
+	            END_IF;
+	            
+	        END_REGION
+	        
+	    END_REGION
+	    
+	    REGION Global Status
+	        
+	        // write -> global status
+	        // ProductionLine
+	        IF #Active.Line.ProductionLine THEN
+	            DB_Global.Status.Line.ProductionLine.On[#MABS_ID] := #ReadMabsStatus.ON;
+	            DB_Global.Status.Line.ProductionLine.ReadyToRun[#MABS_ID] := #ReadMabsStatus.ReadytoRun;
+	            DB_Global.Status.Line.ProductionLine.Occupied[#MABS_ID] := #ReadMabsStatus.Occupied;
+	            DB_Global.Status.Line.ProductionLine.Running[#MABS_ID] := #ReadMabsStatus.Running;
+	            DB_Global.Status.Line.ProductionLine.Fault[#MABS_ID] := #ReadMabsStatus.Fault;
+	            DB_Global.Status.Line.ProductionLine.Estop[#MABS_ID] := #ReadMabsStatus.Estop;
+	            DB_Global.Status.Line.ProductionLine.Manual[#MABS_ID] := #ReadMabsStatus.Manual;
+	            DB_Global.Status.Line.ProductionLine.Stop[#MABS_ID] := #ReadMabsStatus.Stop;
+	            DB_Global.Status.Line.ProductionLine.Blockage[#MABS_ID] := #ReadMabsStatus.Blockage;
+	        END_IF;
+	        // EmptyLine
+	        IF #Active.Line.EmptyLine THEN
+	            DB_Global.Status.Line.EmptyLine.On[#MABS_ID] := #ReadMabsStatus.ON;
+	            DB_Global.Status.Line.EmptyLine.ReadyToRun[#MABS_ID] := #ReadMabsStatus.ReadytoRun;
+	            DB_Global.Status.Line.EmptyLine.Occupied[#MABS_ID] := #ReadMabsStatus.Occupied;
+	            DB_Global.Status.Line.EmptyLine.Running[#MABS_ID] := #ReadMabsStatus.Running;
+	            DB_Global.Status.Line.EmptyLine.Fault[#MABS_ID] := #ReadMabsStatus.Fault;
+	            DB_Global.Status.Line.EmptyLine.Estop[#MABS_ID] := #ReadMabsStatus.Estop;
+	            DB_Global.Status.Line.EmptyLine.Manual[#MABS_ID] := #ReadMabsStatus.Manual;
+	            DB_Global.Status.Line.EmptyLine.Stop[#MABS_ID] := #ReadMabsStatus.Stop;
+	            DB_Global.Status.Line.EmptyLine.Blockage[#MABS_ID] := #ReadMabsStatus.Blockage;
+	        END_IF;
+	        // PackedLine
+	        IF #Active.Line.PackedLine THEN
+	            DB_Global.Status.Line.PackedLine.On[#MABS_ID] := #ReadMabsStatus.ON;
+	            DB_Global.Status.Line.PackedLine.ReadyToRun[#MABS_ID] := #ReadMabsStatus.ReadytoRun;
+	            DB_Global.Status.Line.PackedLine.Occupied[#MABS_ID] := #ReadMabsStatus.Occupied;
+	            DB_Global.Status.Line.PackedLine.Running[#MABS_ID] := #ReadMabsStatus.Running;
+	            DB_Global.Status.Line.PackedLine.Fault[#MABS_ID] := #ReadMabsStatus.Fault;
+	            DB_Global.Status.Line.PackedLine.Estop[#MABS_ID] := #ReadMabsStatus.Estop;
+	            DB_Global.Status.Line.PackedLine.Manual[#MABS_ID] := #ReadMabsStatus.Manual;
+	            DB_Global.Status.Line.PackedLine.Stop[#MABS_ID] := #ReadMabsStatus.Stop;
+	            DB_Global.Status.Line.PackedLine.Blockage[#MABS_ID] := #ReadMabsStatus.Blockage;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION Visu Color
+	        
+	        // each and every status of the conveyor will be mentioned by different colors in HMI panel
+	        
+	        #VisuColor.%X8 := #ReadMabsStatus.Blockage;
+	        #VisuColor.%X0 := #ReadMabsStatus.ON;
+	        #VisuColor.%X1 := #ReadMabsStatus.ReadytoRun;
+	        #VisuColor.%X2 := #ReadMabsStatus.Occupied;
+	        #VisuColor.%X3 := #ReadMabsStatus.Running;
+	        #VisuColor.%X4 := #ReadMabsStatus.Fault;
+	        #VisuColor.%X5 := #ReadMabsStatus.Estop;
+	        #VisuColor.%X6 := #ReadMabsStatus.Manual;
+	        #VisuColor.%X7 := #ReadMabsStatus.Stop;
+	        
+	        // convert word to Interger value: 
+	        // color will be depends on the status priority (integer value) 
+	        // reference: Conveyor image in HMI screen -> property -> Apperance   
+	        
+	        // ProductionLine
+	        IF #Active.Line.ProductionLine THEN
+	            DB_VisuColor.Line.ProductionLine.Conveyor[#MABS_ID] :=
+	            WORD_TO_INT(#VisuColor);
+	        END_IF;
+	        // EmptyLine
+	        IF #Active.Line.EmptyLine THEN
+	            DB_VisuColor.Line.EmptyLine.Conveyor[#MABS_ID] :=
+	            WORD_TO_INT(#VisuColor);
+	        END_IF;
+	        // PackedLine
+	        IF #Active.Line.PackedLine THEN
+	            DB_VisuColor.Line.PackedLine.Conveyor[#MABS_ID] :=
+	            WORD_TO_INT(#VisuColor);
+	        END_IF;
+	        
+	    END_REGION
+	    
+	END_REGION
+	
+	REGION Sorter sensor filter
+	    
+	    // cross sensor filter
+	    #CROSS_SENSOR_FILTER(Sensor := #ReadInputSignal.CrossSensor,   ///#CrossSensor
+	                         SensorFilterTime := #Parameter.CrossSensorFilterTime);
+	    
+	    
+	END_REGION
+	
+	REGION MABS FUNCTIONALITY
+	    
+	    REGION rcv direction 
+	        
+	(*        // only if the mabs is not performing any operation
+	        IF NOT #Upstream
+	        THEN
+	            #HoldSwing := TRUE;
+	        ELSE
+	            #HoldSwing := FALSE;
+	        END_IF;
+	        
+	        IF NOT #HoldSwing THEN
+	            
+	            #Sort := #SortDir;
+	            
+	        END_IF; *)
+	        
+	        #Sort := #SortDir;
+	        
+	    END_REGION
+	    
+	    // Signal to RemoteIN1 / RemoteIN2 for specify swing direction and RemoteIN3 for swing must be 50ms or longer.
+	    // Otherwise transfer ball may behaves unexpectedly.
+	    // If the signal input of IN1 and IN2 (specifying the swing direction) is delayed from the signal input of IN3 (swing RUN),
+	    // an unintended swing operation will occur.
+	    // After outputting the swinging status, turn RemoteIN3 (Swing start) OFF.
+	    
+	    REGION MABS wheels
+	        
+	        // run mobs wheel 
+	        // runs only when remoteIn3(swing) not active
+	        
+	        #mabs.Wheels := #UpstreamRunning;
+	        
+	    END_REGION
+	    
+	    // ==========================================================================================================================
+	    // Swing status output
+	    // ===================
+	    
+	    // SWING STATUS         RemoteOUT2  RemoteOUT3   Remark
+	    // ------------         ----------  ----------   ------
+	    // Straight (origin)        ON          ON       Outputs at the time when balls have been turned to the straight direction.
+	    // Swing (CW)               ON          OFF      Outputs at the time when swing in CW direction is complete.
+	    // Swing (CCW)              OFF         ON       Outputs at the time when swing in CCW direction is complete.
+	    // Others                   OFF         OFF      During ball swing, when turning on power supply,
+	    //                                               undetected swing position or occurring software error.
+	    // ==========================================================================================================================                                              
+	    
+	    REGION Current position
+	        
+	        // current MABS position
+	        
+	        #CurrentPosition.left :=
+	        NOT #RemoteOut2 AND
+	        #RemoteOut3;
+	        
+	        #CurrentPosition.right :=
+	        #RemoteOut2 AND
+	        NOT #RemoteOut3;
+	        
+	        #CurrentPosition.straight :=
+	        #RemoteOut2 AND
+	        #RemoteOut3;
+	        
+	    END_REGION
+	    
+	    REGION HOMING
+	        
+	        // ==========================================================================================================================
+	        // Initial operation (origin searching)
+	        // ===================================
+	        
+	        #HomeCheckTimer.TON(IN := NOT #CurrentPosition.left AND
+	                            NOT #CurrentPosition.right AND
+	                            NOT #CurrentPosition.straight,
+	                            PT := T#1s);
+	        
+	        #Home :=
+	        NOT #HomeCheckTimer.Q;
+	        
+	        // home missing
+	        
+	        IF NOT #Home AND NOT #ReadMabsStatus.Stop THEN
+	            #mabs.RemoteIn1 := TRUE;
+	            #mabs.RemoteIn2 := TRUE;
+	            #mabs.RemoteIn3 := TRUE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    // ==========================================================================================================================
+	    // Specified swing direction
+	    // =========================
+	    
+	    // SWING                                                    RemoteIN1  RemoteIN2   
+	    // -----                                                    ---------  ---------   
+	    // Divert direction to Straight direction (CW direction)       ON          ON       
+	    // Divert direction to Straight direction (CCW direction)      ON          OFF      
+	    // Straight direction to Divert direction (CW direction)       OFF         ON       
+	    // Straight direction to Divert direction (CCW direction)      OFF         OFF                                                    .
+	    // ==========================================================================================================================
+	    // Start swinging
+	    // ==============
+	    
+	    // swing    RemoteIN3
+	    // -----    ---------  
+	    // STOP         OFF
+	    // RUN          ON  .
+	    
+	    // ==========================================================================================================================
+	    
+	    IF #ReadMabsStatus.ReadytoRun AND NOT #HoldFailure
+	    THEN
+	        
+	        REGION swing delay
+	            
+	            #ToSt_DelayTimer(IN := #mabs.#RemoteIn1 AND #mabs.#RemoteIn2,
+	                             PT := t#20ms,
+	                             Q => #St_SwingDelay);
+	            
+	            #ToRt_DelayTimer(IN := NOT #mabs.#RemoteIn1 AND #mabs.#RemoteIn2,
+	                             PT := t#20ms,
+	                             Q => #Rt_SwingDelay);
+	            
+	            #ToLt_DelayTimer(IN := #mabs.#RemoteIn1 AND NOT #mabs.#RemoteIn2,
+	                             PT := t#20ms,
+	                             Q => #Lt_SwingDelay);
+	            
+	            // swing starts after few ms of turn decision made
+	            IF (#St_SwingDelay OR
+	                #Rt_SwingDelay OR
+	                #Lt_SwingDelay) AND
+	                NOT #noSwing
+	            THEN
+	                #mabs.RemoteIn3 := TRUE;
+	            END_IF;
+	            
+	        END_REGION
+	        
+	        REGION Straight
+	            
+	            IF (#CurrentPosition.straight AND
+	                #Sort.Straight) OR
+	                (#CurrentPosition.right AND
+	                #Sort.toRight) OR
+	                (#CurrentPosition.left AND
+	                #Sort.toLeft)
+	            THEN
+	                #mabs.RemoteIn3 := FALSE;
+	                #noSwing := TRUE;
+	            ELSE
+	                #noSwing := FALSE;
+	            END_IF;
+	            
+	            
+	            // ================================================== ^^^
+	            
+	            // sort straight - actual position: right
+	            
+	            IF #Sort.Straight AND
+	                NOT #CurrentPosition.straight AND
+	                #CurrentPosition.right AND
+	                NOT #CROSS_SENSOR_FILTER.FilteredSensor
+	            THEN
+	                #mabs.#RemoteIn1 := TRUE;
+	                #mabs.RemoteIn2 := TRUE;
+	            END_IF;
+	            
+	            // sort straight - actual position: left
+	            
+	            IF #Sort.Straight AND
+	                NOT #CurrentPosition.straight AND
+	                #CurrentPosition.left AND
+	                NOT #CROSS_SENSOR_FILTER.FilteredSensor
+	            THEN
+	                #mabs.#RemoteIn1 := TRUE;
+	                #mabs.RemoteIn2 := TRUE;
+	            END_IF;
+	            
+	            // sort straight - actual position: straight
+	            
+	            IF #Sort.Straight AND
+	                #CurrentPosition.straight AND
+	                NOT #CurrentPosition.left AND
+	                NOT #CurrentPosition.right AND
+	                NOT #CROSS_SENSOR_FILTER.FilteredSensor
+	            THEN
+	                #mabs.RemoteIn3 := FALSE; // no swing
+	            END_IF;
+	            
+	        END_REGION
+	        
+	        REGION to Right
+	            
+	            #RT_DelaySwing_toRight(CLK := #ToRt_DelayTimer.Q);
+	            
+	            // ================================================== >>>
+	            
+	            // sort right - actual position: straight/left
+	            
+	            IF #Sort.toRight AND
+	                NOT #CurrentPosition.right AND
+	                (#CurrentPosition.straight OR
+	                #CurrentPosition.left) AND
+	                NOT #CROSS_SENSOR_FILTER.FilteredSensor
+	            THEN
+	                #mabs.#RemoteIn1 := FALSE;
+	                #mabs.RemoteIn2 := TRUE;
+	            END_IF;
+	            
+	            // sort right - actual position: right
+	            
+	            IF #Sort.toRight AND
+	                #CurrentPosition.right AND
+	                NOT #CurrentPosition.left AND
+	                NOT #CurrentPosition.straight AND
+	                NOT #CROSS_SENSOR_FILTER.FilteredSensor
+	            THEN
+	                #mabs.RemoteIn3 := FALSE; // no swing
+	            END_IF;
+	            
+	        END_REGION
+	        
+	        REGION to left
+	            
+	            #RT_DelaySwing_toLeft(CLK := #ToLt_DelayTimer.Q);
+	            
+	            // ================================================== <<<
+	            
+	            // sort left - actual position: straight/right
+	            
+	            IF #Sort.toLeft AND
+	                NOT #CurrentPosition.left AND
+	                (#CurrentPosition.straight OR
+	                #CurrentPosition.right) AND
+	                NOT #CROSS_SENSOR_FILTER.FilteredSensor
+	            THEN
+	                #mabs.#RemoteIn1 := FALSE;
+	                #mabs.RemoteIn2 := TRUE;
+	            END_IF;
+	            
+	            // sort left - actual position: left
+	            
+	            IF #Sort.toLeft AND
+	                #CurrentPosition.left AND
+	                NOT #CurrentPosition.straight AND
+	                NOT #CurrentPosition.right AND
+	                NOT #CROSS_SENSOR_FILTER.FilteredSensor
+	            THEN
+	                #mabs.RemoteIn3 := FALSE; // no swing
+	            END_IF;
+	            
+	        END_REGION
+	        
+	        // ============================================================================================================
+	        
+	        #RemoteIn1 := #mabs.RemoteIn1;
+	        #RemoteIn2 := #mabs.RemoteIn2;
+	        #RemoteIn3 := #mabs.RemoteIn3;
+	        
+	        #RunWheels := #mabs.Wheels;
+	        
+	    END_IF;
+	    
+	    REGION Cmd excecution failure
+	        
+	        // if the cmd could not be excecuted, MABS getting program reset automatically
+	        // Hold failure: makes all output to MABS value 0
+	        // then starts executing cmd again
+	        
+	        IF #ReadMabsStatus.ReadytoRun AND #Home THEN
+	            
+	            // reset state change
+	            #FT_Upstream(CLK := #Upstream);
+	            #RT_DS_St(CLK := #Downstream_Straight);
+	            #"RT_DS_Rt/Lt"(CLK := #"Downstream_Right/Left");
+	            
+	            // upstream not able to send tote in to MABS
+	            #CmdExFailure.UpstreamCheckTimer(IN := #Upstream AND
+	                                             ((NOT #Downstream_Straight AND #Sort.Straight) OR
+	                                             (NOT #"Downstream_Right/Left" AND #Sort.toLeft)),
+	                                             R := (#CmdExFailure.UpstreamCheckTimer.ET > t#30s) OR
+	                                             #FT_Upstream.Q OR
+	                                             #RT_DS_St.Q OR
+	                                             #"RT_DS_Rt/Lt".Q OR
+	                                             #SSR.ResetSystem,
+	                                             PT := t#24h);
+	            
+	            // reset state change
+	            #RT_ToStraight(CLK := #CurrentPosition.straight);
+	            #RT_ToRight(CLK := #CurrentPosition.right);
+	            #RT_ToLeft(CLK := #CurrentPosition.left);
+	            #FT_Blockage(CLK := #ReadMabsStatus.Blockage);
+	            
+	            #CmdExFailure.Timer(IN := ((#Sort.Straight AND
+	                                NOT #CurrentPosition.straight) OR
+	                                (#Sort.toRight AND
+	                                NOT #CurrentPosition.right) OR
+	                                (#Sort.toLeft AND
+	                                NOT #CurrentPosition.left)) OR
+	                                #ReadMabsStatus.Blockage,
+	                                R := (#CmdExFailure.Timer.ET > t#10s) OR
+	                                #RT_ToStraight.Q OR
+	                                #RT_ToRight.Q OR
+	                                #RT_ToLeft.Q OR
+	                                #FT_Blockage.Q OR
+	                                #SSR.ResetSystem,
+	                                PT := t#24h);
+	            
+	            #HoldFailure :=
+	            ((#CmdExFailure.Timer.ET > t#5s) OR
+	            (#CmdExFailure.UpstreamCheckTimer.ET > t#15s));
+	            
+	        END_IF;
+	        
+	        
+	    END_REGION
+	    
+	    // stop if not ready
+	    IF #Home AND (NOT #ReadMabsStatus.ReadytoRun OR #HoldFailure)
+	    THEN
+	        #RemoteIn1 := FALSE;
+	        #RemoteIn2 := FALSE;
+	        #RemoteIn3 := FALSE;
+	        #RunWheels := FALSE;
+	    END_IF;
+	    
+	    IF NOT #Home THEN
+	        
+	        #RemoteIn1 := #mabs.RemoteIn1;
+	        #RemoteIn2 := #mabs.RemoteIn2;
+	        #RemoteIn3 := #mabs.RemoteIn3;
+	        
+	    END_IF;
+	    
+	    
+	END_REGION
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

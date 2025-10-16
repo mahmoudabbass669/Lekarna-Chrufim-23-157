@@ -1,0 +1,112 @@
+﻿NAMESPACE ProductionLine
+FUNCTION_BLOCK FB_OPC_SysStatus
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR_IN_OUT 
+      Source : OPC_SystemStatus;
+      Ack : OPC_SystStatus_Ack;
+   END_VAR
+
+   VAR 
+      Comm { S7_SetPoint := 'False'} : FB_OPC_SendReciveAck;
+      staSource { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'; S7_SetPoint := 'False'} : OPC_SystemStatus;
+      staAck { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'; S7_SetPoint := 'False'} : OPC_SystStatus_Ack;
+   END_VAR
+
+   VAR_TEMP 
+      Retval : Int;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : OPC_SendReciveAck
+	// Project        : Lekarna, Chrudim -PLC001 -MCC001
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	//======================================================
+	// Region: Communication Handling and Logging
+	// Description: Manages the communication routine and logs
+	//              events for message sending, acknowledgment
+	//              reception, and acknowledgment timeout.
+	//======================================================
+	   
+	//------------------------------------------------------
+	// Call communication routine
+	//------------------------------------------------------
+	REGION Communication Routine
+	    #Comm(SourceSeq := #staSource.SourceSeq,
+	          AckSeq := #staAck.AckSeq,
+	             Timeout := T#20s);
+	END_REGION
+	
+	#Source.SourceSeq := #staSource.SourceSeq;
+	#staAck.AckSeq := #Ack.AckSeq;
+	
+	
+	//------------------------------------------------------
+	// Log event when a new message is sent
+	//------------------------------------------------------
+	REGION Log event - new message
+	    IF #Comm.Log.Send THEN
+	        #Comm.Log.Send := FALSE;
+	        
+	        // (LOG)3001=$ Node $, new message sent, seq: $, $ $ $ $ $ $ $ $, $ $ $ $ $ $ $ $ $ $ $ $ $ $ $ $
+	        DB_LogMsg.LogMsg_1.Para_BYTE_02.Data := #Source.SourceSeq;
+	        
+	        // Call logging function
+	        #Retval := FC_LogMsg(EventID := 3007,
+	                               EventLevel := 2,
+	                               EventGroup := 33,
+	                               LogMsg := DB_LogMsg.LogMsg_1);
+	    END_IF;
+	END_REGION
+	
+	   
+	//------------------------------------------------------
+	// Log event when new acknowledgment is received
+	//------------------------------------------------------
+	REGION  Log event-New acknowledgment
+	       IF #Comm.Log.New_Ack_received THEN
+	           #Comm.Log.New_Ack_received := FALSE;
+	           
+	           // (LOG)3008=$ Node $, acknowledge received, seq: $, WMSID: $
+	           DB_LogMsg.LogMsg_2.Para_BYTE_02.Data := #Ack.AckSeq;
+	           
+	           // Call logging function
+	           #Retval := FC_LogMsg(EventID := 3008,
+	                                  EventLevel := 2,
+	                                  EventGroup := 33,
+	                                  LogMsg := DB_LogMsg.LogMsg_2);
+	       END_IF;
+	END_REGION
+	
+	   
+	//------------------------------------------------------
+	// Log event when acknowledgment timeout occurs
+	//------------------------------------------------------
+	REGION Log event- acknowledgment timeout
+	       IF #Comm.Log.Ack_timeout THEN
+	           #Comm.Log.Ack_timeout := FALSE;
+	           
+	           // (LOG)3009=$ Node $, seq: $, acknowledge timeout!
+	           DB_LogMsg.LogMsg_3.Para_BYTE_02.Data := #Comm.SendSeq;
+	           
+	           // Call logging function
+	           #Retval := FC_LogMsg(EventID := 3009,
+	                                  EventLevel := 3,
+	                                  EventGroup := 33,
+	                                  LogMsg := DB_LogMsg.LogMsg_3);
+	       END_IF;
+	END_REGION
+	    
+	
+	   
+	   
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

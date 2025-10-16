@@ -1,0 +1,182 @@
+﻿NAMESPACE ProductionLine
+FUNCTION_BLOCK FB_ToggleDir
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      "A1.12.1" : _.Global.ToggelDir;
+      CurrentExpedtionDirection : Struct
+         Straight : Bool;
+         Left : Bool;
+         None : Bool;
+      END_STRUCT;
+      CurrentStraightTableselection : Struct
+         Table1 : Bool;
+         Table2 : Bool;
+         Table3 : Bool;
+         Table4 : Bool;
+         Table5 : Bool;
+         None : Bool;
+      END_STRUCT;
+      CurrentLeftTableselection : Struct
+         Table1 : Bool;
+         Table2 : Bool;
+         Table3 : Bool;
+         Table4 : Bool;
+         Table5 : Bool;
+         None : Bool;
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : FB_Toggel Direction
+	// Project        : Lekarna, Chrudim -PLC001 -MCC001
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION A1.12.1
+	    REGION A1.12.1
+	        #"A1.12.1"(Sensor := IDB_ProductionLine."A1.12.1".FilteredSensor,
+	                   ArmSensor := IDB_ProductionLine."A2.1.1".ReadTransferStatus.Occupied,
+	                   StraightSensor := IDB_ProductionLine."A1.14.1".ReadConveyorStatus.Occupied);
+	    END_REGION
+	    
+	    
+	    REGION Straight
+	        // Go Straight
+	        IF  (#"A1.12.1".Toggle.StarightDirection AND
+	            NOT #CurrentExpedtionDirection.Left) OR
+	            #CurrentExpedtionDirection.Straight
+	        THEN
+	            // Statement section IF
+	            DB_ToteTracking.Conveyor[_."A1.13.1"].ToteDir.Straight := TRUE;
+	            DB_ToteTracking.Conveyor[_."A1.13.1"].ToteDir.toRight := FALSE;
+	            DB_ToteTracking.Conveyor[_."A1.13.1"].ToteDir.toLeft := FALSE;
+	        END_IF;
+	    END_REGION
+	    
+	    
+	    REGION GoToLeft
+	        //Go to the left
+	        IF (#"A1.12.1".Toggle.ArmDirection AND
+	            NOT #CurrentExpedtionDirection.Straight) OR
+	            #CurrentExpedtionDirection.Left
+	        THEN
+	            // Statement section IF
+	            DB_ToteTracking.Conveyor[_."A1.13.1"].ToteDir.Straight := FALSE;
+	            DB_ToteTracking.Conveyor[_."A1.13.1"].ToteDir.toRight := FALSE;
+	            DB_ToteTracking.Conveyor[_."A1.13.1"].ToteDir.toLeft := TRUE;
+	        END_IF;
+	    END_REGION
+	END_REGION
+	
+	
+	REGION Expedtion Direction
+	    
+	    IF Expedtion.ExpedtionEnable THEN
+	        IF Expedtion.ExpedtionDirection = 1 THEN
+	            Expedtion.CurrentExpedtionDirection := 'Straight';
+	            #CurrentExpedtionDirection.Straight := TRUE;
+	        ELSIF Expedtion.ExpedtionDirection = 2 THEN
+	            Expedtion.CurrentExpedtionDirection := 'Left';
+	            #CurrentExpedtionDirection.Left := TRUE;
+	        ELSIF Expedtion.ExpedtionDirection = 3 THEN
+	            Expedtion.CurrentExpedtionDirection := 'None';
+	            //#CurrentExpedtionDirection.None := TRUE;
+	        ELSE
+	            Expedtion.CurrentExpedtionDirection := 'None';
+	            #CurrentExpedtionDirection.Straight := FALSE;
+	            #CurrentExpedtionDirection.Left := FALSE;
+	            #CurrentExpedtionDirection.None := FALSE;
+	        END_IF;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION Table selection
+	    
+	    REGION Straight 
+	        IF Expedtion.StraightTableselectionEnable THEN
+	            IF Expedtion.StraightTableselection = 1 THEN
+	                Expedtion.CurrentStraightTableselection := 'Table1';
+	                #CurrentStraightTableselection.Table1 := TRUE;
+	            ELSIF Expedtion.StraightTableselection = 2 THEN
+	                Expedtion.CurrentStraightTableselection := 'Table2';
+	                #CurrentStraightTableselection.Table2 := TRUE;
+	            ELSIF Expedtion.StraightTableselection = 3 THEN
+	                Expedtion.CurrentStraightTableselection := 'Table3';
+	                #CurrentStraightTableselection.Table3 := TRUE;
+	            ELSIF Expedtion.StraightTableselection = 4 THEN
+	                Expedtion.CurrentStraightTableselection := 'Table4';
+	                #CurrentStraightTableselection.Table4 := TRUE;
+	            ELSIF Expedtion.StraightTableselection = 5 THEN
+	                Expedtion.CurrentStraightTableselection := 'Table5';
+	                #CurrentStraightTableselection.Table5 := TRUE;
+	            ELSIF Expedtion.StraightTableselection = 6 THEN
+	                Expedtion.CurrentStraightTableselection := 'None';
+	                #CurrentStraightTableselection.None := TRUE;
+	            ELSE
+	                #CurrentStraightTableselection.Table1 := FALSE;
+	                #CurrentStraightTableselection.Table2 := FALSE;
+	                #CurrentStraightTableselection.Table3 := FALSE;
+	                #CurrentStraightTableselection.Table4 := FALSE;
+	                #CurrentStraightTableselection.Table5 := FALSE;
+	                #CurrentStraightTableselection.None := FALSE;
+	            END_IF;
+	        END_IF;
+	    END_REGION
+	    
+	    REGION Left
+	        IF Expedtion.LeftTableselectionEnable THEN
+	            IF Expedtion.LeftTableselection = 1 THEN
+	                Expedtion.CurrentLeftTableselection := 'Table1';
+	                #CurrentLeftTableselection.Table1 := TRUE;
+	            ELSIF Expedtion.LeftTableselection = 2 THEN
+	                Expedtion.CurrentLeftTableselection := 'Table2';
+	                #CurrentLeftTableselection.Table2 := TRUE;
+	            ELSIF Expedtion.LeftTableselection = 3 THEN
+	                Expedtion.CurrentLeftTableselection := 'Table3';
+	                #CurrentLeftTableselection.Table3 := TRUE;
+	            ELSIF Expedtion.LeftTableselection = 4 THEN
+	                Expedtion.CurrentLeftTableselection := 'Table4';
+	                #CurrentLeftTableselection.Table4 := TRUE;
+	            ELSIF Expedtion.LeftTableselection = 5 THEN
+	                Expedtion.CurrentLeftTableselection := 'Table5';
+	                #CurrentLeftTableselection.Table5 := TRUE;
+	            ELSIF Expedtion.LeftTableselection = 6 THEN
+	                Expedtion.CurrentLeftTableselection := 'None';
+	                #CurrentLeftTableselection.None := TRUE;
+	            ELSE
+	                #CurrentLeftTableselection.Table1 := FALSE;
+	                #CurrentLeftTableselection.Table2 := FALSE;
+	                #CurrentLeftTableselection.Table3 := FALSE;
+	                #CurrentLeftTableselection.Table4 := FALSE;
+	                #CurrentLeftTableselection.Table5 := FALSE;
+	                #CurrentLeftTableselection.None := FALSE;
+	            END_IF;
+	        END_IF;
+	    END_REGION
+	    
+	END_REGION
+	
+	
+	
+	
+	
+	
+	        
+	        
+	        
+	        
+	    
+	
+	
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

@@ -1,0 +1,29 @@
+﻿NAMESPACE Global
+FUNCTION FC_SafetyAlarm : Void
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : FB_Main_LineA1
+	// Project        : Lékárna Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION HMI Alarm
+	    
+	    DB_Alarm.Estop.%X0 :=
+	    _.DB_SafetyStandard.PressReset;
+	    DB_Alarm.Estop.%X1 :=
+	    _.DB_SafetyStandard.ToStandard.EstopActive;
+	    DB_Alarm.Estop.%X2 :=
+	    _.DB_SafetyStandard.ToHMI."PhaseOK -MCC001";    
+	    DB_Alarm.Estop.%X3 :=
+	    _.DB_SafetyStandard.ToHMI."EstopPB -MCC001+MCC001-SF1";
+	    
+	END_REGION
+END_FUNCTION
+END_NAMESPACE
+

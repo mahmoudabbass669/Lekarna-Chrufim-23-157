@@ -1,0 +1,68 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_Klaxon
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      SystemStart : Bool;
+      SystemStop : Bool;
+      ReadGlobalFault : Bool;
+      ReadGlobalReady : Bool;
+      ReadEstopActive : Bool;
+      ReadGlobalBlockage : Bool;
+   END_VAR
+
+   VAR 
+      KLAXON_HORN : FB_KlaxonHorn;
+      KLAXON_YELLOW : FB_KlaxonLampYellow;
+      HORN : Bool;
+      YELLOW : Bool;
+      GREEN : Bool;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================================================
+	// Company       : LogTech, s.r.o.
+	// Created by    : Anton Vinoth Soundraraj
+	// Block         : FB_Klaxon
+	// Project       : LT-LIB-Block
+	// ==========================================================================================================================================================================
+	
+	REGION Klaxon Horn
+	    
+	    // FB_KlaxonHorn
+	    // Called as MIDB
+	    
+	    #KLAXON_HORN(Start          := #SystemStart,
+	                 Stop           := #SystemStop,
+	                 GlobalFault    := #ReadGlobalFault,
+	                 GlobalBlockage := #ReadGlobalBlockage,
+	                 EstopActive    := #ReadEstopActive,
+	                 HornActive     => #HORN);
+	    
+	END_REGION
+	
+	REGION Klaxon Yellow
+	    
+	    // FB_KlaxonLampYellow
+	    // Called as MIDB
+	    
+	    #KLAXON_YELLOW(BlinkCondition := #SystemStart,
+	                   GlowCondition  := NOT #ReadGlobalReady,
+	                   BlockageStatus := #ReadGlobalBlockage,
+	                   YellowLamp     => #YELLOW);
+	    
+	END_REGION
+	
+	REGION Klaxon Green
+	    
+	    #GREEN :=
+	    #ReadGlobalReady AND
+	    NOT #ReadGlobalBlockage AND
+	    NOT #KLAXON_YELLOW.StartupActive AND 
+	    NOT #KLAXON_YELLOW.YellowLamp;
+	    
+	END_REGION
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

@@ -1,0 +1,102 @@
+﻿NAMESPACE ProductionLine
+FUNCTION_BLOCK FB_OPC_SendReciveAck
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR_INPUT 
+      Timeout : Time;
+   END_VAR
+
+   VAR_IN_OUT 
+      SourceSeq : Int;
+      AckSeq : Int;
+   END_VAR
+
+   VAR 
+      Send : Bool;
+      New_Ack_received : Bool;
+      Ack_timeout : Bool;
+      Send_prev : Bool;
+      SendSeq : Int;
+      TimeoutTimmer {InstructionName := 'IEC_TIMER'; LibVersion := '1.0'; S7_SetPoint := 'False'} : IEC_TIMER;
+      Log : Struct
+         Send : Bool;
+         New_Ack_received : Bool;
+         Ack_timeout : Bool;
+      END_STRUCT;
+   END_VAR
+
+   VAR CONSTANT 
+      maxInc : Int := 9999;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : OPC_SendReciveAck
+	// Project        : Lekarna, Chrudim -PLC001 -MCC001
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	// REGION: Handle New Send Request
+	REGION Handle_Send_Request
+	    // Triggered on rising edge of #Send signal
+	    IF #Send AND NOT #Send_prev THEN
+	         #AckSeq := 0;  // Reset acknowledgment sequence
+	        
+	        // Increment source sequence, wrapping around after 99999 (B#16#270F)
+	         IF #SourceSeq <> #maxInc THEN
+	             #SourceSeq += 1;
+	         ELSE
+	             #SourceSeq := 1;
+	         END_IF;
+	        
+	        #SendSeq := #SourceSeq;       // Set current send sequence
+	        #New_Ack_received := FALSE;   // Reset acknowledgment flag
+	        #Log.Send := TRUE;            // Log send event
+	    END_IF;
+	END_REGION
+	
+	// REGION: Process Acknowledgment
+	REGION Process_Acknowledgment
+	    IF #Send THEN
+	        // Check if acknowledgment is received for the current send
+	        IF #AckSeq = #SendSeq THEN
+	            IF #AckSeq <> 0 THEN
+	                #New_Ack_received := TRUE;     // Mark new acknowledgment
+	                #Ack_timeout := FALSE;         // Clear timeout flag
+	                #Log.#New_Ack_received := TRUE; // Log acknowledgment
+	            END_IF;
+	            //#Send := FALSE;  // Reset send signal
+	        END_IF;
+	    END_IF;
+	    
+	    // Update previous send state
+	    #Send_prev := #Send;
+	END_REGION
+	
+	
+	// REGION: Timeout Management and Retransmission
+	REGION Handle_Send_Timeout
+	    // Activate timeout timer if timeout value is set
+	    IF #Timeout <> T#0s THEN
+	        #TimeoutTimmer.TON(IN := #Send AND NOT #New_Ack_received ,
+	                           PT := #Timeout);
+	    END_IF;
+	    
+	    // On timeout expiration, trigger retransmission logic
+	    IF #TimeoutTimmer.Q THEN
+	        #Send_prev := FALSE;         // Reset previous send to retrigger
+	        #Ack_timeout := TRUE;        // Mark acknowledgment timeout
+	        #Log.Ack_timeout := TRUE;    // Log timeout event
+	        RESET_TIMER(#TimeoutTimmer); // Reset timer
+	    END_IF;
+	END_REGION
+	
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

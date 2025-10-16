@@ -1,0 +1,102 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK ToggelDir
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      Sensor : Bool;
+      ArmSensor : Bool;
+      StraightSensor : Bool;
+   END_VAR
+
+   VAR_OUTPUT 
+      Toggle : Struct
+         StarightDirection : Bool;
+         ArmDirection : Bool;
+      END_STRUCT;
+   END_VAR
+
+   VAR 
+      UpCounter {InstructionName := 'CTU_INT'; LibVersion := '1.0'; S7_SetPoint := 'False'} : CTU_INT;
+   END_VAR
+   VAR RETAIN
+      statResetCounter { S7_SetPoint := 'True'} : Bool;
+   END_VAR
+   VAR 
+      SortAll : Struct
+         Staright : Bool;
+         Arm : Bool;
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : FB_Toggel Direction
+	// Project        : Lekarna, Chrudim -PLC001 -MCC001
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	// =============================
+	// REGION Counter
+	// Toggle counter: 0 = Straight, 1 = Arm
+	// =============================
+	IF #UpCounter.CV >= #UpCounter.PV THEN
+	    #statResetCounter := TRUE;
+	ELSE
+	    #statResetCounter := FALSE;
+	END_IF;
+	
+	#UpCounter(
+	           CU := #Sensor,          // input pulse to count
+	           R := #statResetCounter, // reset when PV reached
+	           PV := 2                 // count up to 2 (0 → 1 → reset)
+	);
+	
+	// =============================
+	// REGION SortAll
+	// Detect which sensor requests sorting
+	// =============================
+	#SortAll.Staright := #StraightSensor AND NOT #ArmSensor;
+	#SortAll.Arm := #ArmSensor AND NOT #StraightSensor;
+	
+	// =============================
+	// REGION Direction Selection
+	// Decide final direction without contradiction
+	// =============================
+	IF #SortAll.Staright THEN
+	    // Straight has priority if its sensor is active
+	    #Toggle.StarightDirection := TRUE;
+	    #Toggle.ArmDirection := FALSE;
+	    
+	ELSIF #SortAll.Arm THEN
+	    // Arm if its sensor is active
+	    #Toggle.StarightDirection := FALSE;
+	    #Toggle.ArmDirection := TRUE;
+	    
+	ELSE
+	    // No sensors → fall back to counter toggle
+	    IF #UpCounter.CV = 0 THEN
+	        #Toggle.StarightDirection := TRUE;
+	        #Toggle.ArmDirection := FALSE;
+	    ELSE // CV = 1
+	        #Toggle.StarightDirection := FALSE;
+	        #Toggle.ArmDirection := TRUE;
+	    END_IF;
+	END_IF;
+	
+	
+	
+	
+	
+	
+	
+	    
+	    
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

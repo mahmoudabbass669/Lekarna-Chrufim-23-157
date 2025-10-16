@@ -1,0 +1,190 @@
+﻿NAMESPACE ProductionLine
+FUNCTION_BLOCK Flow_Test
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      Start { S7_SetPoint := 'True'} : Bool;   //  // Start command (e.g. from I0.0)
+      StartTest : Test_Logic;
+      GoToRightDP1 : Test_Logic;
+      ContinueStraightDP1 : Test_Logic;
+      ContinueStraightDP2 : Test_Logic;
+      GotorightDP2Thentoright : Test_Logic;
+      GotorightDP2ThentoLeft : Test_Logic;
+      ContinueStraightDP3 : Test_Logic;
+      ContinueStraightDP4 : Test_Logic;
+      GotoRightDP4 : Test_Logic;
+      "A1.13.1_Straight" : Test_Logic;
+      "A1.13.1_left" : Test_Logic;
+      R_TRIG_Instance {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : FB_FlowTest
+	// Project        : Lékárna Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION Start Test
+	    #StartTest(Start := #Start,
+	               StartPoint := _."A1.1.1",
+	               EndPoint :=  _."A1.5.3");
+	END_REGION
+	
+	
+	REGION Go TO Right DP1
+	    #GoToRightDP1(Start := DB_ToteTracking.Conveyor[_."A1.6.1"].ToteDir.toRight AND
+	                  DB_ToteTracking.Conveyor[_."A1.6.2"].ToteDir.toRight AND
+	                  _.ProductionLine.IDB_ProductionLine."A1.5.3".FilteredSensor,
+	                  StartPoint := _."B1.1.1",
+	                  EndPoint := _."B1.9.2");
+	END_REGION
+	
+	
+	REGION CONTINUE Straight DP1
+	    
+	    #ContinueStraightDP1(Start := DB_ToteTracking.Conveyor[_."A1.6.1"].ToteDir.Straight AND
+	                         DB_ToteTracking.Conveyor[_."A1.6.2"].ToteDir.Straight AND
+	                         _.ProductionLine.IDB_ProductionLine."A1.5.3".FilteredSensor,
+	                         StartPoint := _."A1.7.1",
+	                         EndPoint := _."A1.8.1");
+	    
+	END_REGION
+	
+	IF (DB_ToteTracking.Conveyor[_."A1.6.1"].ToteDir.Straight OR
+	    DB_ToteTracking.Conveyor[_."A1.6.1"].ToteDir.toRight) AND
+	    IDB_ProductionLine."A1.5.3".FilteredSensor
+	THEN
+	    _.Global.DB_SystemSimu.TriggerSensor.Line.ProductionLine.Conveyor[_."A1.6.1"] := TRUE;
+	ELSE
+	    _.Global.DB_SystemSimu.TriggerSensor.Line.ProductionLine.Conveyor[_."A1.6.1"] := FALSE;
+	END_IF;
+	
+	
+	        
+	REGION CONTINUE Straight DP2
+	    
+	    #ContinueStraightDP2(Start := DB_ToteTracking.Conveyor[_."B1.10.1"].ToteDir.Straight AND
+	                                  IDB_ProductionLine."B1.9.2".FilteredSensor,
+	                         StartPoint := _."B1.11.1",
+	                         EndPoint := _."B1.17.4");
+	    
+	END_REGION
+	
+	
+	REGION Go TO Right DP2 THEN TO Right
+	    #GotorightDP2Thentoright(Start := DB_ToteTracking.Conveyor[_."B1.10.1"].ToteDir.toRight AND
+	                             DB_ToteTracking.Conveyor[_."C1.3.1"].ToteDir.toRight AND
+	                             IDB_ProductionLine."B1.9.2".FilteredSensor,
+	                             StartPoint := _."C1.2.2",
+	                             EndPoint := _."C1.2.1");
+	END_REGION
+	
+	
+	REGION Go TO Right THEN TO Left
+	    #GotorightDP2ThentoLeft(Start := DB_ToteTracking.Conveyor[_."B1.10.1"].ToteDir.toRight AND
+	                            DB_ToteTracking.Conveyor[_."C1.3.1"].ToteDir.toLeft AND
+	                            IDB_ProductionLine."B1.9.2".FilteredSensor,
+	                            StartPoint := _."C1.4.1",
+	                            EndPoint :=  _."C1.4.2");
+	END_REGION
+	
+	
+	IF (DB_ToteTracking.Conveyor[_."B1.10.1"].ToteDir.Straight OR
+	    DB_ToteTracking.Conveyor[_."B1.10.1"].ToteDir.toRight) AND
+	    IDB_ProductionLine."B1.9.2".FilteredSensor
+	THEN
+	    _.Global.DB_SystemSimu.TriggerSensor.Line.ProductionLine.Conveyor[_."B1.10.1"] := TRUE;
+	ELSE
+	    _.Global.DB_SystemSimu.TriggerSensor.Line.ProductionLine.Conveyor[_."B1.10.1"] := FALSE;
+	END_IF;
+	
+	IF (DB_ToteTracking.Conveyor[_."C1.3.1"].ToteDir.toLeft OR
+	    DB_ToteTracking.Conveyor[_."C1.3.1"].ToteDir.toRight) AND
+	    IDB_ProductionLine."B1.10.1".FilteredSensor AND
+	    DB_ToteTracking.Conveyor[_."B1.10.1"].ToteDir.toRight
+	THEN
+	    _.Global.DB_SystemSimu.TriggerSensor.Line.ProductionLine.Conveyor[_."C1.3.1"] := TRUE;
+	ELSE
+	    _.Global.DB_SystemSimu.TriggerSensor.Line.ProductionLine.Conveyor[_."C1.3.1"] := FALSE;
+	END_IF;
+	
+	
+	
+	REGION CONTINUE Straight DP3
+	    #ContinueStraightDP3(Start := DB_ToteTracking.Conveyor[_."B1.18.1"].ToteDir.Straight AND
+	                                  IDB_ProductionLine."B1.17.4".FilteredSensor,
+	                         StartPoint := _."B1.19.1",
+	                         EndPoint := _."B1.23.1");
+	END_REGION
+	
+	IF (DB_ToteTracking.Conveyor[_."B1.18.1"].ToteDir.toLeft OR
+	    DB_ToteTracking.Conveyor[_."B1.18.1"].ToteDir.Straight) AND
+	    IDB_ProductionLine."B1.17.4".FilteredSensor
+	THEN
+	    _.Global.DB_SystemSimu.TriggerSensor.Line.ProductionLine.Conveyor[_."B1.18.1"] := TRUE;
+	ELSE
+	    _.Global.DB_SystemSimu.TriggerSensor.Line.ProductionLine.Conveyor[_."B1.18.1"] := FALSE;
+	END_IF;
+	
+	#R_TRIG_Instance(CLK:=( IDB_ProductionLine."B1.18.1".FilteredSensor AND
+	                 DB_ToteTracking.Conveyor[_."B1.18.1"].ToteDir.toLeft));
+	
+	
+	
+	REGION CONTINUE Straight DP4
+	    #ContinueStraightDP4(Start := DB_ToteTracking.Conveyor[_."A1.9.1"].ToteDir.Straight AND
+	                         DB_ToteTracking.Conveyor[_."A1.9.2"].ToteDir.Straight AND
+	                         _.ProductionLine.IDB_ProductionLine."A1.8.1".FilteredSensor,
+	                         StartPoint := _."A1.10.1",
+	                         EndPoint := _."A1.12.2");
+	END_REGION
+	
+	
+	REGION Go TO Right DP4
+	    #GotoRightDP4(Start := DB_ToteTracking.Conveyor[_."A1.9.1"].ToteDir.toRight AND
+	                  DB_ToteTracking.Conveyor[_."A1.9.2"].ToteDir.toRight AND
+	                  _.ProductionLine.IDB_ProductionLine."A1.8.1".FilteredSensor,
+	                  StartPoint := _."D1.1.1",
+	                  EndPoint :=  _."D1.12.3");
+	END_REGION
+	
+	IF (DB_ToteTracking.Conveyor[_."A1.9.1"].ToteDir.Straight OR
+	    DB_ToteTracking.Conveyor[_."A1.9.1"].ToteDir.toRight) AND
+	    IDB_ProductionLine."A1.8.1".FilteredSensor
+	THEN
+	    _.Global.DB_SystemSimu.TriggerSensor.Line.ProductionLine.Conveyor[_."A1.9.1"] := TRUE;
+	ELSE
+	    _.Global.DB_SystemSimu.TriggerSensor.Line.ProductionLine.Conveyor[_."A1.9.1"] := FALSE;
+	END_IF;
+	
+	REGION A1.13.1_Straight
+	    
+	    #"A1.13.1_Straight"(Start:= DB_ToteTracking.Conveyor[_."A1.13.1"].ToteDir.Straight AND
+	                                IDB_ProductionLine."A1.12.2".FilteredSensor,
+	                        StartPoint:=_."A1.14.1",
+	                        EndPoint:= _."A1.14.26");
+	    
+	   
+	END_REGION
+	        
+	REGION A1.13.1_Left
+	    
+	    #"A1.13.1_left"(Start := DB_ToteTracking.Conveyor[_."A1.13.1"].ToteDir.toLeft AND
+	                    IDB_ProductionLine."A1.12.2".FilteredSensor,
+	                    StartPoint := _."A2.2.1",
+	                    EndPoint := _."A2.2.26");
+	    
+	    
+	END_REGION
+	
+	
+	    
+	    
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

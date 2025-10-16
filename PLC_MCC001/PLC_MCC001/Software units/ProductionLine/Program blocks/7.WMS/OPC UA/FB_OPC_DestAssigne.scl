@@ -1,0 +1,90 @@
+﻿NAMESPACE ProductionLine
+FUNCTION_BLOCK FB_OPC_DestAssigne
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR_IN_OUT 
+      Source : OPC_DestAssign;
+      Ack : OPC_DestAssign_Ack;
+   END_VAR
+
+   VAR 
+      Communication { S7_SetPoint := 'False'} : FB_OPC_ReceiveSendAck;
+      staSource : OPC_DestAssign;
+      staAck : OPC_DestAssign_Ack;
+   END_VAR
+
+   VAR_TEMP 
+      Retval : Int;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : OPC_SendReciveAck
+	// Project        : Lekarna, Chrudim -PLC001 -MCC001
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	//======================================================
+	// Region: Communication Handling and Logging
+	// Description: Manages the communication routine and logs
+	//              events for message sending, acknowledgment
+	//              reception, and acknowledgment timeout.
+	//======================================================
+	
+	//------------------------------------------------------
+	// Call communication routine
+	//------------------------------------------------------
+	
+	REGION Communication routine
+	    // Call communication routine
+	    #Communication(SourceSeq := #staSource.SourceSeq,
+	                   AckSeq := #staAck.AckSeq);
+	END_REGION
+	
+	#Source.SourceSeq := #staSource.SourceSeq;
+	#staAck.AckSeq := #Ack.AckSeq;
+	
+	
+	//------------------------------------------------------
+	// Log event when a new message is sent
+	//------------------------------------------------------
+	
+	REGION Log event - new message
+	    IF #Communication.Log.New_data_received THEN
+	        #Communication.Log.New_data_received := FALSE;
+	        // Logging
+	        //(LOG)3005=$ Node $, new message received, seq: $, palletID: $, WMSID $, destination: $, no-stretch: $
+	        DB_LogMsg.LogMsg_9.Para_STRING_01.Data := #Source.SourceNode;
+	        DB_LogMsg.LogMsg_9.Para_BYTE_02.Data := #Source.SourceSeq;
+	        DB_LogMsg.LogMsg_9.Para_STRING_03.Data := #Source.TotesID;
+	        DB_LogMsg.LogMsg_9.Para_STRING_04.Data := #Source.WMSID;
+	        DB_LogMsg.LogMsg_9.Para_STRING_05.Data := #Source.DestinationNode;
+	        #Retval := FC_LogMsg(EventID := 3005, EventLevel := 2, EventGroup := 33, LogMsg := DB_LogMsg.LogMsg_9);
+	    END_IF;
+	END_REGION
+	
+	//------------------------------------------------------
+	// Log event when new acknowledgment is received
+	//------------------------------------------------------
+	
+	REGION Log event-New acknowledgment
+	    IF #Communication.Log.Ack_send THEN
+	        #Communication.Log.Ack_send := FALSE;
+	        // Logging
+	        //(LOG)3006=$ Node $, acknowledge sent, seq: $, palletID: $, WMSID: $, confirmation: $
+	        DB_LogMsg.LogMsg_10.Para_STRING_01.Data := #Ack.SourceNode;
+	        DB_LogMsg.LogMsg_10.Para_BYTE_02.Data := #Ack.AckSeq;
+	        DB_LogMsg.LogMsg_10.Para_STRING_03.Data := #Ack.TotesID;
+	        DB_LogMsg.LogMsg_10.Para_STRING_04.Data := #Ack.WMSID;
+	        DB_LogMsg.LogMsg_10.Para_CHAR_05.Data := STRING_TO_CHAR(#Ack.Confirmation);
+	        #Retval := FC_LogMsg(EventID := 3006, EventLevel := 2, EventGroup := 33, LogMsg := DB_LogMsg.LogMsg_10);
+	    END_IF;
+	END_REGION
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

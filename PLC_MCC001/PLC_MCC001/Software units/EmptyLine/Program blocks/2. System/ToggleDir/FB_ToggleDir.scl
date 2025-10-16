@@ -1,0 +1,57 @@
+﻿NAMESPACE EmptyLine
+FUNCTION_BLOCK FB_ToggleDir
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      "J1.5.4" : _.Global.ToggelDir;
+      "Toggle_J1.5.4" : Struct
+         StarightDir : Bool;
+         ArmDir : Bool;
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : FB_Toggel Direction
+	// Project        : Lekarna, Chrudim -PLC001 -MCC001
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION J1.5.4
+	    REGION J1.5.4
+	        #"J1.5.4"(Sensor := IDB_EmptyLine."J1.5.4".FilteredSensor,
+	                  ArmSensor := IDB_EmptyLine."K1.1.1".FilteredSensor,
+	                  StraightSensor :=  IDB_EmptyLine."J1.7.1".FilteredSensor,
+	                  Toggle => #"Toggle_J1.5.4");
+	    END_REGION
+	    
+	    REGION Straight
+	        // Go Straight
+	        IF #"Toggle_J1.5.4".StarightDir THEN
+	            // Statement section IF
+	            ToteDir.Conveyor[_."J1.6.1"].Straight := TRUE;
+	            ToteDir.Conveyor[_."J1.6.1"].toRight := FALSE;
+	            ToteDir.Conveyor[_."J1.6.1"].toLeft := FALSE;
+	        END_IF;
+	    END_REGION
+	    
+	    
+	    REGION GoToLeft
+	        //Go to the left
+	        IF #"Toggle_J1.5.4".ArmDir THEN
+	            // Statement section IF
+	            ToteDir.Conveyor[_."J1.6.1"].Straight := FALSE;
+	            ToteDir.Conveyor[_."J1.6.1"].toRight := FALSE;
+	            ToteDir.Conveyor[_."J1.6.1"].toLeft := TRUE;
+	        END_IF;
+	    END_REGION
+	END_REGION
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

@@ -1,0 +1,100 @@
+﻿NAMESPACE ProductionLine
+FUNCTION FC_LogMsg : Int
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR_INPUT 
+      EventID : Int;
+      EventLevel : Byte;
+      EventGroup : Byte;
+      LogMsg : Variant;
+   END_VAR
+
+   VAR_TEMP 
+      LtLogMsg : Log_LogMsg_Header;
+      LabyAuxBuffer : Array[0..1023] of Byte;
+      LdiMsgPosition : DInt;
+      LdiMsgStartPosition : DInt;
+      LiReturn : Int;
+   END_VAR
+
+   VAR CONSTANT 
+      coSTX : Byte := 16#2;
+      coSOH : Byte := 16#1;
+      coMsgType_Log : Byte := 16#5;
+      LOGMSG_BUFFER_SIZE : Int := 8191;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : OPC_SendReciveAck
+	// Project        : Lekarna, Chrudim -PLC001 -MCC001
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	
+	#LtLogMsg.STX := #coSTX;                              // initialisation of fixed header fields
+	#LtLogMsg.SOH := #coSOH;
+	#LtLogMsg.MsgType := #coMsgType_Log;
+	
+	#LtLogMsg.EventLevel := #EventLevel;                 // write input parameters into message header
+	#LtLogMsg.EventGroup := #EventGroup;
+	#LtLogMsg.EventID := #EventID;
+	
+	#LtLogMsg.MsgLength := 0;                               // initialisation of message length in header
+	#LdiMsgPosition := 0;                                   // initialisation of write position in auxiliary buffer
+	
+	// !!! how to get timestamp with less cycle time consumption ???
+	#LiReturn := RD_LOC_T(#LtLogMsg.Timestamp);            // write system date and time into message header
+	
+	// write message header into auxiliary buffer (message length in header still invalid!)
+	#FC_LogMsg := Serialize(SRC_VARIABLE := #LtLogMsg, DEST_ARRAY => #LabyAuxBuffer, POS := #LdiMsgPosition);
+	IF #FC_LogMsg <> 0 THEN
+	    RETURN;                 // instruction faulted - error status returned in iRetVal
+	END_IF;
+	
+	// write message data into auxiliary buffer
+	#FC_LogMsg := Serialize(SRC_VARIABLE := #LogMsg, DEST_ARRAY => #LabyAuxBuffer, POS := #LdiMsgPosition);
+	IF #FC_LogMsg <> 0 THEN
+	    RETURN;                 // instruction faulted - error status returned in iRetVal
+	END_IF;
+	
+	// check if the message data fits in the buffer
+	IF DB_LogMsg.Write_Position + DINT_TO_INT(#LdiMsgPosition) > #LOGMSG_BUFFER_SIZE THEN
+	    RETURN;
+	END_IF;
+	
+	#LtLogMsg.MsgLength := DINT_TO_INT(#LdiMsgPosition);    // write message length into message header
+	
+	#LabyAuxBuffer[2] := #LtLogMsg.MsgLength.%B0;            // and write it bytewise into appropriate position in auxiliary buffer
+	#LabyAuxBuffer[3] := #LtLogMsg.MsgLength.%B1;
+	
+	// ^^^ REPLACED with previous lines ^^^
+	// overwrite the message header in buffer with valid message length
+	// #LogMsg := Serialize(SRC_VARIABLE := #tHeader, DEST_ARRAY => "LogMsg_DB".abyLogMsg_Buffer, POS := #LdiMsgStartPosition);
+	// IF #LogMsg <> 0 THEN
+	//     RETURN;                 // instruction faulted - error status returned in iRetVal
+	// END_IF;
+	
+	// ! INTERRUPT DISABLED !
+	#LiReturn := DIS_IRT(MODE := 0, OB_NR := 0);
+	
+	MOVE_BLK(IN := #LabyAuxBuffer[0],
+	         COUNT := DINT_TO_ULINT(#LdiMsgPosition),
+	         OUT => DB_LogMsg.abyLogMsg_Buffer[DB_LogMsg.Write_Position]);
+	
+	DB_LogMsg.Write_Position := DB_LogMsg.Write_Position + DINT_TO_INT(#LdiMsgPosition);    // if everything was ok, update the write position in buffer
+	
+	// ! INTERRUPT ENABLE !
+	#LiReturn := EN_IRT(MODE := 0, OB_NR := 0);
+	
+	// !!! all messages since last send are in "LogMsg_DB".abyLogMsg_Buffer - somewhere must be function to send these data to log server
+	// !!! is this safe for interrupt(s) ? and optimal ?
+	// !!! what about sequence number ? should we have one ?
+	// !!! solution for buffer overflow !
+	
+END_FUNCTION
+END_NAMESPACE
+

@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Blocks.InstanceDB ID="0">
+    <AttributeList>
+      <InstanceOfName>ProductionLine.FB_ToggleDir</InstanceOfName>
+      <InstanceOfType>FB</InstanceOfType>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Static">
+    <Member Name="A1.12.1" Datatype="&quot;Global.ToggelDir&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="CurrentExpedtionDirection" Datatype="Struct">
+      <Member Name="Straight" Datatype="Bool" />
+      <Member Name="Left" Datatype="Bool" />
+      <Member Name="None" Datatype="Bool" />
+    </Member>
+    <Member Name="CurrentStraightTableselection" Datatype="Struct">
+      <Member Name="Table1" Datatype="Bool" />
+      <Member Name="Table2" Datatype="Bool" />
+      <Member Name="Table3" Datatype="Bool" />
+      <Member Name="Table4" Datatype="Bool" />
+      <Member Name="Table5" Datatype="Bool" />
+      <Member Name="None" Datatype="Bool" />
+    </Member>
+    <Member Name="CurrentLeftTableselection" Datatype="Struct">
+      <Member Name="Table1" Datatype="Bool" />
+      <Member Name="Table2" Datatype="Bool" />
+      <Member Name="Table3" Datatype="Bool" />
+      <Member Name="Table4" Datatype="Bool" />
+      <Member Name="Table5" Datatype="Bool" />
+      <Member Name="None" Datatype="Bool" />
+    </Member>
+  </Section>
+</Sections></Interface>
+      <Name>IDB_FB_ToggleDir</Name>
+      <Namespace>ProductionLine</Namespace>
+      <Number>47</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="4" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="5" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.InstanceDB>
+</Document>

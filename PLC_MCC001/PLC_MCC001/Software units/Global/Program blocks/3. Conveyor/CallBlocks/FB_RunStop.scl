@@ -1,0 +1,72 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_RunStop
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      StatusReady : Bool;
+      StatusOccu : Bool;
+      MotorReverseIN : Bool;
+      DSOcc : Bool;
+      USOcc : Bool;
+      EnergySave : Bool;
+      ILStop : Bool;
+      PecBlockage : Bool;
+   END_VAR
+
+   VAR_OUTPUT 
+      MotorForward : Bool;
+      MotorReverse : Bool;
+   END_VAR
+
+   VAR 
+      RunRevIN : Bool;
+      RunRev : Bool;
+      RunFor : Bool;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================================================
+	// Company       : LogTech, s.r.o.
+	// Created by    : Anton Vinoth Soundraraj
+	// Block         : FB_RunStop
+	// Project       : LT-Lib-Block
+	// ==========================================================================================================================================================================
+	
+	REGION Run/Stop Forward
+	    
+	    // Run forward
+	    #RunFor := #StatusReady AND NOT #MotorReverseIN AND
+	    ((#StatusOccu AND NOT #DSOcc) OR (NOT #StatusOccu AND #USOcc)
+	    OR #EnergySave) AND NOT #PecBlockage;
+	    
+	    // Stop forward
+	    IF NOT #StatusReady
+	        OR (#StatusOccu AND #DSOcc)
+	        OR #ILStop OR NOT #EnergySave OR #MotorReverseIN
+	        OR #PecBlockage
+	    THEN
+	        #RunFor := FALSE;
+	    END_IF;
+	    
+	    #MotorForward := #RunFor;
+	    
+	END_REGION
+	
+	REGION Run/Stop Reverse
+	    
+	    // Run reverse 
+	    #RunRevIN := #MotorReverseIN;
+	    #RunRev := #StatusReady AND #RunRevIN AND NOT #RunFor;
+	    
+	    // Stop reverse
+	    IF NOT #StatusReady AND NOT #RunRevIN THEN
+	        #RunRev := FALSE;
+	    END_IF;
+	    
+	    #MotorReverse := #RunRev;
+	    
+	END_REGION
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

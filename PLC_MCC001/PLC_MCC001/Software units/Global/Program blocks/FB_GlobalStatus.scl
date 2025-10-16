@@ -1,0 +1,284 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_GlobalStatus
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      Line : Struct
+         ProductionLine { S7_SetPoint := 'False'} : ConveyorStatus;
+         EmptyLine : ConveyorStatus;
+         PackedLine : ConveyorStatus;
+      END_STRUCT;
+      cmp : Struct
+         ProductionTotes_Value0 : Array[_.gminProductionLine.._.gmaxProductionLine] of Bool;
+         ProductionTotes_Value1 : Array[_.gminProductionLine.._.gmaxProductionLine] of Bool;
+         EmptyLine_Value0 : Array[_.gminEmptyLine.._.gmaxEmptyLine] of Bool;
+         EmptyLine_Value1 : Array[_.gminEmptyLine.._.gmaxEmptyLine] of Bool;
+         PackedLine_Value0 : Array[_.gminPackedLine.._.gmaxPackedLine] of Bool;
+         PackedLine_Value1 : Array[_.gminPackedLine.._.gmaxPackedLine] of Bool;
+      END_STRUCT;
+      ForVisu : Struct
+         Line : Struct
+            ProductionLine : Word;
+            EmptyLine : Word;
+            PackedLine : Word;
+         END_STRUCT;
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : FB_GlobalStatus
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION Line ProductionTotes
+	    
+	    REGION Line ProductionLine global status
+	        
+	        // Blockage
+	        // initial status: global BLOCKAGE is deactivated
+	        // If any of the conveyor gets BLOCKAGE status; global blockage -> activated 
+	        #Line.ProductionLine.Blockage :=
+	        NOT (#cmp.ProductionTotes_Value0 = DB_Global.Status.Line.ProductionLine.Blockage);
+	        
+	        // on
+	        // initial status: global ON is activated
+	        // If any of the conveyor gets NOT ON status; global ON -> deactivated  
+	        #Line.ProductionLine.ON :=
+	        (#cmp.ProductionTotes_Value1 = DB_Global.Status.Line.ProductionLine.On);
+	        
+	        // ready to run
+	        // initial status: global READY is activated
+	        // If any of the conveyor gets NOT READY status; global ready -> deactivated 
+	        #Line.ProductionLine.ReadytoRun :=
+	        (#cmp.ProductionTotes_Value1 = DB_Global.Status.Line.ProductionLine.ReadyToRun);
+	        
+	        // occupied
+	        // initial status: global OCCUPIED is activated
+	        // If all the conveyor are OCCUPIED; global OCCUPIED -> activated  
+	        #Line.ProductionLine.ON :=
+	        (#cmp.ProductionTotes_Value1 = DB_Global.Status.Line.ProductionLine.Occupied);
+	        
+	        // fault
+	        // initial status: global FAULT is deactivated
+	        // If any of the conveyor gets FAULT status; global fault -> activated
+	        #Line.ProductionLine.Fault :=
+	        NOT (#cmp.ProductionTotes_Value0 = DB_Global.Status.Line.ProductionLine.Fault);
+	        
+	        // estop
+	        // initial status: global ESTOP is deactivated
+	        // If any of the conveyor gets ESTOP status; global estop -> activated
+	        #Line.ProductionLine.Estop :=
+	        NOT (#cmp.ProductionTotes_Value0 = DB_Global.Status.Line.ProductionLine.Estop);
+	        
+	        // Manual
+	        // initial status: global MANUAL is deactivated
+	        // If any of the conveyor gets MANUAL status; global MANUAL -> activated
+	        #Line.ProductionLine.Manual :=
+	        NOT (#cmp.ProductionTotes_Value0 = DB_Global.Status.Line.ProductionLine.Manual);
+	        
+	        // stop
+	        // initial status: global STOP is deactivated
+	        // If any of the conveyor gets STOP status; global stop -> activated
+	        #Line.ProductionLine.Stop :=
+	        NOT (#cmp.ProductionTotes_Value0 = DB_Global.Status.Line.ProductionLine.Stop);
+	        
+	    END_REGION
+	    
+	    REGION Line ProductionLine color for HMI
+	        
+	        // each and every status of the conveyor will be mentioned by different colors in HMI panel
+	        
+	        #ForVisu.Line.ProductionLine.%X8 := #Line.ProductionLine.Blockage;
+	        #ForVisu.Line.ProductionLine.%X0 := #Line.ProductionLine.ON;
+	        #ForVisu.Line.ProductionLine.%X1 := #Line.ProductionLine.ReadytoRun;
+	        #ForVisu.Line.ProductionLine.%X2 := #Line.ProductionLine.Occupied;
+	        #ForVisu.Line.ProductionLine.%X3 := #Line.ProductionLine.Running;
+	        #ForVisu.Line.ProductionLine.%X4 := #Line.ProductionLine.Fault;
+	        #ForVisu.Line.ProductionLine.%X5 := #Line.ProductionLine.Estop;
+	        #ForVisu.Line.ProductionLine.%X6 := #Line.ProductionLine.Manual;
+	        #ForVisu.Line.ProductionLine.%X7 := #Line.ProductionLine.Stop;
+	        
+	        // convert word to Interger value: 
+	        // color will be depends on the status priority (integer value) 
+	        // reference: Conveyor image in HMI screen -> property -> Apperance   
+	        
+	        DB_VisuColor.Line.ProductionLine.GlobalStatus :=
+	        WORD_TO_INT(#ForVisu.Line.ProductionLine);
+	        
+	    END_REGION
+	    
+	END_REGION
+	
+	REGION Line EmptyLine
+	    
+	    REGION Line EmptyLine global status
+	        
+	        // Blockage
+	        // initial status: global BLOCKAGE is deactivated
+	        // If any of the conveyor gets BLOCKAGE status; global blockage -> activated 
+	        #Line.EmptyLine.Blockage :=
+	        NOT (#cmp.EmptyLine_Value0 =DB_Global.Status.Line.EmptyLine.Blockage);
+	        
+	        // on
+	        // initial status: global ON is activated
+	        // If any of the conveyor gets NOT ON status; global ON -> deactivated  
+	        #Line.EmptyLine.ON :=
+	        (#cmp.EmptyLine_Value1 = DB_Global.Status.Line.EmptyLine.On);
+	        
+	        // ready to run
+	        // initial status: global READY is activated
+	        // If any of the conveyor gets NOT READY status; global ready -> deactivated 
+	        #Line.EmptyLine.ReadytoRun :=
+	        (#cmp.EmptyLine_Value1 = DB_Global.Status.Line.EmptyLine.ReadyToRun);
+	        
+	        // occupied
+	        // initial status: global OCCUPIED is activated
+	        // If all the conveyor are OCCUPIED; global OCCUPIED -> activated  
+	        #Line.EmptyLine.ON :=
+	        (#cmp.EmptyLine_Value1 =DB_Global.Status.Line.EmptyLine.Occupied);
+	        
+	        // fault
+	        // initial status: global FAULT is deactivated
+	        // If any of the conveyor gets FAULT status; global fault -> activated
+	        #Line.EmptyLine.Fault :=
+	        NOT (#cmp.EmptyLine_Value0 = DB_Global.Status.Line.EmptyLine.Fault);
+	        
+	        // estop
+	        // initial status: global ESTOP is deactivated
+	        // If any of the conveyor gets ESTOP status; global estop -> activated
+	        #Line.EmptyLine.Estop :=
+	        NOT (#cmp.EmptyLine_Value0 = DB_Global.Status.Line.EmptyLine.Estop);
+	        
+	        // Manual
+	        // initial status: global MANUAL is deactivated
+	        // If any of the conveyor gets MANUAL status; global MANUAL -> activated
+	        #Line.EmptyLine.Manual :=
+	        NOT (#cmp.EmptyLine_Value0 = DB_Global.Status.Line.EmptyLine.Manual);
+	        
+	        // stop
+	        // initial status: global STOP is deactivated
+	        // If any of the conveyor gets STOP status; global stop -> activated
+	        #Line.EmptyLine.Stop :=
+	        NOT (#cmp.EmptyLine_Value0 = DB_Global.Status.Line.EmptyLine.Stop);
+	        
+	    END_REGION
+	    
+	    REGION Line EmptyLine color for HMI
+	        
+	        // each and every status of the conveyor will be mentioned by different colors in HMI panel
+	        
+	        #ForVisu.Line.EmptyLine.%X8 := #Line.EmptyLine.Blockage;
+	        // for future
+	        (* OR
+	        "IDB_KeyenceBP-I".TriggerSensorBlocked OR
+	        "IDB_HeightSensor".BlockageActive *)
+	        #ForVisu.Line.EmptyLine.%X0 := #Line.EmptyLine.ON;
+	        #ForVisu.Line.EmptyLine.%X1 := #Line.EmptyLine.ReadytoRun;
+	        #ForVisu.Line.EmptyLine.%X2 := #Line.EmptyLine.Occupied;
+	        #ForVisu.Line.EmptyLine.%X3 := #Line.EmptyLine.Running;
+	        #ForVisu.Line.EmptyLine.%X4 := #Line.EmptyLine.Fault;
+	        #ForVisu.Line.EmptyLine.%X5 := #Line.EmptyLine.Estop;
+	        #ForVisu.Line.EmptyLine.%X6 := #Line.EmptyLine.Manual;
+	        #ForVisu.Line.EmptyLine.%X7 := #Line.EmptyLine.Stop;
+	        
+	        // convert word to Interger value: 
+	        // color will be depends on the status priority (integer value) 
+	        // reference: Conveyor image in HMI screen -> property -> Apperance   
+	        
+	        DB_VisuColor.Line.EmptyLine.GlobalStatus :=
+	        WORD_TO_INT(#ForVisu.Line.EmptyLine);
+	        
+	    END_REGION
+	    
+	END_REGION
+	
+	REGION Line PackedLine
+	    
+	    REGION Line PackedLine global status
+	        
+	        // Blockage
+	        // initial status: global BLOCKAGE is deactivated
+	        // If any of the conveyor gets BLOCKAGE status; global blockage -> activated 
+	        #Line.PackedLine.Blockage :=
+	        NOT (#cmp.PackedLine_Value0 = DB_Global.Status.Line.PackedLine.Blockage);
+	        
+	        // on
+	        // initial status: global ON is activated
+	        // If any of the conveyor gets NOT ON status; global ON -> deactivated  
+	        #Line.PackedLine.ON :=
+	        (#cmp.PackedLine_Value1 = DB_Global.Status.Line.PackedLine.On);
+	        
+	        // ready to run
+	        // initial status: global READY is activated
+	        // If any of the conveyor gets NOT READY status; global ready -> deactivated 
+	        #Line.PackedLine.ReadytoRun :=
+	        (#cmp.PackedLine_Value1 = DB_Global.Status.Line.PackedLine.ReadyToRun);
+	        
+	        // occupied
+	        // initial status: global OCCUPIED is activated
+	        // If all the conveyor are OCCUPIED; global OCCUPIED -> activated  
+	        #Line.PackedLine.ON :=
+	        (#cmp.PackedLine_Value1 = DB_Global.Status.Line.PackedLine.Occupied);
+	        
+	        // fault
+	        // initial status: global FAULT is deactivated
+	        // If any of the conveyor gets FAULT status; global fault -> activated
+	        #Line.PackedLine.Fault :=
+	        NOT (#cmp.PackedLine_Value0 = DB_Global.Status.Line.PackedLine.Fault);
+	        
+	        // estop
+	        // initial status: global ESTOP is deactivated
+	        // If any of the conveyor gets ESTOP status; global estop -> activated
+	        #Line.PackedLine.Estop :=
+	        NOT (#cmp.PackedLine_Value0 = DB_Global.Status.Line.PackedLine.Estop);
+	        
+	        // Manual
+	        // initial status: global MANUAL is deactivated
+	        // If any of the conveyor gets MANUAL status; global MANUAL -> activated
+	        #Line.PackedLine.Manual :=
+	        NOT (#cmp.PackedLine_Value0 = DB_Global.Status.Line.PackedLine.Manual);
+	        
+	        // stop
+	        // initial status: global STOP is deactivated
+	        // If any of the conveyor gets STOP status; global stop -> activated
+	        #Line.PackedLine.Stop :=
+	        NOT (#cmp.PackedLine_Value0 = DB_Global.Status.Line.PackedLine.Stop);
+	        
+	    END_REGION
+	    
+	    REGION Line EmptyLine color for HMI
+	        
+	        // each and every status of the conveyor will be mentioned by different colors in HMI panel
+	        
+	        #ForVisu.Line.PackedLine.%X8 := #Line.PackedLine.Blockage;
+	        // for future
+	        (* OR
+	        "IDB_KeyenceBP-I".TriggerSensorBlocked OR
+	        "IDB_HeightSensor".BlockageActive *)
+	        #ForVisu.Line.PackedLine.%X0 := #Line.PackedLine.ON;
+	        #ForVisu.Line.PackedLine.%X1 := #Line.PackedLine.ReadytoRun;
+	        #ForVisu.Line.PackedLine.%X2 := #Line.PackedLine.Occupied;
+	        #ForVisu.Line.PackedLine.%X3 := #Line.PackedLine.Running;
+	        #ForVisu.Line.PackedLine.%X4 := #Line.PackedLine.Fault;
+	        #ForVisu.Line.PackedLine.%X5 := #Line.PackedLine.Estop;
+	        #ForVisu.Line.PackedLine.%X6 := #Line.PackedLine.Manual;
+	        #ForVisu.Line.PackedLine.%X7 := #Line.PackedLine.Stop;
+	        
+	        // convert word to Interger value: 
+	        // color will be depends on the status priority (integer value) 
+	        // reference: Conveyor image in HMI screen -> property -> Apperance   
+	        
+	        DB_VisuColor.Line.PackedLine.GlobalStatus :=
+	        WORD_TO_INT(#ForVisu.Line.PackedLine);
+	        
+	    END_REGION
+	    
+	END_REGION
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

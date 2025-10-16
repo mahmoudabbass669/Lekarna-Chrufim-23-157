@@ -1,0 +1,101 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Blocks.GlobalDB ID="0">
+    <AttributeList>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Static">
+    <Member Name="Write_Position" Datatype="Int" />
+    <Member Name="abyLogMsg_Buffer" Datatype="Array[0..8191] of Byte" />
+    <Member Name="LogMsg_1" Datatype="Struct">
+      <Member Name="Para_BYTE_02" Datatype="&quot;ProductionLine.Log_Data_Byte_Decimal&quot;" />
+    </Member>
+    <Member Name="LogMsg_2" Datatype="Struct">
+      <Member Name="Para_BYTE_02" Datatype="&quot;ProductionLine.Log_Data_Byte_Decimal&quot;" />
+    </Member>
+    <Member Name="LogMsg_3" Datatype="Struct">
+      <Member Name="Para_BYTE_02" Datatype="&quot;ProductionLine.Log_Data_Byte_Decimal&quot;" />
+    </Member>
+    <Member Name="LogMsg_4" Datatype="Struct">
+      <Member Name="Para_STRING_01" Datatype="&quot;ProductionLine.Log_Data_String20&quot;" />
+      <Member Name="Para_BYTE_02" Datatype="&quot;ProductionLine.Log_Data_Byte_Decimal&quot;" />
+      <Member Name="Para_STRING_05" Datatype="&quot;ProductionLine.Log_Data_String20&quot;" />
+    </Member>
+    <Member Name="LogMsg_5" Datatype="Struct">
+      <Member Name="Para_STRING_01" Datatype="&quot;ProductionLine.Log_Data_String20&quot;" />
+      <Member Name="Para_BYTE_02" Datatype="&quot;ProductionLine.Log_Data_Byte_Decimal&quot;" />
+      <Member Name="Para_STRING_03" Datatype="&quot;ProductionLine.Log_Data_String20&quot;" />
+      <Member Name="Para_STRING_05" Datatype="&quot;ProductionLine.Log_Data_String20&quot;" />
+    </Member>
+    <Member Name="LogMsg_6" Datatype="Struct">
+      <Member Name="Para_STRING_01" Datatype="&quot;ProductionLine.Log_Data_String20&quot;" />
+      <Member Name="Para_BYTE_02" Datatype="&quot;ProductionLine.Log_Data_Byte_Decimal&quot;" />
+    </Member>
+    <Member Name="LogMsg_7" Datatype="Struct">
+      <Member Name="Para_STRING_01" Datatype="&quot;ProductionLine.Log_Data_String20&quot;" />
+      <Member Name="Para_BYTE_02" Datatype="&quot;ProductionLine.Log_Data_Byte_Decimal&quot;" />
+      <Member Name="Para_STRING_03" Datatype="&quot;ProductionLine.Log_Data_String20&quot;" />
+      <Member Name="Para_STRING_04" Datatype="&quot;ProductionLine.Log_Data_String20&quot;" />
+    </Member>
+    <Member Name="LogMsg_8" Datatype="Struct">
+      <Member Name="Para_STRING_01" Datatype="&quot;ProductionLine.Log_Data_String20&quot;" />
+      <Member Name="Para_BYTE_02" Datatype="&quot;ProductionLine.Log_Data_Byte_Decimal&quot;" />
+    </Member>
+    <Member Name="LogMsg_9" Datatype="Struct">
+      <Member Name="Para_STRING_01" Datatype="&quot;ProductionLine.Log_Data_String20&quot;" />
+      <Member Name="Para_BYTE_02" Datatype="&quot;ProductionLine.Log_Data_Byte_Decimal&quot;" />
+      <Member Name="Para_STRING_03" Datatype="&quot;ProductionLine.Log_Data_String20&quot;" />
+      <Member Name="Para_STRING_04" Datatype="&quot;ProductionLine.Log_Data_String20&quot;" />
+      <Member Name="Para_STRING_05" Datatype="&quot;ProductionLine.Log_Data_String20&quot;" />
+    </Member>
+    <Member Name="LogMsg_10" Datatype="Struct">
+      <Member Name="Para_STRING_01" Datatype="&quot;ProductionLine.Log_Data_String20&quot;" />
+      <Member Name="Para_BYTE_02" Datatype="&quot;ProductionLine.Log_Data_Byte_Decimal&quot;" />
+      <Member Name="Para_STRING_03" Datatype="&quot;ProductionLine.Log_Data_String20&quot;" />
+      <Member Name="Para_STRING_04" Datatype="&quot;ProductionLine.Log_Data_String20&quot;" />
+      <Member Name="Para_CHAR_05" Datatype="&quot;ProductionLine.Log_Data_Char&quot;" />
+    </Member>
+  </Section>
+</Sections></Interface>
+      <MemoryReserve>100</MemoryReserve>
+      <Name>DB_LogMsg</Name>
+      <Namespace>ProductionLine</Namespace>
+      <Number>39</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="4" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="5" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.GlobalDB>
+</Document>

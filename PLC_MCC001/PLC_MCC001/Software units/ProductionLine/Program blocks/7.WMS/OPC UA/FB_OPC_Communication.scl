@@ -1,0 +1,253 @@
+﻿NAMESPACE ProductionLine
+FUNCTION_BLOCK FB_OPC_Communication
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      Communication_DP1 { S7_SetPoint := 'False'} : FB_OPC_DestRequest;
+      Communication_DP2 { S7_SetPoint := 'False'} : FB_OPC_DestRequest;
+      Communication_DP3 { S7_SetPoint := 'False'} : FB_OPC_DestRequest;
+      Communication_DP4 { S7_SetPoint := 'False'} : FB_OPC_DestRequest;
+      Communication_IP1 { S7_SetPoint := 'False'} : FB_OPC_DestInfo;
+      Communication_IP2 { S7_SetPoint := 'False'} : FB_OPC_DestInfo;
+      Communication_IP3 { S7_SetPoint := 'False'} : FB_OPC_DestInfo;
+      Communication_IP4 { S7_SetPoint := 'False'} : FB_OPC_DestInfo;
+      Communication_IP5 { S7_SetPoint := 'False'} : FB_OPC_DestInfo;
+      Communication_IP6 { S7_SetPoint := 'False'} : FB_OPC_DestInfo;
+      Communication_IP7 { S7_SetPoint := 'False'} : FB_OPC_DestInfo;
+      Communication_IP8 { S7_SetPoint := 'False'} : FB_OPC_DestInfo;
+      Communication_IP9 { S7_SetPoint := 'False'} : FB_OPC_DestInfo;
+      Communication_SYS_OP { S7_SetPoint := 'False'} : FB_OPC_SysStatus;
+      Communication_SYS_OP_Source : OPC_SystemStatus;
+      Communication_SYS_OP_Ack : OPC_SystStatus_Ack;
+      timPeriodicSend {InstructionName := 'IEC_TIMER'; LibVersion := '1.0'} : IEC_TIMER;
+      timWatchdog {InstructionName := 'IEC_TIMER'; LibVersion := '1.0'} : IEC_TIMER;
+      Communication_fault : Bool;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : FB_OPC_Communication
+	// Project        : Lekarna, Chrudim -PLC001 -MCC001
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	//------------------------------------------------------
+	// Initialization
+	//------------------------------------------------------
+	
+	REGION Initialization
+	    // Initialization section to reset the sequence numbers at the first scan
+	    IF _.DB_Sync.memoryBit.FirstScan THEN
+	        OPC_Data.DP1.DestRequest.Source.SourceSeq := 0;
+	        OPC_Data.DP2.DestRequest.Source.SourceSeq := 0;
+	        OPC_Data.DP3.DestRequest.Source.SourceSeq := 0;
+	        OPC_Data.DP4.DestRequest.Source.SourceSeq := 0;
+	        OPC_Data.IP1.DestInfo.Source.SourceSeq := 0;
+	        OPC_Data.IP2.DestInfo.Source.SourceSeq := 0;
+	        OPC_Data.IP3.DestInfo.Source.SourceSeq := 0;
+	        OPC_Data.IP4.DestInfo.Source.SourceSeq := 0;
+	        OPC_Data.IP5.DestInfo.Source.SourceSeq := 0;
+	        OPC_Data.IP6.DestInfo.Source.SourceSeq := 0;
+	        OPC_Data.IP7.DestInfo.Source.SourceSeq := 0;
+	        OPC_Data.IP8.DestInfo.Source.SourceSeq := 0;
+	        OPC_Data.IP9.DestInfo.Source.SourceSeq := 0;
+	    END_IF;
+	END_REGION
+	
+	//------------------------------------------------------
+	// Handle destination request/ destination Information communication
+	//------------------------------------------------------
+	
+	REGION DP1- DestRequest
+	    // Handle destination request communication for DP1
+	    #Communication_DP1(Source := OPC_Data.DP1.DestRequest.Source,
+	                       Ack := OPC_Data.DP1.DestRequest.Ack);
+	    
+	END_REGION
+	
+	
+	REGION DP2- DestRequest
+	    // Handle destination request communication for DP2
+	    #Communication_DP2(Source := OPC_Data.DP2.DestRequest.Source,
+	                       Ack := OPC_Data.DP2.DestRequest.Ack);
+	END_REGION
+	
+	
+	REGION DP3- DestRequest
+	    // Handle destination request communication for DP3
+	    #Communication_DP3(Source := OPC_Data.DP3.DestRequest.Source,
+	                       Ack := OPC_Data.DP3.DestRequest.Ack);
+	END_REGION
+	
+	
+	REGION DP4- DestRequest
+	    // Handle destination request communication for DP4
+	    #Communication_DP4(Source := OPC_Data.DP4.DestRequest.Source,
+	                       Ack := OPC_Data.DP4.DestRequest.Ack);
+	END_REGION
+	
+	REGION DS1- DestRequest
+	    // Handle destination information communication for DS1
+	    #Communication_IP1(Source := OPC_Data.IP1.DestInfo.Source,
+	                       Ack := OPC_Data.IP1.DestInfo.Ack);
+	END_REGION
+	
+	
+	REGION DS2- DestRequest
+	    // Handle destination information communication for DS2
+	    #Communication_IP2(Source := OPC_Data.IP2.DestInfo.Source,
+	                       Ack := OPC_Data.IP2.DestInfo.Ack);
+	END_REGION
+	
+	
+	REGION DS3- DestRequest
+	    // Handle destination information communication for DS3
+	    #Communication_IP3(Source := OPC_Data.IP3.DestInfo.Source,
+	                       Ack := OPC_Data.IP3.DestInfo.Ack);
+	END_REGION
+	
+	
+	REGION DS4- DestRequest
+	    // Handle destination information communication for DS4
+	    #Communication_IP4(Source := OPC_Data.IP4.DestInfo.Source,
+	                       Ack := OPC_Data.IP4.DestInfo.Ack);
+	END_REGION
+	
+	REGION DS5- DestRequest
+	    // Handle destination information communication for DS4
+	    #Communication_IP5(Source := OPC_Data.IP5.DestInfo.Source,
+	                       Ack := OPC_Data.IP5.DestInfo.Ack);
+	END_REGION
+	
+	REGION DS6- DestRequest
+	    // Handle destination information communication for DS4
+	    #Communication_IP6(Source := OPC_Data.IP6.DestInfo.Source,
+	                       Ack := OPC_Data.IP6.DestInfo.Ack);
+	END_REGION
+	
+	REGION DS7- DestRequest
+	    // Handle destination information communication for DS4
+	    #Communication_IP7(Source := OPC_Data.IP7.DestInfo.Source,
+	                       Ack := OPC_Data.IP7.DestInfo.Ack);
+	END_REGION
+	
+	REGION DS8- DestRequest
+	    // Handle destination information communication for DS4
+	    #Communication_IP8(Source := OPC_Data.IP8.DestInfo.Source,
+	                       Ack := OPC_Data.IP8.DestInfo.Ack);
+	END_REGION
+	
+	REGION DS9- DestRequest
+	    // Handle destination information communication for DS4
+	    #Communication_IP9(Source := OPC_Data.IP9.DestInfo.Source,
+	                       Ack := OPC_Data.IP9.DestInfo.Ack);
+	END_REGION
+	
+	//------------------------------------------------------
+	//Handle communication for overall system operation status
+	//------------------------------------------------------
+	
+	REGION  SystStatus
+	    // Statement section REGION
+	    #Communication_SYS_OP(Source:=#Communication_SYS_OP_Source,
+	                          Ack:=#Communication_SYS_OP_Ack);
+	    
+	END_REGION
+	
+	
+	//------------------------------------------------------
+	// Heart Beats
+	//------------------------------------------------------
+	
+	REGION SYS Position - SystStatus
+	    // // Periodic communication trigger for system status data (SYS_OP)
+	    IF NOT #timPeriodicSend.Q THEN
+	        #Communication_SYS_OP.Comm.Send := TRUE;
+	    END_IF;
+	    
+	    #timPeriodicSend.TON(IN := #Communication_SYS_OP.Comm.Send AND
+	                               #Communication_SYS_OP.Comm.Send_prev,
+	                         PT := T#10s);
+	    IF #timPeriodicSend.Q THEN
+	        #Communication_SYS_OP.Comm.Send := FALSE;
+	    END_IF;
+	
+	END_REGION
+	
+	//Periodic Counter, incremented every 10 seconds.
+	//IF one side does NOT increment the counter within 30 seconds,
+	//it will be considered offline BY the other side.
+	REGION Watchdog
+	    
+	    OPC_Data.Watchdog.Keep_Alive_PLC := #Communication_SYS_OP.Comm.SourceSeq;
+	    
+	    #Communication_SYS_OP.Comm.AckSeq := OPC_Data.Watchdog.Keep_Alive_WMS;
+	    
+	END_REGION
+	
+	
+	REGION Communication Fault
+	    
+	    #timWatchdog.TON(IN :=  #Communication_SYS_OP.Comm.SourceSeq <> #Communication_SYS_OP.Comm.AckSeq ,
+	                          PT := T#30s);
+	    
+	    IF #timWatchdog.Q THEN
+	        #Communication_fault := TRUE;
+	    ELSE
+	        #Communication_fault := FALSE;
+	    END_IF;
+	    
+	END_REGION
+	
+	//------------------------------------------------------
+	// Status of Segment for WMS
+	//------------------------------------------------------
+	
+	REGION Status OF Segment FOR WMS
+	    // Status of Segment for WMS
+	    //Update system status based on Flow Rack Loop status
+	    IF IDB_Segments_Status.FlowRackLoopReadyToRun THEN
+	        // If conveyor is ready, set OPC system status to '1'
+	        OPC_Data.Status.Segment.FlowRackLoop := 1;
+	    ELSE
+	        // If not ready, set system status to '0'
+	        OPC_Data.Status.Segment.FlowRackLoop := 0;
+	    END_IF;
+	    
+	    IF IDB_Segments_Status.FlowRackWorkPlaceRightReadyToRun THEN
+	        OPC_Data.Status.Segment.FlowRackWorkplaceRight := 1;
+	    ELSE
+	        OPC_Data.Status.Segment.FlowRackWorkplaceRight := 0;
+	    END_IF;
+	    
+	    IF IDB_Segments_Status.FlowRackWorkPlaceLeftReadyToRun THEN
+	        OPC_Data.Status.Segment.FlowRackWorkplaceLeft := 1;
+	    ELSE
+	        OPC_Data.Status.Segment.FlowRackWorkplaceLeft := 0;
+	    END_IF;
+	    
+	    IF IDB_Segments_Status.FragileloopReadyToRun THEN
+	        OPC_Data.Status.Segment.FragileLoop := 1;
+	    ELSE
+	        OPC_Data.Status.Segment.FragileLoop := 0;
+	    END_IF;
+	    
+	END_REGION
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

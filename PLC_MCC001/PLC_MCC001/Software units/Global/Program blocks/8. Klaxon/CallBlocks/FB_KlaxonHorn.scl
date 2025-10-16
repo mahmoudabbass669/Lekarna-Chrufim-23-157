@@ -1,0 +1,92 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_KlaxonHorn
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      Start : Bool;
+      Stop : Bool;
+      GlobalFault : Bool;
+      GlobalBlockage : Bool;
+      EstopActive : Bool;
+      Fire : Bool;
+   END_VAR
+
+   VAR_OUTPUT 
+      HornActive : Bool;
+   END_VAR
+
+   VAR 
+      RT_Start {InstructionName := 'R_TRIG'; LibVersion := '1.0'; S7_SetPoint := 'False'} : R_TRIG;
+      RT_Stop {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      RT_Estop {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      RT_Fault {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      RT_Blockage {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      RT_Fire {InstructionName := 'R_TRIG'; LibVersion := '1.0'} : R_TRIG;
+      KlaxonHornTimer {InstructionName := 'IEC_TIMER'; LibVersion := '1.0'; S7_SetPoint := 'False'} : IEC_TIMER;
+      KlaxonHornCondition { S7_SetPoint := 'True'} : Bool;
+      HornCondition : Bool;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================================================
+	// Company      : LogTech, s.r.o.
+	// Created by   : Anton Vinoth Soundraraj
+	// Project      : LT-Lib-Block
+	// Block        : FB_KlaxonHorn
+	// ==========================================================================================================================================================================
+	
+	REGION Horn
+	    
+	    // trigger kaxon horn: rising trigger of start
+	    #RT_Start(CLK := #Start);
+	    // trigger kaxon horn: rising trigger of stop
+	    #RT_Stop(CLK := #Stop);
+	    // trigger kaxon horn: rising trigger of fault
+	    #RT_Fault(CLK := #GlobalFault);
+	    // trigger kaxon horn: rising trigger of blockage
+	    #RT_Blockage(CLK := #GlobalBlockage);
+	    // trigger kaxon horn: rising trigger of estop
+	    #RT_Estop(CLK := #EstopActive);
+	    // trigger kaxon horn: rising trigger of fire
+	    #RT_Fire(CLK := #Fire);
+	    
+	    // --------------
+	    // Horn condition
+	    // --------------
+	    
+	    #HornCondition :=
+	    #RT_Start.Q OR
+	    #RT_Stop.Q OR
+	    #RT_Fire.Q OR
+	    #RT_Fault.Q OR
+	    #RT_Estop.Q OR
+	    #RT_Fire.Q;
+	    
+	    // -------------------
+	    // Horn alert duration
+	    // -------------------
+	    
+	    #KlaxonHornTimer.TOF(IN := #HornCondition,
+	                         PT := t#5s);
+	    
+	    #HornActive :=
+	    #KlaxonHornTimer.Q;
+	    
+	END_REGION
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

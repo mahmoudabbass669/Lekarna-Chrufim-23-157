@@ -1,0 +1,413 @@
+﻿NAMESPACE ProductionLine
+FUNCTION_BLOCK FB_Technology
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      IP11 : String := 'IP11';
+      IP12 : String := 'IP12';
+      IP21 : String := 'IP21';
+      IP22 : String := 'IP22';
+      IP23 : String := 'IP23';
+      IP31 : String := 'IP31';
+      IP32 : String := 'IP32';
+      IP41 : String := 'IP41';
+      IP42 : String := 'IP42';
+      ComDownStream : Struct
+         DP1 : Bool;
+         DP2 : Bool;
+         DP3 : Bool;
+         DP4 : Bool;
+      END_STRUCT;
+      ComTimmerDP1 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      ComTimmerDP2 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      ComTimmerDP3 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      ComTimmerDP4 {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : FB_OPC_Communication
+	// Project        : Lekarna, Chrudim -PLC001 -MCC001
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION Destination request TO WMS
+	    // Send destination request to WMS
+	    REGION DP1
+	        IF IDB_BarcodeReader.DP1."Dataman-Results Available" OR
+	            IDB_ProductionLine."A1.5.1".CONVEYOR_SENSOR.PosEdge.Q
+	        THEN
+	            OPC_Data.DP1.DestRequest.Source.Barcode := IDB_BarcodeReader.DP1.ResultStr;
+	            IDB_OPC_Communication.Communication_DP1.Communication.Send := TRUE;
+	            #ComDownStream.DP1 := TRUE;
+	        ELSIF (IDB_OPC_Communication.Communication_DP1.Communication.SourceSeq =
+	            IDB_OPC_Communication.Communication_DP1.Communication.AckSeq)
+	            OR #ComTimmerDP1.Q
+	        THEN
+	            IDB_OPC_Communication.Communication_DP1.Communication.Send := FALSE;
+	        END_IF;
+	         
+	    END_REGION
+	    
+	    REGION DP2
+	        IF IDB_BarcodeReader.DP2."Dataman-Results Available" OR
+	            IDB_ProductionLine."B1.9.1".CONVEYOR_SENSOR.PosEdge.Q
+	        THEN
+	            OPC_Data.DP2.DestRequest.Source.Barcode := IDB_BarcodeReader.DP2.ResultStr;
+	            IDB_OPC_Communication.Communication_DP2.Communication.Send := TRUE;
+	            #ComDownStream.DP2 := TRUE;
+	        ELSIF (IDB_OPC_Communication.Communication_DP2.Communication.SourceSeq =
+	            IDB_OPC_Communication.Communication_DP2.Communication.AckSeq)
+	            OR #ComTimmerDP2.Q
+	        THEN
+	            IDB_OPC_Communication.Communication_DP2.Communication.Send := FALSE;
+	        END_IF;
+	    END_REGION
+	    
+	    REGION DP3
+	        IF IDB_BarcodeReader.DP3."Dataman-Results Available" OR
+	            IDB_ProductionLine."B1.17.1".CONVEYOR_SENSOR.PosEdge.Q
+	        THEN
+	            OPC_Data.DP3.DestRequest.Source.Barcode := IDB_BarcodeReader.DP3.ResultStr;
+	            IDB_OPC_Communication.Communication_DP3.Communication.Send := TRUE;
+	            #ComDownStream.DP3 := TRUE;
+	        ELSIF (IDB_OPC_Communication.Communication_DP3.Communication.SourceSeq =
+	            IDB_OPC_Communication.Communication_DP3.Communication.AckSeq)
+	            OR #ComTimmerDP3.Q
+	        THEN
+	            IDB_OPC_Communication.Communication_DP3.Communication.Send := FALSE;
+	        END_IF;
+	    END_REGION
+	    
+	    REGION DP4
+	        IF IDB_BarcodeReader.DP4."Dataman-Results Available" OR
+	            IDB_ProductionLine."A1.7.4".CONVEYOR_SENSOR.PosEdge.Q
+	        THEN
+	            OPC_Data.DP4.DestRequest.Source.Barcode := IDB_BarcodeReader.DP4.ResultStr;
+	            IDB_OPC_Communication.Communication_DP4.Communication.Send := TRUE;
+	            #ComDownStream.DP4 := TRUE;
+	        ELSIF (IDB_OPC_Communication.Communication_DP4.Communication.SourceSeq =
+	            IDB_OPC_Communication.Communication_DP4.Communication.AckSeq)
+	            OR #ComTimmerDP4.Q
+	        THEN
+	            IDB_OPC_Communication.Communication_DP4.Communication.Send := FALSE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	END_REGION
+	
+	REGION Wait FOR data from WMS
+	    // Wait for data from WMS
+	    REGION Mabs A1.6.1 & A1.6.2 Dir
+	        IF IDB_OPC_Communication.Communication_DP1.Communication.New_Ack_received THEN
+	            //IDB_OPC_Communication.Communication_DP1.Communication.New_Ack_received := FALSE;
+	            #ComDownStream.DP1 := FALSE;
+	            IF OPC_Data.DP1.DestRequest.Ack.Destination = #IP11 THEN
+	                DB_ToteTracking.Conveyor[_."A1.5.1"].ToteDir.Straight := TRUE;
+	                DB_ToteTracking.Conveyor[_."A1.5.1"].ToteDir.toRight := FALSE;
+	                DB_ToteTracking.Conveyor[_."A1.2.1"].ToteDir.toLeft := FALSE;
+	            ELSIF
+	                OPC_Data.DP1.DestRequest.Ack.Destination = #IP12 THEN
+	                DB_ToteTracking.Conveyor[_."A1.5.1"].ToteDir.toRight := TRUE;
+	                DB_ToteTracking.Conveyor[_."A1.5.1"].ToteDir.Straight := FALSE;
+	                DB_ToteTracking.Conveyor[_."A1.5.1"].ToteDir.toLeft := FALSE;
+	            ELSE
+	                DB_ToteTracking.Conveyor[_."A1.5.1"].ToteDir.Straight := FALSE;
+	                DB_ToteTracking.Conveyor[_."A1.5.1"].ToteDir.toRight := FALSE;
+	                DB_ToteTracking.Conveyor[_."A1.5.1"].ToteDir.toLeft := FALSE;
+	            END_IF;
+	        END_IF;
+	    END_REGION
+	    
+	    REGION Transfer Unit B1.10.1 Dir
+	        IF IDB_OPC_Communication.Communication_DP2.Communication.New_Ack_received THEN
+	            //IDB_OPC_Communication.Communication_DP2.Communication.New_Ack_received := FALSE;
+	            #ComDownStream.DP2 := FALSE;
+	            IF  OPC_Data.DP2.DestRequest.Ack.Destination = #IP21 THEN
+	                DB_ToteTracking.Conveyor[_."B1.9.1"].ToteDir.Straight := TRUE;
+	                DB_ToteTracking.Conveyor[_."B1.9.1"].ToteDir.toRight := FALSE;
+	                DB_ToteTracking.Conveyor[_."B1.9.1"].ToteDir.toLeft := FALSE;
+	            ELSIF
+	                (OPC_Data.DP2.DestRequest.Ack.Destination = #IP22 OR
+	                OPC_Data.DP2.DestRequest.Ack.Destination = #IP23) THEN
+	                DB_ToteTracking.Conveyor[_."B1.9.1"].ToteDir.toRight := TRUE;
+	                DB_ToteTracking.Conveyor[_."B1.9.1"].ToteDir.Straight := FALSE;
+	                DB_ToteTracking.Conveyor[_."B1.9.1"].ToteDir.toLeft := FALSE;
+	                //Transfer Unit C1.1.3 Dir
+	                IF OPC_Data.DP2.DestRequest.Ack.Destination = #IP22 THEN
+	                    DB_ToteTracking.Transfer[_."B1.9.1"].Straight := FALSE;
+	                    DB_ToteTracking.Transfer[_."B1.9.1"].toRight := TRUE;
+	                    DB_ToteTracking.Transfer[_."B1.9.1"].toLeft := FALSE;
+	                ELSIF  OPC_Data.DP2.DestRequest.Ack.Destination = #IP23 THEN
+	                    DB_ToteTracking.Transfer[_."B1.9.1"].toRight := FALSE;
+	                    DB_ToteTracking.Transfer[_."B1.9.1"].Straight := FALSE;
+	                    DB_ToteTracking.Transfer[_."B1.9.1"].toLeft := TRUE;
+	                ELSE
+	                    DB_ToteTracking.Transfer[_."B1.9.1"].Straight := FALSE;
+	                    DB_ToteTracking.Transfer[_."B1.9.1"].toRight := FALSE;
+	                    DB_ToteTracking.Transfer[_."B1.9.1"].toLeft := FALSE;
+	                END_IF;
+	                
+	            ELSE
+	                DB_ToteTracking.Conveyor[_."B1.9.1"].ToteDir.Straight := FALSE;
+	                DB_ToteTracking.Conveyor[_."B1.9.1"].ToteDir.toRight := FALSE;
+	                DB_ToteTracking.Conveyor[_."B1.9.1"].ToteDir.toLeft := FALSE;
+	            END_IF;
+	        END_IF;
+	    END_REGION
+	    
+	    
+	    REGION Transfer Unit B1.21.1 Dir
+	        IF IDB_OPC_Communication.Communication_DP3.Communication.New_Ack_received THEN
+	            //IDB_OPC_Communication.Communication_DP3.Communication.New_Ack_received := FALSE;
+	            #ComDownStream.DP3 := FALSE;
+	            IF  OPC_Data.DP3.DestRequest.Ack.Destination = #IP31 THEN
+	                DB_ToteTracking.Conveyor[_."B1.17.1"].ToteDir.Straight := TRUE;
+	                DB_ToteTracking.Conveyor[_."B1.17.1"].ToteDir.toRight := FALSE;
+	                DB_ToteTracking.Conveyor[_."B1.17.1"].ToteDir.toLeft := FALSE;
+	                
+	            ELSIF OPC_Data.DP3.DestRequest.Ack.Destination = #IP32 THEN
+	                DB_ToteTracking.Conveyor[_."B1.17.1"].ToteDir.toRight := FALSE;
+	                DB_ToteTracking.Conveyor[_."B1.17.1"].ToteDir.Straight := FALSE;
+	                DB_ToteTracking.Conveyor[_."B1.17.1"].ToteDir.toLeft := TRUE;
+	                
+	            ELSE
+	                DB_ToteTracking.Conveyor[_."B1.17.1"].ToteDir.Straight := FALSE;
+	                DB_ToteTracking.Conveyor[_."B1.17.1"].ToteDir.toRight := FALSE;
+	                DB_ToteTracking.Conveyor[_."B1.17.1"].ToteDir.toLeft := FALSE;
+	            END_IF;
+	        END_IF;
+	    END_REGION
+	    
+	    REGION Mabs A1.8.1 & A1.8.2 Dir
+	        IF IDB_OPC_Communication.Communication_DP4.Communication.New_Ack_received THEN
+	            //IDB_OPC_Communication.Communication_DP4.Communication.New_Ack_received := FALSE;
+	            #ComDownStream.DP4 := FALSE;
+	            IF  OPC_Data.DP4.DestRequest.Ack.Destination = #IP41 THEN
+	                DB_ToteTracking.Conveyor[_."A1.7.4"].ToteDir.Straight := TRUE;
+	                DB_ToteTracking.Conveyor[_."A1.7.4"].ToteDir.toRight := FALSE;
+	                DB_ToteTracking.Conveyor[_."A1.7.4"].ToteDir.toLeft := FALSE;
+	            ELSIF
+	                OPC_Data.DP4.DestRequest.Ack.Destination = #IP42 THEN
+	                DB_ToteTracking.Conveyor[_."A1.7.4"].ToteDir.toRight := TRUE;
+	                DB_ToteTracking.Conveyor[_."A1.7.4"].ToteDir.Straight := FALSE;
+	                DB_ToteTracking.Conveyor[_."A1.7.4"].ToteDir.toLeft := FALSE;
+	            ELSE
+	                DB_ToteTracking.Conveyor[_."A1.7.4"].ToteDir.Straight := FALSE;
+	                DB_ToteTracking.Conveyor[_."A1.7.4"].ToteDir.toRight := FALSE;
+	                DB_ToteTracking.Conveyor[_."A1.7.4"].ToteDir.toLeft := FALSE;
+	            END_IF;
+	        END_IF;
+	    END_REGION
+	    
+	    REGION Wait WMS Response
+	        #ComTimmerDP1(IN := #ComDownStream.DP1,
+	                      PT := t#45s);
+	        
+	        IF #ComTimmerDP1.Q THEN
+	            #ComDownStream.DP1 := FALSE;
+	        END_IF;
+	        
+	        #ComTimmerDP2(IN := #ComDownStream.DP2,
+	                      PT := t#45s);
+	        
+	        IF #ComTimmerDP2.Q THEN
+	            #ComDownStream.DP2 := FALSE;
+	        END_IF;
+	        
+	        #ComTimmerDP3(IN := #ComDownStream.DP3,
+	                      PT := t#45s);
+	        
+	        IF #ComTimmerDP3.Q THEN
+	            #ComDownStream.DP3 := FALSE;
+	        END_IF;
+	        
+	        #ComTimmerDP4(IN := #ComDownStream.DP4,
+	                      PT := t#45s);
+	        
+	        IF #ComTimmerDP4.Q THEN
+	            #ComDownStream.DP4 := FALSE;
+	        END_IF;
+	        
+	    END_REGION
+	
+	END_REGION
+	
+	
+	REGION Destination info TO WMS
+	    // Send destination info to WMS
+	    REGION IP1
+	        IF IDB_ProductionLine."A1.7.2".CONVEYOR_SENSOR.PosEdge.Q AND
+	            NOT IDB_OPC_Communication.Communication_IP1.Communication.Send THEN
+	            OPC_Data.IP1.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."A1.7.1"].Barcode;
+	            OPC_Data.IP1.DestInfo.Source.InformationPoint := #IP11;
+	            IDB_OPC_Communication.Communication_IP1.Communication.Send := TRUE;
+	        END_IF;
+	        
+	    END_REGION
+	    REGION IP2
+	        IF IDB_ProductionLine."B1.2.1".CONVEYOR_SENSOR.PosEdge.Q AND
+	            NOT IDB_OPC_Communication.Communication_IP2.Communication.Send THEN
+	            OPC_Data.IP2.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."B1.1.1"].Barcode;
+	            OPC_Data.IP2.DestInfo.Source.InformationPoint := #IP12;
+	            IDB_OPC_Communication.Communication_IP2.Communication.Send := TRUE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION IP3
+	        IF IDB_ProductionLine."B1.11.2".CONVEYOR_SENSOR.PosEdge.Q AND
+	            NOT IDB_OPC_Communication.Communication_IP3.Communication.Send THEN
+	            OPC_Data.IP3.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."B1.11.1"].Barcode;
+	            OPC_Data.IP3.DestInfo.Source.InformationPoint := #IP21;
+	            IDB_OPC_Communication.Communication_IP3.Communication.Send := TRUE;
+	        END_IF;
+	    END_REGION
+	    
+	    REGION IP4
+	        IF IDB_ProductionLine."C1.2.1".CONVEYOR_SENSOR.PosEdge.Q AND
+	            NOT IDB_OPC_Communication.Communication_IP4.Communication.Send THEN
+	            OPC_Data.IP4.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."C1.2.2"].Barcode;
+	            OPC_Data.IP4.DestInfo.Source.InformationPoint := #IP22;
+	            IDB_OPC_Communication.Communication_IP4.Communication.Send := TRUE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION IP5
+	        IF IDB_ProductionLine."C1.4.2".CONVEYOR_SENSOR.PosEdge.Q AND
+	            NOT IDB_OPC_Communication.Communication_IP5.Communication.Send THEN
+	            OPC_Data.IP5.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."C1.4.1"].Barcode;
+	            OPC_Data.IP5.DestInfo.Source.InformationPoint := #IP23;
+	            IDB_OPC_Communication.Communication_IP5.Communication.Send := TRUE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION IP6
+	        IF IDB_ProductionLine."B1.20.1".CONVEYOR_SENSOR.PosEdge.Q AND
+	            NOT IDB_OPC_Communication.Communication_IP6.Communication.Send THEN
+	            OPC_Data.IP6.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."B1.19.1"].Barcode;
+	            OPC_Data.IP6.DestInfo.Source.InformationPoint := #IP31;
+	            IDB_OPC_Communication.Communication_IP6.Communication.Send := TRUE;
+	        END_IF;
+	    END_REGION
+	    
+	    REGION IP7
+	        IF (IDB_ProductionLine."B1.6.1"."Left/RightSensor" OR 
+	            _.ProductionLine.IDB_Flow_Test.R_TRIG_Instance.Q) AND //only for simulation purpose 
+	            NOT IDB_OPC_Communication.Communication_IP7.Communication.Send THEN
+	            OPC_Data.IP7.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."B1.6.1"].Barcode;
+	            OPC_Data.IP7.DestInfo.Source.InformationPoint := #IP32;
+	            IDB_OPC_Communication.Communication_IP7.Communication.Send := TRUE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION IP8
+	        IF IDB_ProductionLine."A1.10.2".CONVEYOR_SENSOR.PosEdge.Q AND
+	            NOT IDB_OPC_Communication.Communication_IP8.Communication.Send THEN
+	            OPC_Data.IP8.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."A1.10.1"].Barcode;
+	            OPC_Data.IP8.DestInfo.Source.InformationPoint := #IP41;
+	            IDB_OPC_Communication.Communication_IP8.Communication.Send := TRUE;
+	        END_IF;
+	    END_REGION
+	    
+	    REGION IP9
+	        IF IDB_ProductionLine."D1.2.1".CONVEYOR_SENSOR.PosEdge.Q AND
+	            NOT IDB_OPC_Communication.Communication_IP9.Communication.Send THEN
+	            OPC_Data.IP9.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."D1.1.1"].Barcode;
+	            OPC_Data.IP9.DestInfo.Source.InformationPoint := #IP42;
+	            IDB_OPC_Communication.Communication_IP9.Communication.Send := TRUE;
+	        END_IF;
+	    END_REGION
+	    
+	    
+	END_REGION
+	
+	
+	REGION Wait FOR data from WMS
+	    // Wait for data from WMS
+	    REGION IP1 Ack
+	        IF IDB_OPC_Communication.Communication_IP1.Communication.New_Ack_received THEN
+	            IDB_OPC_Communication.Communication_IP1.Communication.Send := FALSE;
+	            IDB_OPC_Communication.Communication_IP1.Communication.New_Ack_received := FALSE;
+	        END_IF;
+	    END_REGION
+	    
+	    REGION IP2 Ack
+	        IF IDB_OPC_Communication.Communication_IP2.Communication.New_Ack_received THEN
+	            IDB_OPC_Communication.Communication_IP2.Communication.Send := FALSE;
+	            IDB_OPC_Communication.Communication_IP2.Communication.New_Ack_received := FALSE;
+	        END_IF;
+	    END_REGION
+	    
+	    REGION IP3 Ack
+	        IF IDB_OPC_Communication.Communication_IP3.Communication.New_Ack_received THEN
+	            IDB_OPC_Communication.Communication_IP3.Communication.Send := FALSE;
+	            IDB_OPC_Communication.Communication_IP3.Communication.New_Ack_received := FALSE;
+	        END_IF;
+	    END_REGION
+	    
+	    REGION IP4 Ack
+	        IF IDB_OPC_Communication.Communication_IP4.Communication.New_Ack_received THEN
+	            IDB_OPC_Communication.Communication_IP4.Communication.Send := FALSE;
+	            IDB_OPC_Communication.Communication_IP4.Communication.New_Ack_received := FALSE;
+	        END_IF;
+	    END_REGION
+	    
+	    REGION IP5 Ack
+	        IF IDB_OPC_Communication.Communication_IP5.Communication.New_Ack_received THEN
+	            IDB_OPC_Communication.Communication_IP5.Communication.Send := FALSE;
+	            IDB_OPC_Communication.Communication_IP5.Communication.New_Ack_received := FALSE;
+	        END_IF;
+	    END_REGION
+	    
+	    REGION IP6 Ack
+	        IF IDB_OPC_Communication.Communication_IP6.Communication.New_Ack_received THEN
+	            IDB_OPC_Communication.Communication_IP6.Communication.Send := FALSE;
+	            IDB_OPC_Communication.Communication_IP6.Communication.New_Ack_received := FALSE;
+	        END_IF;
+	    END_REGION
+	    
+	    REGION IP7 Ack
+	        IF IDB_OPC_Communication.Communication_IP7.Communication.New_Ack_received THEN
+	            IDB_OPC_Communication.Communication_IP7.Communication.Send := FALSE;
+	            IDB_OPC_Communication.Communication_IP7.Communication.New_Ack_received := FALSE;
+	        END_IF;
+	    END_REGION
+	    
+	    REGION IP8 Ack
+	        IF IDB_OPC_Communication.Communication_IP8.Communication.New_Ack_received THEN
+	            IDB_OPC_Communication.Communication_IP8.Communication.Send := FALSE;
+	            IDB_OPC_Communication.Communication_IP8.Communication.New_Ack_received := FALSE;
+	        END_IF;
+	    END_REGION
+	    
+	    REGION IP9 Ack
+	        IF IDB_OPC_Communication.Communication_IP9.Communication.New_Ack_received THEN
+	            IDB_OPC_Communication.Communication_IP9.Communication.Send := FALSE;
+	            IDB_OPC_Communication.Communication_IP9.Communication.New_Ack_received := FALSE;
+	        END_IF;
+	    END_REGION
+	    
+	END_REGION
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	   
+	        
+	         
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

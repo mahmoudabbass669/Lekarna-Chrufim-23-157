@@ -1,0 +1,298 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Blocks.GlobalDB ID="0">
+    <AttributeList>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Static">
+    <Member Name="Watchdog" Datatype="Struct">
+      <Member Name="Keep_Alive_PLC" Datatype="Int">
+        <Comment>
+          <MultiLanguageText Lang="en-US">//Periodic counter, incremented every 10 seconds. If one side does not increment the counter within 30 seconds, it will be considered offline by the other side.</MultiLanguageText>
+        </Comment>
+      </Member>
+      <Member Name="Keep_Alive_WMS" Datatype="Int">
+        <Comment>
+          <MultiLanguageText Lang="en-US">//Periodic counter, incremented every 10 seconds. If one side does not increment the counter within 30 seconds, it will be considered offline by the other side.</MultiLanguageText>
+        </Comment>
+      </Member>
+    </Member>
+    <Member Name="DP1" Datatype="Struct">
+      <Member Name="DestRequest" Datatype="Struct">
+        <Member Name="Source" Datatype="&quot;ProductionLine.OPC_DsetRequest&quot;">
+          <Sections>
+            <Section Name="None">
+              <Member Name="DecisionPoint" Datatype="String[30]">
+                <StartValue>'DP1'</StartValue>
+              </Member>
+            </Section>
+          </Sections>
+        </Member>
+        <Member Name="Ack" Datatype="&quot;ProductionLine.OPC_DestRequest_Ack&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+    </Member>
+    <Member Name="DP2" Datatype="Struct">
+      <Member Name="DestRequest" Datatype="Struct">
+        <Member Name="Source" Datatype="&quot;ProductionLine.OPC_DsetRequest&quot;">
+          <Sections>
+            <Section Name="None">
+              <Member Name="DecisionPoint" Datatype="String[30]">
+                <StartValue>'DP2'</StartValue>
+              </Member>
+            </Section>
+          </Sections>
+        </Member>
+        <Member Name="Ack" Datatype="&quot;ProductionLine.OPC_DestRequest_Ack&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+    </Member>
+    <Member Name="DP3" Datatype="Struct">
+      <Member Name="DestRequest" Datatype="Struct">
+        <Member Name="Source" Datatype="&quot;ProductionLine.OPC_DsetRequest&quot;">
+          <Sections>
+            <Section Name="None">
+              <Member Name="DecisionPoint" Datatype="String[30]">
+                <StartValue>'DP3'</StartValue>
+              </Member>
+            </Section>
+          </Sections>
+        </Member>
+        <Member Name="Ack" Datatype="&quot;ProductionLine.OPC_DestRequest_Ack&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+    </Member>
+    <Member Name="DP4" Datatype="Struct">
+      <Member Name="DestRequest" Datatype="Struct">
+        <Member Name="Source" Datatype="&quot;ProductionLine.OPC_DsetRequest&quot;">
+          <Sections>
+            <Section Name="None">
+              <Member Name="DecisionPoint" Datatype="String[30]">
+                <StartValue>'DP4'</StartValue>
+              </Member>
+            </Section>
+          </Sections>
+        </Member>
+        <Member Name="Ack" Datatype="&quot;ProductionLine.OPC_DestRequest_Ack&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+    </Member>
+    <Member Name="IP1" Datatype="Struct">
+      <Member Name="DestInfo" Datatype="Struct">
+        <Member Name="Source" Datatype="&quot;ProductionLine.OPC_DestInfo&quot;">
+          <Sections>
+            <Section Name="None">
+              <Member Name="DecisionPoint" Datatype="String[30]">
+                <StartValue>'DP1'</StartValue>
+              </Member>
+            </Section>
+          </Sections>
+        </Member>
+        <Member Name="Ack" Datatype="&quot;ProductionLine.OPC_DestInfo_Ack&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+    </Member>
+    <Member Name="IP2" Datatype="Struct">
+      <Member Name="DestInfo" Datatype="Struct">
+        <Member Name="Source" Datatype="&quot;ProductionLine.OPC_DestInfo&quot;">
+          <Sections>
+            <Section Name="None">
+              <Member Name="DecisionPoint" Datatype="String[30]">
+                <StartValue>'DP1'</StartValue>
+              </Member>
+            </Section>
+          </Sections>
+        </Member>
+        <Member Name="Ack" Datatype="&quot;ProductionLine.OPC_DestInfo_Ack&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+    </Member>
+    <Member Name="IP3" Datatype="Struct">
+      <Member Name="DestInfo" Datatype="Struct">
+        <Member Name="Source" Datatype="&quot;ProductionLine.OPC_DestInfo&quot;">
+          <Sections>
+            <Section Name="None">
+              <Member Name="DecisionPoint" Datatype="String[30]">
+                <StartValue>'DP2'</StartValue>
+              </Member>
+            </Section>
+          </Sections>
+        </Member>
+        <Member Name="Ack" Datatype="&quot;ProductionLine.OPC_DestInfo_Ack&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+    </Member>
+    <Member Name="IP4" Datatype="Struct">
+      <Member Name="DestInfo" Datatype="Struct">
+        <Member Name="Source" Datatype="&quot;ProductionLine.OPC_DestInfo&quot;">
+          <Sections>
+            <Section Name="None">
+              <Member Name="DecisionPoint" Datatype="String[30]">
+                <StartValue>'DP2'</StartValue>
+              </Member>
+            </Section>
+          </Sections>
+        </Member>
+        <Member Name="Ack" Datatype="&quot;ProductionLine.OPC_DestInfo_Ack&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+    </Member>
+    <Member Name="IP5" Datatype="Struct">
+      <Member Name="DestInfo" Datatype="Struct">
+        <Member Name="Source" Datatype="&quot;ProductionLine.OPC_DestInfo&quot;">
+          <Sections>
+            <Section Name="None">
+              <Member Name="DecisionPoint" Datatype="String[30]">
+                <StartValue>'DP2'</StartValue>
+              </Member>
+            </Section>
+          </Sections>
+        </Member>
+        <Member Name="Ack" Datatype="&quot;ProductionLine.OPC_DestInfo_Ack&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+    </Member>
+    <Member Name="IP6" Datatype="Struct">
+      <Member Name="DestInfo" Datatype="Struct">
+        <Member Name="Source" Datatype="&quot;ProductionLine.OPC_DestInfo&quot;">
+          <Sections>
+            <Section Name="None">
+              <Member Name="DecisionPoint" Datatype="String[30]">
+                <StartValue>'DP3'</StartValue>
+              </Member>
+            </Section>
+          </Sections>
+        </Member>
+        <Member Name="Ack" Datatype="&quot;ProductionLine.OPC_DestInfo_Ack&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+    </Member>
+    <Member Name="IP7" Datatype="Struct">
+      <Member Name="DestInfo" Datatype="Struct">
+        <Member Name="Source" Datatype="&quot;ProductionLine.OPC_DestInfo&quot;">
+          <Sections>
+            <Section Name="None">
+              <Member Name="DecisionPoint" Datatype="String[30]">
+                <StartValue>'DP3'</StartValue>
+              </Member>
+            </Section>
+          </Sections>
+        </Member>
+        <Member Name="Ack" Datatype="&quot;ProductionLine.OPC_DestInfo_Ack&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+    </Member>
+    <Member Name="IP8" Datatype="Struct">
+      <Member Name="DestInfo" Datatype="Struct">
+        <Member Name="Source" Datatype="&quot;ProductionLine.OPC_DestInfo&quot;">
+          <Sections>
+            <Section Name="None">
+              <Member Name="DecisionPoint" Datatype="String[30]">
+                <StartValue>'DP4'</StartValue>
+              </Member>
+            </Section>
+          </Sections>
+        </Member>
+        <Member Name="Ack" Datatype="&quot;ProductionLine.OPC_DestInfo_Ack&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+    </Member>
+    <Member Name="IP9" Datatype="Struct">
+      <Member Name="DestInfo" Datatype="Struct">
+        <Member Name="Source" Datatype="&quot;ProductionLine.OPC_DestInfo&quot;">
+          <Sections>
+            <Section Name="None">
+              <Member Name="DecisionPoint" Datatype="String[30]">
+                <StartValue>'DP4'</StartValue>
+              </Member>
+            </Section>
+          </Sections>
+        </Member>
+        <Member Name="Ack" Datatype="&quot;ProductionLine.OPC_DestInfo_Ack&quot;">
+          <AttributeList>
+            <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+          </AttributeList>
+        </Member>
+      </Member>
+    </Member>
+    <Member Name="Status" Datatype="&quot;ProductionLine.OPC_SegmentStatus&quot;" />
+  </Section>
+</Sections></Interface>
+      <MemoryReserve>0</MemoryReserve>
+      <Name>OPC_Data</Name>
+      <Namespace>ProductionLine</Namespace>
+      <Number>41</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="4" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="5" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.GlobalDB>
+</Document>

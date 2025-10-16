@@ -1,0 +1,9 @@
+﻿NAMESPACE ProductionLine
+ORGANIZATION_BLOCK CyclicInterrupt
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+
+BEGIN
+END_ORGANIZATION_BLOCK
+END_NAMESPACE
+

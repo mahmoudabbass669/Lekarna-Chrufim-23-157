@@ -1,0 +1,1447 @@
+﻿NAMESPACE ProductionLine
+FUNCTION FC_Alarm : Void
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : FB_LineA1
+	// Project        : Lékárna Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION ASI 
+	    IF NOT _.Global.IDB_VisuAlarm.noAlarmState THEN
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.1.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.1.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.1.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.1.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.1.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.1.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.1.3
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.1.3"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.1.3";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.1.4
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.1.4"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.1.4";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.1.5
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.1.5"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.1.5";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.1.6
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.1.6"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.1.6";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.1.7
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.1.7"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.1.7";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.1.8
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.1.8"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.1.8";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.1.9
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.1.9"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.1.9";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.1.10
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.1.10"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.1.10";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.1.11
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.1.11"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.1.11";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.1.12
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.1.12"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.1.12";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.1.13
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.1.13"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.1.13";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.1.14
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.1.14"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.1.14";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.2.1
+	            ////A1.2.1 (DP1)
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.2.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.2.1";
+	            
+	        END_REGION
+	        
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.5.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.5.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.5.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.5.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.5.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.5.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.5.3
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.5.3"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.5.3";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.6.1 MABS
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.6.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."A1.6.1 -RemoteOut4";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.6.2 MABS
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.6.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."A1.6.2 -RemoteOut4";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.7.1
+	            ////  A1.7.1 (Go Straight DP1)
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.7.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.7.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.7.2
+	            ////A1.7.2 Straight for Merger1
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.7.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.7.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.7.3
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.7.3"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.7.3";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.7.4
+	            ////A1.7.4 (DP4)
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.7.4"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.7.4";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.7.5
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.7.5"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.7.5";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.7.6
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.7.6"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error A1.7.6";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION A1.8.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.8.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.8.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.9.1 MABS
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.9.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."A1.9.1 -RemoteOut4";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.9.2 MABS
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.9.2"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."A1.9.2 -RemoteOut4";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION B1.3.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.3.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error B1.3.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION B1.3.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.3.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error B1.3.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION B1.3.3
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.3.3"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error B1.3.3";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION B1.4.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.4.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error B1.4.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION B1.4.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.4.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error B1.4.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION B1.5.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.5.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error B1.5.1";
+	            
+	        END_REGION
+	        
+	        REGION B1.6.1 Transfer Unit
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.6.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error -B1.6.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION B1.7.1
+	            //// B1.7.1 (Go straight TR_A1.7.1)
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.7.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error B1.7.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION B1.7.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.7.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error B1.7.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C1 =====
+	        REGION B1.7.3
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.7.3"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C1: Input"."Error B1.7.3";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.8.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.8.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.8.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.8.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.8.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.8.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.8.3
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.8.3"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.8.3";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.9.1
+	            //// B1.9.1 (DP2)
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.9.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.9.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.9.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.9.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.9.2";
+	            
+	        END_REGION
+	        
+	        REGION B1.10.1 Transfer Unit
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.10.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error -B1.10.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.11.1
+	            //// B1.11.1 (Go straight TR_B1.11.1)
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.11.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.11.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.11.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.11.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.11.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.11.3
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.11.3"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.11.3";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.11.4
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.11.4"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.11.4";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.12.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.12.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.12.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.12.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.12.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.12.2";
+	            
+	        END_REGION
+	        
+	        REGION B1.13.1 Transfer Unit
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.13.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error -B1.13.1";
+	            
+	        END_REGION
+	        
+	        REGION B1.14.1 Transfer Unit
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.14.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error -B1.14.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.15.1
+	            //// B1.18.1 (Go straight TR_B1.17.1)
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.15.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.15.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.15.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.15.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.15.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.16.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.16.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.16.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.16.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.16.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.16.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.16.3
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.16.3"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.16.3";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.16.4
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.16.4"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.16.4";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.16.5
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.16.5"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.16.5";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.16.6
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.16.6"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.16.6";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.16.7
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.16.7"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.16.7";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.16.8
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.16.8"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.16.8";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.17.1
+	            //// B1.20.1 (DP3)
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.17.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.17.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.17.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.17.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.17.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.17.3
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.17.3"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.17.3";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.17.4
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.17.4"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.17.4";
+	            
+	        END_REGION
+	        
+	        REGION B1.18.1 Transfer Unit
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.18.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error -B1.18.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.19.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.19.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.19.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.20.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.20.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.20.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.20.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.20.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.20.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.21.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.21.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.21.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.21.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.21.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.21.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION B1.21.3
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."B1.21.3"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error B1.21.3";
+	            
+	        END_REGION
+	        
+	        REGION C1.3.1 Transfer Unit
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."C1.3.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error -C1.3.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION C1.2.2
+	            //// C1.1.2  (Go Right TR_C1.1.3)
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."C1.2.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error C1.2.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION C1.2.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."C1.2.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error C1.2.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION C1.4.1
+	            //// C1.1.4  (Go Left TR_C1.1.3)
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."C1.4.1"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error C1.4.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw143-C2 =====
+	        REGION C1.4.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."C1.4.2"].%X1 :=
+	            _."ASiGW-MCC001-bw143-C2: Input"."Error C1.4.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.10.1
+	            //// A1.9.1 (Go Straight DP4)
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.10.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.10.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.10.2
+	            ////A1.9.2 Straight for Merger2
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.10.2"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.10.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.10.3
+	            //// A1.9.3 Merger2
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.10.3"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.10.3";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.10.4
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.10.4"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.10.4";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.10.5
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.10.5"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.10.5";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.10.6
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.10.6"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.10.6";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.10.7
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.10.7"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.10.7";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.10.8
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.10.8"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.10.8";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.10.9
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.10.9"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.10.9";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.10.10
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.10.10"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.10.10";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.10.11
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.10.11"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.10.11";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.10.12
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.10.12"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.10.12";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.10.13
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.10.13"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.10.13";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.12.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.12.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.12.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.12.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.12.2"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.12.2";
+	            
+	        END_REGION
+	        
+	        REGION A1.13.1 Transfer Unit
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.13.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error -A1.13.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.1
+	            //// A1.13.1 (Go straight TR_A1.12.1)
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.2"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.3
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.3"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.3";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.4
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.4"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.4";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.5
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.5"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.5";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.6
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.6"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.6";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.7
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.7"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.7";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.8
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.8"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.8";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.9
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.9"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.9";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.10
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.10"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.10";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.11
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.11"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.11";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.12
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.12"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.12";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.13
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.13"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.13";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.14
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.14"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.14";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.15
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.15"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.15";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.16
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.16"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.16";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.17
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.17"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.17";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.18
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.18"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.18";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.19
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.19"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.19";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.20
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.20"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.20";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.21
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.21"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.21";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.22
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.22"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.22";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.23
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.23"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.23";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.24
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.24"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.24";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.25
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.25"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.25";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION A1.14.26
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A1.14.26"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error A1.14.26";
+	            
+	        END_REGION
+	        
+	        REGION A2.1.1 Transfer Unit
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.1.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error -A2.1.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.1.1
+	            ////  D1.1.1 (Go Right DP4)
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.1.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.1.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.4.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.4.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.4.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.5.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.5.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.5.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.6.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.6.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.6.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.7.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.7.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.7.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.7.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.7.2"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.7.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.7.3
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.7.3"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.7.3";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.7.4
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.7.4"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.7.4";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.7.5
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.7.5"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.7.5";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.7.6
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.7.6"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.7.6";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.7.7
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.7.7"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.7.7";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.7.8
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.7.8"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.7.8";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.7.9
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.7.9"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.7.9";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.7.10
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.7.10"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.7.10";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.8.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.8.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.8.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.8.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.8.2"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.8.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.8.3
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.8.3"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.8.3";
+	            
+	        END_REGION
+	        
+	        REGION D1.9.1 Transfer Unit
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.9.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error -D1.9.1";
+	            
+	        END_REGION
+	        
+	        REGION D1.10.1 Transfer Unit
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.10.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error -D1.10.1";
+	            
+	        END_REGION
+	            
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.11.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.11.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.11.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.11.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.11.2"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.11.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.11.3
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.11.3"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.11.3";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.12.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.12.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.12.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.12.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.12.2"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.12.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION D1.12.3
+	            ////End
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."D1.12.3"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error D1.12.3";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION E1.1.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."E1.1.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error E1.1.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION E1.1.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."E1.1.2"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error E1.1.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION E1.1.3
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."E1.1.3"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error E1.1.3";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION E1.1.4
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."E1.1.4"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error E1.1.4";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION E1.4.1
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."E1.4.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error E1.4.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C1 =====
+	        REGION E1.6.1
+	            ////E1.6.1 Arm for Merger2
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."E1.6.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C1: Input"."Error E1.6.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.1
+	            //// A1.17.2 (Go straight TR_A2.1.1)
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.1"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.1";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.2
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.2"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.2";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.3
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.3"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.3";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.4
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.4"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.4";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.5
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.5"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.5";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.6
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.6"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.6";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.7
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.7"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.7";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.8
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.8"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.8";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.9
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.9"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.9";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.10
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.10"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.10";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.11
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.11"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.11";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.12
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.12"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.12";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.13
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.13"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.13";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.14
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.14"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.14";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.15
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.15"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.15";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.16
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.16"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.16";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.17
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.17"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.17";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.18
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.18"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.18";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.19
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.19"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.19";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.20
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.20"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.20";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.21
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.21"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.21";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.22
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.22"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.22";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.23
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.23"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.23";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.24
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.24"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.24";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.25
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.25"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.25";
+	            
+	        END_REGION
+	        
+	        // ===== bw200-C2 =====
+	        REGION A2.2.26
+	            //
+	            _.Global.DB_Alarm."word".Line.ProductionLine.Conveyor[_."A2.2.26"].%X1 :=
+	            _."ASiGW-MCC001-bw200-C2: Input"."Error A2.2.26";
+	            
+	        END_REGION
+	        
+	    END_IF;
+	END_REGION
+	
+	
+	
+	
+	
+END_FUNCTION
+END_NAMESPACE
+

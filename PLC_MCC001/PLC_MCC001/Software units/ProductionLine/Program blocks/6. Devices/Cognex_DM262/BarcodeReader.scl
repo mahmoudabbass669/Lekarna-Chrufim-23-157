@@ -1,0 +1,101 @@
+﻿NAMESPACE ProductionLine
+FUNCTION_BLOCK BarcodeReader
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      DP1 { S7_SetPoint := 'False'} : _.Global.DataMan262;
+      DP2 { S7_SetPoint := 'False'} : _.Global.DataMan262;
+      DP3 { S7_SetPoint := 'False'} : _.Global.DataMan262;
+      DP4 { S7_SetPoint := 'False'} : _.Global.DataMan262;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : Barcode Reader
+	// Project        : Lekarna, Chrudim -PLC001 -MCC001
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION DP1
+	    
+	    #DP1(TriggerSignal:= IDB_ProductionLine."A1.5.1".FilteredSensor,
+	         "Dataman-Results Available":=_."DP1-Results Available",
+	         "Dataman-TriggerReady":=_."DP1-TriggerReady",
+	         "Dataman-TriggerAck":=_."DP1-TriggerAck",
+	         "Dataman-ResultID":=_."DP1-ResultID",
+	         "Dataman-Result Code":=_."DP1-Result Code",
+	         "Dataman-Result Length":=_."DP1-Result Length",
+	         "Result Data":=_."Result data_DP1",
+	         "Dataman-UserData Length"=>_."DP1-UserData Length",
+	         "Dataman-UserData Option"=>_."DP1-UserData Option",
+	         "User Data"=>_.UserData_DP1,
+	         "Dataman-TriggerEnable":=_."DP1-TriggerEnable",
+	         "Dataman-Trigger":=_."DP1-Trigger",
+	         "Dataman-ResultsAck":=_."DP1-ResultsAck");
+	    
+	END_REGION
+	
+	REGION DP2
+	    
+	    #DP2(TriggerSignal := IDB_ProductionLine."B1.9.1".FilteredSensor,
+	         "Dataman-Results Available" := _."DP2-Results Available",
+	         "Dataman-TriggerReady" := _."DP2-TriggerReady",
+	         "Dataman-TriggerAck" := _."DP2-TriggerAck",
+	         "Dataman-ResultID" := _."DP2-ResultID",
+	         "Dataman-Result Code" := _."DP2-Result Code",
+	         "Dataman-Result Length" := _."DP2-Result Length",
+	         "Result Data" := _."Result data_DP2",
+	         "Dataman-UserData Length" => _."DP2-UserData Length",
+	         "Dataman-UserData Option" => _."DP2-UserData Option",
+	         "User Data" => _.UserData_DP2,
+	         "Dataman-TriggerEnable" := _."DP2-TriggerEnable",
+	         "Dataman-Trigger" := _."DP2-Trigger",
+	         "Dataman-ResultsAck" := _."DP2-ResultsAck");
+	    
+	END_REGION
+	
+	REGION DP3
+	    
+	    #DP3(TriggerSignal := IDB_ProductionLine."B1.17.1".FilteredSensor,
+	         "Dataman-Results Available" := _."DP3-Results Available",
+	         "Dataman-TriggerReady" := _."DP3-TriggerReady",
+	         "Dataman-TriggerAck" := _."DP3-TriggerAck",
+	         "Dataman-ResultID" := _."DP3-ResultID",
+	         "Dataman-Result Code" := _."DP3-Result Code",
+	         "Dataman-Result Length" := _."DP3-Result Length",
+	         "Result Data" := _."Result data_DP3",
+	         "Dataman-UserData Length" => _."DP3-UserData Length",
+	         "Dataman-UserData Option" => _."DP3-UserData Option",
+	         "User Data" => _.UserData_DP3,
+	         "Dataman-TriggerEnable" := _."DP3-TriggerEnable",
+	         "Dataman-Trigger" := _."DP3-Trigger",
+	         "Dataman-ResultsAck" := _."DP3-ResultsAck");
+	    
+	END_REGION
+	
+	
+	REGION DP4
+	    
+	    #DP4(TriggerSignal := IDB_ProductionLine."A1.7.4".FilteredSensor,
+	         "Dataman-Results Available" := _."DP4-Results Available",
+	         "Dataman-TriggerReady" := _."DP4-TriggerReady",
+	         "Dataman-TriggerAck" := _."DP4-TriggerAck",
+	         "Dataman-ResultID" := _."DP4-ResultID",
+	         "Dataman-Result Code" := _."DP4-Result Code",
+	         "Dataman-Result Length" := _."DP4-Result Length",
+	         "Result Data" := _."Result data_DP4",
+	         "Dataman-UserData Length" => _."DP4-UserData Length",
+	         "Dataman-UserData Option" => _."DP4-UserData Option",
+	         "User Data" => _.UserData_DP4,
+	         "Dataman-TriggerEnable" := _."DP4-TriggerEnable",
+	         "Dataman-Trigger" := _."DP4-Trigger",
+	         "Dataman-ResultsAck" := _."DP4-ResultsAck");
+	    
+	END_REGION
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

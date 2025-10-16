@@ -1,0 +1,54 @@
+﻿NAMESPACE Global
+FUNCTION FC_Downstream : Void
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      ConveyorSensor : Bool;
+      DownstreamSensor : Bool;
+      DownstreamReady : Bool;
+      StatusRunning : Bool;
+   END_VAR
+
+   VAR_OUTPUT 
+      StopConveyor : Bool;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================================================
+	// Company       : LogTech, s.r.o.
+	// Created by    : Anton Vinoth Soundraraj
+	// Block         : FC_Downstream
+	// Project       : LT-Lib-Block
+	// ==========================================================================================================================================================================
+	
+	REGION Downstream Function
+	    
+	    // The Conveyor is ready to send item 1 to next conveyor,
+	    // but the next conveyor sensor is occupied by item 2 and conveyor not running
+	    // (downstream conveyors stop in die back condition)
+	    
+	    // ------------------------------------------------------------------------------------
+	    // 
+	    //                  item 1                           item 2
+	    //                  *************                   *************
+	    //                  *           *                   *           *   
+	    //                  *           *                   *           *
+	    //                  *************                   *************      
+	    //  ______________________________   ______________________________
+	    // |______________________________| |______________________________|
+	    //           Conveyor                      Downstream Conveyor
+	    //           
+	    // ------------------------------------------------------------------------------------
+	    
+	    #StopConveyor :=
+	    (#ConveyorSensor AND
+	    #DownstreamSensor AND
+	    NOT #StatusRunning) OR
+	    (#ConveyorSensor AND
+	    NOT #DownstreamReady);
+	    
+	END_REGION
+END_FUNCTION
+END_NAMESPACE
+

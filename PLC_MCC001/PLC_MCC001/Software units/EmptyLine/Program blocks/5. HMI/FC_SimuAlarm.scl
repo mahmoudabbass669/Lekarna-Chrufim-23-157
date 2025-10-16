@@ -1,0 +1,52 @@
+﻿NAMESPACE EmptyLine
+FUNCTION FC_SimuAlarm : Void
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR_TEMP 
+      cmp : Struct
+         Line : Struct
+            B1 : Array[_.minEmptyLine.._.maxEmptyLine] of Bool;
+         END_STRUCT;
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : FC_SimuAlarm
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	
+	REGION Simulation active alarm
+	    
+	    (* REGION Line B1
+	        
+	    // if any of the simulation trigger fault is active
+	        _.LineB1.DB_Alarm.Simu.%X0 := NOT (#cmp.Line.B1 ="DB_SystemSimu".TriggerFault.Line.ProductionTote.Conveyor);
+	    // if any of the simulation trigger sensor is active
+	        _.LineB1.DB_Alarm.Simu.%X1 := NOT (#cmp.Line.B1 ="DB_SystemSimu".TriggerSensor.Line.ProductionTote.Conveyor);
+	        
+	    END_REGION *)
+	    
+	END_REGION
+	
+	REGION Fire bit
+	    
+	    (* // if simulation fire signal is active
+	    "DB_Alarm".Simu.%X6 := "DB_SystemSimu".Fire; *)
+	    
+	END_REGION
+	
+	
+	
+	
+	
+	
+	
+END_FUNCTION
+END_NAMESPACE
+

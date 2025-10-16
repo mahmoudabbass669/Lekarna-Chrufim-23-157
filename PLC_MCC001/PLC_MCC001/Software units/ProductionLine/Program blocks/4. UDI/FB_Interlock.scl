@@ -1,0 +1,110 @@
+﻿NAMESPACE ProductionLine
+FUNCTION_BLOCK FB_Interlock
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR 
+      "A1.5.3_right" { S7_SetPoint := 'False'} : _.Global.FB_Interlock;
+      "A1.5.3_Straight" : _.Global.FB_Interlock;
+      "A1.7.2" : _.Global.FB_Interlock;
+      "B1.22.1" : _.Global.FB_Interlock;
+      "A1.8.1_Right" : _.Global.FB_Interlock;
+      "A1.8.1_Staright" : _.Global.FB_Interlock;
+      "A1.10.2" : _.Global.FB_Interlock;
+      "E1.5.1" : _.Global.FB_Interlock;
+      "Interlock_B1.2.1" { S7_SetPoint := 'True'} : Bool;
+      "Interlock_A1.7.1" : Bool;
+      "Interlock_D1.2.1" : Bool;
+      "Interlock_A1.10.1" : Bool;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Tomas Korduliak
+	// Block          : FB_Interlock
+	// Project        : Lékárna Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION A1.5.3
+	    // Two interlock one for right direction and the other for straigh direction
+	    #"A1.5.3_right"(ConveyorSensor := IDB_ProductionLine."A1.5.3".FilteredSensor AND
+	                                DB_ToteTracking.Conveyor[_."A1.6.1"].ToteDir.toRight AND
+	                                DB_ToteTracking.Conveyor[_."A1.6.2"].ToteDir.toRight,
+	              DownstreamOccuTime := DB_ConveyorParameters.ProductionLine.Conveyor[_."B1.2.1"].ConvOccTime,
+	              StopConv => #"Interlock_B1.2.1");
+	    
+	    #"A1.5.3_Straight"(ConveyorSensor := IDB_ProductionLine."A1.5.3".FilteredSensor AND
+	                                DB_ToteTracking.Conveyor[_."A1.6.1"].ToteDir.Straight AND
+	                                DB_ToteTracking.Conveyor[_."A1.6.2"].ToteDir.Straight,
+	              DownstreamOccuTime := DB_ConveyorParameters.ProductionLine.Conveyor[_."B1.7.1"].ConvOccTime,
+	              StopConv => #"Interlock_A1.7.1");
+	
+	    DB_UDI.ProductionLine.Interlock.Stop.Conveyor[_."A1.5.3"] := #"Interlock_B1.2.1" OR #"Interlock_A1.7.1";
+	    
+	                                                             
+	END_REGION
+	
+	REGION A1.7.2
+	    // Merger occupatino time
+	    #"A1.7.2"(ConveyorSensor:=IDB_ProductionLine."A1.7.2".FilteredSensor,
+	              DownstreamOccuTime:=DB_ConveyorParameters.ProductionLine.Conveyor[_."B1.7.3"].ConvOccTime,
+	              StopConv=>DB_UDI.ProductionLine.Interlock.Stop.Conveyor[_."A1.7.2"]);
+	    
+	END_REGION
+	
+	REGION B1.22.1
+	    // Merger occupatino time
+	    #"B1.22.1"(ConveyorSensor := IDB_ProductionLine."B1.22.1".FilteredSensor,
+	              DownstreamOccuTime := DB_ConveyorParameters.ProductionLine.Conveyor[_."B1.7.3"].ConvOccTime,
+	              StopConv => DB_UDI.ProductionLine.Interlock.Stop.Conveyor[_."B1.22.1"]);
+	   
+	END_REGION
+	
+	REGION A1.8.1
+	    // Statement section REGION
+	    #"A1.8.1_Right"(ConveyorSensor:=IDB_ProductionLine."A1.8.1".FilteredSensor AND
+	                    DB_ToteTracking.Conveyor[_."A1.9.1"].ToteDir.toRight AND
+	                    DB_ToteTracking.Conveyor[_."A1.9.2"].ToteDir.toRight,
+	                    DownstreamOccuTime:= DB_ConveyorParameters.ProductionLine.Conveyor[_."D1.2.1"].ConvOccTime,
+	                    StopConv=>#"Interlock_D1.2.1");
+	    
+	    
+	    #"A1.8.1_Staright"(ConveyorSensor:=IDB_ProductionLine."A1.8.1".FilteredSensor AND
+	                       DB_ToteTracking.Conveyor[_."A1.9.1"].ToteDir.Straight AND
+	                       DB_ToteTracking.Conveyor[_."A1.9.2"].ToteDir.Straight,
+	                       DownstreamOccuTime:= DB_ConveyorParameters.ProductionLine.Conveyor[_."A1.10.1"].ConvOccTime,
+	                       StopConv=>#"Interlock_A1.10.1");
+	    
+	    DB_UDI.ProductionLine.Interlock.Stop.Conveyor[_."B1.22.1"] := #"Interlock_D1.2.1" OR #"Interlock_A1.10.1";
+	    
+	END_REGION
+	
+	REGION A1.10.2
+	    // Merger occupatino time
+	    #"A1.10.2"(ConveyorSensor := IDB_ProductionLine."A1.10.2".FilteredSensor,
+	               DownstreamOccuTime := DB_ConveyorParameters.ProductionLine.Conveyor[_."A1.10.3"].ConvOccTime,
+	               StopConv => DB_UDI.ProductionLine.Interlock.Stop.Conveyor[_."A1.10.2"]);
+	    
+	END_REGION
+	
+	REGION E1.5.1
+	    // Merger occupatino time
+	    #"E1.5.1"(ConveyorSensor := IDB_ProductionLine."E1.5.1".FilteredSensor,
+	              DownstreamOccuTime := DB_ConveyorParameters.ProductionLine.Conveyor[_."A1.10.3"].ConvOccTime,
+	              StopConv => DB_UDI.ProductionLine.Interlock.Stop.Conveyor[_."E1.5.1"]);
+	    
+	END_REGION
+	
+	
+	
+	
+	
+	
+	                                                         
+	                                                         
+	                                                         
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

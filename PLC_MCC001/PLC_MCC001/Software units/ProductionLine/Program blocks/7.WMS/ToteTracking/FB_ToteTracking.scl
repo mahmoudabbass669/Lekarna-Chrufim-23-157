@@ -1,0 +1,508 @@
+﻿NAMESPACE ProductionLine
+FUNCTION_BLOCK FB_ToteTracking
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR 
+      ZoneBpJam_Occ {InstructionName := 'TON_TIME'; LibVersion := '1.0'; S7_SetPoint := 'False'} : TON_TIME;
+      ZoneBpJam_NotOcc {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      DivertToManual { S7_SetPoint := 'True'} : Bool;
+      HoldDivertToManual : Bool;
+      "RT_Exit_1_" {InstructionName := 'R_TRIG'; LibVersion := '1.0'; S7_SetPoint := 'False'} : Array[1..1] of R_TRIG;
+      "RT_Exit_2_" {InstructionName := 'R_TRIG'; LibVersion := '1.0'; S7_SetPoint := 'False'} : Array[1..6] of R_TRIG;
+      NoReadTote { S7_SetPoint := 'True'} : String := 'BOX-9999-99999';
+      NoData : Array[1..6] of Bool;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : FB_CreatePostData
+	// Project        : Gurkerl, Vienna -PLC001 -MCC100
+	// Project number : 23-158
+	// ==========================================================================================================================================
+	
+	REGION A1.5.1
+	    
+	    // write barcode data
+	    DB_ToteTracking.Conveyor[_."A1.5.1"].Barcode :=
+	    IDB_BarcodeReader.DP1.ResultStr;
+	    
+	END_REGION
+	
+	
+	REGION A1.5.2
+	    
+	    IF IDB_ProductionLine."A1.5.1".CONVEYOR_SENSOR.SensorEdge.Negative THEN
+	        // Barcode
+	        DB_ToteTracking.Conveyor[_."A1.5.2"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."A1.5.1"].Barcode;
+	        // main diverter direction
+	        DB_ToteTracking.Conveyor[_."A1.5.2"].ToteDir :=
+	        DB_ToteTracking.Conveyor[_."A1.5.1"].ToteDir;
+	    END_IF;
+	    
+	END_REGION
+	
+	
+	REGION A1.5.3
+	    
+	    IF IDB_ProductionLine."A1.5.2".CONVEYOR_SENSOR.SensorEdge.Negative
+	    THEN
+	        // Barcode
+	        DB_ToteTracking.Conveyor[_."A1.5.3"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."A1.5.2"].Barcode;
+	        // main diverter direction
+	        DB_ToteTracking.Conveyor[_."A1.5.3"].ToteDir :=
+	        DB_ToteTracking.Conveyor[_."A1.5.2"].ToteDir;
+	    END_IF;
+	    
+	    
+	    REGION Decision: main diverter: before Mabs
+	        
+	        // to Right
+	        IF DB_ToteTracking.Conveyor[_."A1.5.3"].ToteDir.toRight OR
+	            (DB_ToteTracking.Conveyor[_."A1.5.3"].Barcode = #NoReadTote) OR // bad read tote
+	            _.Global.IDB_HardwareDiag."Cognex -10.106.129.24".CommunicationError // Cognex reader communcation error
+	        THEN
+	            DB_ToteTracking.Conveyor[_."A1.6.1"].ToteDir.Straight := FALSE;
+	            DB_ToteTracking.Conveyor[_."A1.6.1"].ToteDir.toRight := TRUE;
+	            DB_ToteTracking.Conveyor[_."A1.6.2"].ToteDir.Straight := FALSE;
+	            DB_ToteTracking.Conveyor[_."A1.6.2"].ToteDir.toRight := TRUE;
+	        END_IF;
+	        // to straight
+	        IF DB_ToteTracking.Conveyor[_."A1.5.3"].ToteDir.Straight AND
+	            NOT (DB_ToteTracking.Conveyor[_."A1.5.3"].Barcode = #NoReadTote) AND // good read tote
+	            NOT _.Global.IDB_HardwareDiag."Cognex -10.106.129.24".CommunicationError // Keyence reader communcation error
+	        THEN
+	            DB_ToteTracking.Conveyor[_."A1.6.1"].ToteDir.Straight := TRUE;
+	            DB_ToteTracking.Conveyor[_."A1.6.1"].ToteDir.toRight := FALSE;
+	            DB_ToteTracking.Conveyor[_."A1.6.2"].ToteDir.Straight := TRUE;
+	            DB_ToteTracking.Conveyor[_."A1.6.2"].ToteDir.toRight := FALSE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	END_REGION
+	
+	REGION B1.1.1 Right
+	    
+	    IF  //IDB_ProductionLine."A1.6.1".CROSS_SENSOR_FILTER.SensorEdge.Negative AND
+	        IDB_ProductionLine."A1.6.1".CROSS_SENSOR_FILTER.NegEdge.Q AND
+	        NOT IDB_ProductionLine."A1.6.1".CurrentPosition.right AND // remove not
+	        NOT IDB_ProductionLine."A1.6.2".CurrentPosition.right //AND // remove not
+	        //NOT IDB_ProductionLine."B1.1.1".ReadConveyorStatus.Occupied 
+	    THEN
+	        // Barcode
+	        DB_ToteTracking.Conveyor[_."B1.1.1"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."A1.5.3"].Barcode;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION B1.2.1
+	    
+	    IF  IDB_ProductionLine."B1.1.1".CONVEYOR_SENSOR.SensorEdge.Negative THEN
+	        DB_ToteTracking.Conveyor[_."B1.2.1"] :=DB_ToteTracking.Conveyor[_."B1.1.1"];
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION B1.3.1
+	    
+	    IF IDB_ProductionLine."B1.2.1".CONVEYOR_SENSOR.SensorEdge.Negative THEN
+	        DB_ToteTracking.Conveyor[_."B1.3.1"] := DB_ToteTracking.Conveyor[_."B1.2.1"];
+	    END_IF;
+	    
+	END_REGION
+	
+	
+	REGION A1.7.1 Straight
+	    
+	    IF  IDB_ProductionLine."A1.6.1".CROSS_SENSOR_FILTER.SensorEdge.Negative AND
+	        NOT IDB_ProductionLine."A1.6.1".CurrentPosition.straight AND  //remove Not
+	        NOT IDB_ProductionLine."A1.6.2".CurrentPosition.straight //AND  // remove Not
+	        //NOT IDB_ProductionLine."A1.7.1".ReadConveyorStatus.Occupied
+	    THEN
+	        // Barcode
+	        DB_ToteTracking.Conveyor[_."A1.7.1"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."A1.5.3"].Barcode;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION A1.7.2
+	    
+	    IF IDB_ProductionLine."A1.7.1".CONVEYOR_SENSOR.SensorEdge.Negative THEN
+	        DB_ToteTracking.Conveyor[_."A1.7.2"] := DB_ToteTracking.Conveyor[_."A1.7.1"];
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION A1.7.3
+	    
+	    IF IDB_ProductionLine."A1.7.2".CONVEYOR_SENSOR.SensorEdge.Negative THEN
+	        DB_ToteTracking.Conveyor[_."A1.7.3"] := DB_ToteTracking.Conveyor[_."A1.7.2"];
+	    END_IF;
+	    
+	END_REGION
+	
+	/////////////////////////////////////////////////////////
+	//DP2
+	////////////////////////////////////////////////////////
+	
+	REGION B1.9.1
+	    
+	    // write barcode data
+	    DB_ToteTracking.Conveyor[_."B1.9.1"].Barcode :=
+	    IDB_BarcodeReader.DP2.ResultStr;
+	    
+	END_REGION
+	
+	REGION B1.9.2
+	    
+	    IF IDB_ProductionLine."B1.9.1".CONVEYOR_SENSOR.SensorEdge.Negative
+	    THEN
+	        // Barcode
+	        DB_ToteTracking.Conveyor[_."B1.9.2"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."B1.9.1"].Barcode;
+	        // main diverter direction
+	        DB_ToteTracking.Conveyor[_."B1.9.2"].ToteDir :=
+	        DB_ToteTracking.Conveyor[_."B1.9.1"].ToteDir;
+	        //
+	        DB_ToteTracking.Transfer[_."B1.9.2"] :=
+	        DB_ToteTracking.Transfer[_."B1.9.1"];
+	    END_IF;
+	    
+	    
+	    REGION Decision: second diverter: before Transfer Unit 
+	        
+	        // to Right for Transfer Unit B1.10.1
+	        IF DB_ToteTracking.Conveyor[_."B1.9.2"].ToteDir.toRight OR
+	           (DB_ToteTracking.Conveyor[_."B1.9.2"].Barcode = #NoReadTote) OR // Good read tote
+	           _.Global.IDB_HardwareDiag."Cognex -10.106.129.24".CommunicationError // Cognex reader communcation error
+	        THEN
+	            DB_ToteTracking.Conveyor[_."B1.10.1"].ToteDir.Straight := FALSE;
+	            DB_ToteTracking.Conveyor[_."B1.10.1"].ToteDir.toRight := TRUE;
+	        END_IF;
+	        // to straight for Transfer Unit B1.10.1 
+	        IF DB_ToteTracking.Conveyor[_."B1.9.2"].ToteDir.Straight AND
+	           NOT (DB_ToteTracking.Conveyor[_."B1.9.2"].Barcode = #NoReadTote) AND // Bad read tote
+	           NOT _.Global.IDB_HardwareDiag."Cognex -10.106.129.24".CommunicationError // Cognex reader communcation error
+	        THEN
+	            DB_ToteTracking.Conveyor[_."B1.10.1"].ToteDir.Straight := TRUE;
+	            DB_ToteTracking.Conveyor[_."B1.10.1"].ToteDir.toRight := FALSE;
+	        END_IF;
+	        
+	        // to Right for Transfer Unit C1.1.3
+	        IF DB_ToteTracking.Transfer[_."B1.9.2"].toRight THEN
+	            DB_ToteTracking.Conveyor[_."C1.3.1"].ToteDir.toLeft := FALSE;
+	            DB_ToteTracking.Conveyor[_."C1.3.1"].ToteDir.toRight := TRUE;
+	        END_IF;
+	        // to Left for Transfer Unit C1.1.3
+	        IF DB_ToteTracking.Transfer[_."B1.9.2"].toLeft THEN
+	            DB_ToteTracking.Conveyor[_."C1.3.1"].ToteDir.toLeft := TRUE;
+	            DB_ToteTracking.Conveyor[_."C1.3.1"].ToteDir.toRight := FALSE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	END_REGION
+	
+	REGION C1.1.3 Right
+	    
+	    IF IDB_ProductionLine."B1.10.1".FilteredSensor AND
+	        DB_ToteTracking.Conveyor[_."B1.10.1"].ToteDir.toRight AND
+	        NOT IDB_ProductionLine."C1.3.1".ReadTransferStatus.Occupied
+	    THEN
+	        // Barcode
+	        DB_ToteTracking.Conveyor[_."C1.3.1"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."B1.9.2"].Barcode;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION B1.11.1 Straight
+	    
+	    IF IDB_ProductionLine."B1.10.1".FilteredSensor AND
+	        DB_ToteTracking.Conveyor[_."B1.10.1"].ToteDir.Straight AND
+	        NOT IDB_ProductionLine."B1.11.1".ReadConveyorStatus.Occupied
+	    THEN
+	        // Barcode
+	        DB_ToteTracking.Conveyor[_."B1.11.1"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."B1.9.2"].Barcode;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION C1.2.2
+	    IF IDB_ProductionLine."C1.3.1".FilteredSensor AND
+	        DB_ToteTracking.Conveyor[_."C1.3.1"].ToteDir.toRight AND
+	        NOT IDB_ProductionLine."C1.2.2".ReadConveyorStatus.Occupied
+	    THEN
+	        DB_ToteTracking.Conveyor[_."C1.2.2"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."C1.3.1"].Barcode;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION C1.4.1
+	    IF IDB_ProductionLine."C1.3.1".FilteredSensor AND
+	        DB_ToteTracking.Conveyor[_."C1.3.1"].ToteDir.toLeft  //AND
+	        //NOT IDB_ProductionLine."C1.4.1".ReadConveyorStatus.Occupied
+	    THEN
+	        DB_ToteTracking.Conveyor[_."C1.4.1"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."C1.3.1"].Barcode;
+	    END_IF;
+	    
+	END_REGION
+	
+	
+	/////////////////////////////////////////////////////////
+	//DP3
+	////////////////////////////////////////////////////////
+	
+	REGION B1.17.1
+	    
+	    // write barcode data
+	    DB_ToteTracking.Conveyor[_."B1.17.1"].Barcode :=
+	    IDB_BarcodeReader.DP3.ResultStr;
+	    
+	END_REGION
+	
+	REGION B1.17.2
+	    
+	    IF IDB_ProductionLine."B1.17.1".CONVEYOR_SENSOR.SensorEdge.Negative THEN
+	        // Barcode
+	        DB_ToteTracking.Conveyor[_."B1.17.2"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."B1.17.1"].Barcode;
+	        // main diverter direction
+	        DB_ToteTracking.Conveyor[_."B1.17.2"].ToteDir :=
+	        DB_ToteTracking.Conveyor[_."B1.17.1"].ToteDir;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION B1.17.3
+	    
+	    IF IDB_ProductionLine."B1.17.2".CONVEYOR_SENSOR.SensorEdge.Negative THEN
+	        // Barcode
+	        DB_ToteTracking.Conveyor[_."B1.17.3"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."B1.17.2"].Barcode;
+	        // main diverter direction
+	        DB_ToteTracking.Conveyor[_."B1.17.3"].ToteDir :=
+	        DB_ToteTracking.Conveyor[_."B1.17.2"].ToteDir;
+	    END_IF;
+	    
+	END_REGION
+	
+	
+	REGION B1.17.4
+	    
+	    IF IDB_ProductionLine."B1.17.3".CONVEYOR_SENSOR.SensorEdge.Negative
+	    THEN
+	        // Barcode
+	        DB_ToteTracking.Conveyor[_."B1.17.4"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."B1.17.3"].Barcode;
+	        // main diverter direction
+	        DB_ToteTracking.Conveyor[_."B1.17.4"].ToteDir :=
+	        DB_ToteTracking.Conveyor[_."B1.17.3"].ToteDir;
+	    END_IF;
+	    
+	    
+	    REGION Decision: Third diverter: before Transfer Unit 
+	        
+	        // to Left
+	        IF DB_ToteTracking.Conveyor[_."B1.17.4"].ToteDir.toLeft OR
+	           (DB_ToteTracking.Conveyor[_."B1.17.4"].Barcode = #NoReadTote) OR // bad read tote
+	            _.Global.IDB_HardwareDiag."Cognex -10.106.129.24".CommunicationError // Cognex reader communcation error
+	        THEN
+	            DB_ToteTracking.Conveyor[_."B1.18.1"].ToteDir.Straight := FALSE;
+	            DB_ToteTracking.Conveyor[_."B1.18.1"].ToteDir.toLeft := TRUE;
+	        END_IF;
+	        // to straight
+	        IF DB_ToteTracking.Conveyor[_."B1.17.4"].ToteDir.Straight AND
+	            NOT (DB_ToteTracking.Conveyor[_."B1.17.4"].Barcode = #NoReadTote) AND // Good read tote
+	            NOT _.Global.IDB_HardwareDiag."Cognex -10.106.129.24".CommunicationError // Cognex reader communcation error
+	        THEN
+	            DB_ToteTracking.Conveyor[_."B1.18.1"].ToteDir.Straight := TRUE;
+	            DB_ToteTracking.Conveyor[_."B1.18.1"].ToteDir.toLeft := FALSE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	END_REGION
+	
+	REGION B1.6.1 Left
+	    
+	    IF IDB_ProductionLine."B1.18.1".FilteredSensor AND
+	        DB_ToteTracking.Conveyor[_."B1.18.1"].ToteDir.toLeft AND
+	        NOT IDB_ProductionLine."B1.6.1".ReadTransferStatus.Occupied
+	    THEN
+	        // Barcode
+	        DB_ToteTracking.Conveyor[_."B1.6.1"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."B1.17.4"].Barcode;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION B1.19.1 Straight
+	    
+	    IF IDB_ProductionLine."B1.18.1".FilteredSensor AND
+	        DB_ToteTracking.Conveyor[_."B1.18.1"].ToteDir.Straight AND
+	        NOT IDB_ProductionLine."B1.19.1".ReadConveyorStatus.Occupied
+	    THEN
+	        // Barcode
+	        DB_ToteTracking.Conveyor[_."B1.19.1"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."B1.17.4"].Barcode;
+	    END_IF;
+	    
+	END_REGION
+	
+	/////////////////////////////////////////////////////////
+	//DP4
+	////////////////////////////////////////////////////////
+	
+	REGION A1.7.4
+	    
+	    // write barcode data
+	    DB_ToteTracking.Conveyor[_."A1.7.4"].Barcode :=
+	    IDB_BarcodeReader.DP4.ResultStr;
+	    
+	END_REGION
+	
+	REGION A1.7.5
+	    
+	    IF IDB_ProductionLine."A1.7.4".CONVEYOR_SENSOR.SensorEdge.Negative THEN
+	        // Barcode
+	        DB_ToteTracking.Conveyor[_."A1.7.5"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."A1.7.4"].Barcode;
+	        // main diverter direction
+	        DB_ToteTracking.Conveyor[_."A1.7.5"].ToteDir :=
+	        DB_ToteTracking.Conveyor[_."A1.7.4"].ToteDir;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION A1.7.6
+	    
+	    IF IDB_ProductionLine."A1.7.5".CONVEYOR_SENSOR.SensorEdge.Negative THEN
+	        // Barcode
+	        DB_ToteTracking.Conveyor[_."A1.7.6"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."A1.7.5"].Barcode;
+	        // main diverter direction
+	        DB_ToteTracking.Conveyor[_."A1.7.6"].ToteDir :=
+	        DB_ToteTracking.Conveyor[_."A1.7.5"].ToteDir;
+	    END_IF;
+	    
+	END_REGION
+	
+	
+	REGION A1.8.1
+	    
+	    IF IDB_ProductionLine."A1.7.6".CONVEYOR_SENSOR.SensorEdge.Negative
+	    THEN
+	        // Barcode
+	        DB_ToteTracking.Conveyor[_."A1.8.1"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."A1.7.6"].Barcode;
+	        // main diverter direction
+	        DB_ToteTracking.Conveyor[_."A1.8.1"].ToteDir :=
+	        DB_ToteTracking.Conveyor[_."A1.7.6"].ToteDir;
+	    END_IF;
+	    
+	    
+	    REGION Decision: main diverter: before Mabs
+	        
+	        // to Right
+	        IF DB_ToteTracking.Conveyor[_."A1.8.1"].ToteDir.toRight OR
+	            (DB_ToteTracking.Conveyor[_."A1.8.1"].Barcode = #NoReadTote) OR // bad read tote
+	            _.Global.IDB_HardwareDiag."Cognex -10.106.129.24".CommunicationError // Cognex reader communcation error
+	        THEN
+	            DB_ToteTracking.Conveyor[_."A1.9.1"].ToteDir.Straight := FALSE;
+	            DB_ToteTracking.Conveyor[_."A1.9.1"].ToteDir.toRight := TRUE;
+	            DB_ToteTracking.Conveyor[_."A1.9.2"].ToteDir.Straight := FALSE;
+	            DB_ToteTracking.Conveyor[_."A1.9.2"].ToteDir.toRight := TRUE;
+	        END_IF;
+	        // to straight
+	        IF DB_ToteTracking.Conveyor[_."A1.8.1"].ToteDir.Straight AND
+	            NOT (DB_ToteTracking.Conveyor[_."A1.8.1"].Barcode = #NoReadTote) AND // good read tote
+	            NOT _.Global.IDB_HardwareDiag."Cognex -10.106.129.24".CommunicationError // Keyence reader communcation error
+	        THEN
+	            DB_ToteTracking.Conveyor[_."A1.9.1"].ToteDir.Straight := TRUE;
+	            DB_ToteTracking.Conveyor[_."A1.9.1"].ToteDir.toRight := FALSE;
+	            DB_ToteTracking.Conveyor[_."A1.9.2"].ToteDir.Straight := TRUE;
+	            DB_ToteTracking.Conveyor[_."A1.9.2"].ToteDir.toRight := FALSE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	END_REGION
+	
+	REGION D1.1.1 Right
+	    
+	    IF IDB_ProductionLine."A1.9.1".CROSS_SENSOR_FILTER.SensorEdge.Negative AND
+	        NOT IDB_ProductionLine."A1.9.1".CurrentPosition.right AND  //remobve not
+	        NOT IDB_ProductionLine."A1.9.2".CurrentPosition.right //AND  // remove not
+	        //NOT IDB_ProductionLine."D1.1.1".ReadConveyorStatus.Occupied
+	    THEN
+	        // Barcode
+	        DB_ToteTracking.Conveyor[_."D1.1.1"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."A1.8.1"].Barcode;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION D1.1.2
+	    
+	    IF IDB_ProductionLine."D1.1.1".CONVEYOR_SENSOR.SensorEdge.Negative THEN
+	        DB_ToteTracking.Conveyor[_."D1.2.1"] := DB_ToteTracking.Conveyor[_."D1.1.1"];
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION D1.2.1
+	    
+	    IF IDB_ProductionLine."D1.2.1".CONVEYOR_SENSOR.SensorEdge.Negative THEN
+	        DB_ToteTracking.Conveyor[_."D1.3.1"] := DB_ToteTracking.Conveyor[_."D1.2.1"];
+	    END_IF;
+	    
+	END_REGION
+	
+	
+	REGION A1.10.1 Straight
+	    
+	    IF IDB_ProductionLine."A1.9.1".CROSS_SENSOR_FILTER.SensorEdge.Negative AND
+	        NOT IDB_ProductionLine."A1.9.1".CurrentPosition.straight AND  //remove not
+	        NOT IDB_ProductionLine."A1.9.2".CurrentPosition.straight //AND  // remove not
+	        //NOT IDB_ProductionLine."A1.10.1".ReadConveyorStatus.Occupied
+	    THEN
+	        // Barcode
+	        DB_ToteTracking.Conveyor[_."A1.10.1"].Barcode :=
+	        DB_ToteTracking.Conveyor[_."A1.8.1"].Barcode;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION A1.10.2
+	    
+	    IF IDB_ProductionLine."A1.10.1".CONVEYOR_SENSOR.SensorEdge.Negative THEN
+	        DB_ToteTracking.Conveyor[_."A1.10.2"] := DB_ToteTracking.Conveyor[_."A1.10.1"];
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION A1.10.3
+	    
+	    IF IDB_ProductionLine."A1.10.2".CONVEYOR_SENSOR.SensorEdge.Negative THEN
+	        DB_ToteTracking.Conveyor[_."A1.10.3"] := DB_ToteTracking.Conveyor[_."A1.10.2"];
+	    END_IF;
+	    
+	END_REGION
+	
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

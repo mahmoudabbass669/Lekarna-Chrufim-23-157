@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Blocks.InstanceDB ID="0">
+    <AttributeList>
+      <InstanceOfName>ProductionLine.FB_OPC_Communication</InstanceOfName>
+      <InstanceOfType>FB</InstanceOfType>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Static">
+    <Member Name="Communication_DP1" Datatype="&quot;ProductionLine.FB_OPC_DestRequest&quot;" />
+    <Member Name="Communication_DP2" Datatype="&quot;ProductionLine.FB_OPC_DestRequest&quot;" />
+    <Member Name="Communication_DP3" Datatype="&quot;ProductionLine.FB_OPC_DestRequest&quot;" />
+    <Member Name="Communication_DP4" Datatype="&quot;ProductionLine.FB_OPC_DestRequest&quot;" />
+    <Member Name="Communication_IP1" Datatype="&quot;ProductionLine.FB_OPC_DestInfo&quot;" />
+    <Member Name="Communication_IP2" Datatype="&quot;ProductionLine.FB_OPC_DestInfo&quot;" />
+    <Member Name="Communication_IP3" Datatype="&quot;ProductionLine.FB_OPC_DestInfo&quot;" />
+    <Member Name="Communication_IP4" Datatype="&quot;ProductionLine.FB_OPC_DestInfo&quot;" />
+    <Member Name="Communication_IP5" Datatype="&quot;ProductionLine.FB_OPC_DestInfo&quot;" />
+    <Member Name="Communication_IP6" Datatype="&quot;ProductionLine.FB_OPC_DestInfo&quot;" />
+    <Member Name="Communication_IP7" Datatype="&quot;ProductionLine.FB_OPC_DestInfo&quot;" />
+    <Member Name="Communication_IP8" Datatype="&quot;ProductionLine.FB_OPC_DestInfo&quot;" />
+    <Member Name="Communication_IP9" Datatype="&quot;ProductionLine.FB_OPC_DestInfo&quot;" />
+    <Member Name="Communication_SYS_OP" Datatype="&quot;ProductionLine.FB_OPC_SysStatus&quot;" />
+    <Member Name="Communication_SYS_OP_Source" Datatype="&quot;ProductionLine.OPC_SystemStatus&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Communication_SYS_OP_Ack" Datatype="&quot;ProductionLine.OPC_SystStatus_Ack&quot;">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="timPeriodicSend" Datatype="IEC_TIMER" Version="1.0">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="timWatchdog" Datatype="IEC_TIMER" Version="1.0">
+      <AttributeList>
+        <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+      </AttributeList>
+    </Member>
+    <Member Name="Communication_fault" Datatype="Bool" />
+  </Section>
+</Sections></Interface>
+      <Name>IDB_OPC_Communication</Name>
+      <Namespace>ProductionLine</Namespace>
+      <Number>42</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="4" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="5" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.InstanceDB>
+</Document>

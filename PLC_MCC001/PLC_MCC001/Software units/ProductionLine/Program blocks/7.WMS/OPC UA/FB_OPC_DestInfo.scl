@@ -1,0 +1,100 @@
+﻿NAMESPACE ProductionLine
+FUNCTION_BLOCK FB_OPC_DestInfo
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR_IN_OUT 
+      Source : OPC_DestInfo;
+      Ack : OPC_DestInfo_Ack;
+   END_VAR
+
+   VAR 
+      Communication { S7_SetPoint := 'False'} : FB_OPC_SendReciveAck;
+      staSource { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'; S7_SetPoint := 'False'} : OPC_DestInfo;
+      staAck { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'; S7_SetPoint := 'False'} : OPC_DestInfo_Ack;
+   END_VAR
+
+   VAR_TEMP 
+      Retval : Int;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : OPC_SendReciveAck
+	// Project        : Lekarna, Chrudim -PLC001 -MCC001
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	
+	//======================================================
+	// Region: Communication Handling and Logging
+	// Description: Manages the communication routine and logs
+	//              events for message sending, acknowledgment
+	//              reception, and acknowledgment timeout.
+	//======================================================
+	
+	//------------------------------------------------------
+	// Call communication routine
+	//------------------------------------------------------
+	REGION Communication routine
+	    // Call communication routine
+	    #Communication(SourceSeq := #staSource.SourceSeq,
+	                   AckSeq := #staAck.AckSeq,
+	                   Timeout := T#20s);
+	END_REGION
+	
+	#Source.SourceSeq := #staSource.SourceSeq;
+	#staAck.AckSeq := #Ack.AckSeq;
+	
+	
+	//------------------------------------------------------
+	// Log event when a new message is sent
+	//------------------------------------------------------
+	
+	REGION Log event - new message
+	    IF #Communication.Log.Send THEN
+	        #Communication.Log.Send := FALSE;
+	        // Logging
+	        //(LOG)3003=$ Node $, new message sent, seq: $, palletID: $, WMSID: $
+	        DB_LogMsg.LogMsg_7.Para_STRING_01.Data := #Source.DecisionPoint;
+	        DB_LogMsg.LogMsg_7.Para_BYTE_02.Data := #Source.SourceSeq;
+	        DB_LogMsg.LogMsg_7.Para_STRING_03.Data := #Source.Barcode;
+	        DB_LogMsg.LogMsg_7.Para_STRING_04.Data := #Source.InformationPoint;
+	        #Retval := FC_LogMsg(EventID := 3003, EventLevel := 2, EventGroup := 33, LogMsg := DB_LogMsg.LogMsg_7);
+	    END_IF;
+	END_REGION
+	
+	//------------------------------------------------------
+	// Log event when new acknowledgment is received
+	//------------------------------------------------------
+	
+	REGION Log event-New acknowledgment
+	    IF #Communication.Log.New_Ack_received THEN
+	        #Communication.Log.New_Ack_received := FALSE;
+	        // Logging
+	        //(LOG)3004=$ Node $, acknowledge received, seq: $, palletID: $, WMSID: $
+	        DB_LogMsg.LogMsg_7.Para_BYTE_02.Data := #Ack.AckSeq;
+	        #Retval := FC_LogMsg(EventID := 3004, EventLevel := 2, EventGroup := 33, LogMsg := DB_LogMsg.LogMsg_7);
+	    END_IF;
+	END_REGION
+	
+	//------------------------------------------------------
+	// Log event when acknowledgment timeout occurs
+	//------------------------------------------------------
+	
+	REGION Log event- acknowledgment timeout
+	    IF #Communication.Log.Ack_timeout THEN
+	        #Communication.Log.Ack_timeout := FALSE;
+	        // Logging
+	        //(LOG)3009=$ Node $, seq: $, acknowledge timeout!
+	        DB_LogMsg.LogMsg_8.Para_STRING_01.Data := #Source.DecisionPoint;
+	        DB_LogMsg.LogMsg_8.Para_BYTE_02.Data := #Communication.SendSeq;
+	        #Retval := FC_LogMsg(EventID := 3009, EventLevel := 3, EventGroup := 33, LogMsg := DB_LogMsg.LogMsg_8);
+	    END_IF;
+	END_REGION
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

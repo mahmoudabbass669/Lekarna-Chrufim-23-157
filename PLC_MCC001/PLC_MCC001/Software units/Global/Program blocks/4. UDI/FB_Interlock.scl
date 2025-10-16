@@ -1,0 +1,72 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_Interlock
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      ConveyorSensor : Bool;
+      DownstreamOccuTime : Time;
+   END_VAR
+
+   VAR_OUTPUT 
+      StopConv : Bool;
+   END_VAR
+
+   VAR 
+      SensorFT {InstructionName := 'F_TRIG'; LibVersion := '1.0'} : F_TRIG;
+      FtSensor { S7_SetPoint := 'True'} : Bool;
+      DownstreamOccuTimer {InstructionName := 'IEC_TIMER'; LibVersion := '1.0'} : IEC_TIMER;
+      DownstreamConvOccu { S7_SetPoint := 'True'} : Bool;
+      DS : Struct
+         ConvOccupied : Bool;
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================================================
+	// Company       : LogTech, s.r.o.
+	// Created by    : Anton Vinoth Soundraraj
+	// Block         : FB_Interlock
+	// Project       : LT-Lib-Block
+	// ==========================================================================================================================================================================
+	
+	// The Conveyor is ready to send item to next conveyor, but the next conveyor is not ready to receive
+	// Next conveyor is in occupied by another item
+	// the item 1 stop in die back condition
+	// in this case, only one item can pass through one conveyor
+	
+	// ------------------------------------------------------------------------------------
+	// 
+	//                  item 1                   item 2
+	//                  *************            *************
+	//                  *           *            *           *   
+	//                  *           *            *           *
+	//                  *************            *************      
+	//  ______________________________    ______________________________
+	// |______________________________| |______________________________|
+	//           Conveyor                      Downstream Conveyor
+	//           
+	// ------------------------------------------------------------------------------------
+	
+	REGION Occupied Interlock
+	    
+	    // If downstream conveyor occupied
+	    // negative trigger of conveyor sensor
+	    #SensorFT(CLK := #ConveyorSensor,
+	              Q => #FtSensor);
+	    // downstream conveyor occupied duration
+	    #DownstreamOccuTimer.TOF(IN := #FtSensor,
+	                             PT := #DownstreamOccuTime,
+	                             Q => #DownstreamConvOccu);
+	    // downstream conveyor occupied - stop conveyor condition
+	    #DS.ConvOccupied :=
+	    #ConveyorSensor AND #DownstreamConvOccu;
+	    
+	    // Stop Conveyor
+	    #StopConv :=
+	    #DS.ConvOccupied;
+	    
+	END_REGION
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

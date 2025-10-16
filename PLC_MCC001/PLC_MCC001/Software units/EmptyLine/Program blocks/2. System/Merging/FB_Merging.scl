@@ -1,0 +1,34 @@
+﻿NAMESPACE EmptyLine
+FUNCTION_BLOCK FB_Merging
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR 
+      "Merge_J1.2.4" : _.Global.FB_Merging;
+   END_VAR
+
+   VAR_TEMP 
+      Priority : Struct
+         Straight : Bool;
+         Arm : Bool;
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : FB_Merging
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	
+	#"Merge_J1.2.4"(StraightSensor := IDB_EmptyLine."J1.2.3".FilteredSensor,
+	                ArmSensor      := IDB_EmptyLine."J2.4.1".FilteredSensor);
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

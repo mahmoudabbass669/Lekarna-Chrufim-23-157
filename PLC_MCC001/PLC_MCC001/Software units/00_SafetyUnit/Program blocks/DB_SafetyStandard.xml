@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Blocks.GlobalDB ID="0">
+    <AttributeList>
+      <Access>Published</Access>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Static">
+    <Member Name="ToStandard" Datatype="Struct">
+      <Member Name="EstopActive" Datatype="Bool" />
+    </Member>
+    <Member Name="PressReset" Datatype="Bool" />
+    <Member Name="ToHMI" Datatype="Struct">
+      <Member Name="EstopPB -MCC001+MCC001-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -ZONA1+A1.1.1-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -ZONA1+A1.1.10-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -ZONA1+A1.2.1-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -ZONA1+B1.22.1-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -ZONA1+C1.3.1-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -ZONA1+B1.12.1-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -ZONA1+B1.15.1-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -ZONA1+B1.17.3-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -ZONA2+D1.11.1-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -ZONA2+E1.1.2-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -ZONA2+A1.10.3-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -ZONA2+A1.12.1-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -ZONA2+A1.16.8-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -ZONA2+B1.17.0-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -ZONA2+A2.4.5-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -ZONA2+G1.5.3-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -ZONA2+G1.7.1-SF1" Datatype="Bool" />
+      <Member Name="PhaseOK -MCC001" Datatype="Bool" />
+    </Member>
+    <Member Name="holdAlarmOffTimer" Datatype="TON_TIME" Version="1.0" />
+    <Member Name="holdAlarmOff" Datatype="Bool" />
+  </Section>
+</Sections></Interface>
+      <MemoryReserve>100</MemoryReserve>
+      <Name>DB_SafetyStandard</Name>
+      <Namespace />
+      <Number>20</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="4" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="5" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.GlobalDB>
+</Document>

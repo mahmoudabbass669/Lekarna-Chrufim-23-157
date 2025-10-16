@@ -1,0 +1,73 @@
+﻿NAMESPACE ProductionLine
+FUNCTION_BLOCK FB_OPC_ReceiveSendAck
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR_IN_OUT 
+      SourceSeq : Int;
+      AckSeq : Int;
+   END_VAR
+
+   VAR 
+      New_data_received : Bool;
+      Ack_send : Bool;
+      Log : Struct
+         New_data_received : Bool;
+         Ack_send : Bool;
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : OPC_SendReciveAck
+	// Project        : Lekarna, Chrudim -PLC001 -MCC001
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	// =========================
+	// REGION: Acknowledgement Handling
+	// =========================
+	// This region handles sending an acknowledgment signal.
+	// When #Ack_send is TRUE, it means an ACK needs to be sent for the last received sequence.
+	// The ACK sequence is set equal to the source sequence to confirm receipt.
+	// Then, #Ack_send is reset to FALSE, and a log flag is set to indicate ACK was sent.
+	
+	REGION Ack_Handling
+	    
+	    IF #Ack_send THEN
+	        #AckSeq := #SourceSeq;        // Update ACK sequence to match source sequence
+	        #Ack_send := FALSE;           // Reset ACK send request
+	        #Log.Ack_send := TRUE;        // Set log flag for diagnostics or monitoring
+	    END_IF;
+	    
+	END_REGION
+	
+	
+	// =========================
+	// REGION: New Data Detection
+	// =========================
+	// This region checks if a new data sequence has been received.
+	// If the source and ACK sequences are not equal, it determines if it's truly new data:
+	// - If both sequences are non-zero, or source is 1 and ACK is 0 (initial start case),
+	//   then new data is considered received.
+	// - Otherwise, it assumes the ACK was missed and sets ACK to current source.
+	
+	REGION New_Data_Detection
+	    
+	    IF #SourceSeq <> #AckSeq THEN
+	        // Check if both sequences are valid (non-zero), or it's the initial case (1,0)
+	        IF (#SourceSeq <> 0 AND #AckSeq <> 0) OR (#SourceSeq = 1 AND #AckSeq = 0) THEN
+	            #New_data_received := TRUE;           // Flag new data received
+	            #Log.#New_data_received := TRUE;      // Set log flag for diagnostics
+	        ELSE
+	            #AckSeq := #SourceSeq;                // Treat as missed ACK and sync
+	        END_IF;
+	    END_IF;
+	    
+	END_REGION
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

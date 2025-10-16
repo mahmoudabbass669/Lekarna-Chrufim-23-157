@@ -1,0 +1,80 @@
+﻿NAMESPACE ProductionLine
+ORGANIZATION_BLOCK Main_ProductionLine
+TITLE = "Main Program Sweep (Cycle)"
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : FB_Main_LineA1
+	// Project        : Lékárna Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	
+	//Synchronization Line_A1 and Global
+	
+	REGION Synchronization
+	    
+	    FC_Sync();
+	    
+	END_REGION
+	
+	REGION Line A1
+	    
+	    IDB_ProductionLine();
+	    
+	    //Upstream
+	    FC_Upstream();
+	    
+	    //Downstream
+	    FC_Downstream();
+	    
+	    //Fault
+	    FC_Fault();
+	    
+	    // Merging
+	    IDB_Merging();
+	    
+	    // Barcode
+	    IDB_BarcodeReader();
+	    
+	    // OPC Server
+	    IDB_OPC_Communication();
+	    
+	    //FB Technology
+	    IDB_FB_Technology();
+	    
+	    //Tote Tracking
+	    IDB_ToteTracking();
+	    
+	    // FB Segments Status
+	    IDB_Segments_Status();
+	    
+	    // FB Toggle Dir
+	    IDB_FB_ToggleDir();
+	
+	END_REGION
+	
+	REGION Test
+	    // Flow Test
+	    IDB_Flow_Test();
+	    
+	END_REGION
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+END_ORGANIZATION_BLOCK
+END_NAMESPACE
+

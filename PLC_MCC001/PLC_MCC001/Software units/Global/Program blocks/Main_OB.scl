@@ -1,0 +1,66 @@
+﻿NAMESPACE Global
+ORGANIZATION_BLOCK Main_OB
+TITLE = "Main Program Sweep (Cycle)"
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+
+BEGIN
+	// ===
+	// GoW
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : Main_OB
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION Global Status
+	    
+	    // All conveyor status
+	    // For monitoring the whole system in simple way
+	    // Global status is used for Klaxon lamp
+	    IDB_GlobalStatus();
+	    
+	END_REGION
+	
+	REGION System
+	    
+	    FC_ReadSystemSSR();
+	    
+	END_REGION
+	
+	REGION MANUAL CONTROL
+	    
+	    IDB_ManualControl();
+	    
+	END_REGION
+	
+	
+	REGION Hardware diag
+	    
+	    IDB_HardwareDiag();
+	    
+	END_REGION
+	
+	REGION HMI
+	    
+	    FC_SafetyAlarm();
+	    
+	    IDB_VisuAlarm();
+	    
+	END_REGION
+	
+	
+	REGION Klaxon
+	    
+	    FC_AllKlaxon();
+	    
+	END_REGION
+	
+	
+	
+	
+END_ORGANIZATION_BLOCK
+END_NAMESPACE
+

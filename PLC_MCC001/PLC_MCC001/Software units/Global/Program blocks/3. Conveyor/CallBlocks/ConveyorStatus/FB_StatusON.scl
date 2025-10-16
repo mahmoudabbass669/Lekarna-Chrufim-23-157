@@ -1,0 +1,45 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_StatusON
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      SystemStartActive { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      StatusStop { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      StatusEStop { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      StatusManual { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      StatusFault { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+      FireAlarmActive { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+   END_VAR
+
+   VAR_OUTPUT 
+      StatusON { ExternalAccessible := 'False'; ExternalVisible := 'False'; ExternalWritable := 'False'} : Bool;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================================================
+	// Company       : LogTech, s.r.o.
+	// Created by    : Anton Vinoth Soundraraj
+	// Block         : FB_StatusON
+	// Project       : LT-Lib-Block
+	// ==========================================================================================================================================================================
+	
+	REGION STATUS ON
+	    
+	    IF #SystemStartActive AND NOT #StatusStop AND NOT #StatusEStop AND
+	        NOT #StatusManual AND NOT #StatusFault AND NOT #FireAlarmActive
+	    THEN
+	        // The status of the conveyor is ON
+	        #StatusON := TRUE;
+	    END_IF;
+	    
+	    IF #StatusStop OR #StatusEStop OR #StatusManual OR
+	        #StatusFault OR #FireAlarmActive THEN
+	        // The status of the conveyor is OFF
+	        #StatusON := FALSE;
+	    END_IF;
+	    
+	END_REGION CONVEYOR STATUS ON
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

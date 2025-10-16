@@ -1,0 +1,1222 @@
+﻿NAMESPACE EmptyLine
+FUNCTION FC_Fault : Void
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : FC_Fault
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	// ===== bw143-C1 =====
+	REGION J1.1.1
+	    //J1.1.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.1"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.1.1" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."18B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."18B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.1.2
+	    //J1.1.2
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.2"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.1.2" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."18B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."18B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.1.3
+	    //J1.1.3
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.3"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.1.3" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."19B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."19B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.1.4
+	    //J1.1.4
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.4"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.1.4" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."19B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."19B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.1.5
+	    //J1.1.5
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.5"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.1.5" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."20B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."20B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.1.6
+	    //J1.1.6
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.6"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.1.6" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."20B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."20B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.1.7
+	    //J1.1.7
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.7"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.1.7" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."21B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."21B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.1.8
+	    //J1.1.8
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.8"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.1.8" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."21B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."21B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.1.9
+	    //J1.1.9
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.9"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.1.9" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."22B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."22B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.1.10
+	    //J1.1.10
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.10"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.1.10" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."22B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."22B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.1.11
+	    //J1.1.11
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.11"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.1.11" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."23B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."23B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.1.12
+	    //J1.1.12
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.12"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.1.12" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."23B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."23B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.1.13
+	    //J1.1.13
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.13"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.1.13" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."24B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."24B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.1.14
+	    //J1.1.14
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.14"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.1.14" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."24B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."24B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.1.15
+	    //J1.1.15
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.15"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.1.15" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."25B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."25B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.2.1
+	    //J1.2.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.2.1"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.2.1" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."25B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."25B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.2.2
+	    //J1.2.2
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.2.2"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.2.2" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."26B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."26B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.2.3
+	    //J1.2.3 Staright for Merger1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.2.3"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.2.3" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."26B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."26B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	
+	// ===== bw200-C2 =====
+	REGION J2.1.1
+	    //J2.1.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.1"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.1.1" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."16A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."16A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw200-C2 =====
+	REGION J2.1.2
+	    //J2.1.2
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.2"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.1.2" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."16A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."16A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw200-C2 =====
+	REGION J2.1.3
+	    //J2.1.3
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.3"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.1.3" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."17A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."17A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw200-C2 =====
+	REGION J2.1.4
+	    //J2.1.4
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.4"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.1.4" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."17A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."17A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw200-C2 =====
+	REGION J2.1.5
+	    //J2.1.5
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.5"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.1.5" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."18A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."18A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw200-C2 =====
+	REGION J2.1.6
+	    //J2.1.6
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.6"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.1.6" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."18A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."18A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw200-C2 =====
+	REGION J2.1.7
+	    //J2.1.7
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.7"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.1.7" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."19A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."19A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw200-C2 =====
+	REGION J2.1.8
+	    //J2.1.8
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.8"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.1.8" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."19A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."19A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw200-C2 =====
+	REGION J2.1.9
+	    //J2.1.9
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.9"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.1.9" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."20A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."20A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw200-C2 =====
+	REGION J2.1.10
+	    //J2.1.10
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.10"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.1.10" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."20A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."20A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw200-C2 =====
+	REGION J2.1.11
+	    //J2.1.11
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.11"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.1.11" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."21A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."21A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw200-C2 =====
+	REGION J2.1.12
+	    //J2.1.12
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.12"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.1.12" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."21A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."21A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw200-C2 =====
+	REGION J2.1.13
+	    //J2.1.13
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.13"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.1.13" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."22A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."22A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw200-C2 =====
+	REGION J2.1.14
+	    //J2.1.14
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.14"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.1.14" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."22A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."22A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw200-C2 =====
+	REGION J2.1.15
+	    //J2.1.15
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.15"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.1.15" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."23A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."23A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	
+	// ===== bw200-C2 =====
+	REGION J2.2.1
+	    //J2.2.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.2.1"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.2.1" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."23A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."23A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw200-C2 =====
+	REGION J2.2.2
+	    //J2.2.2
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.2.2"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.2.2" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."24A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."24A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw200-C2 =====
+	REGION J2.3.1
+	    //J2.3.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.3.1"] :=
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."25A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."25A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw200-C2 =====
+	REGION J2.4.1
+	    //J2.4.1 Arm for Merger1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.4.1"] :=
+	    _."ASiGW-MCC001-bw200-C2: Input"."Error J2.4.1" OR
+	    _."ASiGW-MCC001-bw200-C2: ConfigErr".Slave."26A" OR
+	    _."ASiGW-MCC001-bw200-C2: PeriErr".Slave."26A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.200".CommunicationError;
+	    
+	END_REGION
+	
+	
+	// ===== bw143-C1 =====
+	REGION J1.2.4 Merger1
+	    //J1.2.4 Merger 1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.2.4"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.2.4" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."27B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."27B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.2.5
+	    //J1.2.5
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.2.5"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.2.5" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."27B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."27B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// ===== bw143-C1 =====
+	REGION J1.3.1
+	    //J1.3.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.3.1"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.3.1" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."17B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."17B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.3.2
+	    //J1.3.2
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.3.2"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.3.2" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."17B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."17B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.4.1
+	    //J1.4.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.4.1"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.4.1" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."13B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."13B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.4.2
+	    //J1.4.2
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.4.2"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.4.2" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."13B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."13B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.4.3
+	    //J1.4.3
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.4.3"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.4.3" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."14B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."14B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.4.4
+	    //J1.4.4
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.4.4"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.4.4" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."14B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."14B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.4.5
+	    //J1.4.5
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.4.5"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.4.5" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."15B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."15B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.4.6
+	    //J1.4.6
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.4.6"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.4.6" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."15B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."15B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.4.7
+	    //J1.4.7
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.4.7"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.4.7" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."16B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."16B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.5.1
+	    //J1.5.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.5.1"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.5.1" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."16B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."16B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.5.2
+	    //J1.5.2
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.5.2"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.5.2" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."1B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."1B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.5.3
+	    //J1.5.3
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.5.3"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.5.3" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."2B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."2B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.5.4
+	    //J1.5.4
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.5.4"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.5.4" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."2B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."2B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	REGION J1.6.1 Mabs
+	    //J1.6.1 Mabs
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.6.1"] :=
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."29B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."29B" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."30B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."30B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	REGION J1.6.2 Mabs
+	    //J1.6.2 Mabs
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.6.2"] :=
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."29B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."29B" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."30B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."30B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.7.1
+	    //J1.7.1 (Go straight )
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.7.1"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.7.1" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."3B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."3B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.7.2
+	    //J1.7.2
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.7.2"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.7.2" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."3B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."3B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.8.1
+	    //J1.8.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.8.1"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.8.1" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."4B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."4B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.8.2
+	    //J1.8.2
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.8.2"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.8.2" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."4B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."4B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.9.1
+	    //J1.9.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.9.1"] :=
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."5B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."5B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.10.1
+	    //J1.10.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.10.1"] :=
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."5B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."5B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.11.1
+	    //J1.11.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.1"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.11.1" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."6B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."6B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.11.2
+	    //J1.11.2
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.2"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.11.2" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."6B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."6B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.11.3
+	    //J1.11.3
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.3"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.11.3" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."7B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."7B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.11.4
+	    //J1.11.4
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.4"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.11.4" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."7B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."7B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.11.5
+	    //J1.11.5
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.5"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.11.5" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."8B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."8B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.11.6
+	    //J1.11.6
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.6"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.11.6" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."8B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."8B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.11.7
+	    //J1.11.7
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.7"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.11.7" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."9B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."9B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.11.8
+	    //J1.11.8
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.8"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.11.8" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."9B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."9B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.11.9
+	    //J1.11.9
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.9"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.11.9" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."10B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."10B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.11.10
+	    //J1.11.10
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.10"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.11.10" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."10B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."10B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.11.11
+	    //J1.11.11
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.11"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.11.11" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."11B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."11B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.11.12
+	    //J1.11.12
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.12"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.11.12" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."11B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."11B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C1 =====
+	REGION J1.11.13
+	    //J1.11.13
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.13"] :=
+	    _."ASiGW-MCC001-bw143-C1: Input"."Error J1.11.13" OR
+	    _."ASiGW-MCC001-bw143-C1: ConfigErr".Slave."12B" OR
+	    _."ASiGW-MCC001-bw143-C1: PeriErr".Slave."12B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.1.1
+	    //K1.1.1  (Go Left)
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.1.1"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.1.1" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."1B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."1B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.2.1
+	    //K1.2.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.2.1"] :=
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."31A" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."31A" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.3.1
+	    //K1.3.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.3.1"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.3.1" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."1B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."1B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.4.1
+	    //K1.4.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.1"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.4.1" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."2B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."2B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.4.2
+	    //K1.4.2
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.2"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.4.2" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."2B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."2B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.4.3
+	    //K1.4.3
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.3"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.4.3" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."3B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."3B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.4.4
+	    //K1.4.4
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.4"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.4.4" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."3B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."3B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.4.5
+	    //K1.4.5
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.5"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.4.5" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."4B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."4B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.4.6
+	    //K1.4.6
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.6"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.4.6" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."4B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."4B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.4.7
+	    //K1.4.7
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.7"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.4.7" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."5B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."5B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.4.8
+	    //K1.4.8
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.8"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.4.8" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."5B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."5B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.4.9
+	    //K1.4.9
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.9"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.4.9" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."6B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."6B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.4.10
+	    //K1.4.10
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.10"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.4.10" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."6B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."6B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.5.1
+	    //K1.5.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.5.1"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.5.1" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."7B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."7B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.5.2
+	    //K1.5.2
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.5.2"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.5.2" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."7B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."7B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.5.3
+	    //K1.5.3
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.5.3"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.5.3" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."8B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."8B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.5.4
+	    //K1.5.4
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.5.4"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.5.4" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."8B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."8B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.5.5
+	    //K1.5.5
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.5.5"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.5.5" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."9B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."9B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.5.6
+	    //K1.5.6
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.5.6"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.5.6" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."9B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."9B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.5.7
+	    //K1.5.7
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.5.7"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.5.7" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."10B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."10B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.5.8
+	    //K1.5.8
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.5.8"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.5.8" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."10B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."10B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.6.1
+	    //K1.6.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.6.1"] :=
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."11B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."11B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.6.2
+	    //K1.6.2
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.6.2"] :=
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."11B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."11B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.7.1
+	    //K1.7.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.7.1"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.7.1" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."12B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."12B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.7.2
+	    //K1.7.2
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.7.2"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.7.2" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."12B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."12B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.8.1
+	    //K1.8.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.8.1"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.8.1" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."13B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."13B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.8.2
+	    //K1.8.2
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.8.2"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.8.2" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."13B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."13B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.8.3
+	    //K1.8.3
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.8.3"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.8.3" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."14B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."14B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.9.1
+	    //K1.9.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.9.1"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.9.1" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."15B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."15B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.9.2
+	    //K1.9.2
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.9.2"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.9.2" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."15B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."15B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.9.3
+	    //K1.9.3
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.9.3"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.9.3" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."16B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."16B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.9.4
+	    //K1.9.4
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.9.4"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.9.4" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."16B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."16B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.9.5
+	    //K1.9.5
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.9.5"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.9.5" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."17B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."17B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.9.6
+	    //K1.9.6
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.9.6"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.9.6" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."17B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."17B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.9.7
+	    //K1.9.7
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.9.7"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.9.7" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."18B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."18B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	// ===== bw143-C2 =====
+	REGION K1.10.1
+	    //K1.10.1
+	    DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.10.1"] :=
+	    _."ASiGW-MCC001-bw143-C2: Input"."Error K1.10.1" OR
+	    _."ASiGW-MCC001-bw143-C2: ConfigErr".Slave."19B" OR
+	    _."ASiGW-MCC001-bw143-C2: PeriErr".Slave."19B" OR
+	    _.Global.IDB_HardwareDiag."BW-ASi -10.106.129.143".CommunicationError;
+	    
+	END_REGION
+	
+	
+END_FUNCTION
+END_NAMESPACE
+

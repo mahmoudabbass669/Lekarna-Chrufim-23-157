@@ -1,0 +1,101 @@
+﻿FUNCTION "FC_SafetyStandard" : Void
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : FC_SafetyStandard
+	// Project        : Lékárna Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION safety to standard: - without delay
+	    
+	    // All zone estop status
+	    "DB_SafetyStandard".ToStandard.EstopActive :=
+	    
+	    NOT "FSIDB_Main_Safety_RTG1".Pair1.Q OR 
+	    NOT "FSIDB_Main_Safety_RTG1".Pair2.Q OR
+	    NOT "FSIDB_Main_Safety_RTG1".Pair3.Q OR
+	    NOT "FSIDB_Main_Safety_RTG1".Pair4.Q OR
+	    NOT "FSIDB_Main_Safety_RTG1".Pair5.Q OR
+	    NOT "FSIDB_Main_Safety_RTG1".Pair6.Q OR
+	    NOT "FSIDB_Main_Safety_RTG1".Pair7.Q OR
+	    NOT "FSIDB_Main_Safety_RTG1".Pair8.Q OR
+	    NOT "FSIDB_Main_Safety_RTG1".Pair9.Q OR
+	    NOT "FSIDB_Main_Safety_RTG1".Pair10.Q;
+	    
+	END_REGION
+	
+	REGION Press Reset
+	    
+	    // reset needed / Ack. Req. 
+	    // can be reseted when zone estop status is active and zone estop is released
+	    
+	    "DB_SafetyStandard".PressReset :=
+	    "FSIDB_Main_Safety_RTG1".Pair1.ACK_REQ OR
+	    "FSIDB_Main_Safety_RTG1".Pair2.ACK_REQ OR
+	    "FSIDB_Main_Safety_RTG1".Pair3.ACK_REQ OR
+	    "FSIDB_Main_Safety_RTG1".Pair4.ACK_REQ OR
+	    "FSIDB_Main_Safety_RTG1".Pair5.ACK_REQ OR
+	    "FSIDB_Main_Safety_RTG1".Pair6.ACK_REQ OR
+	    "FSIDB_Main_Safety_RTG1".Pair7.ACK_REQ OR
+	    "FSIDB_Main_Safety_RTG1".Pair8.ACK_REQ OR
+	    "FSIDB_Main_Safety_RTG1".Pair9.ACK_REQ OR
+	    "FSIDB_Main_Safety_RTG1".Pair10.ACK_REQ;
+	    
+	END_REGION
+	
+	REGION Hold alarm Off
+	    
+	    // hold alarm message OFF
+	    IF "DB_SafetyStandard".ToStandard.EstopActive
+	    THEN
+	        "DB_SafetyStandard".holdAlarmOff := TRUE;
+	    END_IF;
+	    
+	    // release hold after preset time
+	    
+	    "DB_SafetyStandard".holdAlarmOffTimer(IN := NOT "DB_SafetyStandard".ToStandard.EstopActive,
+	                                          PT := t#15s);
+	    
+	    IF "DB_SafetyStandard".holdAlarmOffTimer.Q THEN
+	        "DB_SafetyStandard".holdAlarmOff := FALSE;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION to HMI
+	    //Main
+	    "DB_SafetyStandard".ToHMI."EstopPB -MCC001+MCC001-SF1" := NOT "MCC001+MCC001-SF1";
+	    //"DB_SafetyStandard".ToHMI."PhaseOK -MCC001" := NOT "PhaseOK -MCC100";
+	    //Zone 1
+	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA1+A1.1.1-SF1" := NOT "ZONA1+A1.1.1-SF1";
+	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA1+A1.1.10-SF1" := NOT "ZONA1+A1.1.10-SF1";
+	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA1+A1.2.1-SF1" := NOT "ZONA1+A1.2.1-SF1";
+	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA1+B1.22.1-SF1" := NOT "ZONA1+B1.22.1-SF1";
+	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA1+C1.3.1-SF1" := NOT "ZONA1+C1.3.1-SF1";
+	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA1+B1.12.1-SF1" := NOT "ZONA1+B1.12.1-SF1";
+	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA1+B1.15.1-SF1" := NOT "ZONA1+B1.15.1-SF1";
+	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA1+B1.17.3-SF1" := NOT "ZONA1+B1.17.3-SF1";
+	    //Zone 2
+	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+D1.11.1-SF1" := NOT "ZONA2+D1.11.1-SF1";
+	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+E1.1.2-SF1" := NOT "ZONA2+E1.1.2-SF1";
+	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+A1.10.3-SF1" := NOT "ZONA2+A1.10.3-SF1";
+	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+A1.12.1-SF1" := NOT "ZONA2+A1.12.1-SF1";
+	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+A1.16.8-SF1" := NOT "ZONA2+A1.16.8-SF1";
+	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+B1.17.0-SF1" := NOT "ZONA2+B1.17.0-SF1";
+	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+A2.4.5-SF1" := NOT "ZONA2+A2.4.5-SF1";
+	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+G1.5.3-SF1" := NOT "ZONA2+G1.5.3-SF1";
+	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+G1.7.1-SF1" := NOT "ZONA2+G1.7.1-SF1";
+	    
+	END_REGION
+	
+	
+	
+	
+	
+END_FUNCTION
+

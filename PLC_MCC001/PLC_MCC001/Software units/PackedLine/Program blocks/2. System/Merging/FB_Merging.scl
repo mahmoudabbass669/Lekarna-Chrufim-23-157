@@ -1,0 +1,9 @@
+﻿NAMESPACE PackedLine
+FUNCTION_BLOCK FB_Merging
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+
+BEGIN
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

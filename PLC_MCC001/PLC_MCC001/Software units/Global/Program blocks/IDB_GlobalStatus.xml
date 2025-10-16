@@ -1,0 +1,1109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Blocks.InstanceDB ID="0">
+    <AttributeList>
+      <InstanceOfName>Global.FB_GlobalStatus</InstanceOfName>
+      <InstanceOfType>FB</InstanceOfType>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Static">
+    <Member Name="Line" Datatype="Struct">
+      <Member Name="ProductionLine" Datatype="&quot;Global.ConveyorStatus&quot;" />
+      <Member Name="EmptyLine" Datatype="&quot;Global.ConveyorStatus&quot;">
+        <AttributeList>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+        </AttributeList>
+      </Member>
+      <Member Name="PackedLine" Datatype="&quot;Global.ConveyorStatus&quot;">
+        <AttributeList>
+          <BooleanAttribute Name="SetPoint" SystemDefined="true">true</BooleanAttribute>
+        </AttributeList>
+      </Member>
+    </Member>
+    <Member Name="cmp" Datatype="Struct">
+      <Member Name="ProductionTotes_Value0" Datatype="Array[_.gminProductionLine.._.gmaxProductionLine] of Bool" />
+      <Member Name="ProductionTotes_Value1" Datatype="Array[_.gminProductionLine.._.gmaxProductionLine] of Bool">
+        <Subelement Path="1001">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1002">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1003">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1004">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1005">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1006">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1007">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1008">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1009">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1010">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1011">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1012">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1013">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1014">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1015">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1016">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1017">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1018">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1019">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1020">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1021">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1022">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1023">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1024">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1025">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1026">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1027">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1028">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1029">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1030">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1031">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1032">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1033">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1034">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1035">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1036">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1037">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1038">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1039">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1040">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1041">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1042">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1043">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1044">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1045">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1046">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1047">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1048">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1049">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1050">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1051">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1052">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1053">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1054">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1055">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1056">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1057">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1058">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1059">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1060">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1061">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1062">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1063">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1064">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1065">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1066">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1067">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1068">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1069">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1070">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1071">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1072">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1073">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1074">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1075">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1076">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1077">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1078">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1079">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1080">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1081">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1082">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1083">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1084">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1085">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1086">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1087">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1088">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1089">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1090">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1091">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1092">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1093">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1094">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1095">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1096">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1097">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1098">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1099">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1100">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1101">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1102">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1103">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1104">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1105">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1106">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1107">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1108">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1109">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1110">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1111">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1112">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1113">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1114">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1115">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1116">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1117">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1118">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1119">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1120">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1121">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1122">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1123">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1124">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1125">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1126">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1127">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1128">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1129">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1130">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1131">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1132">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1133">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1134">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1135">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1136">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1137">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1138">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1139">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1140">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1141">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1142">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1143">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1144">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1145">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1146">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1147">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1148">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1149">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1150">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1151">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1152">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1153">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1154">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1155">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1156">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1157">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1158">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1159">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1160">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1161">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1162">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1163">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1164">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1165">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1166">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1167">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1168">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1169">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1170">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1171">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1172">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1173">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1174">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1175">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1176">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1177">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1178">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1179">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1180">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1181">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1182">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1183">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1184">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1185">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1186">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1187">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1188">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1189">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1190">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1191">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="1192">
+          <StartValue>True</StartValue>
+        </Subelement>
+      </Member>
+      <Member Name="EmptyLine_Value0" Datatype="Array[_.gminEmptyLine.._.gmaxEmptyLine] of Bool" />
+      <Member Name="EmptyLine_Value1" Datatype="Array[_.gminEmptyLine.._.gmaxEmptyLine] of Bool">
+        <Subelement Path="2001">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2002">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2003">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2004">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2005">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2006">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2007">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2008">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2009">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2010">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2011">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2012">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2013">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2014">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2015">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2016">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2017">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2018">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2019">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2020">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2021">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2022">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2023">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2024">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2025">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2026">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2027">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2028">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2029">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2030">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2031">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2032">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2033">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2034">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2035">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2036">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2037">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2038">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2039">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2040">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2041">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2042">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2043">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2044">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2045">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2046">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2047">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2048">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2049">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2050">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2051">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2052">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2053">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2054">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2055">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2056">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2057">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2058">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2059">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2060">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2061">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2062">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2063">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2064">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2065">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2066">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2067">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2068">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2069">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2070">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2071">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2072">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2073">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2074">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2075">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2076">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2077">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2078">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2079">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2080">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2081">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2082">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2083">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2084">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2085">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2086">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2087">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2088">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2089">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2090">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2091">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2092">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2093">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2094">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2095">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2096">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2097">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2098">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2099">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2100">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2101">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2102">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2103">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2104">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2105">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2106">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2107">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2108">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="2109">
+          <StartValue>True</StartValue>
+        </Subelement>
+      </Member>
+      <Member Name="PackedLine_Value0" Datatype="Array[_.gminPackedLine.._.gmaxPackedLine] of Bool" />
+      <Member Name="PackedLine_Value1" Datatype="Array[_.gminPackedLine.._.gmaxPackedLine] of Bool">
+        <Subelement Path="3001">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3002">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3003">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3004">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3005">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3006">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3007">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3008">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3009">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3010">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3011">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3012">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3013">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3014">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3015">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3016">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3017">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3018">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3019">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3020">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3021">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3022">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3023">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3024">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3025">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3026">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3027">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3028">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3029">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3030">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3031">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3032">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3033">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3034">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3035">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3036">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3037">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3038">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3039">
+          <StartValue>True</StartValue>
+        </Subelement>
+        <Subelement Path="3040">
+          <StartValue>True</StartValue>
+        </Subelement>
+      </Member>
+    </Member>
+    <Member Name="ForVisu" Datatype="Struct">
+      <Member Name="Line" Datatype="Struct">
+        <Member Name="ProductionLine" Datatype="Word" />
+        <Member Name="EmptyLine" Datatype="Word" />
+        <Member Name="PackedLine" Datatype="Word" />
+      </Member>
+    </Member>
+  </Section>
+</Sections></Interface>
+      <Name>IDB_GlobalStatus</Name>
+      <Namespace>Global</Namespace>
+      <Number>48</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="4" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="5" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.InstanceDB>
+</Document>

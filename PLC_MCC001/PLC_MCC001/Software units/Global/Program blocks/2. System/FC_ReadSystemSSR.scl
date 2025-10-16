@@ -1,0 +1,75 @@
+﻿NAMESPACE Global
+FUNCTION FC_ReadSystemSSR : Void
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : FC_ReadSystemSSR
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION ProductionLine
+	    
+	    // Start Stop Reset IO
+	    
+	    // Activate Start bit
+	    //DB_SystemSSR.Line.ProductionLine.StartSystem :=
+	    DB_SystemSSR.Zone."1".StartSystem :=
+	    DB_SystemSSR.FromHMI.Line.ProductionLine.StartSystem OR 
+	    _.DB_Sync.startbit1;
+	    // Activate Stop bit
+	    DB_SystemSSR.Zone."1".StopSystem :=
+	    DB_SystemSSR.FromHMI.Line.ProductionLine.StopSystem OR
+	    _.DB_Sync.stopbit1;
+	    // Activate Reset bit
+	    DB_SystemSSR.Zone."1".ResetSystem :=
+	    DB_SystemSSR.FromHMI.Line.ProductionLine.ResetSystem OR
+	    _.DB_Sync.resetbit1;
+	    
+	END_REGION
+	
+	REGION EmptyLine
+	    
+	    // Start Stop Reset IO
+	    
+	    // Activate Start bit
+	    DB_SystemSSR.Zone."2".StartSystem :=
+	    DB_SystemSSR.FromHMI.Line.EmptyLine.StartSystem OR
+	    _.DB_Sync.startbit2;
+	    // Activate Stop bit
+	    DB_SystemSSR.Zone."2".StopSystem :=
+	    DB_SystemSSR.FromHMI.Line.EmptyLine.StopSystem OR
+	    _.DB_Sync.stopbit2;
+	    // Activate Reset bit
+	    DB_SystemSSR.Zone."2".ResetSystem :=
+	    DB_SystemSSR.FromHMI.Line.EmptyLine.ResetSystem OR
+	    _.DB_Sync.resetbit2;
+	    
+	END_REGION
+	(*
+	REGION PackedLine
+	    
+	    // Start Stop Reset IO
+	    
+	    // Activate Start bit
+	    DB_SystemSSR.Line.PackedLine.StartSystem :=
+	    DB_SystemSSR.FromHMI.Line.PackedLine.StartSystem OR
+	    _.DB_Sync.startbit;
+	    // Activate Stop bit
+	    DB_SystemSSR.Line.PackedLine.StopSystem :=
+	    DB_SystemSSR.FromHMI.Line.PackedLine.StopSystem OR
+	    _.DB_Sync.stopbit;
+	    // Activate Reset bit
+	    DB_SystemSSR.Line.PackedLine.ResetSystem :=
+	    DB_SystemSSR.FromHMI.Line.PackedLine.ResetSystem OR
+	    _.DB_Sync.resetbit;
+	    
+	END_REGION
+ automatically inserted *)
+END_FUNCTION
+END_NAMESPACE
+

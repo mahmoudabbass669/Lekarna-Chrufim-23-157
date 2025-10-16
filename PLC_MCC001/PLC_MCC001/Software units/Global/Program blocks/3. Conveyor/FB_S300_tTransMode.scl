@@ -1,0 +1,653 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_S300_tTransMode
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      TransferID : Int;
+      TransferSensor : Bool;
+      Fault : Bool;
+      ReadyToRCV : Bool;
+      Upstream : Bool;
+      FrontSensor : Bool;
+      EndSensor : Bool;
+      "Left/RightSensor" : Bool;
+      Downstream : Bool;
+      FrontSensorFilterTime : Array[1..2] of Time;
+      TransferDirection : ItemDir;
+   END_VAR
+
+   VAR_OUTPUT 
+      StartSignal : Bool;
+      Cmd1 : Bool;
+      Cmd2 : Bool;
+      ErrorReset : Bool;
+   END_VAR
+
+   VAR 
+      ReadInputSignal : Struct
+         EmergencyStop : Bool;
+         FireActive : Bool;
+         Fault : Bool;
+         TransferSensor : Bool;
+      END_STRUCT;
+      Active : Struct
+         Line : Struct
+            ProductionLine : Bool;
+            EmptyLine : Bool;
+            PackedLine : Bool;
+         END_STRUCT;
+         EstopZone { S7_SetPoint := 'False'} : EsopZone;
+      END_STRUCT;
+      TRANSFER_SENSOR : FB_Sensor;
+      FRONT_SENSOR_FILTER : FB_Sensor;
+      TRANSFER_SENSOR_BLOCKAGE {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      FRONT_SENSOR_BLOCKAGE {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      END_SENSOR_BLOCKAGE {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      "LEFT/RIGHT_SENSOR_BLOCKAGE" {InstructionName := 'TON_TIME'; LibVersion := '1.0'} : TON_TIME;
+      TRANSFER_STATUS_ON : FB_StatusON;
+      TRANSFER_STATUS_READY : FB_StatusReady;
+      TRANSFER_STATUS_FAULT : FB_StatusFault;
+      AUTO_RESET : FB_AutoReset;
+      StartUpTimer {InstructionName := 'TOF_TIME'; LibVersion := '1.0'; S7_SetPoint := 'False'} : TOF_TIME;
+      FT_StartUp {InstructionName := 'F_TRIG'; LibVersion := '1.0'} : F_TRIG;
+      SetStartUp { S7_SetPoint := 'True'} : Bool;
+      Init : Struct
+         Line : Struct
+            A1 : String := 'LineA1';
+         END_STRUCT;
+      END_STRUCT;
+      SSR : SystemSSR;
+      ReadTransferStatus : ConveyorStatus;
+      ReadTransferParameters : ConveyorParameters := ((), [2(T#10ms)], (), (), (), ());
+      ConveyorFault : Fault;
+      StartupTransfer { S7_SetPoint := 'True'} : Bool;
+      FilteredSensor { S7_SetPoint := 'True'} : Bool;
+      StopSystemFireActive : Bool;
+      ClearTransferArea : Bool;
+      AutoReset : Bool;
+      VisuColor : Word;
+      Transfer : Struct
+         RcvInfeed : Bool;
+         StartSignal : Bool;
+         Command_1 : Bool;
+         Command_2 : Bool;
+      END_STRUCT;
+      NegEdgeUpstream {InstructionName := 'F_TRIG'; LibVersion := '1.0'; S7_SetPoint := 'False'} : F_TRIG;
+      CrossSensorFilterTime { S7_SetPoint := 'True'} : Array[0..1] of Time;
+      sTransferDirection { S7_SetPoint := 'False'} : ItemDir;
+      SimuMode : Struct
+         Sensor : Bool;
+         Fault : Bool;
+      END_STRUCT;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : FB_S300_tTransMode
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION Active Line
+	    
+	    // ProductionLine
+	    IF (#TransferID >= _.gminProductionLine AND
+	        #TransferID <= _.gmaxProductionLine)
+	    THEN
+	        #Active.Line.ProductionLine := TRUE;
+	    END_IF;
+	    
+	    // EmptyLine
+	    IF (#TransferID >= _.gminEmptyLine AND
+	        #TransferID <= _.gmaxEmptyLine)
+	    THEN
+	        #Active.Line.EmptyLine := TRUE;
+	    END_IF;
+	    
+	    // PackedLine
+	    IF (#TransferID >= _.gminPackedLine AND
+	        #TransferID <= _.gmaxPackedLine)
+	    THEN
+	        #Active.Line.PackedLine := TRUE;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION Estop zone
+	    
+	    // Production Line A1
+	    IF  (#TransferID >= _."gB1.6.1" AND
+	        #TransferID <= _."gC1.3.1")
+	    THEN
+	        #Active.EstopZone."1" := TRUE;
+	    END_IF;
+	    
+	    // Production Line A2
+	    IF  (#TransferID >= _."gA1.13.1" AND
+	        #TransferID <= _."gA2.1.1") OR
+	        (#TransferID >= _."gD1.9.1" AND
+	        #TransferID <= _."gD1.10.1") 
+	    THEN
+	        #Active.EstopZone."2" := TRUE;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION SystemSSR
+	    
+	    //Zone 1
+	    IF #Active.EstopZone."1" THEN
+	        #SSR.StartSystem := DB_SystemSSR.Zone."1".StartSystem;
+	        #SSR.StopSystem := DB_SystemSSR.Zone."1".StopSystem;
+	        #SSR.ResetSystem := DB_SystemSSR.Zone."1".ResetSystem;
+	    END_IF;
+	    
+	    //Zone 2
+	    IF #Active.EstopZone."2" THEN
+	        #SSR.StartSystem := DB_SystemSSR.Zone."2".StartSystem;
+	        #SSR.StopSystem := DB_SystemSSR.Zone."2".StopSystem;
+	        #SSR.ResetSystem := DB_SystemSSR.Zone."2".ResetSystem;
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION Read Simu inputs  
+	    
+	    // ProductionLine
+	    IF #Active.Line.ProductionLine THEN
+	        // read simu
+	        #SimuMode.Sensor := DB_SystemSimu.TriggerSensor.Line.ProductionLine.Conveyor[#TransferID];
+	        #SimuMode.Fault := DB_SystemSimu.TriggerFault.Line.ProductionLine.Conveyor[#TransferID];
+	    END_IF;
+	    
+	    // EmptyLine
+	    IF #Active.Line.EmptyLine THEN
+	        // read simu
+	        #SimuMode.Sensor := DB_SystemSimu.TriggerSensor.Line.EmptyLine.Conveyor[#TransferID];
+	        #SimuMode.Fault := DB_SystemSimu.TriggerFault.Line.EmptyLine.Conveyor[#TransferID];
+	    END_IF;
+	    
+	    // PackedLine
+	    IF #Active.Line.PackedLine THEN
+	        // read simu
+	        #SimuMode.Sensor := DB_SystemSimu.TriggerSensor.Line.PackedLine.Conveyor[#TransferID];
+	        #SimuMode.Fault := DB_SystemSimu.TriggerFault.Line.PackedLine.Conveyor[#TransferID];
+	    END_IF;
+	    
+	END_REGION
+	
+	REGION Read Input
+	    
+	    // read all inputs to the block
+	    // Conveyor input read signals
+	    #ReadInputSignal.TransferSensor := #TransferSensor OR  #SimuMode.Sensor; // simu call;
+	    #ReadInputSignal.Fault := #Fault OR #SimuMode.Fault;
+	    // Read static tag connections
+	    #ReadInputSignal.EmergencyStop := // all estop zones are connected together
+	    _.DB_SafetyStandard.ToStandard.EstopActive;
+	    // Common system input Read
+	    #ReadInputSignal.FireActive :=
+	    DB_SystemSimu.Fire; // simu call
+	    
+	END_REGION
+	
+	REGION Conveyor startup
+	    
+	    // Conveyor StartUp: Conveyor startup signal after preset time
+	    #StartUpTimer.TOF(IN := #SSR.StartSystem,
+	                      PT := #ReadTransferParameters.StartUpTime);
+	    
+	    #FT_StartUp(CLK := #StartUpTimer.Q);
+	    
+	    // set startup after the preset
+	    #SetStartUp := #FT_StartUp.Q;
+	    
+	END_REGION
+	
+	REGION READ AND INIT
+	    
+	    REGION Init conveyor parameters
+	        
+	        // Conveyor Parameter
+	        // ProductionLine
+	        IF #Active.Line.ProductionLine THEN
+	            #ReadTransferParameters := DB_ConveyorParameters.Line.ProductionLine.Conveyor[#TransferID];
+	        END_IF;
+	        // EmptyLine
+	        IF #Active.Line.EmptyLine THEN
+	            #ReadTransferParameters := DB_ConveyorParameters.Line.EmptyLine.Conveyor[#TransferID];
+	        END_IF;
+	        // PackedLine
+	        IF #Active.Line.PackedLine THEN
+	            #ReadTransferParameters := DB_ConveyorParameters.Line.PackedLine.Conveyor[#TransferID];
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION Sensor Filter
+	        
+	        // FB_Sensor
+	        // called as MIDB
+	        
+	        #TRANSFER_SENSOR(Sensor := #ReadInputSignal.TransferSensor,
+	                         SensorFilterTime := #ReadTransferParameters.SensorFilterTime,
+	                         FilteredSensor => #FilteredSensor);
+	        
+	        // front sensor filter
+	        #FRONT_SENSOR_FILTER(Sensor := #FrontSensor,
+	                             SensorFilterTime := #FrontSensorFilterTime);
+	        
+	    END_REGION
+	    
+	    REGION FIRE
+	        
+	        // Fire signal from fire system stops the whole system
+	        // System can be reset from Fire status only if the fire signal is deactivated
+	        
+	        // FIRE ALARM ACTIVE --> STOP SYSTEM
+	        IF #ReadInputSignal.FireActive THEN
+	            #StopSystemFireActive := TRUE;
+	        END_IF;
+	        // RESET --> FIRE ALARM
+	        IF #SSR.ResetSystem AND NOT #ReadInputSignal.FireActive THEN
+	            #StopSystemFireActive := FALSE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	END_REGION
+	
+	REGION Conveyor Status
+	    
+	    REGION Status ON
+	        
+	        // ----------------------------------------->>>>>>> STATUS ON <<<<<<<-----------------------------------------
+	        // FB_ConveyorStatusON
+	        // called as IDMB
+	        
+	        #TRANSFER_STATUS_ON(SystemStartActive := #SSR.StartSystem,
+	                            StatusStop := #ReadTransferStatus.Stop,
+	                            StatusEStop := #ReadTransferStatus.Estop,
+	                            StatusManual := #ReadTransferStatus.Manual,
+	                            StatusFault := #ReadTransferStatus.Fault,
+	                            FireAlarmActive := #StopSystemFireActive,
+	                            StatusON => #ReadTransferStatus.ON);
+	        
+	    END_REGION
+	    
+	    REGION Status Ready
+	        
+	        // ----------------------------------------->>>>>>> STATUS READY <<<<<<<-----------------------------------------
+	        // FB_ConveyorStatusReady
+	        // called as MIDB
+	        
+	        #TRANSFER_STATUS_READY(StatusON := #ReadTransferStatus.ON,
+	                               StatusESTOP := #ReadTransferStatus.Estop,
+	                               StatusFAULT := #ReadTransferStatus.Fault,
+	                               StatusMAN := #ReadTransferStatus.Manual,
+	                               SignalFIRE := #StopSystemFireActive,
+	                               SystemAlertTime := #ReadTransferParameters.StartUpTime,
+	                               StatusReady => #ReadTransferStatus.ReadytoRun);
+	        
+	    END_REGION
+	    
+	    REGION Status Occupied
+	        
+	        // ----------------------------------------->>>>>>> STATUS OCCUPIED <<<<<<<-----------------------------------------
+	        
+	        #ReadTransferStatus.Occupied :=
+	        #FilteredSensor AND
+	        NOT #FRONT_SENSOR_FILTER.FilteredSensor;
+	        
+	    END_REGION
+	    
+	    REGION Status Running
+	        
+	        // ----------------------------------------->>>>>>> STATUS RUNNING <<<<<<<-----------------------------------------
+	        
+	        #ReadTransferStatus.Running := #Transfer.Command_1 OR #Transfer.Command_2;
+	        
+	    END_REGION
+	    
+	    REGION Status Fault
+	        
+	        // Automatic reset trigger to the needed drive after wakeup from ESTOP power miss (only if needed)
+	        // will trigger for every Reset active
+	        
+	        #AUTO_RESET(AckIN := #SSR.ResetSystem,
+	                    Ack => #AutoReset);
+	        
+	        // ----------------------------------------->>>>>>> STATUS FAULT <<<<<<<-----------------------------------------
+	        // FC_ConveyorStatusFault
+	        #TRANSFER_STATUS_FAULT(FaultActive := #ReadInputSignal.Fault,
+	                               ResetFault := #SSR.ResetSystem OR #AutoReset,
+	                               StatusRunning := #ReadTransferStatus.Running,
+	                               FaultStatus => #ReadTransferStatus.Fault);
+	        
+	        #ErrorReset := #SSR.ResetSystem;
+	        
+	    END_REGION
+	    
+	    REGION Status ESTOP
+	        
+	        // ----------------------------------------->>>>>>> STATUS ESTOP <<<<<<<-----------------------------------------
+	        
+	        // EMERGENCY STOP ACTIVE --> STOP SYSTEM
+	        IF #ReadInputSignal.EmergencyStop THEN
+	            #ReadTransferStatus.Estop := TRUE;
+	        END_IF;
+	        // RESET --> EMERGENCY STOP
+	        IF #AutoReset AND NOT #ReadInputSignal.EmergencyStop THEN
+	            #ReadTransferStatus.Estop := FALSE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION Status Manual
+	        
+	        // ----------------------------------------->>>>>>> STATUS MANUAL <<<<<<<-----------------------------------------
+	        
+	        // Write to static from IO
+	        // ACTIVATE --> MANUAL MODE
+	        // ProductionLine
+	        IF #Active.Line.ProductionLine THEN
+	            // SET --> MANUAL MODE
+	            IF DB_Manual.Line.ProductionLine.Conveyor[#TransferID].ManualEnable THEN
+	                #ReadTransferStatus.Manual := TRUE;
+	            END_IF;
+	            // RESET --> MANUAL MODE
+	            IF NOT DB_Manual.Line.ProductionLine.Conveyor[#TransferID].ManualEnable AND #SSR.ResetSystem THEN
+	                #ReadTransferStatus.Manual := FALSE;
+	            END_IF;
+	        END_IF;
+	        // EmptyLine
+	        IF #Active.Line.EmptyLine THEN
+	            // SET --> MANUAL MODE
+	            IF DB_Manual.Line.EmptyLine.Conveyor[#TransferID].ManualEnable THEN
+	                #ReadTransferStatus.Manual := TRUE;
+	            END_IF;
+	            // RESET --> MANUAL MODE
+	            IF NOT DB_Manual.Line.EmptyLine.Conveyor[#TransferID].ManualEnable AND #SSR.ResetSystem THEN
+	                #ReadTransferStatus.Manual := FALSE;
+	            END_IF;
+	        END_IF;
+	        // PackedLine
+	        IF #Active.Line.PackedLine THEN
+	            // SET --> MANUAL MODE
+	            IF DB_Manual.Line.PackedLine.Conveyor[#TransferID].ManualEnable THEN
+	                #ReadTransferStatus.Manual := TRUE;
+	            END_IF;
+	            // RESET --> MANUAL MODE
+	            IF NOT DB_Manual.Line.PackedLine.Conveyor[#TransferID].ManualEnable AND #SSR.ResetSystem THEN
+	                #ReadTransferStatus.Manual := FALSE;
+	            END_IF;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION Status Stop
+	        
+	        // ----------------------------------------->>>>>>> STATUS STOP <<<<<<<-----------------------------------------
+	        
+	        IF #SSR.StopSystem THEN
+	            #ReadTransferStatus.Stop := TRUE;
+	        END_IF;
+	        IF #SSR.StartSystem OR #SSR.ResetSystem THEN
+	            #ReadTransferStatus.Stop := FALSE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION Status Blockage
+	        
+	        // FB_SensorBlockage
+	        // called as MIDB
+	        #TRANSFER_SENSOR_BLOCKAGE(IN := #ReadTransferStatus.ReadytoRun AND #FilteredSensor AND NOT #Downstream,
+	                                  PT := T#15s);
+	        
+	        #FRONT_SENSOR_BLOCKAGE(IN := #ReadTransferStatus.ReadytoRun AND #FrontSensor AND NOT #Downstream,
+	                               PT := T#15s);
+	        
+	        #END_SENSOR_BLOCKAGE(IN := #ReadTransferStatus.ReadytoRun AND #EndSensor AND NOT #Downstream,
+	                             PT := T#15s);
+	        
+	        #"LEFT/RIGHT_SENSOR_BLOCKAGE"(IN := #ReadTransferStatus.ReadytoRun AND #"Left/RightSensor" AND NOT #Downstream,
+	                                      PT := T#5s);
+	        
+	        #ReadTransferStatus.Blockage :=
+	        (#TRANSFER_SENSOR_BLOCKAGE.Q OR
+	        #FRONT_SENSOR_BLOCKAGE.Q OR
+	        #END_SENSOR_BLOCKAGE.Q OR
+	        #"LEFT/RIGHT_SENSOR_BLOCKAGE".Q) AND
+	        (#TransferDirection.Straight OR
+	        #TransferDirection.toRight OR
+	        #TransferDirection.toLeft);
+	        
+	        // ==========================
+	        // Sensor Blockage: HMI Alarm
+	        // ==========================
+	        // Sensor blockage alarm message is written to the alarm word
+	        // corresponding to the active line
+	        
+	        REGION alarm 
+	            
+	            // ==========================
+	            // Sensor Blockage: HMI Alarm
+	            // ==========================
+	            // Sensor blockage alarm message is written to the alarm word
+	            // corresponding to the active line
+	            // ProductionLine
+	            IF #Active.Line.ProductionLine THEN
+	                DB_Alarm."word".Line.ProductionLine.Conveyor[#TransferID].%X0 := #ReadTransferStatus.Blockage;
+	            END_IF;
+	            // EmptyLine
+	            IF #Active.Line.EmptyLine THEN
+	                DB_Alarm."word".Line.EmptyLine.Conveyor[#TransferID].%X0 := #ReadTransferStatus.Blockage;
+	            END_IF;
+	            // PackedLine
+	            IF #Active.Line.PackedLine THEN
+	                DB_Alarm."word".Line.PackedLine.Conveyor[#TransferID].%X0 := #ReadTransferStatus.Blockage;
+	            END_IF;
+	            
+	        END_REGION
+	        
+	    END_REGION
+	    
+	    REGION Visu Color
+	        
+	        // each and every status of the conveyor will be mentioned by different colors in HMI panel
+	        
+	        #VisuColor.%X8 := #ReadTransferStatus.Blockage;
+	        #VisuColor.%X0 := #ReadTransferStatus.ON;
+	        #VisuColor.%X1 := #ReadTransferStatus.ReadytoRun;
+	        #VisuColor.%X2 := #ReadTransferStatus.Occupied;
+	        #VisuColor.%X3 := #ReadTransferStatus.Running;
+	        #VisuColor.%X4 := #ReadTransferStatus.Fault;
+	        #VisuColor.%X5 := #ReadTransferStatus.Estop;
+	        #VisuColor.%X6 := #ReadTransferStatus.Manual;
+	        #VisuColor.%X7 := #ReadTransferStatus.Stop;
+	        
+	        // convert word to Interger value: 
+	        // color will be depends on the status priority (integer value) 
+	        // reference: Conveyor image in HMI screen -> property -> Apperance   
+	        
+	        // ProductionLine
+	        IF #Active.Line.ProductionLine THEN
+	            DB_VisuColor.Line.ProductionLine.Conveyor[#TransferID] :=
+	            WORD_TO_INT(#VisuColor);
+	        END_IF;
+	        // EmptyLine
+	        IF #Active.Line.EmptyLine THEN
+	            DB_VisuColor.Line.EmptyLine.Conveyor[#TransferID] :=
+	            WORD_TO_INT(#VisuColor);
+	        END_IF;
+	        // PackedLine
+	        IF #Active.Line.PackedLine THEN
+	            DB_VisuColor.Line.PackedLine.Conveyor[#TransferID] :=
+	            WORD_TO_INT(#VisuColor);
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION Global Status
+	        
+	        // write -> global status
+	        // ProductionLine
+	        IF #Active.Line.ProductionLine THEN
+	            DB_Global.Status.Line.ProductionLine.On[#TransferID] := #ReadTransferStatus.ON;
+	            DB_Global.Status.Line.ProductionLine.ReadyToRun[#TransferID] := #ReadTransferStatus.ReadytoRun;
+	            DB_Global.Status.Line.ProductionLine.Occupied[#TransferID] := #ReadTransferStatus.Occupied;
+	            DB_Global.Status.Line.ProductionLine.Running[#TransferID] := #ReadTransferStatus.Running;
+	            DB_Global.Status.Line.ProductionLine.Fault[#TransferID] := #ReadTransferStatus.Fault;
+	            DB_Global.Status.Line.ProductionLine.Estop[#TransferID] := #ReadTransferStatus.Estop;
+	            DB_Global.Status.Line.ProductionLine.Manual[#TransferID] := #ReadTransferStatus.Manual;
+	            DB_Global.Status.Line.ProductionLine.Stop[#TransferID] := #ReadTransferStatus.Stop;
+	            DB_Global.Status.Line.ProductionLine.Blockage[#TransferID] := #ReadTransferStatus.Blockage;
+	        END_IF;
+	        // EmptyLine
+	        IF #Active.Line.EmptyLine THEN
+	            DB_Global.Status.Line.EmptyLine.On[#TransferID] := #ReadTransferStatus.ON;
+	            DB_Global.Status.Line.EmptyLine.ReadyToRun[#TransferID] := #ReadTransferStatus.ReadytoRun;
+	            DB_Global.Status.Line.EmptyLine.Occupied[#TransferID] := #ReadTransferStatus.Occupied;
+	            DB_Global.Status.Line.EmptyLine.Running[#TransferID] := #ReadTransferStatus.Running;
+	            DB_Global.Status.Line.EmptyLine.Fault[#TransferID] := #ReadTransferStatus.Fault;
+	            DB_Global.Status.Line.EmptyLine.Estop[#TransferID] := #ReadTransferStatus.Estop;
+	            DB_Global.Status.Line.EmptyLine.Manual[#TransferID] := #ReadTransferStatus.Manual;
+	            DB_Global.Status.Line.EmptyLine.Stop[#TransferID] := #ReadTransferStatus.Stop;
+	            DB_Global.Status.Line.EmptyLine.Blockage[#TransferID] := #ReadTransferStatus.Blockage;
+	        END_IF;
+	        // PackedLine
+	        IF #Active.Line.PackedLine THEN
+	            DB_Global.Status.Line.PackedLine.On[#TransferID] := #ReadTransferStatus.ON;
+	            DB_Global.Status.Line.PackedLine.ReadyToRun[#TransferID] := #ReadTransferStatus.ReadytoRun;
+	            DB_Global.Status.Line.PackedLine.Occupied[#TransferID] := #ReadTransferStatus.Occupied;
+	            DB_Global.Status.Line.PackedLine.Running[#TransferID] := #ReadTransferStatus.Running;
+	            DB_Global.Status.Line.PackedLine.Fault[#TransferID] := #ReadTransferStatus.Fault;
+	            DB_Global.Status.Line.PackedLine.Estop[#TransferID] := #ReadTransferStatus.Estop;
+	            DB_Global.Status.Line.PackedLine.Manual[#TransferID] := #ReadTransferStatus.Manual;
+	            DB_Global.Status.Line.PackedLine.Stop[#TransferID] := #ReadTransferStatus.Stop;
+	            DB_Global.Status.Line.PackedLine.Blockage[#TransferID] := #ReadTransferStatus.Blockage;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	END_REGION
+	
+	REGION Transfer Logic
+	    
+	    REGION infeed receive condition
+	        
+	        // NegEdgeUpstream
+	        #NegEdgeUpstream(CLK := #Upstream);
+	        
+	        // item will be send into the transfer section when there is no other item
+	        
+	        IF #ReadTransferStatus.ReadytoRun AND
+	            #Upstream AND
+	            NOT #ReadTransferStatus.Occupied THEN
+	            #Transfer.RcvInfeed := TRUE;
+	        END_IF;
+	        
+	        // receive infeed tag goes to FALSE when the item from the previous conveyor is completly out of the previous conveyor
+	        IF NOT #Upstream(* #NegEdgeUpstream.Q *)THEN
+	            #Transfer.RcvInfeed := FALSE;
+	        END_IF;
+	        
+	        // Receive infeed
+	        #Transfer.StartSignal := #Transfer.RcvInfeed;
+	        
+	    END_REGION
+	    
+	    REGION Transfer direction outputs
+	        
+	        IF NOT #EndSensor AND NOT #"Left/RightSensor" AND NOT #ReadTransferStatus.Running THEN
+	            
+	            #sTransferDirection := #TransferDirection;
+	            
+	        END_IF;
+	        
+	        // Transfer Straight
+	        
+	        IF #sTransferDirection.Straight THEN
+	            
+	            IF #ReadTransferStatus.ReadytoRun AND
+	                NOT #Transfer.RcvInfeed AND
+	                #ReadTransferStatus.Occupied AND
+	                NOT #Downstream
+	            THEN
+	                #Transfer.Command_1 := TRUE;
+	                #Transfer.Command_2 := TRUE;
+	            END_IF;
+	            
+	        END_IF;
+	        
+	        // Transfer Right
+	        
+	        IF #sTransferDirection.toRight THEN
+	            
+	            IF #ReadTransferStatus.ReadytoRun AND
+	                NOT #Transfer.RcvInfeed AND
+	                #ReadTransferStatus.Occupied AND
+	                NOT #Downstream
+	            THEN
+	                #Transfer.Command_1 := TRUE;
+	                #Transfer.Command_2 := FALSE;
+	            END_IF;
+	            
+	        END_IF;
+	        
+	        // Transfer Left
+	        
+	        IF #sTransferDirection.toLeft THEN
+	            
+	            IF #ReadTransferStatus.ReadytoRun AND
+	                NOT #Transfer.RcvInfeed AND
+	                #ReadTransferStatus.Occupied AND
+	                NOT #Downstream
+	            THEN
+	                #Transfer.Command_1 := FALSE;
+	                #Transfer.Command_2 := TRUE;
+	            END_IF;
+	            
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION TRANSFER OFF
+	        
+	        // Transfer commands Off
+	        
+	        IF NOT #ReadTransferStatus.ReadytoRun OR
+	            #Transfer.RcvInfeed OR
+	            (#ReadTransferStatus.Occupied AND
+	            #Downstream) OR
+	            NOT #ReadTransferStatus.Occupied
+	        THEN
+	            #Transfer.Command_1 := FALSE;
+	            #Transfer.Command_2 := FALSE;
+	        END_IF;
+	        
+	    END_REGION
+	    
+	    REGION Write output
+	        
+	        // Static to output
+	        
+	        #StartSignal := #Transfer.StartSignal;
+	        #Cmd1 := #Transfer.Command_1;
+	        #Cmd2 := #Transfer.Command_2;
+	        
+	    END_REGION
+	    
+	END_REGION
+	
+	
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

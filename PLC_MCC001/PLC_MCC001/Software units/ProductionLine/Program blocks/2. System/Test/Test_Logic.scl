@@ -1,0 +1,68 @@
+﻿NAMESPACE ProductionLine
+FUNCTION_BLOCK Test_Logic
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+   VAR_INPUT 
+      Start : Bool;
+      StartPoint : Int;
+      EndPoint : Int;
+   END_VAR
+
+   VAR 
+      Active : Bool;
+      "Counter" : Int;
+      PulseTimer {InstructionName := 'TON_TIME'; LibVersion := '1.0'; S7_SetPoint := 'False'} : TON_TIME;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : FB_LineA1
+	// Project        : Lékárna Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION Start
+	    // Start sequence
+	    IF #Start AND NOT #Active THEN
+	        #Active := TRUE;
+	        #Counter := #StartPoint;               // Start from first output
+	    END_IF;
+	    
+	    // Main pulse logic
+	    IF #Active THEN
+	        // Turn ON the current output
+	        _.Global.DB_SystemSimu.TriggerSensor.Line.ProductionLine.Conveyor[#Counter] := TRUE;
+	        #PulseTimer(IN := TRUE,
+	                    PT := T#3s);
+	        
+	        // When timer expires
+	        IF #PulseTimer.Q THEN
+	            // Turn OFF current output
+	            _.Global.DB_SystemSimu.TriggerSensor.Line.ProductionLine.Conveyor[#Counter] := FALSE;
+	            
+	            // Reset timer
+	            RESET_TIMER(#PulseTimer);
+	            
+	            // Move to next output
+	            #Counter := #Counter + 1;
+	            
+	            // Stop if last output finished
+	            IF #Counter > #EndPoint THEN
+	                #Active := FALSE;
+	            END_IF;
+	        END_IF;
+	    ELSE
+	        // Make sure all outputs are OFF when not active
+	        (* FOR #var_i := 1001 TO #N DO
+	        //#Q[#var_i] := FALSE;
+	        _.Global.DB_SystemSimu.TriggerSensor.Line.ProductionLine.Conveyor[#Counter] := FALSE;
+	    END_FOR;*)
+	        RESET_TIMER(#PulseTimer);
+	    END_IF;
+	END_REGION
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

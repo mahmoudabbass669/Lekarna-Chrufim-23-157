@@ -1,0 +1,56 @@
+﻿NAMESPACE EmptyLine
+FUNCTION FC_Sync : Void
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : FC_Sync
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	// sync local software unit with global software unit
+	
+	REGION Conveyor parameters
+	    
+	    _.Global.DB_ConveyorParameters.Line.EmptyLine.Conveyor := DB_ConveyorParameters.Line.EmptyLine.Conveyor;
+	    
+	END_REGION
+	
+	REGION manual control
+	    
+	    //_.Global.DB_Manual.Line.EmptyLine.Conveyor := DB_Manual.Line.EmptyLine.Conveyor;
+	    
+	END_REGION
+	
+	REGION Setpoint
+	    
+	    REGION ASi
+	        
+	        _.Global.DB_AsiSetpoint.Line.EmptyLine.DirChange.Conveyor := DB_AsiSetpoint.Line.EmptyLine.DirChange.Conveyor;
+	        _.Global.DB_AsiSetpoint.Line.EmptyLine.Speed.Conveyor := DB_AsiSetpoint.Line.EmptyLine.Speed.Conveyor;
+	        
+	    END_REGION
+	    
+	    REGION NORD
+	        
+	        _.Global.DB_NordSetPoint.Line.EmptyLine.Conveyor := DB_NordSetPoint.Line.EmptyLine.Conveyor;
+	        
+	    END_REGION
+	    
+	END_REGION
+	
+	REGION Alarm
+	    
+	    _.Global.DB_Alarm."word".Line.EmptyLine.Conveyor := DB_Alarm."word".Line.EmptyLine.Conveyor;
+	    
+	END_REGION
+	
+	
+	
+END_FUNCTION
+END_NAMESPACE
+

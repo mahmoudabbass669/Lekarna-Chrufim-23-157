@@ -1,0 +1,78 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_HardwareDiag
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR 
+      "BW-ASi -10.106.129.143" { S7_SetPoint := 'False'} : FB_GetDiag;
+      "BW-ASi -10.106.129.200" : FB_GetDiag;
+      "Cognex -10.106.129.24" { S7_SetPoint := 'False'} : FB_GetDiag;
+      "Cognex -10.106.129.25" : FB_GetDiag;
+      "Cognex -10.106.129.26" : FB_GetDiag;
+      "Cognex -10.106.129.27" : FB_GetDiag;
+      "IMC - 10.106.129.84" : FB_GetDiag;
+      "IMC - 10.106.129.85" : FB_GetDiag;
+      "IMC - 10.106.129.86" : FB_GetDiag;
+      "IMC - 10.106.129.87" : FB_GetDiag;
+      "IMC - 10.106.129.88" : FB_GetDiag;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : FB_HardwareDiag
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	
+	REGION BW ASi module
+	    
+	    
+	    #"BW-ASi -10.106.129.143"(CommunicationErrorAlarm=> DB_Alarm.CommunicationFault."BW-ASi".%X0);  // remove for simulation testing HardwareID:= _."ASi-GW~IODevice",
+	    
+	    #"BW-ASi -10.106.129.200"(CommunicationErrorAlarm=> DB_Alarm.CommunicationFault."BW-ASi".%X1);
+	    
+	END_REGION
+	
+	
+	REGION Cognex
+	    
+	    #"Cognex -10.106.129.24"(CommunicationErrorAlarm=> DB_Alarm.CommunicationFault.Cognex.%X0);
+	    
+	    
+	    #"Cognex -10.106.129.25"(CommunicationErrorAlarm=> DB_Alarm.CommunicationFault.Cognex.%X1);
+	    
+	    
+	    #"Cognex -10.106.129.26"(CommunicationErrorAlarm=> DB_Alarm.CommunicationFault.Cognex.%X2);
+	    
+	    
+	    #"Cognex -10.106.129.27"(CommunicationErrorAlarm=> DB_Alarm.CommunicationFault.Cognex.%X3);
+	    
+	    
+	END_REGION
+	
+	REGION IMC
+	    
+	    #"IMC - 10.106.129.84"(CommunicationErrorAlarm=>DB_Alarm.CommunicationFault.IMC.%X0);
+	    
+	    #"IMC - 10.106.129.85"(CommunicationErrorAlarm=>DB_Alarm.CommunicationFault.IMC.%X1);
+	    
+	    #"IMC - 10.106.129.86"(CommunicationErrorAlarm=>DB_Alarm.CommunicationFault.IMC.%X1);
+	    
+	    #"IMC - 10.106.129.87"(CommunicationErrorAlarm=>DB_Alarm.CommunicationFault.IMC.%X2);
+	    
+	    #"IMC - 10.106.129.88"(CommunicationErrorAlarm=>DB_Alarm.CommunicationFault.IMC.%X3);
+	    
+	END_REGION
+	
+	
+	
+	
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

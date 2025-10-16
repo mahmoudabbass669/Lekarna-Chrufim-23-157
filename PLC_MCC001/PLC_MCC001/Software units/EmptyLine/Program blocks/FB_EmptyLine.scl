@@ -1,0 +1,1573 @@
+﻿NAMESPACE EmptyLine
+FUNCTION_BLOCK FB_EmptyLine
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR 
+      "J1.1.1" { S7_SetPoint := 'False'} : _.Global.FB_Conveyor;
+      "J1.1.2" : _.Global.FB_Conveyor;
+      "J1.1.3" : _.Global.FB_Conveyor;
+      "J1.1.4" : _.Global.FB_Conveyor;
+      "J1.1.5" : _.Global.FB_Conveyor;
+      "J1.1.6" : _.Global.FB_Conveyor;
+      "J1.1.7" : _.Global.FB_Conveyor;
+      "J1.1.8" : _.Global.FB_Conveyor;
+      "J1.1.9" : _.Global.FB_Conveyor;
+      "J1.1.10" : _.Global.FB_Conveyor;
+      "J1.1.11" : _.Global.FB_Conveyor;
+      "J1.1.12" : _.Global.FB_Conveyor;
+      "J1.1.13" : _.Global.FB_Conveyor;
+      "J1.1.14" : _.Global.FB_Conveyor;
+      "J1.1.15" : _.Global.FB_Conveyor;
+      "J1.1.16" : _.Global.FB_Conveyor;
+      "J1.2.1" : _.Global.FB_Conveyor;
+      "J1.2.2" : _.Global.FB_Conveyor;
+      "J1.2.3" : _.Global.FB_Conveyor;
+      "J2.1.1" : _.Global.FB_Conveyor;
+      "J2.1.2" : _.Global.FB_Conveyor;
+      "J2.1.3" : _.Global.FB_Conveyor;
+      "J2.1.4" : _.Global.FB_Conveyor;
+      "J2.1.5" : _.Global.FB_Conveyor;
+      "J2.1.6" : _.Global.FB_Conveyor;
+      "J2.1.7" : _.Global.FB_Conveyor;
+      "J2.1.8" : _.Global.FB_Conveyor;
+      "J2.1.9" : _.Global.FB_Conveyor;
+      "J2.1.10" : _.Global.FB_Conveyor;
+      "J2.1.11" : _.Global.FB_Conveyor;
+      "J2.1.12" : _.Global.FB_Conveyor;
+      "J2.1.13" : _.Global.FB_Conveyor;
+      "J2.1.14" : _.Global.FB_Conveyor;
+      "J2.1.15" : _.Global.FB_Conveyor;
+      "J2.2.1" : _.Global.FB_Conveyor;
+      "J2.2.2" : _.Global.FB_Conveyor;
+      "J2.3.1" : _.Global.FB_Conveyor;
+      "J2.4.1" : _.Global.FB_Conveyor;
+      "J1.2.4" : _.Global.FB_Conveyor;
+      "J1.2.5" : _.Global.FB_Conveyor;
+      "J1.3.1" : _.Global.FB_Conveyor;
+      "J1.3.2" : _.Global.FB_Conveyor;
+      "J1.4.1" : _.Global.FB_Conveyor;
+      "J1.4.2" : _.Global.FB_Conveyor;
+      "J1.4.3" : _.Global.FB_Conveyor;
+      "J1.4.4" : _.Global.FB_Conveyor;
+      "J1.4.5" : _.Global.FB_Conveyor;
+      "J1.4.6" : _.Global.FB_Conveyor;
+      "J1.4.7" : _.Global.FB_Conveyor;
+      "J1.5.1" : _.Global.FB_Conveyor;
+      "J1.5.2" : _.Global.FB_Conveyor;
+      "J1.5.3" : _.Global.FB_Conveyor;
+      "J1.5.4" : _.Global.FB_Conveyor;
+      "J1.6.1" : _.Global.FB_MABS;
+      "J1.6.2" : _.Global.FB_MABS;
+      "J1.7.1" : _.Global.FB_Conveyor;
+      "J1.7.2" : _.Global.FB_Conveyor;
+      "J1.8.1" : _.Global.FB_Conveyor;
+      "J1.8.2" : _.Global.FB_Conveyor;
+      "J1.9.1" : _.Global.FB_Conveyor;
+      "J1.10.1" : _.Global.FB_Conveyor;
+      "J1.11.1" : _.Global.FB_Conveyor;
+      "J1.11.2" : _.Global.FB_Conveyor;
+      "J1.11.3" : _.Global.FB_Conveyor;
+      "J1.11.4" : _.Global.FB_Conveyor;
+      "J1.11.5" : _.Global.FB_Conveyor;
+      "J1.11.6" : _.Global.FB_Conveyor;
+      "J1.11.7" : _.Global.FB_Conveyor;
+      "J1.11.8" : _.Global.FB_Conveyor;
+      "J1.11.9" : _.Global.FB_Conveyor;
+      "J1.11.10" : _.Global.FB_Conveyor;
+      "J1.11.11" : _.Global.FB_Conveyor;
+      "J1.11.12" : _.Global.FB_Conveyor;
+      "J1.11.13" : _.Global.FB_Conveyor;
+      "K1.1.1" : _.Global.FB_Conveyor;
+      "K1.2.1" : _.Global.FB_Conveyor;
+      "K1.3.1" : _.Global.FB_Conveyor;
+      "K1.4.1" : _.Global.FB_Conveyor;
+      "K1.4.2" : _.Global.FB_Conveyor;
+      "K1.4.3" : _.Global.FB_Conveyor;
+      "K1.4.4" : _.Global.FB_Conveyor;
+      "K1.4.5" : _.Global.FB_Conveyor;
+      "K1.4.6" : _.Global.FB_Conveyor;
+      "K1.4.7" : _.Global.FB_Conveyor;
+      "K1.4.8" : _.Global.FB_Conveyor;
+      "K1.4.9" : _.Global.FB_Conveyor;
+      "K1.4.10" : _.Global.FB_Conveyor;
+      "K1.5.1" : _.Global.FB_Conveyor;
+      "K1.5.2" : _.Global.FB_Conveyor;
+      "K1.5.3" : _.Global.FB_Conveyor;
+      "K1.5.4" : _.Global.FB_Conveyor;
+      "K1.5.5" : _.Global.FB_Conveyor;
+      "K1.5.6" : _.Global.FB_Conveyor;
+      "K1.5.7" : _.Global.FB_Conveyor;
+      "K1.5.8" : _.Global.FB_Conveyor;
+      "K1.6.1" : _.Global.FB_Conveyor;
+      "K1.6.2" : _.Global.FB_Conveyor;
+      "K1.7.1" : _.Global.FB_Conveyor;
+      "K1.7.2" : _.Global.FB_Conveyor;
+      "K1.8.1" : _.Global.FB_Conveyor;
+      "K1.8.2" : _.Global.FB_Conveyor;
+      "K1.8.3" : _.Global.FB_Conveyor;
+      "K1.9.1" : _.Global.FB_Conveyor;
+      "K1.9.2" : _.Global.FB_Conveyor;
+      "K1.9.3" : _.Global.FB_Conveyor;
+      "K1.9.4" : _.Global.FB_Conveyor;
+      "K1.9.5" : _.Global.FB_Conveyor;
+      "K1.9.6" : _.Global.FB_Conveyor;
+      "K1.9.7" : _.Global.FB_Conveyor;
+      "K1.10.1" : _.Global.FB_Conveyor;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : FB_LineB1
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION J1.1.1
+	    //J1.1.1
+	    #"J1.1.1"(ConveyorID:=_."J1.1.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.1.1",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.1"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.1.1"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.1.1"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.1.1"],
+	                   RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.1.1",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.1.1");
+	
+	END_REGION
+	
+	REGION J1.1.2
+	    //J1.1.2
+	    #"J1.1.2"(ConveyorID:=_."J1.1.2",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.1.2",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.2"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.1.2"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.1.2"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.1.2"],
+	                   RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.1.2",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.1.2");
+	
+	END_REGION
+	
+	REGION J1.1.3
+	    //J1.1.3
+	    #"J1.1.3"(ConveyorID:=_."J1.1.3",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.1.11",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.3"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.1.3"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.1.3"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.1.3"],
+	                   RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.1.3",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.1.3");
+	     END_REGION
+	
+	REGION J1.1.4
+	    //J1.1.4
+	    #"J1.1.4"(ConveyorID:=_."J1.1.4",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.1.11",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.4"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.1.4"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.1.4"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.1.4"],
+	                   RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.1.4",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.1.4");
+	
+	END_REGION
+	
+	REGION J1.1.5
+	    //J1.1.5
+	    #"J1.1.5"(ConveyorID := _."J1.1.5",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.1.11",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.5"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.1.5"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.1.5"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.1.5"],
+	              RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.1.5",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.1.5");
+	END_REGION
+	
+	REGION J1.1.6
+	    //J1.1.6
+	    #"J1.1.6"(ConveyorID := _."J1.1.6",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.1.11",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.6"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.1.6"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.1.6"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.1.6"],
+	              RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.1.6",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.1.6");
+	    
+	END_REGION
+	
+	REGION J1.1.7
+	    //J1.1.7
+	    #"J1.1.7"(ConveyorID := _."J1.1.7",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.1.11",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.7"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.1.7"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.1.7"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.1.7"],
+	              RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.1.7",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.1.7");
+	    
+	END_REGION
+	
+	REGION J1.1.8
+	    //J1.1.8
+	    #"J1.1.8"(ConveyorID := _."J1.1.8",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.1.11",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.8"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.1.8"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.1.8"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.1.8"],
+	              RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.1.8",
+	              WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.1.8");
+	    
+	END_REGION
+	
+	REGION J1.1.9
+	    //J1.1.9
+	    #"J1.1.9"(ConveyorID := _."J1.1.9",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.1.11",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.9"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.1.9"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.1.9"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.1.9"],
+	              RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.1.9",
+	              WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.1.9");
+	END_REGION
+	
+	REGION J1.1.10
+	    //J1.1.10
+	    #"J1.1.10"(ConveyorID := _."J1.1.10",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.1.11",
+	               Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.10"],
+	               Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.1.10"],
+	               Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.1.10"],
+	               Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.1.10"],
+	               RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.1.10",
+	               WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.1.10");
+	    
+	END_REGION
+	
+	REGION J1.1.11
+	    //J1.1.11
+	    #"J1.1.11"(ConveyorID := _."J1.1.11",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.1.11",
+	               Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.11"],
+	               Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.1.11"],
+	               Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.1.11"],
+	               Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.1.11"],
+	               RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.1.11",
+	               WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.1.11");
+	    
+	END_REGION
+	
+	REGION J1.1.12
+	    //J1.1.12
+	    #"J1.1.12"(ConveyorID := _."J1.1.12",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.1.15",
+	               Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.12"],
+	               Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.1.12"],
+	               Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.1.12"],
+	               Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.1.12"],
+	               RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.1.12",
+	               WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.1.12");
+	    
+	END_REGION
+	
+	REGION J1.1.13
+	    //J1.1.13
+	    #"J1.1.13"(ConveyorID:=_."J1.1.13",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.1.15",
+	               Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.13"],
+	               Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.1.13"],
+	               Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.1.13"],
+	               Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.1.13"],
+	               RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.1.13",
+	               WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.1.13");
+	        
+	END_REGION
+	
+	REGION J1.1.14
+	    //J1.1.14
+	    #"J1.1.14"(ConveyorID:=_."J1.1.14",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.1.15",
+	               Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.14"],
+	               Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.1.14"],
+	               Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.1.14"],
+	               Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.1.14"],
+	               RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.1.14",
+	               WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.1.14");
+	END_REGION
+	
+	REGION J1.1.15
+	    //J1.1.15
+	    #"J1.1.15"(ConveyorID:=_."J1.1.15",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.1.15",
+	               Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.1.15"],
+	               Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.1.15"],
+	               Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.1.15"],
+	               Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.1.15"],
+	               RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.1.15",
+	               WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.1.15");
+	
+	END_REGION
+	
+	REGION J1.2.1
+	    //J1.2.1
+	    #"J1.2.1"(ConveyorID := _."J1.2.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.2.1",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.2.1"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.2.1"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.2.1"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.2.1"],
+	              RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.2.1",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.2.1");
+	    
+	END_REGION
+	
+	REGION J1.2.2
+	    //J1.2.2
+	    #"J1.2.2"(ConveyorID:=_."J1.2.2",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.2.2",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.2.2"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.2.2"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.2.2"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.2.2"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.2.2",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.2.2");
+	
+	END_REGION
+	
+	REGION J1.2.3
+	    //J1.2.3 Staright for Merger1
+	    #"J1.2.3"(ConveyorID:=_."J1.2.3",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.2.3",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.2.3"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.2.3"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.2.3"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.2.3"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.2.3",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.2.3");
+	
+	END_REGION
+	
+	REGION J2.1.1
+	    //J2.1.1
+	    #"J2.1.1"(ConveyorID:=_."J2.1.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw200-C2: Input"."Sensor J2.1.1",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.1"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.1.1"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.1.1"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.1.1"],
+	                   RunForward=>_."ASiGW-MCC001-bw200-C2: Output"."Motor J2.1.1",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw200-C2: Output"."Dir J2.1.1");
+	
+	END_REGION
+	
+	REGION J2.1.2
+	    //J2.1.2
+	    #"J2.1.2"(ConveyorID:=_."J2.1.2",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw200-C2: Input"."Sensor J2.1.2",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.2"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.1.2"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.1.2"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.1.2"],
+	                   RunForward=>_."ASiGW-MCC001-bw200-C2: Output"."Motor J2.1.2",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw200-C2: Output"."Dir J2.1.2");
+	
+	END_REGION
+	
+	REGION J2.1.3
+	    //J2.1.3
+	    #"J2.1.3"(ConveyorID := _."J2.1.3",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw200-C2: Input"."Sensor J2.1.11",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.3"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.1.3"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.1.3"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.1.3"],
+	              RunForward => _."ASiGW-MCC001-bw200-C2: Output"."Motor J2.1.3",
+	              WriteAsiDir => _."ASiGW-MCC001-bw200-C2: Output"."Dir J2.1.3");
+	    
+	END_REGION
+	
+	REGION J2.1.4
+	    //J2.1.4
+	    #"J2.1.4"(ConveyorID:=_."J2.1.4",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw200-C2: Input"."Sensor J2.1.11",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.4"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.1.4"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.1.4"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.1.4"],
+	                   RunForward=>_."ASiGW-MCC001-bw200-C2: Output"."Motor J2.1.4",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw200-C2: Output"."Dir J2.1.4");
+	
+	END_REGION
+	
+	REGION J2.1.5
+	    //J2.1.5
+	    #"J2.1.5"(ConveyorID:=_."J2.1.5",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw200-C2: Input"."Sensor J2.1.11",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.5"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.1.5"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.1.5"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.1.5"],
+	                   RunForward=>_."ASiGW-MCC001-bw200-C2: Output"."Motor J2.1.5",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw200-C2: Output"."Dir J2.1.5");
+	
+	END_REGION
+	
+	REGION J2.1.6
+	    //J2.1.6
+	    #"J2.1.6"(ConveyorID:=_."J2.1.6",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw200-C2: Input"."Sensor J2.1.11",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.6"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.1.6"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.1.6"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.1.6"],
+	                   RunForward=>_."ASiGW-MCC001-bw200-C2: Output"."Motor J2.1.6",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw200-C2: Output"."Dir J2.1.6");
+	
+	END_REGION
+	
+	REGION J2.1.7
+	    //J2.1.7
+	    #"J2.1.7"(ConveyorID:=_."J2.1.7",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw200-C2: Input"."Sensor J2.1.11",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.7"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.1.7"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.1.7"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.1.7"],
+	                   RunForward=>_."ASiGW-MCC001-bw200-C2: Output"."Motor J2.1.7",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw200-C2: Output"."Dir J2.1.7");
+	
+	END_REGION
+	
+	REGION J2.1.8
+	    //J2.1.8
+	    #"J2.1.8"(ConveyorID := _."J2.1.8",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw200-C2: Input"."Sensor J2.1.11",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.8"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.1.8"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.1.8"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.1.8"],
+	              RunForward => _."ASiGW-MCC001-bw200-C2: Output"."Motor J2.1.8",
+	              WriteAsiDir => _."ASiGW-MCC001-bw200-C2: Output"."Dir J2.1.8");
+	    
+	END_REGION
+	
+	REGION J2.1.9
+	    //J2.1.9
+	    #"J2.1.9"(ConveyorID:=_."J2.1.9",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw200-C2: Input"."Sensor J2.1.11",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.9"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.1.9"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.1.9"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.1.9"],
+	                   RunForward=>_."ASiGW-MCC001-bw200-C2: Output"."Motor J2.1.9",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw200-C2: Output"."Dir J2.1.9");
+	
+	END_REGION
+	
+	REGION J2.1.10
+	    //J2.1.10
+	    #"J2.1.10"(ConveyorID:=_."J2.1.10",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw200-C2: Input"."Sensor J2.1.11",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.10"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.1.10"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.1.10"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.1.10"],
+	                   RunForward=>_."ASiGW-MCC001-bw200-C2: Output"."Motor J2.1.10",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw200-C2: Output"."Dir J2.1.10");
+	
+	END_REGION
+	
+	REGION J2.1.11
+	    //J2.1.11
+	    #"J2.1.11"(ConveyorID:=_."J2.1.11",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw200-C2: Input"."Sensor J2.1.11",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.11"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.1.11"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.1.11"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.1.11"],
+	                   RunForward=>_."ASiGW-MCC001-bw200-C2: Output"."Motor J2.1.11",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw200-C2: Output"."Dir J2.1.11");
+	
+	END_REGION
+	
+	REGION J2.1.12
+	    //J2.1.12
+	    #"J2.1.12"(ConveyorID:=_."J2.1.12",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw200-C2: Input"."Sensor J2.1.15",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.12"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.1.12"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.1.12"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.1.12"],
+	                   RunForward=>_."ASiGW-MCC001-bw200-C2: Output"."Motor J2.1.12",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw200-C2: Output"."Dir J2.1.12");
+	
+	END_REGION
+	
+	REGION J2.1.13
+	    //J2.1.13
+	    #"J2.1.13"(ConveyorID:=_."J2.1.13",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw200-C2: Input"."Sensor J2.1.15",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.13"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.1.13"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.1.13"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.1.13"],
+	                   RunForward=>_."ASiGW-MCC001-bw200-C2: Output"."Motor J2.1.13",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw200-C2: Output"."Dir J2.1.13");
+	
+	END_REGION
+	
+	REGION J2.1.14
+	    //J2.1.14
+	    #"J2.1.14"(ConveyorID:=_."J2.1.14",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw200-C2: Input"."Sensor J2.1.15",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.14"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.1.14"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.1.14"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.1.14"],
+	                   RunForward=>_."ASiGW-MCC001-bw200-C2: Output"."Motor J2.1.14",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw200-C2: Output"."Dir J2.1.14");
+	        
+	END_REGION
+	
+	REGION J2.1.15
+	    //J2.1.15
+	    #"J2.1.15"(ConveyorID:=_."J2.1.15",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw200-C2: Input"."Sensor J2.1.15",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.1.15"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.1.15"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.1.15"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.1.15"],
+	                   RunForward=>_."ASiGW-MCC001-bw200-C2: Output"."Motor J2.1.15",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw200-C2: Output"."Dir J2.1.15");
+	
+	END_REGION
+	
+	REGION J2.2.1
+	    //J2.2.1
+	    #"J2.2.1"(ConveyorID:=_."J2.2.1",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.2.1"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.2.1"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.2.1"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.2.1"],
+	                   RunForward=>_."ASiGW-MCC001-bw200-C2: Output"."Motor J2.2.1",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw200-C2: Output"."Dir J2.2.1");
+	
+	END_REGION
+	
+	REGION J2.2.2
+	    //J2.2.2
+	    #"J2.2.2"(ConveyorID:=_."J2.2.2",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw200-C2: Input"."Sensor J2.2.2",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.2.2"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.2.2"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.2.2"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.2.2"],
+	                   RunForward=>_."ASiGW-MCC001-bw200-C2: Output"."Motor J2.2.2",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw200-C2: Output"."Dir J2.2.2");
+	
+	END_REGION
+	
+	REGION J2.3.1
+	    //J2.3.1
+	    #"J2.3.1"(ConveyorID := _."J2.3.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw200-C2: Input"."Sensor J2.3.1",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.3.1"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.3.1"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.3.1"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.3.1"],
+	              RunForward => _."ASiGW-MCC001-bw200-C2: Output"."Motor - J2.3.1",
+	              WriteAsiDir => _."ASiGW-MCC001-bw200-C2: Output"."2-25A Dir");
+	    
+	END_REGION
+	
+	REGION J2.4.1
+	    //J2.4.1 Arm for Merger1
+	    #"J2.4.1"(ConveyorID:=_."J2.4.1",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J2.4.1"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J2.4.1"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J2.4.1"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.4.1"],
+	                   RunForward=>_."ASiGW-MCC001-bw200-C2: Output"."Motor J2.4.1",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw200-C2: Output"."Dir J2.4.1");
+	
+	END_REGION
+	
+	REGION J1.2.4 Merger
+	    //J1.2.4 Merger 1
+	    #"J1.2.4"(ConveyorID:=_."J1.2.4",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."1-27B I1",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.2.4"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.2.4"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.2.4"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.2.4"],
+	                   RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.2.4",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.2.4");
+	         
+	END_REGION
+	
+	REGION J1.2.5
+	    //J1.2.5
+	    #"J1.2.5"(ConveyorID := _."J1.2.5",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.2.5",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.2.5"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.2.5"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.2.5"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.2.5"],
+	              RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.2.5",
+	              WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.2.5");
+	    
+	END_REGION
+	
+	REGION J1.3.1
+	    //J1.3.1
+	    #"J1.3.1"(ConveyorID := _."J1.3.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.4.7",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.3.1"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.3.1"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.3.1"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.3.1"],
+	              RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.3.1",
+	              WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.3.1");
+	    
+	END_REGION
+	
+	REGION J1.3.2
+	    //J1.3.2
+	    #"J1.3.2"(ConveyorID:=_."J1.3.2",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.4.7",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.3.2"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.3.2"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.3.2"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.3.2"],
+	                   RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.3.2",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.3.2");
+	         
+	END_REGION
+	
+	REGION J1.4.1
+	    //J1.4.1
+	    #"J1.4.1"(ConveyorID:=_."J1.4.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.4.7",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.4.1"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.4.1"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.4.1"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.4.1"],
+	                   RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.4.1",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.4.1");
+	         
+	END_REGION
+	
+	REGION J1.4.2
+	    //J1.4.2
+	    #"J1.4.2"(ConveyorID:=_."J1.4.2",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.4.7",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.4.2"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.4.2"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.4.2"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.4.2"],
+	                   RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.4.2",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.4.2");
+	
+	END_REGION
+	
+	REGION J1.4.3
+	    //J1.4.3
+	    #"J1.4.3"(ConveyorID := _."J1.4.3",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.4.7",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.4.3"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.4.3"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.4.3"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.4.3"],
+	              RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.4.3",
+	              WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.4.3");
+	    
+	END_REGION
+	
+	REGION J1.4.4
+	    //J1.4.4
+	    #"J1.4.4"(ConveyorID:=_."J1.4.4",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.4.7",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.4.4"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.4.4"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.4.4"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.4.4"],
+	                   RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.4.4",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.4.4");
+	
+	END_REGION
+	
+	REGION J1.4.5
+	    //J1.4.5
+	    #"J1.4.5"(ConveyorID:=_."J1.4.5",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.4.7",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.4.5"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.4.5"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.4.5"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.4.5"],
+	                   RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.4.5",
+	                   WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.4.5");
+	END_REGION
+	
+	REGION J1.4.6
+	    //J1.4.6
+	    #"J1.4.6"(ConveyorID := _."J1.4.6",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.4.7",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.4.6"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.4.6"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.4.6"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.4.6"],
+	              RunForward=>_."ASiGW-MCC001-bw143-C1: Output"."Motor J1.4.6",
+	              WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir J1.4.6");
+	    
+	END_REGION
+	
+	REGION J1.4.7
+	    //J1.4.7
+	    #"J1.4.7"(ConveyorID := _."J1.4.7",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.4.7",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.4.7"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.4.7"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.4.7"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.4.7"],
+	              RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.4.7",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.4.7");
+	    
+	END_REGION
+	
+	REGION J1.5.1
+	    //J1.5.1
+	    #"J1.5.1"(ConveyorID:=_."J1.5.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.5.1",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.5.1"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.5.1"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.5.1"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.5.1"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.5.1",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.5.1");
+	         
+	END_REGION
+	
+	REGION J1.5.2
+	    //J1.5.2
+	    #"J1.5.2"(ConveyorID := _."J1.5.2",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.5.2",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.5.2"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.5.2"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.5.2"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.5.2"],
+	              RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.5.2",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.5.2");
+	    
+	END_REGION
+	
+	REGION J1.5.3
+	    //J1.5.3
+	    #"J1.5.3"(ConveyorID:=_."J1.5.3",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.5.3",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.5.3"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.5.3"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.5.3"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.5.3"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.5.3",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.5.3");
+	
+	END_REGION
+	
+	REGION J1.5.4
+	    //J1.5.4
+	    #"J1.5.4"(ConveyorID:=_."J1.5.4",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.5.4",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.5.4"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.5.4"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.5.4"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.5.4"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.5.4",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.5.4");
+	END_REGION
+	
+	REGION J1.6.1 MABS
+	    //Mabs J1.6.1
+	    #"J1.6.1"(MABS_ID := _."J1.6.1",
+	              ErrorSignal:=DB_UDI."EmptyLine".Fault.Stop.Conveyor[_."J1.6.1"],
+	              Upstream:=#"J1.5.4".FilteredSensor,
+	              UpstreamRunning := #"J1.5.4".ReadConveyorStatus.Running,
+	              Downstream_Straight := #"J1.7.1".FilteredSensor,
+	              "Downstream_Right/Left" := #"K1.1.1".FilteredSensor,
+	              SortDir := _.EmptyLine.ToteDir.Conveyor[_."J1.6.1"],
+	              RemoteOut1:=_."ASiGW-MCC001-bw143-C1: Input"."J1.6.1 -RemoteOut1",
+	              RemoteOut2:=_."ASiGW-MCC001-bw143-C1: Input"."J1.6.1 -RemoteOut2",
+	              RemoteOut3:=_."ASiGW-MCC001-bw143-C1: Input"."J1.6.1 -RemoteOut3",
+	              RemoteOut4:=_."ASiGW-MCC001-bw143-C1: Input"."J1.6.1 -RemoteOut4",
+	              Parameter:=DB_ConveyorParameters.Line.EmptyLine.Mabs[_."J1.6.1"],
+	              RemoteIn1=>_."ASiGW-MCC001-bw143-C1: Output"."J1.6.1 -RemoteIn1",
+	              RemoteIn2=>_."ASiGW-MCC001-bw143-C1: Output"."J1.6.1 -RemoteIn2",
+	              RemoteIn3=>_."ASiGW-MCC001-bw143-C1: Output"."J1.6.1 -RemoteIn3",
+	              RunWheels=>_."ASiGW-MCC001-bw143-C1: Output"."J1.6.1 -RemoteIn4");
+	
+	END_REGION
+	
+	REGION J1.6.2 MABS
+	    //Mabs J1.6.2
+	    #"J1.6.2"(MABS_ID:=_."J1.6.2",
+	              ErrorSignal:=DB_UDI."EmptyLine".Fault.Stop.Conveyor[_."J1.6.2"],
+	              Upstream:=#"J1.5.4".FilteredSensor,
+	              UpstreamRunning:=#"J1.5.4".ReadConveyorStatus.Running,
+	              Downstream_Straight:=#"J1.7.1".FilteredSensor,
+	              "Downstream_Right/Left":=#"K1.1.1".FilteredSensor,
+	              SortDir:=_.EmptyLine.ToteDir.Conveyor[_."J1.6.2"],
+	              RemoteOut1:=_."ASiGW-MCC001-bw143-C1: Input"."J1.6.2 -RemoteOut1",
+	              RemoteOut2:=_."ASiGW-MCC001-bw143-C1: Input"."J1.6.2 -RemoteOut2",
+	              RemoteOut3:=_."ASiGW-MCC001-bw143-C1: Input"."J1.6.2 -RemoteOut3",
+	              RemoteOut4:=_."ASiGW-MCC001-bw143-C1: Input"."J1.6.2 -RemoteOut4",
+	              Parameter:=DB_ConveyorParameters.Line.EmptyLine.Mabs[_."J1.6.2"],
+	              RemoteIn1=>_."ASiGW-MCC001-bw143-C1: Output"."J1.6.2 -RemoteIn1",
+	              RemoteIn2=>_."ASiGW-MCC001-bw143-C1: Output"."J1.6.2 -RemoteIn2",
+	              RemoteIn3=>_."ASiGW-MCC001-bw143-C1: Output"."J1.6.2 -RemoteIn3",
+	              RunWheels=>_."ASiGW-MCC001-bw143-C1: Output"."J1.6.2 -RemoteIn4");
+	
+	END_REGION
+	
+	REGION J1.7.1
+	    //J1.7.1 (Go straight )
+	    #"J1.7.1"(ConveyorID:=_."J1.7.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.7.1",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.7.1"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.7.1"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.7.1"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.7.1"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.7.1",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.7.1");
+	
+	END_REGION
+	
+	REGION J1.7.2
+	    //J1.7.2
+	    #"J1.7.2"(ConveyorID := _."J1.7.2",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.7.2",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.7.2"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.7.2"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.7.2"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.7.2"],
+	              RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.7.2",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.7.2");
+	    
+	    
+	END_REGION
+	
+	REGION J1.8.1
+	    //J1.8.1
+	    #"J1.8.1"(ConveyorID:=_."J1.8.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.8.1",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.8.1"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.8.1"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.8.1"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.8.1"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.8.1",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.8.1");
+	         
+	END_REGION
+	
+	REGION J1.8.2
+	    //J1.8.2
+	    #"J1.8.2"(ConveyorID:=_."J1.8.2",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.8.2",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.8.2"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.8.2"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.8.2"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.8.2"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.8.2",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.8.2");
+	
+	END_REGION
+	
+	REGION J1.9.1
+	    //J1.9.1
+	    #"J1.9.1"(ConveyorID:=_."J1.9.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.9.1",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.9.1"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.9.1"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.9.1"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.9.1"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor - J1.9.1",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."1-5B Dir",
+	                   WriteAsiSpeed=>_."ASiGW-MCC001-bw143-C1: Output"."1-5B Speed");
+	         
+	END_REGION
+	
+	REGION J1.10.1
+	    //J1.10.1
+	    #"J1.10.1"(ConveyorID := _."J1.10.1",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.10.1",
+	               Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.10.1"],
+	               Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.10.1"],
+	               Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.10.1"],
+	               Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.10.1"],
+	               RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor - J1.10.1",
+	               WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."1-5B Dir",
+	               WriteAsiSpeed => _."ASiGW-MCC001-bw143-C1: Output"."1-5B Speed");
+	    
+	END_REGION
+	
+	REGION J1.11.1
+	    //J1.11.1
+	    #"J1.11.1"(ConveyorID := _."J1.11.1",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.11.7",
+	               Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.1"],
+	               Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.11.1"],
+	               Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.11.1"],
+	               Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.11.1"],
+	               RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.11.1",
+	               WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.11.1");
+	    
+	END_REGION
+	
+	REGION J1.11.2
+	    //J1.11.2
+	    #"J1.11.2"(ConveyorID:=_."J1.11.2",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.11.7",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.2"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.11.2"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.11.2"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.11.2"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.11.2",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.11.2");
+	
+	END_REGION
+	
+	REGION J1.11.3
+	    //J1.11.3
+	    #"J1.11.3"(ConveyorID:=_."J1.11.3",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.11.7",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.3"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.11.3"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.11.3"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.11.3"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.11.3",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.11.3");
+	
+	END_REGION
+	
+	REGION J1.11.4
+	    //J1.11.4
+	    #"J1.11.4"(ConveyorID := _."J1.11.4",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.11.7",
+	               Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.4"],
+	               Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.11.4"],
+	               Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.11.4"],
+	               Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.11.4"],
+	               RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.11.4",
+	               WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.11.4");
+	    
+	END_REGION
+	
+	REGION J1.11.5
+	    //J1.11.5
+	    #"J1.11.5"(ConveyorID:=_."J1.11.5",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.11.7",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.5"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.11.5"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.11.5"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.11.5"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.11.5",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.11.5");
+	
+	END_REGION
+	
+	REGION J1.11.6
+	    //J1.11.6
+	    #"J1.11.6"(ConveyorID := _."J1.11.6",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.11.7",
+	               Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.6"],
+	               Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.11.6"],
+	               Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.11.6"],
+	               Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.11.6"],
+	               RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.11.6",
+	               WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.11.6");
+	    
+	END_REGION
+	
+	REGION J1.11.7
+	    //J1.11.7
+	    #"J1.11.7"(ConveyorID := _."J1.11.7",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.11.7",
+	               Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.7"],
+	               Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.11.7"],
+	               Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.11.7"],
+	               Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.11.7"],
+	               RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.11.9",
+	               WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.11.9");
+	    
+	END_REGION
+	
+	REGION J1.11.8
+	    //J1.11.8
+	    #"J1.11.8"(ConveyorID := _."J1.11.8",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.11.13",
+	               Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.8"],
+	               Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.11.8"],
+	               Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.11.8"],
+	               Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.11.8"],
+	               RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.11.10",
+	               WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.11.10");
+	    
+	END_REGION
+	
+	REGION J1.11.9
+	    //J1.11.9
+	    #"J1.11.9"(ConveyorID:=_."J1.11.9",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.11.13",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.9"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.11.9"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.11.9"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.11.9"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.11.11",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.11.11");
+	        
+	END_REGION
+	
+	REGION J1.11.10
+	    //J1.11.10
+	    #"J1.11.10"(ConveyorID:=_."J1.11.10",
+	                ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.11.13",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.10"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.11.10"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.11.10"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.11.10"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.11.12",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.11.12");
+	
+	END_REGION
+	
+	REGION J1.11.11
+	    //J1.11.11
+	    #"J1.11.11"(ConveyorID:=_."J1.11.11",
+	                ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.11.13",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.11"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.11.11"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.11.11"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.11.11"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.11.13",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.11.13");
+	
+	END_REGION
+	
+	REGION J1.11.12
+	    //J1.11.12
+	    #"J1.11.12"(ConveyorID := _."J1.11.12",
+	                ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.11.13",
+	                Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.12"],
+	                Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.11.12"],
+	                Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.11.12"],
+	                Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.11.12"],
+	                RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.11.12",
+	                WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.11.12");
+	    
+	END_REGION
+	
+	REGION J1.11.13
+	    //J1.11.13
+	    #"J1.11.13"(ConveyorID:=_."J1.11.13",
+	                ConveyorSensor:=_."ASiGW-MCC001-bw143-C1: Input"."Sensor J1.11.13",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."J1.11.13"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."J1.11.13"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."J1.11.13"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.11.13"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C1: Output"."Motor J1.11.13",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C1: Output"."Dir J1.11.13");
+	
+	END_REGION
+	
+	REGION K1.1.1
+	    //K1.1.1  (Go Left)
+	    #"K1.1.1"(ConveyorID:=_."K1.1.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.2.1",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.1.1"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.1.1"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.1.1"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.1.1"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.1.1",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.1.1");
+	         
+	END_REGION
+	
+	REGION K1.2.1
+	    //K1.2.1
+	    #"K1.2.1"(ConveyorID:=_."K1.2.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.2.1",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.2.1"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.2.1"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.2.1"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.2.1"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor - K1.2.1",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."2-31A Dir",
+	                   WriteAsiSpeed=>_."ASiGW-MCC001-bw143-C2: Output"."2-31A Speed");
+	         
+	END_REGION
+	
+	REGION K1.3.1
+	    //K1.3.1
+	    #"K1.3.1"(ConveyorID := _."K1.3.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.3.1",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.3.1"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.3.1"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.3.1"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.3.1"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.3.1",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.3.1");
+	    
+	END_REGION
+	
+	REGION K1.4.1
+	    //K1.4.1
+	    #"K1.4.1"(ConveyorID:=_."K1.4.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.4.1",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.1"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.4.1"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.4.1"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.4.1"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.4.1",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.4.1");
+	         
+	END_REGION
+	
+	REGION K1.4.2
+	    //K1.4.2
+	    #"K1.4.2"(ConveyorID := _."K1.4.2",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.4.10",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.2"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.4.2"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.4.2"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.4.2"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.4.2",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.4.2");
+	    
+	END_REGION
+	
+	REGION K1.4.3
+	    //K1.4.3
+	    #"K1.4.3"(ConveyorID := _."K1.4.3",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.4.10",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.3"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.4.3"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.4.3"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.4.3"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.4.3",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.4.3");
+	    
+	END_REGION
+	
+	REGION K1.4.4
+	    //K1.4.4
+	    #"K1.4.4"(ConveyorID := _."K1.4.4",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.4.10",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.4"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.4.4"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.4.4"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.4.4"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.4.4",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.4.4");
+	    
+	END_REGION
+	
+	REGION K1.4.5
+	    //K1.4.5
+	    #"K1.4.5"(ConveyorID := _."K1.4.5",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.4.10",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.5"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.4.5"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.4.5"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.4.5"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.4.5",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.4.5");
+	    
+	END_REGION
+	
+	REGION K1.4.6
+	    //K1.4.6
+	    #"K1.4.6"(ConveyorID:=_."K1.4.6",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.4.10",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.6"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.4.6"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.4.6"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.4.6"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.4.6",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.4.6");
+	         
+	END_REGION
+	
+	REGION K1.4.7
+	    //K1.4.7
+	    #"K1.4.7"(ConveyorID := _."K1.4.7",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.4.10",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.7"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.4.7"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.4.7"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.4.7"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.4.7",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.4.7");
+	    
+	END_REGION
+	
+	REGION K1.4.8
+	    //K1.4.8
+	    #"K1.4.8"(ConveyorID := _."K1.4.8",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.4.10",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.8"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.4.8"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.4.8"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.4.8"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.4.8",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.4.8");
+	    
+	END_REGION
+	
+	REGION K1.4.9
+	    //K1.4.9
+	    #"K1.4.9"(ConveyorID:=_."K1.4.9",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.4.10",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.9"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.4.9"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.4.9"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.4.9"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.4.9",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.4.9");
+	         
+	END_REGION
+	
+	REGION K1.4.10
+	    //K1.4.10
+	    #"K1.4.10"(ConveyorID:=_."K1.4.10",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.4.10",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.4.10"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.4.10"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.4.10"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.4.10"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.4.10",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.4.10");
+	        
+	END_REGION
+	
+	REGION K1.5.1
+	    //K1.5.1
+	    #"K1.5.1"(ConveyorID:=_."K1.5.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.5.8",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.5.1"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.5.1"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.5.1"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.5.1"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.5.1",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.5.1");
+	
+	END_REGION
+	
+	REGION K1.5.2
+	    //K1.5.2
+	    #"K1.5.2"(ConveyorID:=_."K1.5.2",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.5.8",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.5.2"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.5.2"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.5.2"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.5.2"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.5.2",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.5.2");
+	         
+	
+	END_REGION
+	
+	REGION K1.5.3
+	    //K1.5.3
+	    #"K1.5.3"(ConveyorID:=_."K1.5.3",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.5.8",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.5.3"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.5.3"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.5.3"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.5.3"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.5.3",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.5.3");
+	         
+	
+	END_REGION
+	
+	REGION K1.5.4
+	    //K1.5.4
+	    #"K1.5.4"(ConveyorID:=_."K1.5.4",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.5.8",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.5.4"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.5.4"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.5.4"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.5.4"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.5.4",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.5.4");
+	         
+	END_REGION
+	
+	REGION K1.5.5
+	    //K1.5.5
+	    #"K1.5.5"(ConveyorID := _."K1.5.5",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.5.8",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.5.5"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.5.5"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.5.5"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.5.5"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.5.5",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.5.5");
+	    
+	    
+	END_REGION
+	
+	REGION K1.5.6
+	    //K1.5.6
+	    #"K1.5.6"(ConveyorID:=_."K1.5.6",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.5.8",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.5.6"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.5.6"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.5.6"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.5.6"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.5.6",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.5.6");
+	        
+	
+	END_REGION
+	
+	REGION K1.5.7
+	    //K1.5.7
+	    #"K1.5.7"(ConveyorID:=_."K1.5.7",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.5.8",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.5.7"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.5.7"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.5.7"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.5.7"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.5.7",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.5.7");
+	         
+	END_REGION
+	
+	REGION K1.5.8
+	    //K1.5.8
+	    #"K1.5.8"(ConveyorID:=_."K1.5.8",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.5.8",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.5.8"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.5.8"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.5.8"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.5.8"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.5.8",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.5.8");
+	         
+	END_REGION
+	
+	REGION K1.6.1
+	    //K1.6.1
+	    #"K1.6.1"(ConveyorID:=_."K1.6.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.6.1",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.6.1"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.6.1"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.6.1"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.6.1"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor - K1.6.1",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."2-11B Dir",
+	                   WriteAsiSpeed=> _."ASiGW-MCC001-bw143-C2: Output"."2-11B Speed");
+	         
+	END_REGION
+	
+	REGION K1.6.2
+	    //K1.6.2
+	    #"K1.6.2"(ConveyorID := _."K1.6.2",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.6.2",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.6.2"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.6.2"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.6.2"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.6.2"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor - K1.6.2",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."2-11B Dir",
+	              WriteAsiSpeed => _."ASiGW-MCC001-bw143-C2: Output"."2-11B Speed");
+	    
+	END_REGION
+	
+	REGION K1.7.1
+	    //K1.7.1
+	    #"K1.7.1"(ConveyorID := _."K1.7.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.7.2",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.7.1"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.7.1"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.7.1"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.7.1"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.7.1",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.7.1");
+	    
+	END_REGION
+	
+	REGION K1.7.2
+	    //K1.7.2
+	    #"K1.7.2"(ConveyorID := _."K1.7.2",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.7.2",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.7.2"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.7.2"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.7.2"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.7.2"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.7.2",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.7.2");
+	    
+	END_REGION
+	
+	REGION K1.8.1
+	    //K1.8.1
+	    #"K1.8.1"(ConveyorID:=_."K1.8.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.8.3",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.8.1"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.8.1"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.8.1"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.8.1"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.8.1",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.8.1");
+	
+	END_REGION
+	
+	REGION K1.8.2
+	    //K1.8.2
+	    #"K1.8.2"(ConveyorID := _."K1.8.2",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.8.3",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.8.2"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.8.2"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.8.2"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.8.2"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.8.2",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.8.2");
+	    
+	END_REGION
+	
+	REGION K1.8.3
+	    //K1.8.3
+	    #"K1.8.3"(ConveyorID := _."K1.8.3",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.8.3",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.8.3"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.8.3"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.8.3"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.8.3"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.8.3",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.8.3");
+	    
+	END_REGION
+	
+	REGION K1.9.1
+	    //K1.9.1
+	    #"K1.9.1"(ConveyorID := _."K1.9.1",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.10.1",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.9.1"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.9.1"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.9.1"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.9.1"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.9.1",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.9.1");
+	    
+	END_REGION
+	
+	REGION K1.9.2
+	    //K1.9.2
+	    #"K1.9.2"(ConveyorID:=_."K1.9.2",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.10.1",
+	                   Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.9.2"],
+	                   Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.9.2"],
+	                   Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.9.2"],
+	                   Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.9.2"],
+	                   RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.9.2",
+	                   WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.9.3");
+	         
+	END_REGION
+	
+	REGION K1.9.3
+	    //K1.9.3
+	    #"K1.9.3"(ConveyorID := _."K1.9.3",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.10.1",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.9.3"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.9.3"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.9.3"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.9.3"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.9.3",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.9.3");
+	    
+	END_REGION
+	
+	REGION K1.9.4
+	    //K1.9.4
+	    #"K1.9.4"(ConveyorID := _."K1.9.4",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.10.1",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.9.4"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.9.4"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.9.4"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.9.4"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.9.4",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.9.4");
+	    
+	END_REGION
+	
+	REGION K1.9.5
+	    //K1.9.5
+	    #"K1.9.5"(ConveyorID := _."K1.9.5",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.10.1",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.9.5"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.9.5"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.9.5"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.9.5"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.9.5",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.9.5");
+	    
+	END_REGION
+	
+	REGION K1.9.6
+	    //K1.9.6
+	    #"K1.9.6"(ConveyorID := _."K1.9.6",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.10.1",
+	              Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.9.6"],
+	              Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.9.6"],
+	              Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.9.6"],
+	              Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.9.6"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.9.6",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.9.6");
+	    
+	END_REGION
+	
+	REGION K1.9.7
+	    //K1.9.7
+	    #"K1.9.7"(ConveyorID:=_."K1.9.7",
+	              ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.10.1",
+	              Fault:= DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.9.7"],
+	              Upstream:= DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.9.7"],
+	              Downstream:= DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.9.7"],
+	              Interlock:= DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.9.7"],
+	              RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.9.7",
+	              WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.9.7");
+	END_REGION
+	
+	REGION K1.10.1
+	    //K1.10.1
+	    #"K1.10.1"(ConveyorID := _."K1.10.1",
+	               ConveyorSensor:=_."ASiGW-MCC001-bw143-C2: Input"."Sensor K1.10.1",
+	               Fault := DB_UDI.EmptyLine.Fault.Stop.Conveyor[_."K1.10.1"],
+	               Upstream := DB_UDI.EmptyLine.Upstream.Conveyor[_."K1.10.1"],
+	               Downstream := DB_UDI.EmptyLine.DownstreamAcu.Stop.Conveyor[_."K1.10.1"],
+	               Interlock := DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."K1.10.1"],
+	               RunForward => _."ASiGW-MCC001-bw143-C2: Output"."Motor K1.10.1",
+	               WriteAsiDir => _."ASiGW-MCC001-bw143-C2: Output"."Dir K1.10.1");
+	    
+	END_REGION
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

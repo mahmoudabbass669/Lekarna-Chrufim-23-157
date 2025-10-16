@@ -1,0 +1,70 @@
+﻿NAMESPACE EmptyLine
+FUNCTION_BLOCK FB_Interlock
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR 
+      "J1.2.3" : _.Global.FB_Interlock;
+      "J2.3.1" : _.Global.FB_Interlock;
+      "J1.5.4_Straight" : _.Global.FB_Interlock;
+      "J1.5.4_Left" : _.Global.FB_Interlock;
+      "InterlockJ1.7.1" { S7_SetPoint := 'True'} : Bool;
+      "InterlockK1.2.1" : Bool;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : FB_Interlock
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION J1.2.3
+	    // J1.2.3
+	    #"J1.2.3"(ConveyorSensor := IDB_EmptyLine."J1.2.3".FilteredSensor,
+	              DownstreamOccuTime := DB_ConveyorParameters.Line.EmptyLine.Conveyor[_."J2.1.4"].ConvOccTime,
+	              StopConv => DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.1.3"]);
+	    
+	END_REGION
+	
+	REGION J2.3.1
+	    // J2.3.1
+	    #"J2.3.1"(ConveyorSensor := IDB_EmptyLine."J2.3.1".FilteredSensor,
+	              DownstreamOccuTime := DB_ConveyorParameters.Line.EmptyLine.Conveyor[_."J2.1.4"].ConvOccTime,
+	              StopConv => DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J2.3.1"]);
+	    
+	END_REGION
+	
+	REGION J1.5.4
+	    // J1.5.4
+	    #"J1.5.4_Straight"(ConveyorSensor := IDB_EmptyLine."J1.2.5".FilteredSensor AND
+	                       ToteDir.Conveyor[_."J1.6.1"].Straight AND
+	                       ToteDir.Conveyor[_."J1.6.2"].Straight,
+	                       DownstreamOccuTime := DB_ConveyorParameters.Line.EmptyLine.Conveyor[_."J1.7.1"].ConvOccTime,
+	                       StopConv => #"InterlockJ1.7.1");
+	    
+	    #"J1.5.4_Left"(ConveyorSensor := IDB_EmptyLine."J1.2.5".FilteredSensor AND
+	                   ToteDir.Conveyor[_."J1.6.1"].toLeft AND
+	                   ToteDir.Conveyor[_."J1.6.2"].toLeft,
+	                   DownstreamOccuTime := DB_ConveyorParameters.Line.EmptyLine.Conveyor[_."K1.2.1"].ConvOccTime,
+	                   StopConv => #"InterlockK1.2.1");
+	    
+	    
+	    DB_UDI.EmptyLine.Interlock.Stop.Conveyor[_."J1.2.5"] := #"InterlockJ1.7.1" OR #"InterlockK1.2.1";
+	    
+	END_REGION
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

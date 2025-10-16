@@ -1,0 +1,22 @@
+﻿NAMESPACE EmptyLine
+ORGANIZATION_BLOCK Main_EmptyLine
+TITLE = "Main Program Sweep (Cycle)"
+{ S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
+VERSION : 0.1
+
+BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Anton Vinoth Soundraraj
+	// Block          : Main_LineB1
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	IDB_EmptyLine();
+	
+	IDB_Merging();
+	
+END_ORGANIZATION_BLOCK
+END_NAMESPACE
+

@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Types.PlcStruct ID="0">
+    <AttributeList>
+      <Access>Published</Access>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="None">
+    <Member Name="Run_mot_A" Datatype="Bool" />
+    <Member Name="Run_mot_B" Datatype="Bool" />
+    <Member Name="Reserved_1" Datatype="Bool" />
+    <Member Name="Reserved_2" Datatype="Bool" />
+    <Member Name="Reserved_3" Datatype="Bool" />
+    <Member Name="Reserved_4" Datatype="Bool" />
+    <Member Name="Reserved_5" Datatype="Bool" />
+    <Member Name="Reserved_6" Datatype="Bool" />
+    <Member Name="Speed_1_A" Datatype="Bool" />
+    <Member Name="Speed_2_A" Datatype="Bool" />
+    <Member Name="Speed_3_A" Datatype="Bool" />
+    <Member Name="Speed_4_A" Datatype="Bool" />
+    <Member Name="Speed_1_B" Datatype="Bool" />
+    <Member Name="Speed_2_B" Datatype="Bool" />
+    <Member Name="Speed_3_B" Datatype="Bool" />
+    <Member Name="Speed_4_B" Datatype="Bool" />
+    <Member Name="Acc_A" Datatype="Bool" />
+    <Member Name="Dec_A" Datatype="Bool" />
+    <Member Name="Acc_B" Datatype="Bool" />
+    <Member Name="Dec_B" Datatype="Bool" />
+    <Member Name="Dir_A" Datatype="Bool" />
+    <Member Name="Dir_B" Datatype="Bool" />
+    <Member Name="Ack_err_A" Datatype="Bool" />
+    <Member Name="Ack_err_B" Datatype="Bool" />
+    <Member Name="Digital_out1" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">NA for IB-P03</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="Digital_out2" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">NA for IB-P03</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="Digital_out3" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">NA for IB-P03</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="Digital_out4" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">NA for IB-P03</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="Reserved_7" Datatype="Bool" />
+    <Member Name="Reserved_8" Datatype="Bool" />
+    <Member Name="Reserved_9" Datatype="Bool" />
+    <Member Name="Reserved_10" Datatype="Bool" />
+    <Member Name="Register_Low_D800" Datatype="Byte" />
+    <Member Name="Register_High_D800" Datatype="Byte" />
+    <Member Name="Register_Low_D801" Datatype="Byte" />
+    <Member Name="Register_High_D801" Datatype="Byte" />
+    <Member Name="Register_Low_D802" Datatype="Byte" />
+    <Member Name="Register_High_D802" Datatype="Byte" />
+    <Member Name="Register_Low_D803" Datatype="Byte" />
+    <Member Name="Register_High_D803" Datatype="Byte" />
+    <Member Name="Register_Low_D804" Datatype="Byte" />
+    <Member Name="Register_High_D804" Datatype="Byte" />
+    <Member Name="Register_Low_D805" Datatype="Byte" />
+    <Member Name="Register_High_D805" Datatype="Byte" />
+    <Member Name="Register_Low_D806" Datatype="Byte" />
+    <Member Name="Register_High_D806" Datatype="Byte" />
+    <Member Name="Register_Low_D807" Datatype="Byte" />
+    <Member Name="Register_High_D807" Datatype="Byte" />
+    <Member Name="Register_Low_D808" Datatype="Byte" />
+    <Member Name="Register_High_D808" Datatype="Byte" />
+    <Member Name="Register_Low_D809" Datatype="Byte" />
+    <Member Name="Register_High_D809" Datatype="Byte" />
+    <Member Name="Register_Low_D810" Datatype="Byte" />
+    <Member Name="Register_High_D810" Datatype="Byte" />
+    <Member Name="Register_Low_D811" Datatype="Byte" />
+    <Member Name="Register_High_D811" Datatype="Byte" />
+    <Member Name="Register_Low_D812" Datatype="Byte" />
+    <Member Name="Register_High_D812" Datatype="Byte" />
+    <Member Name="Register_Low_D813" Datatype="Byte" />
+    <Member Name="Register_High_D813" Datatype="Byte" />
+    <Member Name="Register_Low_D814" Datatype="Byte" />
+    <Member Name="Register_High_D814" Datatype="Byte" />
+    <Member Name="Register_Low_D815" Datatype="Byte" />
+    <Member Name="Register_High_D815" Datatype="Byte" />
+    <Member Name="Output_stop" Datatype="Byte" />
+    <Member Name="Led_JAM_A" Datatype="Bool" />
+    <Member Name="Led_JAM_B" Datatype="Bool" />
+    <Member Name="Led_soft1_A" Datatype="Bool" />
+    <Member Name="Led_soft1_B" Datatype="Bool" />
+    <Member Name="Led_soft2_A" Datatype="Bool" />
+    <Member Name="Led_soft2_B" Datatype="Bool" />
+    <Member Name="Reserved_11" Datatype="Bool" />
+    <Member Name="Reserved_12" Datatype="Bool" />
+    <Member Name="Reserved_13" Datatype="Array[0..25] of Byte" />
+  </Section>
+</Sections></Interface>
+      <Name>IB_P01_02_03_out_64bytes_struct</Name>
+      <Namespace>Global</Namespace>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="4" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="5" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Types.PlcStruct>
+</Document>

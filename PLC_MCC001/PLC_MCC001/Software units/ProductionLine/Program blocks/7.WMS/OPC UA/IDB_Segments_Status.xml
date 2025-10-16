@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Blocks.InstanceDB ID="0">
+    <AttributeList>
+      <InstanceOfName>ProductionLine.FB_Segments</InstanceOfName>
+      <InstanceOfType>FB</InstanceOfType>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="Input" />
+  <Section Name="Output" />
+  <Section Name="InOut" />
+  <Section Name="Static">
+    <Member Name="ConveyorID" Datatype="Int" />
+    <Member Name="Counter" Datatype="Int" />
+    <Member Name="FlowRackLoop1" Datatype="Array[_.&quot;B1.1.1&quot;.._.&quot;B1.23.1&quot;] of Bool" />
+    <Member Name="FlowRackLoop2" Datatype="Array[_.&quot;B1.6.1&quot;.._.&quot;B1.18.1&quot;] of Bool" />
+    <Member Name="Fragileloop1" Datatype="Array[_.&quot;D1.1.1&quot;.._.&quot;E1.6.1&quot;] of Bool" />
+    <Member Name="Fragileloop2" Datatype="Array[_.&quot;D1.9.1&quot;.._.&quot;D1.10.1&quot;] of Bool" />
+    <Member Name="cmp" Datatype="Struct">
+      <Member Name="FlowRackLoop1" Datatype="Array[_.&quot;B1.1.1&quot;.._.&quot;B1.23.1&quot;] of Bool" />
+      <Member Name="FlowRackLoop2" Datatype="Array[_.&quot;B1.6.1&quot;.._.&quot;B1.18.1&quot;] of Bool" />
+      <Member Name="Fragileloop1" Datatype="Array[_.&quot;D1.1.1&quot;.._.&quot;E1.6.1&quot;] of Bool" />
+      <Member Name="Fragileloop2" Datatype="Array[_.&quot;D1.9.1&quot;.._.&quot;D1.10.1&quot;] of Bool" />
+    </Member>
+    <Member Name="FlowRackLoopReadyToRun" Datatype="Bool" />
+    <Member Name="FlowRackWorkPlaceLeftReadyToRun" Datatype="Bool" />
+    <Member Name="FlowRackWorkPlaceRightReadyToRun" Datatype="Bool" />
+    <Member Name="FragileloopReadyToRun" Datatype="Bool" />
+  </Section>
+</Sections></Interface>
+      <Name>IDB_Segments_Status</Name>
+      <Namespace>ProductionLine</Namespace>
+      <Number>45</Number>
+      <ProgrammingLanguage>DB</ProgrammingLanguage>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="4" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="5" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Blocks.InstanceDB>
+</Document>

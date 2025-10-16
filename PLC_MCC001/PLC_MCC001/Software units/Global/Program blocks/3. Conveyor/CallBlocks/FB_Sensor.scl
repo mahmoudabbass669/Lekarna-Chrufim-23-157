@@ -1,0 +1,67 @@
+﻿NAMESPACE Global
+FUNCTION_BLOCK FB_Sensor
+{ S7_Optimized_Access := 'TRUE' ; Published := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      Sensor : Bool;
+      SensorFilterTime : Array[1..2] of Time;   // Filtering time
+   END_VAR
+
+   VAR_OUTPUT 
+      FilteredSensor : Bool;
+   END_VAR
+
+   VAR 
+      SensorFilterTimer {InstructionName := 'IEC_TIMER'; LibVersion := '1.0'} : Array[1..2] of IEC_TIMER;
+      Filtering : Struct
+         Sensor : Bool;
+      END_STRUCT;
+      Filtered : Struct
+         Sensor : Bool;
+      END_STRUCT;
+      SensorEdge : Struct
+         Positive : Bool;
+         Negative : Bool;
+      END_STRUCT;
+      PosEdge {InstructionName := 'R_TRIG'; LibVersion := '1.0'; S7_SetPoint := 'False'} : R_TRIG;
+      NegEdge {InstructionName := 'F_TRIG'; LibVersion := '1.0'} : F_TRIG;
+   END_VAR
+
+
+BEGIN
+	// ==========================================================================================================================================================================
+	// Company       : LogTech, s.r.o.
+	// Created by    : Anton Vinoth Soundraraj
+	// Block         : FB_Sensor
+	// Project       : LT-Lib-Block
+	// ==========================================================================================================================================================================
+	
+	REGION Sensor Filter
+	    
+	    // Filter timer 1 sending the sensor active signal to the process after preset time
+	    #SensorFilterTimer[1].TON(IN := #Sensor,
+	                              PT := #SensorFilterTime[1],
+	                              Q => #Filtering.Sensor);
+	    
+	    // Filter timer 2 stop the sensor active signal from the process after preset time
+	    #SensorFilterTimer[2].TOF(IN := #Filtering.Sensor,
+	                              PT := #SensorFilterTime[2],
+	                              Q => #Filtered.Sensor);
+	    
+	    // Static to output
+	    #FilteredSensor := #Filtered.Sensor;
+	    
+	END_REGION
+	
+	REGION Sensor Edge Detection
+	    
+	    #PosEdge(CLK := #Filtered.Sensor);
+	    #NegEdge(CLK := #Sensor);
+	    #SensorEdge.Positive := #PosEdge.Q;
+	    #SensorEdge.Negative := #NegEdge.Q;
+	    
+	END_REGION
+	
+END_FUNCTION_BLOCK
+END_NAMESPACE
+

@@ -9,33 +9,20 @@
     <ObjectList>
       <SW.Tags.PlcTag ID="1" CompositionName="Tags">
         <AttributeList>
-          <DataTypeName>"tASiGW-MCC100-bw23-C1: Input"</DataTypeName>
-          <LogicalAddress>%I2300.0</LogicalAddress>
-          <Name>ASiGW-MCC100-bw23-C1: Input</Name>
+          <DataTypeName>"tASiGW-MCC001-bw143-C1: Input"</DataTypeName>
+          <LogicalAddress>%I0.0</LogicalAddress>
+          <Name>ASiGW-MCC001-bw143-C1: Input</Name>
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="2" CompositionName="Comment">
             <ObjectList>
               <MultilingualTextItem ID="3" CompositionName="Items">
                 <AttributeList>
-                  <Culture>en-US</Culture>
+                  <Culture>cs-CZ</Culture>
                   <Text />
                 </AttributeList>
               </MultilingualTextItem>
-            </ObjectList>
-          </MultilingualText>
-        </ObjectList>
-      </SW.Tags.PlcTag>
-      <SW.Tags.PlcTag ID="4" CompositionName="Tags">
-        <AttributeList>
-          <DataTypeName>"tASiGW-MCC100-bw23-C1: Output"</DataTypeName>
-          <LogicalAddress>%Q2300.0</LogicalAddress>
-          <Name>ASiGW-MCC100-bw23-C1: Output</Name>
-        </AttributeList>
-        <ObjectList>
-          <MultilingualText ID="5" CompositionName="Comment">
-            <ObjectList>
-              <MultilingualTextItem ID="6" CompositionName="Items">
+              <MultilingualTextItem ID="4" CompositionName="Items">
                 <AttributeList>
                   <Culture>en-US</Culture>
                   <Text />
@@ -45,16 +32,22 @@
           </MultilingualText>
         </ObjectList>
       </SW.Tags.PlcTag>
-      <SW.Tags.PlcTag ID="7" CompositionName="Tags">
+      <SW.Tags.PlcTag ID="5" CompositionName="Tags">
         <AttributeList>
-          <DataTypeName>"Config/PeriErr"</DataTypeName>
-          <LogicalAddress>%I2364.0</LogicalAddress>
-          <Name>ASiGW-MCC100-bw23-C1: ConfigErr</Name>
+          <DataTypeName>"tASiGW-MCC001-bw143-C1: Output"</DataTypeName>
+          <LogicalAddress>%Q0.0</LogicalAddress>
+          <Name>ASiGW-MCC001-bw143-C1: Output</Name>
         </AttributeList>
         <ObjectList>
-          <MultilingualText ID="8" CompositionName="Comment">
+          <MultilingualText ID="6" CompositionName="Comment">
             <ObjectList>
-              <MultilingualTextItem ID="9" CompositionName="Items">
+              <MultilingualTextItem ID="7" CompositionName="Items">
+                <AttributeList>
+                  <Culture>cs-CZ</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="8" CompositionName="Items">
                 <AttributeList>
                   <Culture>en-US</Culture>
                   <Text />
@@ -64,16 +57,347 @@
           </MultilingualText>
         </ObjectList>
       </SW.Tags.PlcTag>
-      <SW.Tags.PlcTag ID="A" CompositionName="Tags">
+      <SW.Tags.PlcTag ID="9" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>"Config/PeriErr"</DataTypeName>
-          <LogicalAddress>%I2372.0</LogicalAddress>
-          <Name>ASiGW-MCC100-bw23-C1: PeriErr</Name>
+          <LogicalAddress>%I64.0</LogicalAddress>
+          <Name>ASiGW-MCC001-bw143-C1: ConfigErr</Name>
         </AttributeList>
         <ObjectList>
-          <MultilingualText ID="B" CompositionName="Comment">
+          <MultilingualText ID="A" CompositionName="Comment">
             <ObjectList>
+              <MultilingualTextItem ID="B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>cs-CZ</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
               <MultilingualTextItem ID="C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="D" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>"Config/PeriErr"</DataTypeName>
+          <LogicalAddress>%I72.0</LogicalAddress>
+          <Name>ASiGW-MCC001-bw143-C1: PeriErr</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="E" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>cs-CZ</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="10" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="11" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>"tASiGW-MCC001-bw143-C2: Input"</DataTypeName>
+          <LogicalAddress>%I32.0</LogicalAddress>
+          <Name>ASiGW-MCC001-bw143-C2: Input</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="12" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="13" CompositionName="Items">
+                <AttributeList>
+                  <Culture>cs-CZ</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="14" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="15" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>"tASiGW-MCC001-bw143-C2: Output"</DataTypeName>
+          <LogicalAddress>%Q32.0</LogicalAddress>
+          <Name>ASiGW-MCC001-bw143-C2: Output</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="16" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="17" CompositionName="Items">
+                <AttributeList>
+                  <Culture>cs-CZ</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="18" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="19" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>"Config/PeriErr"</DataTypeName>
+          <LogicalAddress>%I395.0</LogicalAddress>
+          <Name>ASiGW-MCC001-bw143-C2: ConfigErr</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="1A" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="1B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>cs-CZ</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="1C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="1D" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>"Config/PeriErr"</DataTypeName>
+          <LogicalAddress>%I403.0</LogicalAddress>
+          <Name>ASiGW-MCC001-bw143-C2: PeriErr</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="1E" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="1F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>cs-CZ</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="20" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="21" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>"tASiGW-MCC001-bw200-C1: Input"</DataTypeName>
+          <LogicalAddress>%I449.0</LogicalAddress>
+          <Name>ASiGW-MCC001-bw200-C1: Input</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="22" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="23" CompositionName="Items">
+                <AttributeList>
+                  <Culture>cs-CZ</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="24" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="25" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>"tASiGW-MCC001-bw200-C1: Output"</DataTypeName>
+          <LogicalAddress>%Q403.0</LogicalAddress>
+          <Name>ASiGW-MCC001-bw200-C1: Output</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="26" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="27" CompositionName="Items">
+                <AttributeList>
+                  <Culture>cs-CZ</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="28" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="29" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>"Config/PeriErr"</DataTypeName>
+          <LogicalAddress>%I513.0</LogicalAddress>
+          <Name>ASiGW-MCC001-bw200-C1: ConfigErr</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2A" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="2B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>cs-CZ</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="2C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="2D" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>"Config/PeriErr"</DataTypeName>
+          <LogicalAddress>%I521.0</LogicalAddress>
+          <Name>ASiGW-MCC001-bw200-C1: PeriErr</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="2E" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="2F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>cs-CZ</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="30" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="31" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>"tASiGW-MCC001-bw200-C2: Input"</DataTypeName>
+          <LogicalAddress>%I481.0</LogicalAddress>
+          <Name>ASiGW-MCC001-bw200-C2: Input</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="32" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="33" CompositionName="Items">
+                <AttributeList>
+                  <Culture>cs-CZ</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="34" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="35" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>"tASiGW-MCC001-bw200-C2: Output"</DataTypeName>
+          <LogicalAddress>%Q435.0</LogicalAddress>
+          <Name>ASiGW-MCC001-bw200-C2: Output</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="36" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="37" CompositionName="Items">
+                <AttributeList>
+                  <Culture>cs-CZ</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="38" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="39" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>"Config/PeriErr"</DataTypeName>
+          <LogicalAddress>%I529.0</LogicalAddress>
+          <Name>ASiGW-MCC001-bw200-C2: ConfigErr</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="3A" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="3B" CompositionName="Items">
+                <AttributeList>
+                  <Culture>cs-CZ</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="3C" CompositionName="Items">
+                <AttributeList>
+                  <Culture>en-US</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+            </ObjectList>
+          </MultilingualText>
+        </ObjectList>
+      </SW.Tags.PlcTag>
+      <SW.Tags.PlcTag ID="3D" CompositionName="Tags">
+        <AttributeList>
+          <DataTypeName>"Config/PeriErr"</DataTypeName>
+          <LogicalAddress>%I537.0</LogicalAddress>
+          <Name>ASiGW-MCC001-bw200-C2: PeriErr</Name>
+        </AttributeList>
+        <ObjectList>
+          <MultilingualText ID="3E" CompositionName="Comment">
+            <ObjectList>
+              <MultilingualTextItem ID="3F" CompositionName="Items">
+                <AttributeList>
+                  <Culture>cs-CZ</Culture>
+                  <Text />
+                </AttributeList>
+              </MultilingualTextItem>
+              <MultilingualTextItem ID="40" CompositionName="Items">
                 <AttributeList>
                   <Culture>en-US</Culture>
                   <Text />

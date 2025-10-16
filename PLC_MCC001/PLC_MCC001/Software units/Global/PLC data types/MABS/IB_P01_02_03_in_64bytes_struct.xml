@@ -1,0 +1,143 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Document>
+  <Engineering version="V20" />
+  <SW.Types.PlcStruct ID="0">
+    <AttributeList>
+      <Access>Published</Access>
+      <Interface><Sections xmlns="http://www.siemens.com/automation/Openness/SW/Interface/v5">
+  <Section Name="None">
+    <Member Name="Reserved" Datatype="Byte" />
+    <Member Name="Sens_A" Datatype="Bool" />
+    <Member Name="Sens_B" Datatype="Bool" />
+    <Member Name="Sens_A_alrm" Datatype="Bool" />
+    <Member Name="Sens_B_alrm" Datatype="Bool" />
+    <Member Name="Motor_state_A" Datatype="Bool" />
+    <Member Name="Motor_state_B" Datatype="Bool" />
+    <Member Name="Reserved_1" Datatype="Bool" />
+    <Member Name="Reserved_2" Datatype="Bool" />
+    <Member Name="Fuse_err_A" Datatype="Bool" />
+    <Member Name="Back_EMF_err_A" Datatype="Bool" />
+    <Member Name="Thermal_err_mot_A" Datatype="Bool" />
+    <Member Name="Thermal_err_ctrl_A" Datatype="Bool" />
+    <Member Name="Lock_err_A" Datatype="Bool" />
+    <Member Name="Unconnected_err_A" Datatype="Bool" />
+    <Member Name="Reserved_3" Datatype="Bool" />
+    <Member Name="Reserved_4" Datatype="Bool" />
+    <Member Name="Fuse_err_B" Datatype="Bool" />
+    <Member Name="Back_EMF_err_B" Datatype="Bool" />
+    <Member Name="Thermal_err_mot_B" Datatype="Bool" />
+    <Member Name="Thermal_err_ctrl_B" Datatype="Bool" />
+    <Member Name="Lock_err_B" Datatype="Bool" />
+    <Member Name="Unconnected_err_B" Datatype="Bool" />
+    <Member Name="Reserved_5" Datatype="Bool" />
+    <Member Name="Reserved_6" Datatype="Bool" />
+    <Member Name="Digital_in_1" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">NA for IB-P03</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="Digital_in_2" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">NA for IB-P03</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="Digital_in_3" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">NA for IB-P03</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="Digital_in_4" Datatype="Bool">
+      <Comment>
+        <MultiLanguageText Lang="en-US">NA for IB-P03</MultiLanguageText>
+      </Comment>
+    </Member>
+    <Member Name="Reserved_7" Datatype="Bool" />
+    <Member Name="Reserved_8" Datatype="Bool" />
+    <Member Name="Reserved_9" Datatype="Bool" />
+    <Member Name="Reserved_10" Datatype="Bool" />
+    <Member Name="Register_Low_D0" Datatype="Byte" />
+    <Member Name="Register_High_D0" Datatype="Byte" />
+    <Member Name="Register_Low_D1" Datatype="Byte" />
+    <Member Name="Register_High_D1" Datatype="Byte" />
+    <Member Name="Register_Low_D2" Datatype="Byte" />
+    <Member Name="Register_High_D2" Datatype="Byte" />
+    <Member Name="Register_Low_D3" Datatype="Byte" />
+    <Member Name="Register_High_D3" Datatype="Byte" />
+    <Member Name="Register_Low_D4" Datatype="Byte" />
+    <Member Name="Register_High_D4" Datatype="Byte" />
+    <Member Name="Register_Low_D5" Datatype="Byte" />
+    <Member Name="Register_High_D5" Datatype="Byte" />
+    <Member Name="Register_Low_D6" Datatype="Byte" />
+    <Member Name="Register_High_D6" Datatype="Byte" />
+    <Member Name="Register_Low_D7" Datatype="Byte" />
+    <Member Name="Register_High_D7" Datatype="Byte" />
+    <Member Name="Register_Low_D8" Datatype="Byte" />
+    <Member Name="Register_High_D8" Datatype="Byte" />
+    <Member Name="Register_Low_D9" Datatype="Byte" />
+    <Member Name="Register_High_D9" Datatype="Byte" />
+    <Member Name="Register_Low_D10" Datatype="Byte" />
+    <Member Name="Register_High_D10" Datatype="Byte" />
+    <Member Name="Register_Low_D11" Datatype="Byte" />
+    <Member Name="Register_High_D11" Datatype="Byte" />
+    <Member Name="Register_Low_D12" Datatype="Byte" />
+    <Member Name="Register_High_D12" Datatype="Byte" />
+    <Member Name="Register_Low_D13" Datatype="Byte" />
+    <Member Name="Register_High_D13" Datatype="Byte" />
+    <Member Name="Register_Low_D14" Datatype="Byte" />
+    <Member Name="Register_High_D14" Datatype="Byte" />
+    <Member Name="Register_Low_D15" Datatype="Byte" />
+    <Member Name="Register_High_D15" Datatype="Byte" />
+    <Member Name="Life_time_mot_A_LL" Datatype="Byte" />
+    <Member Name="Life_time_mot_A_LH" Datatype="Byte" />
+    <Member Name="Life_time_mot_A_HL" Datatype="Byte" />
+    <Member Name="Life_time_mot_A_HH" Datatype="Byte" />
+    <Member Name="Life_time_mot_B_LL" Datatype="Byte" />
+    <Member Name="Life_time_mot_B_LH" Datatype="Byte" />
+    <Member Name="Life_time_mot_B_HL" Datatype="Byte" />
+    <Member Name="Life_time_mot_B_HH" Datatype="Byte" />
+    <Member Name="Current_mot_A" Datatype="Byte" />
+    <Member Name="Current_mot_B" Datatype="Byte" />
+    <Member Name="Voltage_mot_A" Datatype="Byte" />
+    <Member Name="Voltage_mot_B" Datatype="Byte" />
+    <Member Name="Reserved_11" Datatype="Array[0..13] of Byte" />
+  </Section>
+</Sections></Interface>
+      <Name>IB_P01_02_03_in_64bytes_struct</Name>
+      <Namespace>Global</Namespace>
+    </AttributeList>
+    <ObjectList>
+      <MultilingualText ID="1" CompositionName="Comment">
+        <ObjectList>
+          <MultilingualTextItem ID="2" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="3" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+      <MultilingualText ID="4" CompositionName="Title">
+        <ObjectList>
+          <MultilingualTextItem ID="5" CompositionName="Items">
+            <AttributeList>
+              <Culture>cs-CZ</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+          <MultilingualTextItem ID="6" CompositionName="Items">
+            <AttributeList>
+              <Culture>en-US</Culture>
+              <Text />
+            </AttributeList>
+          </MultilingualTextItem>
+        </ObjectList>
+      </MultilingualText>
+    </ObjectList>
+  </SW.Types.PlcStruct>
+</Document>

@@ -10,7 +10,11 @@
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
           <LogicalAddress>%I619.0</LogicalAddress>
+<<<<<<< HEAD
           <Name>IMC85Sensor_1</Name>
+=======
+          <Name>IMC85Sensor -1</Name>
+>>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="2" CompositionName="Comment">
@@ -485,7 +489,11 @@
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
           <LogicalAddress>%I621.3</LogicalAddress>
+<<<<<<< HEAD
           <Name>IMC85MotorStateErrorRD -G1.4.4</Name>
+=======
+          <Name>IMC85MotorStateErrorRD_G1.4.4</Name>
+>>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="4E" CompositionName="Comment">
@@ -685,7 +693,11 @@
         <AttributeList>
           <DataTypeName>Int</DataTypeName>
           <LogicalAddress>%IW633</LogicalAddress>
+<<<<<<< HEAD
           <Name>IMC85MotorCurrentRD -G1.4.4</Name>
+=======
+          <Name>IMC85MotorCurrentRD_G1.4.4</Name>
+>>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="6E" CompositionName="Comment">
@@ -885,7 +897,11 @@
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
           <LogicalAddress>%Q505.3</LogicalAddress>
+<<<<<<< HEAD
           <Name>IMC85DigitalOutputRD -G1.4.4</Name>
+=======
+          <Name>IMC85DigitalOutputRD_G1.4.4</Name>
+>>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="8E" CompositionName="Comment">
@@ -985,7 +1001,11 @@
         <AttributeList>
           <DataTypeName>SInt</DataTypeName>
           <LogicalAddress>%QB509</LogicalAddress>
+<<<<<<< HEAD
           <Name>IMC85MotorTargetSpeedRD -G1.4.4</Name>
+=======
+          <Name>IMC85MotorTargetSpeedRD_G1.4.4</Name>
+>>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="9E" CompositionName="Comment">

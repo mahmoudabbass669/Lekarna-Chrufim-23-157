@@ -338,7 +338,7 @@ BEGIN
 	    
 	    IF IDB_ProductionLine."B1.18.1".FilteredSensor AND
 	        DB_ToteTracking.Conveyor[_."B1.18.1"].ToteDir.toLeft AND
-	        NOT IDB_ProductionLine."B1.6.1".ReadTransferStatus.Occupied
+	        NOT IDB_S300_FullControl.ReadTransferStatus.Occupied
 	    THEN
 	        // Barcode
 	        DB_ToteTracking.Conveyor[_."B1.6.1"].Barcode :=

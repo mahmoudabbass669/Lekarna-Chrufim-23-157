@@ -21,7 +21,7 @@ BEGIN
 	    DB_Alarm.Estop.%X2 :=
 	    _.DB_SafetyStandard.ToHMI."PhaseOK -MCC001";    
 	    DB_Alarm.Estop.%X3 :=
-	    _.DB_SafetyStandard.ToHMI."EstopPB -MCC001+MCC001-SF1";
+	    _.DB_SafetyStandard.ToHMI."EstopPB -MCC001+SF1";
 	    
 	END_REGION
 END_FUNCTION

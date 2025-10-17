@@ -810,7 +810,7 @@ BEGIN
 	REGION B1.7.1
 	    //// B1.7.1 (Go straight TR_A1.7.1)
 	    DB_UDI.ProductionLine.Upstream.Conveyor[_."B1.7.1"] :=
-	    IDB_ProductionLine."B1.6.1".FilteredSensor;
+	    IDB_S300_FullControl.FilteredSensor;
 	    
 	END_REGION
 	

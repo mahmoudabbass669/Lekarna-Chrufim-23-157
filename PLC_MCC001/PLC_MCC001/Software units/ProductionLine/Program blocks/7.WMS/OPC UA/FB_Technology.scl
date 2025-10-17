@@ -298,8 +298,8 @@ BEGIN
 	    END_REGION
 	    
 	    REGION IP7
-	        IF (IDB_ProductionLine."B1.6.1"."Left/RightSensor" OR 
-	            _.ProductionLine.IDB_Flow_Test.R_TRIG_Instance.Q) AND //only for simulation purpose 
+	        IF (IDB_S300_FullControl."Left/RightSensor" OR
+	            IDB_Flow_Test.R_TRIG_Instance.Q) AND //only for simulation purpose 
 	            NOT IDB_OPC_Communication.Communication_IP7.Communication.Send THEN
 	            OPC_Data.IP7.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."B1.6.1"].Barcode;
 	            OPC_Data.IP7.DestInfo.Source.InformationPoint := #IP32;

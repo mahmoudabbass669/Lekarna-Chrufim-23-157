@@ -1686,7 +1686,7 @@ BEGIN
 	              WriteAsiDir=>_."ASiGW-MCC001-bw143-C1: Output"."Dir -B1.5.1");
 	    
 	END_REGION
-	
+	(*
 	REGION B1.6.1 Transfer Unit
 	    //// Transfer B1.6.1 // Force Mode
 	    #"B1.6.1"(TransferID := _."B1.6.1",
@@ -1707,7 +1707,7 @@ BEGIN
 	              ErrorReset => _."ASiGW-MCC001-bw143-C1: Output"."ErrorReset -B1.6.1");
 	    
 	END_REGION
-	
+	*)
 	REGION B1.7.1
 	    //// B1.7.1 (Go straight TR_A1.7.1)
 	    #"B1.7.1"(ConveyorID := _."B1.7.1",

@@ -916,8 +916,8 @@ BEGIN
 	REGION B1.5.1
 	    //B1.5.1
 	    DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.5.1"] :=
-	    IDB_ProductionLine."B1.6.1".FilteredSensor OR
-	    NOT IDB_ProductionLine."B1.6.1".ReadTransferStatus.ReadytoRun;
+	    IDB_S300_FullControl.FilteredSensor OR
+	    NOT IDB_S300_FullControl.ReadTransferStatus.ReadytoRun;
 	    
 	END_REGION
 	

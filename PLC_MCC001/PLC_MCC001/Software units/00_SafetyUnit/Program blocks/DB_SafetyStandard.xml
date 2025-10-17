@@ -11,24 +11,24 @@
     </Member>
     <Member Name="PressReset" Datatype="Bool" />
     <Member Name="ToHMI" Datatype="Struct">
-      <Member Name="EstopPB -MCC001+MCC001-SF1" Datatype="Bool" />
-      <Member Name="EstopPB -ZONA1+A1.1.1-SF1" Datatype="Bool" />
-      <Member Name="EstopPB -ZONA1+A1.1.10-SF1" Datatype="Bool" />
-      <Member Name="EstopPB -ZONA1+A1.2.1-SF1" Datatype="Bool" />
-      <Member Name="EstopPB -ZONA1+B1.22.1-SF1" Datatype="Bool" />
-      <Member Name="EstopPB -ZONA1+C1.3.1-SF1" Datatype="Bool" />
-      <Member Name="EstopPB -ZONA1+B1.12.1-SF1" Datatype="Bool" />
-      <Member Name="EstopPB -ZONA1+B1.15.1-SF1" Datatype="Bool" />
-      <Member Name="EstopPB -ZONA1+B1.17.3-SF1" Datatype="Bool" />
-      <Member Name="EstopPB -ZONA2+D1.11.1-SF1" Datatype="Bool" />
-      <Member Name="EstopPB -ZONA2+E1.1.2-SF1" Datatype="Bool" />
-      <Member Name="EstopPB -ZONA2+A1.10.3-SF1" Datatype="Bool" />
-      <Member Name="EstopPB -ZONA2+A1.12.1-SF1" Datatype="Bool" />
-      <Member Name="EstopPB -ZONA2+A1.16.8-SF1" Datatype="Bool" />
-      <Member Name="EstopPB -ZONA2+B1.17.0-SF1" Datatype="Bool" />
-      <Member Name="EstopPB -ZONA2+A2.4.5-SF1" Datatype="Bool" />
-      <Member Name="EstopPB -ZONA2+G1.5.3-SF1" Datatype="Bool" />
-      <Member Name="EstopPB -ZONA2+G1.7.1-SF1" Datatype="Bool" />
+      <Member Name="EstopPB -MCC001+SF1" Datatype="Bool" />
+      <Member Name="ZONA1+A1.1.1-SF01" Datatype="Bool" />
+      <Member Name="ZONA1+A1.1.10-SF01" Datatype="Bool" />
+      <Member Name="ZONA1+A1.2.1-SF01" Datatype="Bool" />
+      <Member Name="ZONA1+C1.2.2-SF01" Datatype="Bool" />
+      <Member Name="ZONA1+B0.2.0-SF01" Datatype="Bool" />
+      <Member Name="ZONA1+B1.15.1-SF01" Datatype="Bool" />
+      <Member Name="ZONA1+E1.1.1-SF01" Datatype="Bool" />
+      <Member Name="ZONA2+D1.11.1-SF01" Datatype="Bool" />
+      <Member Name="ZONA2+A1.10.3-SF01" Datatype="Bool" />
+      <Member Name="ZONA2+A1.12.1-SF01" Datatype="Bool" />
+      <Member Name="ZONA2+A1.14.7-SF01" Datatype="Bool" />
+      <Member Name="ZONA2+A1.15.0-SF01" Datatype="Bool" />
+      <Member Name="ZONA2+A2.3.0-SF01" Datatype="Bool" />
+      <Member Name="ZONA2+A2.2.7-SF01" Datatype="Bool" />
+      <Member Name="ZONA2+A2.1.1-SF01" Datatype="Bool" />
+      <Member Name="ZONA2+G1.5.1-SF01" Datatype="Bool" />
+      <Member Name="ZONA2+G1.7.4-SF01" Datatype="Bool" />
       <Member Name="PhaseOK -MCC001" Datatype="Bool" />
     </Member>
     <Member Name="holdAlarmOffTimer" Datatype="TON_TIME" Version="1.0" />

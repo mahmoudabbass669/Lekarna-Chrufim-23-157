@@ -4,6 +4,42 @@ ORGANIZATION_BLOCK CyclicInterrupt
 VERSION : 0.1
 
 BEGIN
+	// ==========================================================================================================================================
+	// Company        : LogTech, s.r.o.
+	// Created by     : Mahmoud Elnady
+	// Block          : CyclicInterrupt
+	// Project        : Lékarna DC Chrudim
+	// Project number : 23-157
+	// ==========================================================================================================================================
+	
+	REGION B1.6.1 Transfer Unit
+	    
+	    IDB_S300_FullControl(TransferID:=_."B1.6.1",
+	                         TransferSensor:=_."ASiGW-MCC001-bw143-C1: Input"."LoadPresence -B1.6.1",
+	                         RollerUp:= _."ASiGW-MCC001-bw143-C1: Input"."Up/Down -B1.6.1",
+	                         Fault:=DB_UDI.ProductionLine.Fault.Stop.Conveyor[_."B1.6.1"],
+	                         ReadyToRCV:=DB_UDI.ProductionLine.Fault.Stop.Conveyor[_."B1.6.1"],
+	                         UpstreamStraight:=IDB_ProductionLine."B1.5.1".FilteredSensor,
+	                         UpstreamArm:=IDB_ProductionLine."B1.18.1".FilteredSensor,
+	                         FrontSensor:= _."ASiGW-MCC001-bw143-C1: Input"."FrontSensor -B1.6.1",
+	                         EndSensor:= _."ASiGW-MCC001-bw143-C1: Input"."EndSensor -B1.6.1",
+	                         "Left/RightSensor":=_."ASiGW-MCC001-bw143-C1: Input"."LeftSensor -B1.6.1",
+	                         Downstream:=DB_UDI.ProductionLine.DownstreamAccu.Stop.Conveyor[_."B1.6.1"],
+	                         PriorityStraight:= IDB_Merging."Merge_B1.6.1".Priority.Straight,
+	                         PriorityArm:= IDB_Merging."Merge_B1.6.1".Priority.Arm,
+	                         Direction=> _."ASiGW-MCC001-bw143-C1: Output"."Direction -B1.6.1",
+	                         Cmd1=>_."ASiGW-MCC001-bw143-C1: Output"."Command1 -B1.6.1",
+	                         Cmd2=>_."ASiGW-MCC001-bw143-C1: Output"."Command2 -B1.6.1",
+	                         ErrorReset=>_."ASiGW-MCC001-bw143-C1: Output"."ErrorReset -B1.6.1");
+	    
+	    
+	END_REGION
+	
+	//IDB_ProductionLine."B1.6.1".ReadTransferStatus := IDB_S300_FullControl.ReadTransferStatus;
+	
+	//IDB_ProductionLine."B1.6.1".VisuColor := IDB_ProductionLine."B1.6.1".VisuColor;
+	
+	
 END_ORGANIZATION_BLOCK
 END_NAMESPACE
 

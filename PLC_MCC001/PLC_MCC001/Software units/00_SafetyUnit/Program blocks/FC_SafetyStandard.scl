@@ -21,11 +21,7 @@ BEGIN
 	    NOT "FSIDB_Main_Safety_RTG1".Pair3.Q OR
 	    NOT "FSIDB_Main_Safety_RTG1".Pair4.Q OR
 	    NOT "FSIDB_Main_Safety_RTG1".Pair5.Q OR
-	    NOT "FSIDB_Main_Safety_RTG1".Pair6.Q OR
-	    NOT "FSIDB_Main_Safety_RTG1".Pair7.Q OR
-	    NOT "FSIDB_Main_Safety_RTG1".Pair8.Q OR
-	    NOT "FSIDB_Main_Safety_RTG1".Pair9.Q OR
-	    NOT "FSIDB_Main_Safety_RTG1".Pair10.Q;
+	    NOT "FSIDB_Main_Safety_RTG1".Pair6.Q;
 	    
 	END_REGION
 	
@@ -40,11 +36,7 @@ BEGIN
 	    "FSIDB_Main_Safety_RTG1".Pair3.ACK_REQ OR
 	    "FSIDB_Main_Safety_RTG1".Pair4.ACK_REQ OR
 	    "FSIDB_Main_Safety_RTG1".Pair5.ACK_REQ OR
-	    "FSIDB_Main_Safety_RTG1".Pair6.ACK_REQ OR
-	    "FSIDB_Main_Safety_RTG1".Pair7.ACK_REQ OR
-	    "FSIDB_Main_Safety_RTG1".Pair8.ACK_REQ OR
-	    "FSIDB_Main_Safety_RTG1".Pair9.ACK_REQ OR
-	    "FSIDB_Main_Safety_RTG1".Pair10.ACK_REQ;
+	    "FSIDB_Main_Safety_RTG1".Pair6.ACK_REQ;
 	    
 	END_REGION
 	
@@ -69,27 +61,28 @@ BEGIN
 	
 	REGION to HMI
 	    //Main
-	    "DB_SafetyStandard".ToHMI."EstopPB -MCC001+MCC001-SF1" := NOT "MCC001+MCC001-SF1";
-	    //"DB_SafetyStandard".ToHMI."PhaseOK -MCC001" := NOT "PhaseOK -MCC100";
+	    "DB_SafetyStandard".ToHMI."EstopPB -MCC001+SF1" := NOT "MCC001-SF1";
+	    "DB_SafetyStandard".ToHMI."PhaseOK -MCC001" := NOT "MCC001+Phase Sequence Ok";
 	    //Zone 1
-	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA1+A1.1.1-SF1" := NOT "ZONA1+A1.1.1-SF1";
-	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA1+A1.1.10-SF1" := NOT "ZONA1+A1.1.10-SF1";
-	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA1+A1.2.1-SF1" := NOT "ZONA1+A1.2.1-SF1";
-	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA1+B1.22.1-SF1" := NOT "ZONA1+B1.22.1-SF1";
-	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA1+C1.3.1-SF1" := NOT "ZONA1+C1.3.1-SF1";
-	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA1+B1.12.1-SF1" := NOT "ZONA1+B1.12.1-SF1";
-	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA1+B1.15.1-SF1" := NOT "ZONA1+B1.15.1-SF1";
-	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA1+B1.17.3-SF1" := NOT "ZONA1+B1.17.3-SF1";
+	    "DB_SafetyStandard".ToHMI."ZONA1+A1.1.1-SF01" := NOT "ZONA1+A1.1.1-SF01";
+	    "DB_SafetyStandard".ToHMI."ZONA1+A1.1.10-SF01" := NOT "ZONA1+A1.1.10-SF01";
+	    "DB_SafetyStandard".ToHMI."ZONA1+A1.2.1-SF01" := NOT "ZONA1+A1.2.1-SF01";
+	    "DB_SafetyStandard".ToHMI."ZONA1+C1.2.2-SF01" := NOT "ZONA1+C1.2.2-SF01";
+	    "DB_SafetyStandard".ToHMI."ZONA1+B0.2.0-SF01" := NOT "ZONA1+B0.2.0-SF01";
+	    "DB_SafetyStandard".ToHMI."ZONA1+B1.15.1-SF01" := NOT "ZONA1+B1.15.1-SF01";
+	    "DB_SafetyStandard".ToHMI."ZONA1+E1.1.1-SF01" := NOT "ZONA1+E1.1.1-SF01";
+	    
 	    //Zone 2
-	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+D1.11.1-SF1" := NOT "ZONA2+D1.11.1-SF1";
-	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+E1.1.2-SF1" := NOT "ZONA2+E1.1.2-SF1";
-	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+A1.10.3-SF1" := NOT "ZONA2+A1.10.3-SF1";
-	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+A1.12.1-SF1" := NOT "ZONA2+A1.12.1-SF1";
-	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+A1.16.8-SF1" := NOT "ZONA2+A1.16.8-SF1";
-	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+B1.17.0-SF1" := NOT "ZONA2+B1.17.0-SF1";
-	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+A2.4.5-SF1" := NOT "ZONA2+A2.4.5-SF1";
-	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+G1.5.3-SF1" := NOT "ZONA2+G1.5.3-SF1";
-	    "DB_SafetyStandard".ToHMI."EstopPB -ZONA2+G1.7.1-SF1" := NOT "ZONA2+G1.7.1-SF1";
+	    "DB_SafetyStandard".ToHMI."ZONA2+D1.11.1-SF01" := NOT "ZONA2+D1.11.1-SF01";
+	    "DB_SafetyStandard".ToHMI."ZONA2+A1.10.3-SF01" := NOT "ZONA2+A1.10.3-SF01";
+	    "DB_SafetyStandard".ToHMI."ZONA2+A1.12.1-SF01" := NOT "ZONA2+A1.12.1-SF01";
+	    "DB_SafetyStandard".ToHMI."ZONA2+A1.14.7-SF01" := NOT "ZONA2+A1.14.7-SF01";
+	    "DB_SafetyStandard".ToHMI."ZONA2+A1.15.0-SF01" := NOT "ZONA2+A1.15.0-SF01";
+	    "DB_SafetyStandard".ToHMI."ZONA2+A2.3.0-SF01" := NOT "ZONA2+A2.3.0-SF01";
+	    "DB_SafetyStandard".ToHMI."ZONA2+A2.2.7-SF01" := NOT "ZONA2+A2.2.7-SF01";
+	    "DB_SafetyStandard".ToHMI."ZONA2+A2.1.1-SF01" := NOT "ZONA2+A2.1.1-SF01";
+	    "DB_SafetyStandard".ToHMI."ZONA2+G1.5.1-SF01" := NOT "ZONA2+G1.5.1-SF01";
+	    "DB_SafetyStandard".ToHMI."ZONA2+G1.7.4-SF01" := NOT "ZONA2+G1.7.4-SF01";
 	    
 	END_REGION
 	

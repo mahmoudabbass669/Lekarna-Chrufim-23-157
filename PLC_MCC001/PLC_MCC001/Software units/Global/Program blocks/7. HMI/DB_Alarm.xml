@@ -64,6 +64,7 @@
       <Member Name="Cognex" Datatype="Word" />
       <Member Name="IMC" Datatype="Word" />
     </Member>
+    <Member Name="CircuitBreaker" Datatype="Word" />
   </Section>
 </Sections></Interface>
       <MemoryReserve>100</MemoryReserve>

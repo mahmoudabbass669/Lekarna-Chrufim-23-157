@@ -171,6 +171,21 @@ BEGIN
 	    
 	END_REGION
 	
+	REGION Circuit Breaker
+	    
+	    DB_Alarm.CircuitBreaker.%X0 := NOT _."CircuitBreaker -fb -Zone1-FC1 -MCC001";
+	    DB_Alarm.CircuitBreaker.%X1 := NOT  _."CircuitBreaker -fb -Zone1-FC10 -MCC001";
+	    DB_Alarm.CircuitBreaker.%X2 := NOT  _."CircuitBreaker -fb -Zone1-FC2 -MCC001";
+	    DB_Alarm.CircuitBreaker.%X3 := NOT  _."CircuitBreaker -fb -Zone2-FC1 -MCC001";
+	    DB_Alarm.CircuitBreaker.%X4 := NOT  _."CircuitBreaker -fb -Zone2-FC10 -MCC001";
+	    DB_Alarm.CircuitBreaker.%X5 := NOT _."CircuitBreaker -fb -Zone2-FC2 -MCC001";
+	    DB_Alarm.CircuitBreaker.%X6 := NOT _."CircuitBreaker -fb -Zone2-FC3 -MCC001";
+	    
+	END_REGION
+	
+	
+	
+	
 	
 END_FUNCTION_BLOCK
 END_NAMESPACE

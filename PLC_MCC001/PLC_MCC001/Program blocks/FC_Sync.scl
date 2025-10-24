@@ -45,6 +45,24 @@ BEGIN
 	
 	
 	
+	REGION Read Cycle Time
+	    
+	    "Read Cycle Time DB"."Ret Val" := RT_INFO(MODE := "Read Cycle Time DB".Mode,
+	                                              OB := "Read Cycle Time DB"."OB NO",
+	                                              INFO := "Read Cycle Time DB"."Cycle time info");
+	    
+	    //"Read Cycle Time DB"."Cycle time Dint" :=  "Read Cycle Time DB"."Cycle time info";
+	    
+	    
+	    "Read Cycle Time DB"."Cycle time Dint" := LTIME_TO_DINT("Read Cycle Time DB"."Cycle time info");
+	    
+	    "Read Cycle Time DB"."Cycle time Display HMI" := DINT_TO_REAL("Read Cycle Time DB"."Cycle time Dint");
+	    
+	END_REGION
+	
+	
+	
+	
 	
 	
 	

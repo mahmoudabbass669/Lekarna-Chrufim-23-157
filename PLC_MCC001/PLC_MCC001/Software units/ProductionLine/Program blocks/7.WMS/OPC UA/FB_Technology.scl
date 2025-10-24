@@ -243,8 +243,8 @@ BEGIN
 	    REGION IP1
 	        IF IDB_ProductionLine."A1.7.2".CONVEYOR_SENSOR.PosEdge.Q AND
 	            NOT IDB_OPC_Communication.Communication_IP1.Communication.Send THEN
-	            OPC_Data.IP1.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."A1.7.1"].Barcode;
-	            OPC_Data.IP1.DestInfo.Source.InformationPoint := #IP11;
+	            OPC_Data.IP11.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."A1.7.1"].Barcode;
+	            OPC_Data.IP11.DestInfo.Source.InformationPoint := #IP11;
 	            IDB_OPC_Communication.Communication_IP1.Communication.Send := TRUE;
 	        END_IF;
 	        
@@ -252,8 +252,8 @@ BEGIN
 	    REGION IP2
 	        IF IDB_ProductionLine."B1.2.1".CONVEYOR_SENSOR.PosEdge.Q AND
 	            NOT IDB_OPC_Communication.Communication_IP2.Communication.Send THEN
-	            OPC_Data.IP2.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."B1.1.1"].Barcode;
-	            OPC_Data.IP2.DestInfo.Source.InformationPoint := #IP12;
+	            OPC_Data.IP12.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."B1.1.1"].Barcode;
+	            OPC_Data.IP12.DestInfo.Source.InformationPoint := #IP12;
 	            IDB_OPC_Communication.Communication_IP2.Communication.Send := TRUE;
 	        END_IF;
 	        
@@ -262,8 +262,8 @@ BEGIN
 	    REGION IP3
 	        IF IDB_ProductionLine."B1.11.2".CONVEYOR_SENSOR.PosEdge.Q AND
 	            NOT IDB_OPC_Communication.Communication_IP3.Communication.Send THEN
-	            OPC_Data.IP3.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."B1.11.1"].Barcode;
-	            OPC_Data.IP3.DestInfo.Source.InformationPoint := #IP21;
+	            OPC_Data.IP21.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."B1.11.1"].Barcode;
+	            OPC_Data.IP21.DestInfo.Source.InformationPoint := #IP21;
 	            IDB_OPC_Communication.Communication_IP3.Communication.Send := TRUE;
 	        END_IF;
 	    END_REGION
@@ -271,8 +271,8 @@ BEGIN
 	    REGION IP4
 	        IF IDB_ProductionLine."C1.2.1".CONVEYOR_SENSOR.PosEdge.Q AND
 	            NOT IDB_OPC_Communication.Communication_IP4.Communication.Send THEN
-	            OPC_Data.IP4.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."C1.2.2"].Barcode;
-	            OPC_Data.IP4.DestInfo.Source.InformationPoint := #IP22;
+	            OPC_Data.IP22.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."C1.2.2"].Barcode;
+	            OPC_Data.IP22.DestInfo.Source.InformationPoint := #IP22;
 	            IDB_OPC_Communication.Communication_IP4.Communication.Send := TRUE;
 	        END_IF;
 	        
@@ -281,8 +281,8 @@ BEGIN
 	    REGION IP5
 	        IF IDB_ProductionLine."C1.4.2".CONVEYOR_SENSOR.PosEdge.Q AND
 	            NOT IDB_OPC_Communication.Communication_IP5.Communication.Send THEN
-	            OPC_Data.IP5.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."C1.4.1"].Barcode;
-	            OPC_Data.IP5.DestInfo.Source.InformationPoint := #IP23;
+	            OPC_Data.IP23.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."C1.4.1"].Barcode;
+	            OPC_Data.IP23.DestInfo.Source.InformationPoint := #IP23;
 	            IDB_OPC_Communication.Communication_IP5.Communication.Send := TRUE;
 	        END_IF;
 	        
@@ -291,8 +291,8 @@ BEGIN
 	    REGION IP6
 	        IF IDB_ProductionLine."B1.20.1".CONVEYOR_SENSOR.PosEdge.Q AND
 	            NOT IDB_OPC_Communication.Communication_IP6.Communication.Send THEN
-	            OPC_Data.IP6.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."B1.19.1"].Barcode;
-	            OPC_Data.IP6.DestInfo.Source.InformationPoint := #IP31;
+	            OPC_Data.IP31.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."B1.19.1"].Barcode;
+	            OPC_Data.IP31.DestInfo.Source.InformationPoint := #IP31;
 	            IDB_OPC_Communication.Communication_IP6.Communication.Send := TRUE;
 	        END_IF;
 	    END_REGION
@@ -301,8 +301,8 @@ BEGIN
 	        IF (IDB_S300_FullControl."Left/RightSensor" OR
 	            IDB_Flow_Test.R_TRIG_Instance.Q) AND //only for simulation purpose 
 	            NOT IDB_OPC_Communication.Communication_IP7.Communication.Send THEN
-	            OPC_Data.IP7.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."B1.6.1"].Barcode;
-	            OPC_Data.IP7.DestInfo.Source.InformationPoint := #IP32;
+	            OPC_Data.IP32.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."B1.6.1"].Barcode;
+	            OPC_Data.IP32.DestInfo.Source.InformationPoint := #IP32;
 	            IDB_OPC_Communication.Communication_IP7.Communication.Send := TRUE;
 	        END_IF;
 	        
@@ -311,8 +311,8 @@ BEGIN
 	    REGION IP8
 	        IF IDB_ProductionLine."A1.10.2".CONVEYOR_SENSOR.PosEdge.Q AND
 	            NOT IDB_OPC_Communication.Communication_IP8.Communication.Send THEN
-	            OPC_Data.IP8.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."A1.10.1"].Barcode;
-	            OPC_Data.IP8.DestInfo.Source.InformationPoint := #IP41;
+	            OPC_Data.IP41.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."A1.10.1"].Barcode;
+	            OPC_Data.IP41.DestInfo.Source.InformationPoint := #IP41;
 	            IDB_OPC_Communication.Communication_IP8.Communication.Send := TRUE;
 	        END_IF;
 	    END_REGION
@@ -320,8 +320,8 @@ BEGIN
 	    REGION IP9
 	        IF IDB_ProductionLine."D1.2.1".CONVEYOR_SENSOR.PosEdge.Q AND
 	            NOT IDB_OPC_Communication.Communication_IP9.Communication.Send THEN
-	            OPC_Data.IP9.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."D1.1.1"].Barcode;
-	            OPC_Data.IP9.DestInfo.Source.InformationPoint := #IP42;
+	            OPC_Data.IP42.DestInfo.Source.Barcode := DB_ToteTracking.Conveyor[_."D1.1.1"].Barcode;
+	            OPC_Data.IP42.DestInfo.Source.InformationPoint := #IP42;
 	            IDB_OPC_Communication.Communication_IP9.Communication.Send := TRUE;
 	        END_IF;
 	    END_REGION

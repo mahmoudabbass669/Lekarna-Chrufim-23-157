@@ -16,7 +16,8 @@
       <Member Name="PLC" Datatype="Word" />
       <Member Name="BW-ASi" Datatype="Word" />
       <Member Name="Cognex" Datatype="Word" />
-      <Member Name="Mabs" Datatype="Word" />
+      <Member Name="IMC" Datatype="Word" />
+      <Member Name="OPC" Datatype="Word" />
     </Member>
     <Member Name="BW-ASi" Datatype="Struct">
       <Member Name="BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)A_1" Datatype="Word" />

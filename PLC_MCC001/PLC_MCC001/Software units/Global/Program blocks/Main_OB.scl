@@ -1,5 +1,5 @@
 ﻿NAMESPACE Global
-ORGANIZATION_BLOCK Main_OB
+ORGANIZATION_BLOCK Main_Global
 TITLE = "Main Program Sweep (Cycle)"
 { S7_Optimized_Access := 'TRUE' ; Published := 'FALSE' }
 VERSION : 0.1
@@ -9,8 +9,8 @@ BEGIN
 	// GoW
 	// ==========================================================================================================================================
 	// Company        : LogTech, s.r.o.
-	// Created by     : Anton Vinoth Soundraraj
-	// Block          : Main_OB
+	// Created by     : Mahmoud Elnady
+	// Block          : Main_Global
 	// Project        : Lékarna DC Chrudim
 	// Project number : 23-157
 	// ==========================================================================================================================================

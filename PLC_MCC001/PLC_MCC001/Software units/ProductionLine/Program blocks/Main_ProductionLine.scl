@@ -8,11 +8,10 @@ BEGIN
 	// ==========================================================================================================================================
 	// Company        : LogTech, s.r.o.
 	// Created by     : Mahmoud Elnady
-	// Block          : FB_Main_LineA1
+	// Block          : FB_Main_ProductionLine
 	// Project        : Lékárna Chrudim
 	// Project number : 23-157
 	// ==========================================================================================================================================
-	
 	
 	//Synchronization Line_A1 and Global
 	
@@ -55,7 +54,10 @@ BEGIN
 	    
 	    // FB Toggle Dir
 	    IDB_FB_ToggleDir();
-	
+	    
+	    //FC Alarm
+	    FC_Alarm();
+	    
 	END_REGION
 	
 	REGION Test

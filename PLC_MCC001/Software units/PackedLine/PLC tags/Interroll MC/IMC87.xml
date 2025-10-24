@@ -410,11 +410,7 @@
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
           <LogicalAddress>%I693.0</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87MotorStateErrorRD -G1.7.1</Name>
-=======
-          <Name>IMC87MotorStateErrorRD -G1.5.6</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="42" CompositionName="Comment">
@@ -439,11 +435,7 @@
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
           <LogicalAddress>%I693.1</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87MotorStateErrorRD -G1.6.2</Name>
-=======
-          <Name>IMC87MotorStateErrorRD -2</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="46" CompositionName="Comment">
@@ -468,11 +460,7 @@
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
           <LogicalAddress>%I693.2</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87MotorStateErrorRD -G1.6.1</Name>
-=======
-          <Name>IMC87MotorStateErrorRD -3</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="4A" CompositionName="Comment">
@@ -497,11 +485,7 @@
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
           <LogicalAddress>%I693.3</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87MotorStateErrorRD -G1.5.6</Name>
-=======
-          <Name>IMC87MotorStateErrorRD_4</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="4E" CompositionName="Comment">
@@ -526,11 +510,7 @@
         <AttributeList>
           <DataTypeName>SInt</DataTypeName>
           <LogicalAddress>%IB694</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87MotorStateSpeedRD -G1.7.1</Name>
-=======
-          <Name>IMC87MotorStateSpeedRD -G1.5.6</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="52" CompositionName="Comment">
@@ -555,11 +535,7 @@
         <AttributeList>
           <DataTypeName>SInt</DataTypeName>
           <LogicalAddress>%IB695</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87MotorStateSpeedRD -G1.6.2</Name>
-=======
-          <Name>IMC87MotorStateSpeedRD -2</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="56" CompositionName="Comment">
@@ -584,11 +560,7 @@
         <AttributeList>
           <DataTypeName>SInt</DataTypeName>
           <LogicalAddress>%IB696</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87MotorStateSpeedRD -G1.6.1</Name>
-=======
-          <Name>IMC87MotorStateSpeedRD -3</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="5A" CompositionName="Comment">
@@ -613,11 +585,7 @@
         <AttributeList>
           <DataTypeName>SInt</DataTypeName>
           <LogicalAddress>%IB697</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87MotorStateSpeedRD -G1.5.6</Name>
-=======
-          <Name>IMC87MotorStateSpeedRD_4</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="5E" CompositionName="Comment">
@@ -642,11 +610,7 @@
         <AttributeList>
           <DataTypeName>Int</DataTypeName>
           <LogicalAddress>%IW699</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87MotorCurrentRD -G1.7.1</Name>
-=======
-          <Name>IMC87MotorCurrentRD -G1.5.6</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="62" CompositionName="Comment">
@@ -671,11 +635,7 @@
         <AttributeList>
           <DataTypeName>Int</DataTypeName>
           <LogicalAddress>%IW701</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87MotorCurrentRD -G1.6.2</Name>
-=======
-          <Name>IMC87MotorCurrentRD -2</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="66" CompositionName="Comment">
@@ -700,11 +660,7 @@
         <AttributeList>
           <DataTypeName>Int</DataTypeName>
           <LogicalAddress>%IW703</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87MotorCurrentRD -G1.6.1</Name>
-=======
-          <Name>IMC87MotorCurrentRD -3</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="6A" CompositionName="Comment">
@@ -729,11 +685,7 @@
         <AttributeList>
           <DataTypeName>Int</DataTypeName>
           <LogicalAddress>%IW705</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87MotorCurrentRD -G1.5.6</Name>
-=======
-          <Name>IMC87MotorCurrentRD_4</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="6E" CompositionName="Comment">
@@ -858,11 +810,7 @@
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
           <LogicalAddress>%Q525.0</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87DigitalOutputRD -G1.7.1</Name>
-=======
-          <Name>IMC87DigitalOutputRD -G1.5.6</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="82" CompositionName="Comment">
@@ -887,11 +835,7 @@
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
           <LogicalAddress>%Q525.1</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87DigitalOutputRD -G1.6.2</Name>
-=======
-          <Name>IMC87DigitalOutputRD -2</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="86" CompositionName="Comment">
@@ -916,11 +860,7 @@
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
           <LogicalAddress>%Q525.2</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87DigitalOutputRD -G1.6.1</Name>
-=======
-          <Name>IMC87DigitalOutputRD -3</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="8A" CompositionName="Comment">
@@ -945,11 +885,7 @@
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
           <LogicalAddress>%Q525.3</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87DigitalOutputRD -G1.5.6</Name>
-=======
-          <Name>IMC87DigitalOutputRD_4</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="8E" CompositionName="Comment">
@@ -974,11 +910,7 @@
         <AttributeList>
           <DataTypeName>SInt</DataTypeName>
           <LogicalAddress>%QB526</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87MotorTargetSpeedRD -G1.7.1</Name>
-=======
-          <Name>IMC87MotorTargetSpeedRD -G1.5.6</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="92" CompositionName="Comment">
@@ -1003,11 +935,7 @@
         <AttributeList>
           <DataTypeName>SInt</DataTypeName>
           <LogicalAddress>%QB527</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87MotorTargetSpeedRD -G1.6.2</Name>
-=======
-          <Name>IMC87MotorTargetSpeedRD -2</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="96" CompositionName="Comment">
@@ -1032,11 +960,7 @@
         <AttributeList>
           <DataTypeName>SInt</DataTypeName>
           <LogicalAddress>%QB528</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87MotorTargetSpeedRD -G1.6.1</Name>
-=======
-          <Name>IMC87MotorTargetSpeedRD -3</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="9A" CompositionName="Comment">
@@ -1061,11 +985,7 @@
         <AttributeList>
           <DataTypeName>SInt</DataTypeName>
           <LogicalAddress>%QB529</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC87MotorTargetSpeedRD -G1.5.6</Name>
-=======
-          <Name>IMC87MotorTargetSpeedRD_4</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="9E" CompositionName="Comment">

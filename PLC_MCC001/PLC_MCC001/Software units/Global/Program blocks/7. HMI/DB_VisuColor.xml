@@ -10,6 +10,7 @@
       <Member Name="ProductionLine" Datatype="Struct">
         <Member Name="GlobalStatus" Datatype="Int" />
         <Member Name="Conveyor" Datatype="Array[_.gminProductionLine.._.gmaxProductionLine] of Int" />
+        <Member Name="OPC" Datatype="Int" />
       </Member>
       <Member Name="EmptyLine" Datatype="Struct">
         <Member Name="GlobalStatus" Datatype="Int" />

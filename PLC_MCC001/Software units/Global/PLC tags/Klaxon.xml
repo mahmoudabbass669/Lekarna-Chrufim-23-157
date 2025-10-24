@@ -6,7 +6,6 @@
       <Access>Published</Access>
       <Name>Klaxon</Name>
     </AttributeList>
-<<<<<<< HEAD
     <ObjectList>
       <SW.Tags.PlcTag ID="1" CompositionName="Tags">
         <AttributeList>
@@ -309,7 +308,5 @@
         </ObjectList>
       </SW.Tags.PlcTag>
     </ObjectList>
-=======
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
   </SW.Tags.PlcTagTable>
 </Document>

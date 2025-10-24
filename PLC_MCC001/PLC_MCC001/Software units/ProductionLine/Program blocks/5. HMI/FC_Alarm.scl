@@ -1438,6 +1438,15 @@ BEGIN
 	    END_IF;
 	END_REGION
 	
+	REGION OPC
+	    
+	    _.Global.DB_Alarm.CommunicationFault.OPC.%X0 := IDB_OPC_Communication.Communication_fault;
+	    
+	END_REGION
+	
+	
+	
+	
 	
 	
 	

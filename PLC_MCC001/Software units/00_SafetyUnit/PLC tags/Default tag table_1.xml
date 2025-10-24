@@ -3,23 +3,14 @@
   <Engineering version="V20" />
   <SW.Tags.PlcTagTable ID="0">
     <AttributeList>
-<<<<<<< HEAD
       <Name>Safety tags</Name>
-=======
-      <Name>Default tag table_1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
     </AttributeList>
     <ObjectList>
       <SW.Tags.PlcTag ID="1" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I3.0</LogicalAddress>
           <Name>MCC001+Phase Sequence Ok</Name>
-=======
-          <LogicalAddress>%I0.0</LogicalAddress>
-          <Name>MCC001+MCC001-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="2" CompositionName="Comment">
@@ -43,13 +34,8 @@
       <SW.Tags.PlcTag ID="5" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I0.0</LogicalAddress>
           <Name>ZONA1+A1.1.1-SF01</Name>
-=======
-          <LogicalAddress>%I0.1</LogicalAddress>
-          <Name>ZONA1+A1.1.1-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="6" CompositionName="Comment">
@@ -73,13 +59,8 @@
       <SW.Tags.PlcTag ID="9" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I0.1</LogicalAddress>
           <Name>ZONA1+A1.1.10-SF01</Name>
-=======
-          <LogicalAddress>%I0.2</LogicalAddress>
-          <Name>ZONA1+A1.1.10-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="A" CompositionName="Comment">
@@ -103,13 +84,8 @@
       <SW.Tags.PlcTag ID="D" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I0.2</LogicalAddress>
           <Name>ZONA1+A1.2.1-SF01</Name>
-=======
-          <LogicalAddress>%I0.3</LogicalAddress>
-          <Name>ZONA1+A1.2.1-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="E" CompositionName="Comment">
@@ -133,13 +109,8 @@
       <SW.Tags.PlcTag ID="11" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I0.3</LogicalAddress>
           <Name>ZONA1+C1.2.2-SF01</Name>
-=======
-          <LogicalAddress>%I0.4</LogicalAddress>
-          <Name>ZONA1+B1.22.1-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="12" CompositionName="Comment">
@@ -163,13 +134,8 @@
       <SW.Tags.PlcTag ID="15" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I0.4</LogicalAddress>
           <Name>ZONA1+B0.2.0-SF01</Name>
-=======
-          <LogicalAddress>%I0.5</LogicalAddress>
-          <Name>ZONA1+C1.3.1-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="16" CompositionName="Comment">
@@ -193,13 +159,8 @@
       <SW.Tags.PlcTag ID="19" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I0.5</LogicalAddress>
           <Name>ZONA1+B1.15.1-SF01</Name>
-=======
-          <LogicalAddress>%I0.6</LogicalAddress>
-          <Name>ZONA1+B1.12.1-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="1A" CompositionName="Comment">
@@ -223,13 +184,8 @@
       <SW.Tags.PlcTag ID="1D" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I0.6</LogicalAddress>
           <Name>ZONA1+E1.1.1-SF01</Name>
-=======
-          <LogicalAddress>%I0.7</LogicalAddress>
-          <Name>ZONA1+B1.15.1-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="1E" CompositionName="Comment">
@@ -253,13 +209,8 @@
       <SW.Tags.PlcTag ID="21" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I0.7</LogicalAddress>
           <Name>ZONA2+D1.11.1-SF01</Name>
-=======
-          <LogicalAddress>%I1.0</LogicalAddress>
-          <Name>ZONA1+B1.17.3-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="22" CompositionName="Comment">
@@ -283,13 +234,8 @@
       <SW.Tags.PlcTag ID="25" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I1.0</LogicalAddress>
           <Name>ZONA2+A1.10.3-SF01</Name>
-=======
-          <LogicalAddress>%I1.1</LogicalAddress>
-          <Name>ZONA2+D1.11.1-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="26" CompositionName="Comment">
@@ -313,13 +259,8 @@
       <SW.Tags.PlcTag ID="29" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I1.1</LogicalAddress>
           <Name>ZONA2+A1.12.1-SF01</Name>
-=======
-          <LogicalAddress>%I1.2</LogicalAddress>
-          <Name>ZONA2+E1.1.2-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="2A" CompositionName="Comment">
@@ -343,13 +284,8 @@
       <SW.Tags.PlcTag ID="2D" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I1.2</LogicalAddress>
           <Name>ZONA2+A1.14.7-SF01</Name>
-=======
-          <LogicalAddress>%I1.3</LogicalAddress>
-          <Name>ZONA2+A1.10.3-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="2E" CompositionName="Comment">
@@ -373,13 +309,8 @@
       <SW.Tags.PlcTag ID="31" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I1.3</LogicalAddress>
           <Name>ZONA2+A1.15.0-SF01</Name>
-=======
-          <LogicalAddress>%I1.4</LogicalAddress>
-          <Name>ZONA2+A1.12.1-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="32" CompositionName="Comment">
@@ -403,13 +334,8 @@
       <SW.Tags.PlcTag ID="35" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I1.4</LogicalAddress>
           <Name>ZONA2+A2.3.0-SF01</Name>
-=======
-          <LogicalAddress>%I1.5</LogicalAddress>
-          <Name>ZONA2+A1.16.8-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="36" CompositionName="Comment">
@@ -433,13 +359,8 @@
       <SW.Tags.PlcTag ID="39" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I1.5</LogicalAddress>
           <Name>ZONA2+A2.2.7-SF01</Name>
-=======
-          <LogicalAddress>%I1.6</LogicalAddress>
-          <Name>ZONA2+B1.17.0-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="3A" CompositionName="Comment">
@@ -463,13 +384,8 @@
       <SW.Tags.PlcTag ID="3D" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I1.6</LogicalAddress>
           <Name>ZONA2+A2.1.1-SF01</Name>
-=======
-          <LogicalAddress>%I1.7</LogicalAddress>
-          <Name>ZONA2+A2.4.5-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="3E" CompositionName="Comment">
@@ -493,13 +409,8 @@
       <SW.Tags.PlcTag ID="41" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I1.7</LogicalAddress>
           <Name>ZONA2+G1.5.1-SF01</Name>
-=======
-          <LogicalAddress>%I2.0</LogicalAddress>
-          <Name>ZONA2+G1.5.3-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="42" CompositionName="Comment">
@@ -523,13 +434,8 @@
       <SW.Tags.PlcTag ID="45" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%Q0.0</LogicalAddress>
           <Name>ZONA1+MCC001-QA1</Name>
-=======
-          <LogicalAddress>%I2.1</LogicalAddress>
-          <Name>ZONA2+G1.7.1-SF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="46" CompositionName="Comment">
@@ -553,13 +459,8 @@
       <SW.Tags.PlcTag ID="49" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%Q0.1</LogicalAddress>
           <Name>ZONA1+MCC001-QA2</Name>
-=======
-          <LogicalAddress>%Q0.0</LogicalAddress>
-          <Name>ZONA1+A1.1.1-QF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="4A" CompositionName="Comment">
@@ -583,13 +484,8 @@
       <SW.Tags.PlcTag ID="4D" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%Q0.2</LogicalAddress>
           <Name>ZONA2+MCC001-QA1</Name>
-=======
-          <LogicalAddress>%Q0.1</LogicalAddress>
-          <Name>ZONA1+A1.2.1-QF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="4E" CompositionName="Comment">
@@ -613,13 +509,8 @@
       <SW.Tags.PlcTag ID="51" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%Q0.3</LogicalAddress>
           <Name>ZONA2+MCC001-QA2</Name>
-=======
-          <LogicalAddress>%Q0.2</LogicalAddress>
-          <Name>ZONA1+B1.22.1-QF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="52" CompositionName="Comment">
@@ -643,13 +534,8 @@
       <SW.Tags.PlcTag ID="55" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%Q0.4</LogicalAddress>
           <Name>Reserved_1</Name>
-=======
-          <LogicalAddress>%Q0.3</LogicalAddress>
-          <Name>ZONA1+C1.3.1-QF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="56" CompositionName="Comment">
@@ -673,13 +559,8 @@
       <SW.Tags.PlcTag ID="59" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%Q0.5</LogicalAddress>
           <Name>Reserved_2</Name>
-=======
-          <LogicalAddress>%Q0.4</LogicalAddress>
-          <Name>ZONA1+B1.12.1-QF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="5A" CompositionName="Comment">
@@ -703,13 +584,8 @@
       <SW.Tags.PlcTag ID="5D" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%Q0.6</LogicalAddress>
           <Name>Reserved_3</Name>
-=======
-          <LogicalAddress>%Q0.5</LogicalAddress>
-          <Name>ZONA1+A1.15.1-QF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="5E" CompositionName="Comment">
@@ -733,13 +609,8 @@
       <SW.Tags.PlcTag ID="61" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%Q0.7</LogicalAddress>
           <Name>Reserved_4</Name>
-=======
-          <LogicalAddress>%Q0.6</LogicalAddress>
-          <Name>ZONA1+A1.17.3-QF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="62" CompositionName="Comment">
@@ -763,13 +634,8 @@
       <SW.Tags.PlcTag ID="65" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%Q1.0</LogicalAddress>
           <Name>ZONA1+Mushiny-QA1</Name>
-=======
-          <LogicalAddress>%Q0.7</LogicalAddress>
-          <Name>ZONA2+D1.11.1-QF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="66" CompositionName="Comment">
@@ -793,13 +659,8 @@
       <SW.Tags.PlcTag ID="69" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%Q1.1</LogicalAddress>
           <Name>ZONA1+Mushiny-QA2</Name>
-=======
-          <LogicalAddress>%Q1.0</LogicalAddress>
-          <Name>ZONA2+E1.1.2-QF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="6A" CompositionName="Comment">
@@ -823,13 +684,8 @@
       <SW.Tags.PlcTag ID="6D" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%Q1.2</LogicalAddress>
           <Name>Reserved_1(1)</Name>
-=======
-          <LogicalAddress>%Q1.1</LogicalAddress>
-          <Name>ZONA2+A1.10.3-QF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="6E" CompositionName="Comment">
@@ -853,13 +709,8 @@
       <SW.Tags.PlcTag ID="71" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%Q1.3</LogicalAddress>
           <Name>Reserved_2(1)</Name>
-=======
-          <LogicalAddress>%Q1.2</LogicalAddress>
-          <Name>ZONA2+A1.12.1-QF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="72" CompositionName="Comment">
@@ -883,13 +734,8 @@
       <SW.Tags.PlcTag ID="75" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%Q1.4</LogicalAddress>
           <Name>Reserved_3(1)</Name>
-=======
-          <LogicalAddress>%Q1.3</LogicalAddress>
-          <Name>ZONA2+A1.16.8-QF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="76" CompositionName="Comment">
@@ -913,13 +759,8 @@
       <SW.Tags.PlcTag ID="79" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%Q1.5</LogicalAddress>
           <Name>Reserved_4(1)</Name>
-=======
-          <LogicalAddress>%Q1.4</LogicalAddress>
-          <Name>ZONA2+B1.17.0-QF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="7A" CompositionName="Comment">
@@ -943,13 +784,8 @@
       <SW.Tags.PlcTag ID="7D" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%Q1.6</LogicalAddress>
           <Name>Reserved_5(1)</Name>
-=======
-          <LogicalAddress>%Q1.5</LogicalAddress>
-          <Name>ZONA2+A2.4.5-QF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="7E" CompositionName="Comment">
@@ -973,13 +809,8 @@
       <SW.Tags.PlcTag ID="81" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I2.0</LogicalAddress>
           <Name>ZONA2+G1.7.4-SF01</Name>
-=======
-          <LogicalAddress>%Q1.6</LogicalAddress>
-          <Name>ZONA2+G1.5.3-QF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="82" CompositionName="Comment">
@@ -1003,13 +834,8 @@
       <SW.Tags.PlcTag ID="85" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
-<<<<<<< HEAD
           <LogicalAddress>%I2.1</LogicalAddress>
           <Name>MCC001-SF1</Name>
-=======
-          <LogicalAddress>%Q1.7</LogicalAddress>
-          <Name>ZONA2+G1.7.1-QF1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="86" CompositionName="Comment">
@@ -1030,7 +856,6 @@
           </MultilingualText>
         </ObjectList>
       </SW.Tags.PlcTag>
-<<<<<<< HEAD
       <SW.Tags.PlcTag ID="89" CompositionName="Tags">
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
@@ -1306,8 +1131,6 @@
           </MultilingualText>
         </ObjectList>
       </SW.Tags.PlcTag>
-=======
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
     </ObjectList>
   </SW.Tags.PlcTagTable>
 </Document>

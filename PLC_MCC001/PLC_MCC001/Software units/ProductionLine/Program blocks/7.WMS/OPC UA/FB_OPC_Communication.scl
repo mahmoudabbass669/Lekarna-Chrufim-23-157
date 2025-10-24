@@ -45,15 +45,15 @@ BEGIN
 	        OPC_Data.DP2.DestRequest.Source.SourceSeq := 0;
 	        OPC_Data.DP3.DestRequest.Source.SourceSeq := 0;
 	        OPC_Data.DP4.DestRequest.Source.SourceSeq := 0;
-	        OPC_Data.IP1.DestInfo.Source.SourceSeq := 0;
-	        OPC_Data.IP2.DestInfo.Source.SourceSeq := 0;
-	        OPC_Data.IP3.DestInfo.Source.SourceSeq := 0;
-	        OPC_Data.IP4.DestInfo.Source.SourceSeq := 0;
-	        OPC_Data.IP5.DestInfo.Source.SourceSeq := 0;
-	        OPC_Data.IP6.DestInfo.Source.SourceSeq := 0;
-	        OPC_Data.IP7.DestInfo.Source.SourceSeq := 0;
-	        OPC_Data.IP8.DestInfo.Source.SourceSeq := 0;
-	        OPC_Data.IP9.DestInfo.Source.SourceSeq := 0;
+	        OPC_Data.IP11.DestInfo.Source.SourceSeq := 0;
+	        OPC_Data.IP12.DestInfo.Source.SourceSeq := 0;
+	        OPC_Data.IP21.DestInfo.Source.SourceSeq := 0;
+	        OPC_Data.IP22.DestInfo.Source.SourceSeq := 0;
+	        OPC_Data.IP23.DestInfo.Source.SourceSeq := 0;
+	        OPC_Data.IP31.DestInfo.Source.SourceSeq := 0;
+	        OPC_Data.IP32.DestInfo.Source.SourceSeq := 0;
+	        OPC_Data.IP41.DestInfo.Source.SourceSeq := 0;
+	        OPC_Data.IP42.DestInfo.Source.SourceSeq := 0;
 	    END_IF;
 	END_REGION
 	
@@ -91,59 +91,59 @@ BEGIN
 	
 	REGION DS1- DestRequest
 	    // Handle destination information communication for DS1
-	    #Communication_IP1(Source := OPC_Data.IP1.DestInfo.Source,
-	                       Ack := OPC_Data.IP1.DestInfo.Ack);
+	    #Communication_IP1(Source := OPC_Data.IP11.DestInfo.Source,
+	                       Ack := OPC_Data.IP11.DestInfo.Ack);
 	END_REGION
 	
 	
 	REGION DS2- DestRequest
 	    // Handle destination information communication for DS2
-	    #Communication_IP2(Source := OPC_Data.IP2.DestInfo.Source,
-	                       Ack := OPC_Data.IP2.DestInfo.Ack);
+	    #Communication_IP2(Source := OPC_Data.IP12.DestInfo.Source,
+	                       Ack := OPC_Data.IP12.DestInfo.Ack);
 	END_REGION
 	
 	
 	REGION DS3- DestRequest
 	    // Handle destination information communication for DS3
-	    #Communication_IP3(Source := OPC_Data.IP3.DestInfo.Source,
-	                       Ack := OPC_Data.IP3.DestInfo.Ack);
+	    #Communication_IP3(Source := OPC_Data.IP21.DestInfo.Source,
+	                       Ack := OPC_Data.IP21.DestInfo.Ack);
 	END_REGION
 	
 	
 	REGION DS4- DestRequest
 	    // Handle destination information communication for DS4
-	    #Communication_IP4(Source := OPC_Data.IP4.DestInfo.Source,
-	                       Ack := OPC_Data.IP4.DestInfo.Ack);
+	    #Communication_IP4(Source := OPC_Data.IP22.DestInfo.Source,
+	                       Ack := OPC_Data.IP22.DestInfo.Ack);
 	END_REGION
 	
 	REGION DS5- DestRequest
 	    // Handle destination information communication for DS4
-	    #Communication_IP5(Source := OPC_Data.IP5.DestInfo.Source,
-	                       Ack := OPC_Data.IP5.DestInfo.Ack);
+	    #Communication_IP5(Source := OPC_Data.IP23.DestInfo.Source,
+	                       Ack := OPC_Data.IP23.DestInfo.Ack);
 	END_REGION
 	
 	REGION DS6- DestRequest
 	    // Handle destination information communication for DS4
-	    #Communication_IP6(Source := OPC_Data.IP6.DestInfo.Source,
-	                       Ack := OPC_Data.IP6.DestInfo.Ack);
+	    #Communication_IP6(Source := OPC_Data.IP31.DestInfo.Source,
+	                       Ack := OPC_Data.IP31.DestInfo.Ack);
 	END_REGION
 	
 	REGION DS7- DestRequest
 	    // Handle destination information communication for DS4
-	    #Communication_IP7(Source := OPC_Data.IP7.DestInfo.Source,
-	                       Ack := OPC_Data.IP7.DestInfo.Ack);
+	    #Communication_IP7(Source := OPC_Data.IP32.DestInfo.Source,
+	                       Ack := OPC_Data.IP32.DestInfo.Ack);
 	END_REGION
 	
 	REGION DS8- DestRequest
 	    // Handle destination information communication for DS4
-	    #Communication_IP8(Source := OPC_Data.IP8.DestInfo.Source,
-	                       Ack := OPC_Data.IP8.DestInfo.Ack);
+	    #Communication_IP8(Source := OPC_Data.IP41.DestInfo.Source,
+	                       Ack := OPC_Data.IP41.DestInfo.Ack);
 	END_REGION
 	
 	REGION DS9- DestRequest
 	    // Handle destination information communication for DS4
-	    #Communication_IP9(Source := OPC_Data.IP9.DestInfo.Source,
-	                       Ack := OPC_Data.IP9.DestInfo.Ack);
+	    #Communication_IP9(Source := OPC_Data.IP42.DestInfo.Source,
+	                       Ack := OPC_Data.IP42.DestInfo.Ack);
 	END_REGION
 	
 	//------------------------------------------------------
@@ -174,7 +174,8 @@ BEGIN
 	    IF #timPeriodicSend.Q THEN
 	        #Communication_SYS_OP.Comm.Send := FALSE;
 	    END_IF;
-	
+	    
+	    
 	END_REGION
 	
 	//Periodic Counter, incremented every 10 seconds.
@@ -199,6 +200,9 @@ BEGIN
 	    ELSE
 	        #Communication_fault := FALSE;
 	    END_IF;
+	    
+	    //Global status
+	    _.Global.DB_VisuColor.Line.ProductionLine.OPC.%X0 :=NOT #Communication_fault;
 	    
 	END_REGION
 	

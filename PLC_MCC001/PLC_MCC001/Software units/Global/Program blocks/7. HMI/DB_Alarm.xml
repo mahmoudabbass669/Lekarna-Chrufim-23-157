@@ -63,6 +63,7 @@
       <Member Name="BW-ASi" Datatype="Word" />
       <Member Name="Cognex" Datatype="Word" />
       <Member Name="IMC" Datatype="Word" />
+      <Member Name="OPC" Datatype="Word" />
     </Member>
     <Member Name="CircuitBreaker" Datatype="Word" />
   </Section>

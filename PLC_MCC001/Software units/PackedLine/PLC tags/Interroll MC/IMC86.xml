@@ -10,11 +10,7 @@
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
           <LogicalAddress>%I655.0</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC86Sensor_1</Name>
-=======
-          <Name>IMC86Sensor -1</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="2" CompositionName="Comment">
@@ -489,11 +485,7 @@
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
           <LogicalAddress>%I657.3</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC86MotorStateErrorRD -G1.5.2</Name>
-=======
-          <Name>IMC86MotorStateErrorRD_G1.5.2</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="4E" CompositionName="Comment">
@@ -593,11 +585,7 @@
         <AttributeList>
           <DataTypeName>SInt</DataTypeName>
           <LogicalAddress>%IB661</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC86MotorStateSpeedRD -G1.5.2</Name>
-=======
-          <Name>IMC86MotorStateSpeedRD_G1.5.2</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="5E" CompositionName="Comment">
@@ -697,11 +685,7 @@
         <AttributeList>
           <DataTypeName>Int</DataTypeName>
           <LogicalAddress>%IW669</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC86MotorCurrentRD -G1.5.2</Name>
-=======
-          <Name>IMC86MotorCurrentRD_G1.5.2</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="6E" CompositionName="Comment">
@@ -901,11 +885,7 @@
         <AttributeList>
           <DataTypeName>Bool</DataTypeName>
           <LogicalAddress>%Q515.3</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC86DigitalOutputRD -G1.5.2</Name>
-=======
-          <Name>IMC86DigitalOutputRD_G1.5.2</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="8E" CompositionName="Comment">
@@ -1005,11 +985,7 @@
         <AttributeList>
           <DataTypeName>SInt</DataTypeName>
           <LogicalAddress>%QB519</LogicalAddress>
-<<<<<<< HEAD
           <Name>IMC86MotorTargetSpeedRD -G1.5.2</Name>
-=======
-          <Name>IMC86MotorTargetSpeedRD_G1.5.2</Name>
->>>>>>> 94cc3b3a4a7a41540c28e3b7148e5b3aa11225ba
         </AttributeList>
         <ObjectList>
           <MultilingualText ID="9E" CompositionName="Comment">

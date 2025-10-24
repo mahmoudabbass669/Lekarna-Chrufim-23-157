@@ -8,7 +8,8 @@ VERSION : 0.1
          PLC : Word;
          "BW-ASi" : Word;
          Cognex : Word;
-         Mabs : Word;
+         IMC : Word;
+         OPC : Word;
       END_STRUCT;
       "BW-ASi" : Struct
          "BW_ASi143 -MCC100 -210KE3 -ConfigErr_Circuit1_Slave(0-15)A_1" : Word;
